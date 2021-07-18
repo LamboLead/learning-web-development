@@ -1,0 +1,51 @@
+CSS TEXT FORMATTING PROPERTIES
+
+* color
+    Specifies the color of the text.
+
+* font-size
+    Specifies the size of the text.
+    - [numeric]
+
+* font-family
+    Specifies the font of the text.
+    - "font"
+
+* font-weight
+    Specifies the thickness of the characters.
+    - bold
+    - [numeric]
+
+* font-style
+    Specifies the styling of the characters.
+    - italic
+
+* line-height
+    Specifies the space between lines of text.
+
+
+* text-align
+    Alignes the text to a certain margin of its parent container.
+    - justify
+    - center
+    - right
+    - left (default)
+
+* text-decoration
+    Specifies the decoration of the text.
+    - underline
+    - line-through
+
+* text-transform
+    Changes the casing of the text.
+    - lowercase
+    - uppercas
+    - capitalize
+        Capitalizes the first letter of every word
+    - initial (default)
+    - inherit
+        Uses the property from the parent element
+
+
+
+

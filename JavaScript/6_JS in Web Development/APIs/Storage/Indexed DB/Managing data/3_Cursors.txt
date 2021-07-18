@@ -1,0 +1,70 @@
+CURSORS ON INDEXED DB
+
+0. Introduction
+
+When an object store saves a lot of items, the method 'getAll' will fail to get all the records as an array. A cursor is a special object that traverses the store - given a query - and returns one key-value at time, thus saving memory.
+
+1. Creating a cursor
+
++ Syntax:
+
+    let request = <objectStore>.openCursor([<query>, <direction>])
+        Creates a 'cursor' object.
+
+        <query> (string/object): Is a key or a key range.
+        <direction> (string): The order in which the cursor will go over the key range. It takes the following values:
+            "next": The cursor walks up from lowest key (default).
+            "prev": The cursor walks down from the highest key.
+            "nextunique"/"prevunique": Same as above, but skip records with the same key -only over indexes (e.g. For multiple books with price=5 only the first will be returned).
+
+        IMPORTANT: 'request.onsuccess' triggers once for each result.
+
+1.1. Moving the cursor
+
+You can move the cursor down the key range with the following methods:
+
++ Syntax:
+
+    ...
+    request.onsuccess = () => {
+        let cursor = request.result;
+        cursor.method(...);
+    }
+    ...
+
++ Methods:
+
+    .advance(<count>)
+        Advances the cursor the number of times specified by <count>, skipping values.
+
+    .continue([<key>])
+        Advances the cursor to the next value, or immediately after <key> if given.
+
+- Example:
+
+    let trans = db.transaction("books");
+    let books = transaction.objectStore("books");
+
+    let request = books.openCursor(); // Creates a cursor that will iterate through each book in the store
+
+    request.onsuccess = () => {
+        let cursor = request.result;
+        if (cursor) {
+            let key = cursor.key;
+            let value = cursor.value;
+            console.log(key, value);
+            cursor.continue(); // Moves the cursor by one position
+        } else {
+            console.log("No more books");
+        }
+    };
+
+
+
+
+
+
+
+
+Because a store internally sorts its items by key, a cursor walks the store in ascending order (by default).
+

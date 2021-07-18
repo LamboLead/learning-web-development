@@ -1,0 +1,81 @@
+INTRODUCTION TO JAVASCRIPT
+
+0. Introduction
+
+JavaScript is an interpreted programming language used by the browser (client-side) or on the server with NodeJS.
+
+It is a nulti-paradigm programming language: It covers functional, object-oriented, procedural, and prototypal programming. The most common being functional and object-oriented. More on them in following folders.
+
+
+1. JavaScript datatypes:
+
+- Undefined: No datatype specified.
+- Null: Zero.
+- Boolean: True/False.
+- String: Single or double-quoted text.
+- Symbol:
+- BigInt: Big integer.
+- Number (int, float): Numbers.
+- Array: List of items.
+- Object: Data organized by properties and methods in a defined structure.
+
+2. Operators:
+
+- Numerical
+
+    +, -    Plus, Minus
+    *, /    Product, Divide by
+    **      Power
+    %       Modulo
+    ++      Add 1 to existing value
+    +=      Add specified number to existing value
+    --      Substract 1 to existing value
+    -=      Substract specified number to existing value
+    *=      Multiply existing value by number
+    /=      Divide existing value by number
+
+- String
+
+    +       Concatenate
+    +=      Repeat by
+
+- Comparison
+
+    ==      Equal to
+    ===     Strictly equal to
+    !=      Not equal to
+    !===    Strictly not equal to
+
+    >       Greater than
+    >=      Greater than or equal to
+    <       Less than
+    <=      Less than or equal to
+
+- Logical
+
+    &&      And
+    ||      Or
+
+3. Variable declaration
+
+You can declare variables in multiple ways, depending on their use:
+
+    var <variable_name>...
+        Declares a variable.
+
+    let <variable_name>...
+        Declares a variable, without letting override its declaration later in the code. Also, if the variable is declared inside a block, its scope is limited to that block.
+
+    const <CONSTANT_NAME>...
+        Declares a variable as a constant (its name cannot be reassigned. Read-only), keeping the features of the 'let' keyword. Mutable objects like arrays are still mutable.
+        Good practice: Write constants with uppercase letters.
+
+4. Variable scope
+
+    Global
+        Applied to variables created outside a function, and those initiated without "var" keyword.
+        Variables can be seen everywhere in the code.
+
+    Local
+        Applied to variables created inside a function block
+        Variables are only visible inside the function block they're created into.

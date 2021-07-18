@@ -1,0 +1,94 @@
+HTML FORMS TAGS
+
+<form/>
+    Specifies the start of a formulary element, which can contain the following elements:
+    - action = "URL"
+        Specifies the URL of the webpage or file where you want to submit the information of the form.
+
+    <fieldset/>
+        Groups related form elements, usually a question along with some fields to enter information.
+
+        <legend/>
+            Inserts a text inside a specified <fieldset/>, usually a question.
+
+        <label/>
+            Inserts an explanatory caption for the elements near of it.
+            - for = "element_id"
+                Specifies the id of the <input> element that the label belongs to.
+
+        <input>
+            Inserts an element that receives user data.
+            - type = "input type"
+                Specifies the type of input.
+                [text, radio, search, checkbox, date, file]
+            - placeholder = "text"
+                Provides a watermark for an <input> type text when it's empty.
+            - checked
+                Checks the radio or checkbox by default.
+            - value = "certain value"
+                Specifies the value of the radio or checkbox, which is a summary of its answer.
+            - name = "group name"
+                Specifies the name of the group that other inputs belong to, in order to group them together.
+
+        <select/>
+            Inserts a select field used to select an option from an usually large list.
+
+            <option/>
+                Adds a new option to the list of the <select/>
+                - value = "certain value"
+                    Specifies the value of the option, which is a summary of the text it wraps.
+
+        <textarea/>
+            Adds a field to input a larger amount of text.
+            - rows = "number of rows"
+            - cols = "number of columns"
+                Specifies the number of rows and columns the <textarea/> will have.
+
+        <button/>
+            Creates a button control, not only used inside a <form/>.
+            - type = "button type"
+                Specifies the type of the button
+                [submit (Default), reset, button, menu (...)] <menu/> ELEMENT
+            - form = "form id"
+                Specifies the id of a form to which the <button/> belongs.
+            
+            
+Shared common attributes between <form/> elements:
+
+- disabled = "disabled"
+    Disables all elements wrapped by the parent element, including itself.
+
+- autofocus = "autofocus"
+    Automatically gives focus to the specified element when the page loads.
+
+- required = "required"
+    Makes the input obligatory to fill.
+
+- tabindex = "number"
+    Allows to focus on the form elements with the TAB key
+    "0": Gives focus and access. It's the default element to go to.
+	"1, 2, ..., n": Gives focus and access.
+	"-1, -2, -3, ..., -n": Gives focus but not access.
+	NOTE: The values inserted on tabindex from "1" also specify the exact tab order of elements
+
+- accesskey (...)
+    Specifies a shortcut key to access interactive elements.
+
+EXAMPLE
+
+<form id="This_form">
+    <fieldset>
+        <legend>Insert your name</legend>
+        <label for="id_name">Name:</label>
+	    <input type="text" id="id_name" name="name">
+    </fieldset>
+    <fieldset>
+        <legend>Choose one of these two items:</legend>
+        <input id="one" type="radio" name="items" value="one">
+        <label for="one">Choice one</label><br>
+
+        <input id="two" type="radio" name="items" value="two">
+        <label for="two">Choice two</label>
+    </fieldset>
+    <button type="submit" form="This_form">Submit information</button>
+</form>

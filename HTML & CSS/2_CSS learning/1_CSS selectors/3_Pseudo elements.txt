@@ -1,0 +1,69 @@
+CSS PSEUDO ELEMENTS
+
+A pseudo-element is used to style specified parts of an element.
+
+1. Syntax
+
+    CSS:
+        selector::pseudo-element {
+            property: value;
+        }
+
+2. All CSS pseudo-elements
+
+- Text formatting pseudo-element
+
+    ::first-line
+        Used to add a special style to the first line of a text. It can only be applied to block-level elements.
+
+    ::first-letter
+        Used to add a special style to the first letter of a text.
+        It can only be applied to block-level elements.
+
+    ::marker
+    Selects the markes of list items <li/>.
+    (e.g. Styling the markers of list items <li/>)
+        ::marker {
+            color: red;
+            font-size: 23px;
+        }
+
+You can apply the following to the text formatting pseudo-elements:
+    > Font and color properties
+    > Background properties
+    > Word-spacing
+    > Letter spacing
+    > text-decoration
+    > tertical-align
+    > text-transform
+    > line-height
+    > clear
+
+- Element insertion pseudo-elements
+
+For these pseudo-elements to work properly, define in the element the property: 'content: "";'
+
+::before
+    Used to insert some content before the content of an element.
+    (e.g. Inserting an image before the content of each <h1/> element)
+        h1::before {
+            content: url(smiley.gif);
+        }
+
+::after
+    Used to insert some content after the content of an element.
+
+- Other pseudo-elements
+
+    ::selection
+        Matches the portion of an element that is selected by a user.
+
+        You can apply the following properties:
+            > Color properties
+            > Background properties
+            > cursor
+            > outline
+
+
+
+

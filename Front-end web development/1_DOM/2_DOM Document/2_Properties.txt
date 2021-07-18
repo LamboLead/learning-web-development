@@ -1,0 +1,117 @@
+DOCUMENT OBJECT PROPERTIES
+
+- Syntax
+    document.property = [optional];
+
+These are the values for the 'document' object that you can get or set:
+
+* DOCUMENT-RELATED
+
+    - LOADING, URL, DOMAIN-RELATED
+
+    .readyState
+        Returns a string with the loading status of the current document (read-only).
+        - "uninitialized"
+            Has not started loading yet.
+        - "loading"
+            Is loading.
+        - "loaded"
+            Has been loaded.
+        - "interactive"
+            Has loaded enough and the user can interact with it.
+        - "complete"
+            Fully loaded.
+
+    .baseURI
+        Returns the base URI of the document (read-only).
+
+    .documentURI
+        Returns the location URI of the document.
+
+    .documentURL
+        Returns the full URL of the document.
+
+    .domain
+        Returns the domain name of the server that loaded the document.
+    
+    .cookie
+        Sets or returns all name:value pairs of cookies in the current document. (READ JS COOKIES TUTORIAL IN W3 SCHOOLS)
+
+    .referrer
+        Returns the referrer of the current document (read-only).
+
+    - ENCODING
+
+    .characterSet
+        Return the character encoding for this document.
+
+    .inputEncoding
+        Returns the character encoding for this document.
+
+    - OTHER
+    
+    .defaultView
+        Returns the 'window' object from the document.
+
+    .designMode
+        "on": Makes the entire document editable.
+
+    .docType
+        Returns the doctype name of a document.
+
+    .documentMode
+        Returns the mode used by the browser to render the current document, like so (only works on MS Edge):
+            > 5: IE5 mode
+            > 7: IE7 mode
+            > 8: IE8 mode
+            > 9: IE9 mode
+            > 10: IE10 mode
+            > 11: IE11 mode
+
+    .fullScreenElement
+        Returns the current element that is displayed in fullscreen mode.
+
+    .implementation
+        Returns the DOMimplementation object that handles this document as a 'DocumentImplementation' object.
+
+    .lastModified
+        Returns the date and time the current document was last modified.
+
+* HTML ELEMENTS-RELATED
+
+    .documentElement
+        Returns the 'documentElement' of the document, as the element object. In HTML objects, the returned object is the <html/> element (read-only).
+
+    .head
+        Returns the <head/> element of the document.
+
+    .title
+        Returns the title of the document.
+
+    .anchors
+        Returns a collection of all <a/> elements in the document (read-only).
+
+    .links
+        Returns a collection of all links in the document, which represents <a/> and / or <area/> elements with an 'href' attribute.
+
+    .body
+        On return: Returns the <body/> element of the current document.
+        On set: Overwrites all child elements inside of it and replaces it with the new specified content.
+
+    .forms
+        Returns a collection of all <form/> elements in the document.
+
+    .images
+        Returns a collection of all <img> elements in the document.
+
+    .scripts
+        Returns a collection of all <script/> elements in the document.
+
+    .embeds
+        Returns a collection of all <embeds> elements in the document.
+
+    
+
+
+
+    

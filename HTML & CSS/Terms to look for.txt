@@ -1,0 +1,6 @@
+Terms to look for:
+- Search Engine Optimization (SEO)
+- Override
+- Fallback
+- Media queries in CSS
+- W3 Consortium's Web Content Accesibility Guidelines (WCAG)

@@ -1,0 +1,109 @@
+- Functions
+
+1. Creating a function
+
+There are two ways to create a function:
+
+    function myFunction { # This one
+        console.log("Hello World");
+    }
+
+    let printNumTwo;
+    for (let i = 0; i < 3; i++) {
+        if (i === 2) {
+            printNumTwo = function() { # And this one
+            return i;
+            };
+        }
+    }
+    console.log(printNumTwo());
+    console.log(i);
+
+    myFunction();
+
+2. Arrow function syntax
+
+Sometimes, functions doesn't need to be named (when passing a function as an argument, for example). Arrow function syntax lets you do that:
+
+    const myFunction = () => {
+        const myVar = "value";
+        return myVar;
+    }
+
+When there's no function body, arrow syntax allows to omit the return keyword:
+
+    const myFunction = () => "value"; # returns "Value" by default
+
+You can also insert parameters to arrow functions:
+
+    const multiplier = (item, multi) => item * multi;
+
+    const greeting = (name = "Anonymous") => "Hello " + name; # default parameter that works when there's no argument provided when calling the function
+
+3. The rest parameter
+
+With this parameter, you can create functions that take a variable number of arguments. These arguments are stored in an array that can be accessed later from inside the function.
+
+Check out this code:
+
+    function howMany(...args) {
+        return "You have passed " + args.length + " arguments.";
+    }
+    console.log(howMany(0, 1, 2));
+    console.log(howMany("string", null, [1, 2, 3], { }));
+
+The console would display the strings 'You have passed 3 arguments.' and 'You have passed 4 arguments.'.
+
+The rest parameter eliminates the need to check the args array and allows us to apply map(), filter() and reduce() on the parameters array.
+
+4. Recursion
+
+Recursion is the concept that a function can be expressed in terms of itself. You can recall a function within itself to replace a for loop.
+
+There are two parts you have to create when using recursion:
+
+- Base case: Is needed to tell the recursive function when it no longer needs to call itself. It is a simple case where the return value is already known.
+- Recursive call: Executes the original function with different arguments. If it is written correctly, the base case will be reached. Otherwise, the function will run forever.
+
+Say you want to write a recursive function that returns an array containing the numbers 1 through n. This function will need to accept an argument, n, representing the final number. Then it will need to call itself with progressively smaller values of n until it reaches 1. You could write the function as follows:
+
+    function countup(n) {
+        if (n < 1) {
+            return [];
+        } else {
+            const countArray = countup(n - 1);
+            countArray.push(n);
+            return countArray;
+        }
+    }
+    console.log(countup(5));
+    
+The value [1, 2, 3, 4, 5] will be displayed in the console.
+
+Another example: Start by thinking about the following task: multiply the first n elements of an array to create the product of those elements. Using a for loop, you could do this:
+
+    function multiply(arr, n) {
+        var product = 1;
+        for (var i = 0; i < n; i++) {
+            product *= arr[i];
+        }
+        return product;
+    }
+
+However, notice that:
+
+    multiply(arr, n) == multiply(arr, n - 1) * arr[n - 1]
+
+That means you can rewrite multiply in terms of itself and never need to use a loop.
+
+    function multiply(arr, n) {
+        if (n <= 0) {
+            return 1;
+        } else {
+            return multiply(arr, n - 1) * arr[n - 1];
+        }
+    }
+
+The recursive version of multiply breaks down like this. In the base case, where n <= 0, it returns 1. For larger values of n, it calls itself, but with n - 1. That function call is evaluated in the same way, calling multiply again until n <= 0. At this point, all the functions can return and the original multiply returns the answer.
+
+Note: Recursive functions must have a base case when they return without calling the function again (in this example, when n <= 0), otherwise they can never finish executing.

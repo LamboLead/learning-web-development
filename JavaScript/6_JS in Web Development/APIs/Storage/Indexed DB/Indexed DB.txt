@@ -1,0 +1,306 @@
+INDEXED DB
+
+0. Introduction
+
+It is a database built into the browser. It is intended for offline apps.
+
+> It is much more powerful and supports bigger volumes of data than web storage.
+> It stores almost any kind of values by keys, with multiple key types.
+> Its interface is event-based.
+
+1. Connecting to the database.
+
+To start working with IndexedDB, you first need to open (connect to) a database.
+
+Syntax:
+
+    let newRequest = indexedDB.open(<name>, version);
+        
+        Returns a 'newRequest' object.
+        <name> (string) Database's name.
+        <version> (integer): Database's version.
+
+        > newRequest has the following events:
+            'success': Database is ready.
+            'error': Opening has failed.
+            'upgradeneeded': Database is ready, but its version is outdated.
+        > The database can be accessed with '.result' property.
+
+> You can have many databases with different names, but all of them exist within the current domain; which is why different websites cannot access each other's databases.
+> Because IndexedDB is client-side, the developers don't have full-time access to it. So, when a new version of an app is released and the user visits the webpage, you may need to update the database.
+
+- Example: Creating a database
+
+    let newRequest = indexedDb.open("store", 1);
+
+    newRequest.onupgradeneeded = () => {
+        // Triggers if the client has no database or if it needs an upgrade.
+    }
+    newRequest.onerror = () => {
+        console.error("Error", newRequest.error);
+    }
+    newRequest.onsuccess = () => {
+        let dataBase = openRequest.result;
+        // Continue working with the database using 'dataBase' object
+    }
+
+1.1. Updating the database
+
+If the local database version is less than the specified in the 'open' method, the special event 'upgradeneeded' is triggered, and you can compare versions and upgrade data structures as needed.
+
+- Example: Updating a database
+
+    let newRequest = indexedDb.open("store", 2);
+
+    newRequest.onupgradeneeded = (event) => {
+        // The existing database version is less than  2 (or doesn't exist)
+        let dataBase = newRequest.result;
+        switch(event.oldVersion) {
+            case 0:
+                // Version 0: The client has no database
+                // Perform initialization...
+            case 1: 
+                // Update database...
+        }
+    }
+
+If onupgradeneeded finishes without errors, newRequest.onsuccess triggers and the database is successfully opened.
+
+1.2. Deleting the database
+
+Syntax:
+
+    let deleteRequest = indexedDB.deleteDatabase(<name>);
+        
+        <name> (string): The name of the database you want to delete.
+
+        > deleteRequest has the following events that track the result of the operation:
+            'success', 'error'
+
+2. Object stores
+
+To store something in IndexedDB, you need 'object stores'. They are the places where the data is stored (much like tables in SQL databases or collections in NoSQL databases).
+
+    > A database may have multiple stores depending on the information they store (one for users, other for goods, etc).
+    > You can store almost any value in object stores.
+    > There must be a unique key for every value in the store (like an ID). And the key must be one of these types: number, date, string, binary, or array.
+    
+There are some aspects you need to consider while working with objects stores:
+
+    > An object store can only be created/modified while updating the DB version, in the 'upgradeneeded' handler.
+    > 
+
+Syntax:
+
+    dataBase.createObjectStore(<name>[, <keyOptions>]);
+
+    <name> (string): The object store name.
+    <keyOptions> (object): Optional object with two properties:
+        keyPath (object property): A property that IndexedDB will use as the key.
+        autoIncrement (bool): If true, the key for a newly stored object is generated automatically, as an ever incrementing integer.
+
+    > If keyOptions is not supplied, a key to identify the store has to be provided later.
+
+- Example: Creating an object store:
+
+    ...
+    newRequest.onupgradeneeded = () => {
+        let dataBase = newRequest.result;
+        dataBase.createObjectStore('books', {keyPath: 'id'});
+    }
+    ...
+
+- Example: Deleting an object store:
+
+    db.deleteObjectStore("books");
+
+3. Transactions
+
+It is a group of operations. If all operations succeed, the transaction succeeds; in the other hand, if only one of the operations fail, the transaction fails.
+
+    > All data operations must be made within a transaction.
+    > You cannot alter object stores inside a transaction, only read or write information to them.
+    > IMPORTANT: To read or write data inside a store, you have to:
+        1. Start a transaction.
+        2. Get a store as an object to operate into.
+        3. Perform a request to the store to create/update/read/delete items from it.
+        4. Handle request success/error.
+    > When all transaction requests are finished (the microtasks queue is empty), the transaction is commited automatically. This is why you can't insert an asynchronous operation in the middle of a transaction.
+
+3.1. Creating a transaction.
+
+    let trans = db.transaction(<store>[, <type>])
+        Returns a 'transaction' object.
+
+        <store> (string): The name of the store that the transaction will happen.
+        <type> (string): A transaction type, it can be either:
+            "readonly": Can only read. (default).
+            "readwrite": Can read and write data.
+
+
+- Get a store as an object to operate on it.
+
+    let store = trans.objectStore(<store>);
+
+        <store> (string): The name of the store that you are referring.
+
+        Returns a 'store' object.
+
+3.2. Perform requests to add/modify/delete data to the store.
+
+Having a store object inside a variable, you can modify its data like so:
+
+- Storing values:
+
+    let request = store.put(<value>[, <key>]);
+        Adds the value to the store. If there's already a value with the same key, it will be replaced.
+
+    let request = store.add(<value>[, <key>]);
+        Same as '.put()', but if there's already a value with the same key, the request fails and an error "ConstraintError" is generated.
+
+        <value>: The data you want to store inside the object store.
+        <key>: If 'autoIncrement' property not defined in the store creation, it is the key that refers to the specified value.
+
+- Handle request's success/error.
+
+    request.onsuccess = () => {...}
+    request.onerror = () => {...} 
+
+3.?. Tracking the status of transactions
+
+To detect the moment of successful completion, you can listen to 'transaction.oncomplete' event:
+
+- Example: Detecting the status of a transaction
+
+    let trans = db.transaction("books", "readwrite");
+
+    // ... perform operations ...
+
+    transaction.oncomplete = () => {
+        console.log("Transaction is complete!");
+    }
+
+You can manually abort the transaction:
+
+    transaction.abort();
+
+
+5. Searching
+
+On IndexedDB, you can search using the following types inside a store:
+
+    > By a key value or a range of keys that identify each item.
+    > By another object field distinct of the items' keys. This requires an additional data structure (index).
+
+Note: An object store sort key-value pairs by key internally.
+
+5.1. Searching by key
+
+Searching methods support 'exact key values' and 'ranges of values' (objects that specify an acceptable key range).
+
+* Creating key ranges:
+
+IDBKeyRange objects are created with the following syntax:
+
+Syntax:
+
+    IDBKeyRange.method(...);
+
+Methods:
+
+    .lowerBound(<lower>[, <open>])
+        Means '>= lower', or '> lower' if <open> is true.
+        
+    .upperBound(<upper>[, <open>])
+        Means '<= upper', or '< upper' if <open> is true.
+
+    .bound(<lower>, <upper>[, <lowerOpen>, <upperOpen>])
+        Means 'between lower and upper'.
+    
+    .only(key)
+        A range that consists of only one key.
+
+* Searching using key ranges:
+
+These are the methods that perform the actual search. They accept a <query> argument, which can be an exact key or a key range:
+
+Syntax:
+
+    let request = <store>.method(...);
+
+Methods:
+
+    .get(<query>)
+        Search for the first value by its key or range.
+
+    .getAll([<query>, <count>])
+        Search for all values. Limit by <count> if given.
+
+    .getKey(<query>)
+        Search for the first key that satisfies the <query> (query is usually a range).
+
+    .getAllKeys([<query>, <count>])
+        Search for all the keys that satisfy the <query> (usually a range), up to <count> if given.
+
+    .count(<query>)
+        Returns the total count of keys that satisfy the <query> (usually a range).
+
+- Example: Searching by keys
+
+    ...
+    let request = books.get('js'); // Get one book
+    request = books.getAll(IDBKeyRange.bound('css', 'html')); // Get books with id between 'css' and 'html'
+    request = books.getAll(IDBKeyRange.upperBound('html', true)); // Get books with id < 'html'
+    request = books.getAll(); // Get all books
+    request = books.getAllKeys(IDBKeyRange.lowerBound('js', true)); // Get all keys where id > 'js'
+    ...
+
+5.2. Searghing by field using an index
+
+To search by other object fields, you need to create an additional data structure named 'index', which is an add-on to the store that tracks a given object field. For each value of that field, it stores a list of keys for objects that have that value.
+
+Syntax. Creating an index:
+
+    let index = <objectStore>.createIndex(<name>, <keyPath>[, <options>])
+
+        <name> (string): Index name.
+        <keyPath> (string): Path to the object field that the index should track. We're going to search by that field.
+        <option> (object): Optional object with properties:
+            <unique> (bool): If true, there may be only one object in the store with the given value at the keyPath (the specified field is unique).
+            <multiEntry> (bool): Only used if the value on keyPath is an array. In that case, by default, the index will treat the whole array as the key. But if is true, then the index will keep a list of store objects for each value in that array. So array members become index keys.
+
+Syntax. Searching by index:
+
+    let searchIndex = <store>.index(<name>);
+        Returns a virtual store which contains the items that have a certain index.
+        <name> (string): Name of the index created previously.
+
+- Example: Searching books by price.
+
+The index should be specified in the 'onupgradeneeded' event.
+
+    newRequest.onupgradeneeded = () => {
+        let books = db.createObjectStore('books', {keyPath: 'id'});
+        let index = books.createIndex('price_idx', 'price');
+    }
+
+> The index will track price field.
+> The price is not unique. So we don't set "unique" option.
+> The price is not an array, so 'multientry' is not applicable.
+> The index will keep itself up to date automatically.
+
+Now, if you want to search for a given price, you simply apply the same searching methods to the index inside a transaction:
+
+    let transaction = db.transaction("books"); // This is a 'readonly' transaction
+    let books = transaction.objectStore("books");
+    let priceIndex = books.index("price_idx");
+
+    let request = priceIndex.getAll(10);
+
+    request.onsuccess = () => {
+        if (request.result) {
+            console.log("Books", request.result); // Array of books with price = 10
+        } else {
+            console.log("No such books");
+        }
+    }

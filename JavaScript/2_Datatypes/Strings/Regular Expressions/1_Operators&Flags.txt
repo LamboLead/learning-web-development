@@ -1,0 +1,144 @@
+REGULAR EXPRESSIONS OPERATORS
+
+/text/
+    Matches 'text'.
+
+/|/
+    Conditional operator:
+    /yes|no|maybe/
+        Matches either 'yes', 'no', or 'maybe'.
+
+/./
+    Wildcard character:
+    /hu./
+        Matches either 'hug', 'hum', 'hut', 'hua', etc.
+
+/()/
+    Grouping:
+    /P(engu|umpk)in/
+        Matches either 'Penguin' or 'Pumpkin'.
+
+/[]/
+    Character classes:
+    /b[aiu]g/
+        Matches either 'bag', 'big', or 'bug'.
+
+/[-]/
+    Hyphen (range) character:
+    /[a-e]/
+        Matches any lowercase letter from 'a' through 'e' in the alphabet.
+    /[0-5]/
+        Matches any number from '0' to '5', inclusive.
+    /[a-z0-5]/
+        Matches any lowercase letter, and any number from '0' to '5', inclusive.
+
+/[^]/
+    Negation (caret inside a character set):
+    /[^aeiou]/
+        Matches all characters that are not a vowel, symbols included.
+
+/^/
+    Search at the begginning (caret outside a character set, starting the regex):
+    /^Ricky/
+        Returns ["Ricky"] in "Ricky is first", returns null in "The last is Ricky".
+
+/$/
+    Search at the end (dollar sign at the end of the regex)
+    /story$/
+        Returns ["story"] in "This is a story", returns null in "A story this is".
+
+/+/
+    One or more times appearance:
+    /a+/
+        Matches ['a'] in 'abc', ['aaa'] in 'aaabca'.
+    /ab+/g
+        Matches ['ab'] in 'abc', ['ab', 'ab'] in 'ababc'.
+
+/*/
+    Zero or more times appearance:
+    /go*/
+        Matches ['gooooo'] in 'goooooal', ['g'] in 'gut feeling', null in 'over the moon'.
+
+/{<lower>,<upper>}/
+    Quantity specifier:
+    /a{3,5}h/
+        Matches ['aaah'] in 'aaah', ['aaaaah'] in 'aaaaah'.
+    /a{2,}h/
+        Matches ['aah'] in 'aah', ['aaaaaa...h'] in 'aaaaa...h'.
+    /a{3}h/
+        Matches ['aaah'] in 'aaah'.
+
+/()\<integer_repetition_value>/
+    Pattern reutilization. Used with grouping parentheses. If used with the .match() method, it will return the string it matches and its capture group:
+    /(\w+)\s\1/
+        Matches any word that occurs twice separated by a space.
+    /(\d+)\s(\w+)\s\1\s\2/
+        Matches any number and word that occurs twice, separated by a space (e.g. '6969  fuck 6969 fuck').
+
+/?/
+    Lazy matching (read greedy vs. lazy matching):
+    /n[a-z]*?t/
+        Matches ['negot'] in 'negotiation' instead of ['negotiat'] (greedy match).
+    
+    Optional matching:  
+    /colou?r/
+        Matches ['color'] in 'color' and ['colour'] in 'colour'.
+
+JAVASCRIPT REGULAR EXPRESSION OPERATORS
+
+/\w/
+    JS alphanumeric match. Equal to [A-Za-z0-9_] (including underscore):
+    /\w+/
+        Matches ['42'] in '42', ['important_var'] in 'important_var'.
+    /\w/
+        Matches ['a', 'b', 'c', 'd'] in 'abcd'.
+
+/\W/
+    JS non-alphanumeric match. Equal to [^A-Za-z0-9_]:
+    /\W/
+        Matches ['%'] in '42%', ['!'] in 'coding!'.
+
+/\d/
+    JS digit match. Equal to [0-9]:
+    /\d/g
+        Matches ['2', '0', '0', '1'] in '2001: A Space Oddisey'.
+
+/\D/
+    JS non-digit match. Equal to [^0-9]:
+    /\D/
+        Matches ['a', 'b', 'c', 'd'] in 'a1b2c3d4'.
+
+/\s/
+    JS whitespaces match. Equal to [\r\t\f\n\v]:
+    /s/g
+    Matches [' ', ' ', ' '] in 'Hello. My name is'.
+
+/\S/
+    JS non whitespaces match. Equal to [^\r\t\f\n\v]:
+    /S/g
+    Matches ['a', 'a', 'b', 'c'] in 'a a b c'.
+
+/(?=...)/
+    Positive lookahead. Makes sure that the ... element is there, but won't match it:
+    /q(?=u)/
+    Matches ['q'] in 'qu'.
+
+/(?!...)/
+    Negative lookahead. Makes sure that the ... element is not there:
+    /(?!u)/
+        Matches ['q'] in 'qt'.
+
+REGULAR EXPRESSIONS FLAGS
+
+//i
+    Ignore casing:
+    Matches 'IGNORECASE', 'ignorecase', 'iGnoReCaSe', etc.
+
+//g
+    Global. Returns more than the first match:
+    /Repeat/g
+    Matches ['Repeat', 'Repeat', 'Repeat'] in 'Repeat, Repeat, Repeat'. Not only the first match ['Repeat'] in the string.
+
+
+
+

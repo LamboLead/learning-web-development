@@ -1,0 +1,266 @@
+1. Find the Longest Word in a String
+
+Return the length of the longest word in the provided sentence. Your response should be a number.
+
+    function findLongestWordLength(str) {
+        let regexCheck = /\w+/g;
+        let arrayFindings = str.match(regexCheck);
+        let longestWord = "";
+        for (let i = 0; i < arrayFindings.length; i++) {
+        if (arrayFindings[i].length > longestWord.length) {
+            longestWord = arrayFindings[i];
+        }
+        }
+        return longestWord.length;
+    }
+    
+    TEST: findLongestWordLength("The quick brown fox jumped over the lazy dog");
+
+2. Return Largest Numbers in Arrays
+
+Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays.
+
+    function largestOfFour(arr) {
+        let largestArray = [];
+        let maxPerArray;
+        for (let i = 0; i < arr.length; i++){
+        maxPerArray = -10000;
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] > maxPerArray) {
+            maxPerArray = arr[i][j];
+            }
+        }
+        largestArray.push(maxPerArray);
+        }
+        return largestArray;
+    }
+    
+    TEST: largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+
+3. Confirm the Ending
+
+Check if a string (first argument, str) ends with the given target string (second argument, target).
+    
+For the purpose of this challenge, do not use .endsWith() method. Use JavaScript substring methods instead.
+
+    function confirmEnding(str, target) {
+        let newStr = "";
+        for (let i = str.length - 1; i >= str.length - target.length; i--) {
+        newStr+= str[i];
+        }
+        let newNewStr = "";
+        for (let i = newStr.length - 1; i >= 0; i--) {
+        newNewStr += newStr[i];
+        }
+        return target === newNewStr;
+    }
+    
+    TEST: confirmEnding("Bastian", "n");
+
+4. Repeat a String Repeat a String
+
+Repeat a given string str (first argument) for num times (second argument). Return an empty string if num is not a positive number. For the purpose of this challenge, do not use the built-in .repeat() method.
+
+    function repeatStringNumTimes(str, num) {
+        if (num <= 0) {
+        return "";
+        } else {
+        let newString = "";
+        let count = 1;
+        while (count <= num) {
+            newString+=str
+            count++;
+        }
+        return newString;
+        }
+    }
+    
+    TEST: repeatStringNumTimes("abc", 3);
+
+5. Truncate a String
+
+Truncate a string (first argument) if it is longer than the given maximum string length (second argument). Return the truncated string with a ... ending.
+
+    function truncateString(str, num) {
+        // let truncatedString = "";
+        if (str.length > num) {
+        return str.substring(0,num) + "...";
+        } else {
+        return str;
+        }
+    }
+    
+    TEST: truncateString("A-tisket a-tasket A green and yellow basket", 8);
+
+6. Finders Keepers
+
+Create a function that looks through an array arr and returns the first element in it that passes a 'truth test'. This means that given an element x, the 'truth test' is passed if func(x) is true. If no element passes the test, return undefined.
+
+    function findElement(arr, func) {
+        for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            return arr[i];
+        }
+        }
+        return undefined;
+    }
+    
+    findElement([1, 2, 3, 4], num => num % 2 === 0);
+
+7. Boo who
+Check if a value is classified as a boolean primitive. Return true or false. Boolean primitives are true and false.
+
+    function booWho(bool) {
+        if (bool === true || bool === false) {
+        return true;
+        } else {
+        return false;
+        }
+    }
+    
+    booWho(null);
+
+8. Title Case a Sentence
+
+Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.
+
+For the purpose of this exercise, you should also capitalize connecting words like the and of.
+
+        function titleCase(str) {
+            let regex = /\S+/g;
+            let wordsArray = str.match(regex);
+            let word = "";
+            let firstChar = "";
+            let finalChars = "";
+            let finalString = "";
+            for (let i = 0; i < wordsArray.length; i++) {
+                word = wordsArray[i];
+                firstChar = word[0].toUpperCase();
+                finalChars = word.substring(1, word.length).toLowerCase();
+                if (i == wordsArray.length - 1) {
+                    finalString += firstChar + finalChars;
+                } else {
+                    finalString += firstChar + finalChars + " ";
+                }
+            }
+            return finalString;
+        }
+    
+    TEST: titleCase("I'm a little tea pot");
+    TEST: titleCase("HERE IS MY HANDLE HERE IS MY SPOUT");
+
+9. Slice and Splice
+
+You are given two arrays and an index. Copy each element of the first array into the second array, in order.
+
+Begin inserting elements at index n of the second array. Return the resulting array. The input arrays should remain the same after the function runs.
+
+    function frankenSplice(arr1, arr2, n) {
+        let arr2pt1;
+        let arr2pt2;
+        let frankenArray;
+    
+        arr2pt1 = arr2.slice(0, n).concat([...arr1]);
+        arr2pt2 = arr2.slice(n, arr2.length);
+        frankenArray = [...arr2pt1].concat([...arr2pt2]);
+        return frankenArray;
+    }
+
+    TEST: frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
+10. Falsy Bouncer
+
+Remove all falsy values from an array. Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+
+Hint: Try converting each value to a Boolean.
+
+    function bouncer(arr) {
+        let truthfulArr = [];
+        for (let i = 0; i < arr.length; i++) {
+        if (arr[i]) {truthfulArr.push(arr[i]);}
+        }
+        return truthfulArr;
+    }
+    
+    TEST: bouncer([7, "ate", "", false, 9]);
+    TEST: bouncer([false, null, 0, NaN, undefined, ""]);
+
+11. Where do I Belong
+
+Return the lowest index at which a value (second argument) should be inserted into an array (first argument) once it has been sorted. The returned value should be a number.
+
+For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1). Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).
+
+    function getIndexToIns(arr, num) {
+        let newArray = [...arr];
+        if (newArray.indexOf(num) === -1) {
+        newArray.push(num);
+        }
+        newArray = newArray.sort(sortingFunction);
+    
+        return newArray.indexOf(num);
+    }
+    
+    function sortingFunction(first, second) {
+        if (first == second) {return 0;}
+        if (first < second) {
+        return -1;
+        } else {
+        return 1;
+        }
+    }
+    
+    TEST: getIndexToIns([40, 60], 50);
+    TEST: getIndexToIns([50, 20, 30, 10, 40], 35);
+
+12. Mutations
+
+Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+
+For example, ["hello", "Hello"], should return true because all of the letters in the second string are present in the first, ignoring case.
+
+The arguments ["hello", "hey"] should return false because the string hello does not contain a y.
+
+Lastly, ["Alien", "line"], should return true because all of the letters in line are present in Alien.
+
+    function mutation(arr) {
+        arr[0] = arr[0].toLowerCase();
+        arr[1] = arr[1].toLowerCase();
+        const regex = /./g;
+        let wordArr = arr[0].match(regex);
+        let count = 0;
+        const testingWord = arr[1];
+        for (let i = 0; i < testingWord.length; i++) {
+        if (wordArr.indexOf(testingWord[i]) !== -1) {count++;}
+        }
+        switch (count) {
+        case testingWord.length:
+            return true;
+        default:
+            return false;
+        }
+    }
+    
+    TEST: mutation(["hello", "hey"]);
+
+13. Chunking arrays
+
+Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+    function chunkArrayInGroups(arr, size) {
+        let finalArr = []
+        let insideArr = [];
+        let modulo = arr.length % size;
+        
+        for (let i = 0; i < arr.length - modulo; i+= size) {
+        insideArr = arr.slice(i, i + size);
+        finalArr.push(insideArr);
+        }
+        if (modulo !== 0) {finalArr.push(arr.slice(arr.length - modulo, arr.length));}
+        
+        return finalArr;
+    }
+    
+    TEST: chunkArrayInGroups(["a", "b", "c", "d"], 2); // Should return [["a", "b"],["c", "d"]]
+    TEST: chunkArrayInGroups(["a", "b", "c", "d"], 3); // Should return [["a", "b", "c"],["d"]]
+    TEST: chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4) // Should return [[0, 1, 2, 3],[4, 5]]

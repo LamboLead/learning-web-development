@@ -1,0 +1,109 @@
+CSS CUSTOMIZING PROPERTIES
+
+1. COLOR
+
+* opacity
+    Specifies the opacity of the element.
+    - [From 0 to 1]
+
+* background-color
+    Specifies the color of the background of the element.
+
+* background
+    Specifies the background of the element.
+    - [linear-gradient function]
+        Puts a linear gradient pattern (see 0_Introduction to CSS > CSS color representation)
+    - url("URL")
+        Puts the image on the URL as the background
+
+* box-shadow
+    Applies one or more shadows to an element.
+    * inset
+        Specifies the placement of the shadow in the box.
+        - none
+            No shadow.
+        - inset
+            The shadow is placed inside the box.
+        - [Not specified]
+            The shadow is placed outside the box (default).
+    * offset-x
+        Specifies how far to push the shadow horizontally.
+        - [numeric]
+    * offset-y
+        Specifies how far to push the shadow vertically.
+        - [numeric]
+    * blur-radius
+        Specifies how much to blur the shadow.
+        - [numeric]
+    * spread-radius
+        Specifies the roundness of the shadow.
+        - [numeric]
+    * color
+        Specifies the color of the shadow.
+        
+2. BORDERS
+
+* border-style
+    Specifies what kind of border to put on the element.
+    - none
+    - solid
+    - dotted, dashed
+    - double
+    - groove
+    - ridge
+    - inset, outset
+    - hidden
+
+* border-width
+    Specifies the width of the four borders of the element.
+    - thick, medium
+    - [numeric]
+
+* border-color
+    Specifies the color of the border.
+
+* border-radius
+    Adds round borders to an element.
+    - [numeric]
+        Adjusts the radius of all four corners
+    - [top-right], [down-right], [down-left], [top-left]
+        Adjusts the radius of individual corners
+
+NOTE:
+> To specify the three main properties of borders in one line:
+    border: [border-width] [border-style] [border-color]
+
+> To specify a certain border of the element:
+    border-[top, right, bottom, left]-[property]
+
+
+3. SHOWING, SIZING AND TRANSFORMATIONS
+
+* display
+    Specifies how the element will be displayed and behave.
+    - none
+        The element will remain hidden.
+    - block
+        The element behaves normally (default).
+    - flex
+        Converts the element into a flexbox (containers only).
+    - grid
+        Converts the element into a grid (containers only).
+
+* width, height
+    Specifies the width and height of the element.
+    - [numeric]
+
+* padding
+    Controls the amount of space between the element's content and its border.
+    - [top], [right], [bottom], [left]
+        Numeric values for top, right, bottom and left margin.
+
+* transform
+    Transforms the shape of the element.
+    * scale([number])
+        Re-scales the element.
+    * rotate([degrees])
+        Rotates the element.
+    * skewX([degrees]), skewY([degrees])
+        Skews the element the specified degrees along its X or Y axis.

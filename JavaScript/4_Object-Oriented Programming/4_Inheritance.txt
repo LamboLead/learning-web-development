@@ -1,0 +1,115 @@
+INHERITANCE IN OOP
+
+"Don't Repeat Yourself". Instead of repeating the same code (properties, methods) for various constructors, you can create them in a single constructor, and inherit them to the constructors you want:
+
+    function Animal() { }; // A constructor Animal() is created
+    Animal.prototype = { // The prototype of Animal() is created
+        constructor: Animal,
+        eat : function() {
+            console.log("nom nom nom");
+        }
+    }
+
+    Cat.prototype = {
+        constructor: Cat; // eat() method can be ommitted because it is now on Animal.prototype
+    }
+
+    Bird.prototype = {
+        constructor: Bird; // eat method can be ommitted
+    }
+
+2. Inherit properties from a supertype
+
+Inheritance follows the following steps:
+
+2.1. Making an instance of the parent (supertype)
+
+Because using the already known syntax can bring some problems:
+
+    let animal = new Animal();
+
+It's better to use the following syntax to avoid those disadvantages:
+
+    let animal = Object.create(Animal.prototype);
+
+Object.create(Animal.prototype) creates a new object 'animal', and sets 'Animal.prototype' as its new prototype. By doing so, you are giving the animal instance the same blueprint as any other instance of Animal
+
+2.2. Set the prototype of the child (subtype)
+
+Let's set the prototype of Bird to be treated as the child of Animal:
+
+    Bird.prototype = Object.create(Animal.prototype);
+
+As the prototype is the blueprint for new objects, and because the prototype of Bird now is child of Animal's prototype, the bluepring for Bird now includes all the information from Animal.
+
+2.3 Set the correct constructor to the child prototype
+
+Because the child's prototype inherits all its properties from its parent, the constructor of the child is set to the constructor of the parent. To change that, you need to specify the right constructor of the child, like so:
+
+    Bird.prototype.constructor = Bird;
+
+Let's see all code:
+
+    function Animal() { } // A constructor 'Animal' is created
+    Animal.prototype = { // The prototype of 'Animal' is created
+        constructor : Animal,
+        eat: function() {
+            console.log("nom nom nom");
+        }
+    }
+
+    function Bird() { } // A constructor 'Bird' is created
+    Bird.prototype = Object.create(Animal.prototype); // The prototype of Bird is created, and it inherits its characteristics from Animal's prototype
+    Bird.prototype.constructor = Bird; // The constructor of Bird's prototype is corrected
+
+    let duck = new Bird("Donald"); // A new instance of Bird is created
+
+3. Add methods after inheritance
+
+A constructor that inherits its prototype from a supertype can still have its own properties and methods:
+
+    Bird.prototype.fly = function () {
+        console.log("I'm flying");
+    }
+
+Now, instances of Bird will have both eat() and fly() methods
+
+4. Override inherited methods
+
+Despite a child's prototype inherited its properties and methods from a supertype, they can be overriden by redefining them in the prototype of the child:
+
+    function Animal() { }
+    Animal.prototype.eat = function() {
+        console.log("nom nom nom");
+    }
+
+    function Bird() { }
+    Bird.prototype = Object.create(Animal.prototype);
+
+    Bird.prototype.eat = function() { // The eat() method was overriden
+        console.log("peck peck peck")
+    }
+
+5. Using a Mixin to add common behavior between unrelated objects
+
+Inheritance is not the only way to share properties and methods between instances, and it's not the best solution for unrelated objects like Bird and Airplane.
+
+For unrelated objects, it's better to use mixins. It allows other objects to use a collection of functions.
+
+    let flyMixin = function(obj) {
+        obj.fly = function() {
+            console.log("Flying, wooosh!");
+        }
+    }
+
+    let bird = { // A bird object is created
+        name: "Donald",
+        numLegs: 2
+    };
+    let plane = { // A plane object is created
+        model: "777",
+        numPassengers: 524
+    }
+
+    flyMixin(bird); // flyMixin is used to share a common behavior (fly) between bird and plane
+    flyMixin(plane);

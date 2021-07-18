@@ -1,0 +1,139 @@
+INSTANCING OBJECTS IN JS
+
+Imagine we created a Bird constructor method earlier:
+
+    function Bird() {
+        this.name = "Albert";
+        this.color = "blue";
+        this.numLegs = 2;
+    }
+
+1. Creating new instances
+
+The following line creates a new instance of Bird, called blueBird. Now, blueBird has all the properties defined inside the Bird constructor:
+
+    let blueBird = new Bird();
+
+Its properties can be accessed and modified.
+
+2. Assigning properties while creating instances
+
+Instead of changing each bird's properties after creating them, create a new constructor which accepts parameters and create new instances with different values for each property:
+
+    function Bird(name, color) {
+        this.name = name;
+        this.color = color;
+        this.numLegs = 2;
+    }
+
+    let blueBird = new Bird("Bruce", "Blue");
+    let redBird = new Bird("Raymond", "Red");
+
+3. Own properties
+
+When each instance of a class has its own copy of the properties, those properties are called 'own properties'.
+
+    function Bird(name) {
+        this.name  = name;
+        this.numLegs = 2;
+    }
+    
+    let duck = new Bird("Donald");
+    let canary = new Bird("Tweety");
+
+'name' and 'numLegs' are own properties because they are defined directly on the instance object. Each instance of 'Bird' will have its own separate copy of these properties.
+
+4. Prototype properties: Sharing properties among all instances
+
+Because all instances of a constructor may have the same property, generating unnecessary redundancy (e.g. numLegs will be the same for all instances of the constructor Bird), you can use the 'prototype' of a constructor to share a property with all its instances.
+
+The prototype of an constructor is a blueprint in which you can specify the properties to be shared with all instances of that constructor, avoiding redundancy.
+
+    Bird.prototype.numLegs = 2;
+
+Now, all instances of Bird have the 'numLegs' property set to 2.
+
+An object inherits its prototype directly from the constructor that created it, and you can check this inheritance with the .isPrototypeOf method (check __keywords.txt file).
+
+The following code adds all of the own properties of duck to the array ownProps, and all of its prototype properties to the prototypeProps:
+
+    let ownProps = [];
+    let prototypeProps = [];
+
+    for (let property in duck) {
+        if(duck.hasOwnProperty(property)) {
+            ownProps.push(property);
+        } else {
+            prototypeProps.push(property)
+        }
+    }
+    console.log(ownProps);
+    console.log(prototypeProps);
+
+The console would display the value ["name"], and ["numLegs"].
+
+4.1 The prototype chain
+
+An object's prototype itself is an object. Then, a prototype can have its own prototype.
+
+The prototype of Bird.prototype is Object.prototype:
+
+    Object.prototype.isPrototypeOf(Bird.prototype); // Returns true
+
+Then, in this prototype chain, Object is the supertype of Bird, and Bird is the supertype of duck (Object > Bird > duck). Object is a supertype for all objects in JavaScript.
+
+5. The constructor property
+
+Each instance created with a constructor has a special constructor property. It is a reference to the constructor function that created the instance, and with it is possible to find out what kind of object it is: 
+
+    function joinBirdFraternity(candidate) {
+        if (candidate.constructor === Bird) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+Since constructor method can be overwritten, it's better to use the instanceof method to check the type of an object.
+
+6. Use the prototype more efficiently
+
+To add properties more efficiently to the prototype of a constructor, you can create a new object with the prototype and add all the required properties at once:
+
+    Bird.prototype = {
+        constructor: Bird, // If this line doesn't exist, the constructor property will be erased
+        numLegs: 2, 
+        eat: function() {return "nom nom nom";},
+        describe: function() {return "My name is " + this.name;}
+    };
+
+Remember to redefine the constructor property on the prototype to keep it.
+
+7. Protection of properties
+
+A public property can be accessed and changed outside of the object's definition, for example:
+
+    let bird = {
+        name: "Randall",
+        numLegs: 2
+    }
+
+    bird.name = "Duffy"; // Here, the name of the bird can be accessed and changed outside of its definition
+
+The simplest way to make this property private is by creating a variable within the constructor function (changing its scope to global to local). This way, the variable can only be accessed anc changed by methods also within the constructor function:
+
+    function Bird() {
+        let hatchedEgg = 10; // A variable is created inside the constructor, making it private
+
+        this.getHatchedEggCount = function() {
+            return hatchedEgg;
+        };
+    }
+
+    let ducky = new Bird();
+    ducky.getHatchedEggCount();
+
+'getHatchedEggCount()' is a privileged method because it has access to the private variable 'hatchedEgg'. This is possible because hatchedEgg is declared in the same context as getHatchedEggCount.
+
+Closure: In JavaScript, means that a function always has access to the context in which it was created.
+

@@ -1,0 +1,153 @@
+CSS GRID
+
+1. Introduction
+
+CSS grid helps build complex web designs, working by turning an HTML element into a grid container with rows and columns to place children elements where desired.
+
+First, take into account the following measurement units for the width or height of the columns or rows:
+
+    > fr: Sets the width or height to a fraction of the available space.
+    > auto: Sets the width or height according to the dimensions of its content.
+    > %: Sets the width or height to certain percentage relative to the parent container's dimensions.
+
+Second, you need to set the following property to the container you want to convert into a grid.
+
+* display: grid
+    Allows to turn the HTML element into a grid container to put items inside of it.
+
+2. CSS grid properties
+
+# Adding ROWS and COLUMNS (applied to the container)
+
+* grid-template-columns
+    Creates a number of columns with a specified width, setting the number of rows automatically (if called alone).
+    - [column1_length], [column2_length], ...
+
+* grid-template-rows
+    Creates a number of rows with a specified height, setting the number of columns automatically (if called alone).
+    - [row1_length], [row2_length], ...
+
+    (e.g. Create two columns, 50px wide each; and three rows, one 40px and the other two 50px tall)
+        grid-template-columns: 50px 50px;
+        grid-template-rows: 40px 50px 50px;
+
+-> If you want several rows for your grid, you can use the repeat() function, like so:
+    (e.g. Create 100 columns, 10px each; and 4 rows, first 20px, second 40px, third 20px, fourth 40px)
+        grid-template-rows: repeat(2, 20px 40px);
+        grid-template-columns: repeat(100, 10px);
+
+-> If you want to limit the size of the items when the grid container changes size, use minmax() function, like so:
+    (e.g. Create two columns, one 100px wide; the other can vary in width between 50px and 200px)
+        grid-template-columns: 100px minmax(50px, 200px);
+
+-> If you want to insert as many rows or columns of your desired size as possible depending on the size of the container, use repeat(auto-fill, minmax()) combination of functions, like so:
+    (e.g. Insert as many elements as possible, with minimum and maximum column width of 60px and 1fr respectively)
+        grid-template-columns: repeat(auto-fill, minmax(60px 1fr));
+
+-> If you want to automatically enlarge or shrink your rows or columns when the container enlarges or shrinks, use repeat(auto-fit, minmax()) combination of functions, like so:
+    (e.g. Create as many elements as possible, with minimum and maximum row height of 60px and 1fr respectively)
+        grid-template-rows: repeat(auto-fit, minmax(60px, 1fr));
+
+# Adjust the GAPS BETWEEN ROWS AND COLUMNS (applied to the container)
+
+* grid-column-gap
+    Creates a gap between columns.
+    - [gap_width]
+
+* grid-row-gap
+    Creates a gap between rows.
+    - [gap_height]
+
+* grid-gap
+    Shorthand for 'grid-column-gap' and 'grid-row-gap'.
+    (e.g. Create a gap of 20px for columns and 10px for rows)
+        grid-gap: 20px 10px;
+
+# Set the SPACE that EACH ITEM WILL OCCUPY (applied to each of the items)
+
+* grid-column
+    Controls the amount of columns that an item will consume.
+    - [line1] / [line2]
+
+* grid-row
+    The same as 'grid-column' but for rows.
+
+    (e.g. Set the space that the provided item will occupy to the column 3 and rows 1 and 2)
+        grid-column: 3 / 4; 
+        grid-row: 1 / 3;
+
+# JUSTIFY ALL ITEMS inside their individual spaces (applied to the container)
+
+* justify-items
+    Aligns the elements within their cell horizontally.
+    - stretch
+        The elements will fit the whole width of their cell (default).
+    - start
+        Justifies the elements to the left of their cell.
+    - center
+        Justifies the elements to the center of their cell.
+    - end
+        Justifies the elements to the right.
+
+* align-items
+    Aligns the elements within their cell vertically.
+    - stretch
+        The elements will fit the whole height of their cell (default).
+    - start
+        Aligns the elements to the top of their cell.
+    - center
+        Aligns the elements to the center of their cell.
+    - end
+        Aligns the elements to the bottom.
+
+# JUSTIFY EACH ITEM inside its individual space (applied to each of the items)
+
+* justify-self
+    Aligns the element within its cell horizontally.
+    - stretch
+        The element will fit the whole width of the cell (default).
+    - start
+        Justifies the content to the left of the cell.
+    - center
+        Justifies the content to the center of the cell.
+    - end
+        Justifies the content to the right.
+
+* align-self
+    Aligns the element within its cell vertically.
+    - stretch
+        The element will fit the whole height of the cell (default).
+    - start
+        Aligns the content to the top of the cell.
+    - center
+        Aligns the content to the center of the cell.
+    - end
+        Aligns the content to the bottom.
+
+# DIVIDE the grid INTO AREAS
+
+# (applied to the container)
+
+* grid-template-areas
+    Creates a template to group elements into predefined areas.
+    (e.g. Create a template of a grid with 3 columns and 3 rows to place a header, an ad, some content, and a footer)
+        grid-template-areas:
+            "header header header"
+            "advert . content"
+            "footer footer footer";
+    The empty cell is represented with the period (.)
+
+# (applied to each of the elements)
+
+* grid-area
+    References the name of the element you want to put in the custom area.
+
+    (e.g. Create items that will take the name of each of the custom areas)
+        .item1 {grid-area: header;}
+        .item2 {grid-area: advert;}
+        .item3 {grid-area: content;}
+        .item4 {grid-area: footer;}
+
+-> You can create an area on the fly for an item to be placed on it using line notation, like so:
+
+    grid-area: [horizontal line to start] / [vertical line to start] / [horizonal line to end] / [vertical line to end];

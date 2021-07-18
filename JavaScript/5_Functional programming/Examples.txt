@@ -1,0 +1,120 @@
+FUNCTIONAL PROGRAMMING EXAMPLES
+
+1. [TEMPORAL] Simulating a web browser tab functionality
+
+Consider the scenario: you are browsing the web in your browser, and want to track the tabs you have opened. Let's try to model this using some simple object-oriented code.
+
+A Window object is made up of tabs, and you usually have more than one Window open. The titles of each open site in each Window object is held in an array. After working in the browser (opening new tabs, merging windows, and closing tabs), you want to print the tabs that are still open. Closed tabs are removed from the array and new tabs (for simplicity) get added to the end of it.
+
+The code editor shows an implementation of this functionality with functions for tabOpen(), tabClose(), and join(). The array tabs is part of the Window object that stores the name of the open pages.
+
+    // Let's create a window with an array of tabs
+    var Window = function(tabs) {
+        this.tabs = tabs;
+    };
+
+    // Let's create the join() method inside the window prototype to concatenate the tabs from otherWindow into the active window
+    Window.prototype.join = function(otherWindow) {
+        this.tabs = this.tabs.concat(otherWindow.tabs);
+        return this;
+    };
+
+    // Let's create the tabOpen() method to push into the tabs array the new tab
+    Window.prototype.tabOpen = function(tab) {
+        this.tabs.push('new tab');
+        return this;
+    }
+
+    // Let's create the tabClose(index) to grab the tabs before and after the closedTabIndex and set the tabs array to the concatenation of those two
+    Window.prototype.tabClose = function(closedTabIndex) {
+        let tabsBeforeIndex = this.tabs.splice(0, closedTabIndex);
+        let tabsAfterIndex = this.tabs.splice(1, closedTabIndex + this.tabs.length);
+
+        this.tabs = tabsBeforeIndex.concat(tabsAfterIndex);
+        return this;
+    }
+
+    // Let's create three browser windows
+    var workWindow = new Window(['GMail', 'Inbox', 'Work mail', 'Docs', 'freeCodeCamp']);
+    var socialWindow = new Window(['FB', 'Gitter', 'Reddit', 'Twitter', 'Medium']);
+    var videoWindow = new Window(['Netflix', 'YouTube', 'Vimeo', 'Vine']);
+
+    // Now perform the tab opening, closing, and other operations
+    var finalTabs = socialWindow
+        .tabOpen() // Open a new tab for cat memes
+        .join(videoWindow.tabClose(2)) // Close third tab in video window, and join
+        .join(workWindow.tabClose(1).tabOpen());
+    console.log(finalTabs.tabs);
+
+
+2. Applying the first two principles of Functional Programming
+
+Rewrite the code so the global array bookList is not changed inside either function. The add function should add the given bookName to the end of the array passed to it and return a new array (list). The remove function should remove the given bookName from the array passed to it.
+
+Note: Both functions should return an array, and any new parameters should be added before the bookName parameter.
+
+    // The global variable
+    var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+    function add (arr, bookName) {
+        var newArr = [...arr]; // Note the creation of a copy of the original array. This is the one that we'll be operating with
+        newArr.push(bookName);
+        return newArr;
+    }
+
+    function remove (arr, bookName) {
+        var book_index = arr.indexOf(bookName);
+        if (book_index >= 0) {
+            var newArr = [...arr]
+            newArr.splice(book_index, 1);
+            return newArr;
+        }
+    }
+
+    var newBookList = add(bookList, 'A Brief History of Time');
+    var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
+    var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+
+    TEST: console.log(bookList);
+
+    // Should return ['The Hound of the Baskervilles',
+    'On The Electrodynamics of Moving Bodies',
+    'Philosophiæ Naturalis Principia Mathematica',
+    'Disquisitiones Arithmeticae']
+
+3. Using High-order functions (map, filter, reduce) to solve complex problems
+
+We have defined a function named squareList. You need to complete the code for the squareList function using any combination of map(), filter(), and reduce() so that it returns a new array containing only the square of only the positive integers (decimal numbers are not integers) when an array of real numbers is passed to it. An example of an array containing only real numbers is [-3, 4.8, 5, 3, -3.2].
+
+Note: Your function should not use any kind of for or while loops or the forEach() function.
+
+    const squareList = arr => {
+        var newArr = [...arr]:
+        var squaredArr = newArr
+            .filter(num => num > 0)
+            .filter(num => num % 1 == 0)
+            .map(num => num ** 2);
+        return squaredArr;
+    }
+
+    TEST: console.log(squareList([-3, 4.8, 5, 3, -3.2]));
+
+4. Convert strings to URL slugs
+
+Many content management sites (CMS) have the titles of a post added to part of the URL for simple bookmarking purposes. For example, if you write a Medium post titled Stop Using Reduce, it's likely the URL would have some form of the title string in it (.../stop-using-reduce). You may have already noticed this on the freeCodeCamp site.
+
+Fill in the urlSlug function so it converts a string title and returns the hyphenated version for the URL.Don't use .replace(). Here are the requirements:
+
+- The input is a string with spaces and title-cased words
+- The output is a string with the spaces between words replaced by a hyphen (-)
+- The output should be all lower-cased letters
+- The output should not have any spaces
+
+    function urlSlug(title) {
+        var workingArr = title.split(/\W/);
+        workingArr = workingArr
+            .map(word => word.toLowerCase())
+            .filter(word => word != "");
+        return workingArr.join("-");
+    }
+    TEST: console.log(" Winter Is Coming"); // should return "winter-is-coming"

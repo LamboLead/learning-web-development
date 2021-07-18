@@ -1,0 +1,69 @@
+JAVASCRIPT PROMISES
+
+0. Introduction
+
+You use promises if you want to execute some code asynchronously. When the code has executed, you can set the promise as fulfilled or failed.
+
+Promise is a constructor function which takes two parameters as functions 'resolve' and 'reject'. These determine the outcomes of the promise.
+
+    const myPromise = new Promise((resolve, reject) => {
+        // Code...
+    });
+
+1. 'resolve' and 'reject' methods
+
+A promise has three states:
+> 'pending': The promise is executing. It leaves this state if the promise is completed.
+> 'fulfilled': The promise was fulfilled using 'resolve'. This parameter is used when you want the promise to succeed.
+> 'rejected': The promise is rejected using 'reject'. This parameter is used when you want the promise to fail.
+
+    const myPromise = new Promise((resolve, reject) => {
+        if(condition here) {
+            resolve("Promise was fulfilled");
+        } else {
+            reject("Promise was rejected");
+        }
+    });
+
+The example above uses strings for the argument of these functions, but it can really be anything. Often, it might be an object, that you would use data from, to put on your website or elsewhere.
+
+* Handle a fulfilled promise
+
+You can access to the result of a promise using the 'then' method. It is executed immediately after your promise is fulfilled with 'resolve'. Here’s an example:
+
+    myPromise.then(result => {
+        // Code...
+    });
+
+'result' comes from the argument given to the 'resolve' method.
+
+* Handle a rejected promise
+
+'catch' is the method used when your promise has been rejected. It is executed immediately after the 'reject' method is called. Here’s the syntax:
+
+    myPromise.catch(error => {
+        // Code...
+    });
+
+'error' is the argument passed in to the 'reject' method.
+
+- Example
+
+    const makeServerRequest = new Promise((resolve, reject) => {
+        // responseFromServer is set to false to represent an unsuccessful response from a server
+        let responseFromServer = false;
+        
+        if(responseFromServer) {
+            resolve("We got the data");
+        } else {  
+            reject("Data not received");
+        }
+    });
+    
+    makeServerRequest.then(result => {
+        console.log(result);
+    });
+
+    makeServerRequest.catch = (error => {
+        console.log(error);
+    })

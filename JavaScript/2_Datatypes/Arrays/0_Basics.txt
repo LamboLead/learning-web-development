@@ -1,0 +1,69 @@
+ARRAYS BASICS
+
+1. Creating arrays
+
+One-dimensional arrays: Only have one level of depth.
+
+    let simpleArray = ['one', 2, 'three', true, undefined, null];
+
+Multi-dimensional arrays: Have more than one levels of depth.
+
+    let complexArray = [
+    [
+        {one: 1, two: 2},
+        {three: 3, four: 4}
+    ],
+    [
+        {a: "a", b: "b"},
+        {c: "c", d: "d"}
+    ]
+];
+
+2. Accessing data inside arrays
+
+You can retrieve data from an array with bracket notation, as seen here:
+
+    let ourArray = ["a", "b", "c"];
+    let ourVariable = ourArray[0];
+    
+ourVariable has the value "a"
+
+3. Mutability
+
+Arrays are mutable, which means that its internal elements can be changed independently and freely.
+
+You can set an element to a new value with the bracket notation:
+    
+    ourArray[1] = "not b anymore";
+
+ourArray is now ["a", "not b anymore", "c"];
+
+4. Spread operator
+
+It allows to expand arrays and other expressions in places where multiple parameters or elements are expected.
+
+    const arr = [6, 89, 3, 45];
+    const maximus = Math.max(...arr);
+    
+...arr returns the unpacked array arr into an argument that only receives comma-separated values.
+
+- Copying arrays
+
+Using the spread operator, a copy of all elements will be passed to a new array:
+
+    let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+    let weatherConditionsCopy = [...weatherConditions];
+
+weatherConditionsCopy will have the value ['rain', 'snow', 'sleet', 'hail', 'clear'];
+
+- Combine arrays
+
+You can insert all the elements of one array into another at any index:
+
+    let thisArray = ['sage', 'rosemary', 'parsley'];
+    let thatArray = [0, 1, ...thisArray, 3];
+
+thatArray will have the value [0, 1, 'sage', 'rosemary', 'parsley', 3];
+
+
+

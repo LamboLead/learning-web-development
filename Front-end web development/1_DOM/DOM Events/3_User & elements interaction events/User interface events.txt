@@ -1,0 +1,36 @@
+USER INTERFACE EVENTS
+
+These are the events related to the user interface.
+
+1. Events
+
+    .abort
+        The loading of the media is aborted.
+
+    .beforeunload
+        The document is about to be unloaded.
+
+    .error
+        An error occurred during the loading of a media file.
+
+    .load
+        The object has loaded.
+
+    .resize
+        The document view is resized.
+
+    .scroll
+        The element's scrollbar is being scrolled.
+
+    .select
+        After the user selects some text (for <input> and <textarea>).
+
+    .unload
+        Once a page has unloaded (for <body>).
+
+2. Properties
+
+    detail
+        Returns a number with details about the event.
+    view
+        Returns a reference to the Window object where the event occurred.

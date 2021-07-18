@@ -1,0 +1,13 @@
+TEXT-FORMATTING HTML TAGS
+
+<strong/>
+    Converts to bold the text that it wraps.
+
+<u/>
+    Underlines the text that it wraps.
+
+<em/>
+    Italicize the text that wraps.
+
+<s/>
+    Crosses the text that wraps.

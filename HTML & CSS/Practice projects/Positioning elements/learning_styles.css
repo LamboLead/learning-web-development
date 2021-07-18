@@ -1,0 +1,161 @@
+/* The position property */
+
+    .static_div {
+        position: static;
+
+        background-color: yellow;
+        color: black;
+
+        border-radius: 4px;
+
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .relative_div {
+        position: relative;
+        top: 70px;
+        left: 150px;
+
+        background-color: red;
+        color: white;
+
+        border-radius: 4px;
+
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .absolute_div {
+        position: absolute;
+        top: 60px;
+        left: 250px;
+
+        background-color: blue;
+        color: white;
+
+        border-radius: 4px;
+
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .fixed_div {
+        position: fixed;
+        right: 90px;
+        bottom: 100px;
+
+        background-color: greenyellow;
+        color: black;
+
+        border-radius: 4px;
+
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .sticky_div {
+        position: sticky;
+        top: 0px;
+        /* right: 100px; */
+        /* bottom: 0px; */
+
+        background-color: brown;
+        color: white;
+
+        border-radius: 4px;
+
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+
+        text-align: center;
+        font-weight: bold;
+    }
+
+/* float property */
+
+    .float_div {
+        width: 150px;
+        height: 70px;
+
+        padding: 40px;
+
+        border-radius: 5px;
+
+        color: white;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+
+    }
+
+    #float_div_1 {
+        background-color: rgba(75, 105, 15, 0.7);
+        float: left;
+    }
+
+    #float_div_2 {
+        background-color: rgba(255,0,255,0.7);
+        float: right;
+    }
+
+/* z-index property */
+
+    .z-index_div {
+        position: absolute;
+        width: 150px;
+        height: 70px;
+
+        padding: 40px;
+
+        border-radius: 5px;
+
+        color: black;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+
+        opacity: 0.7;
+    }
+
+    #z-index_1 {
+        top: 20px;
+        left: 40px;
+        background-color: rgba(190, 0, 190, 1);
+        color: white;
+
+        z-index: 1;
+    }
+    #z-index_2 {
+        top: 85px;
+        left: 150px;
+        background-color: rgba(0, 190, 190, 1);
+
+        z-index: 2;
+    }
+    #z-index_3 {
+        top: 150px;
+        left: 20;
+        background-color: rgba(150, 190, 0, 1);
+
+        z-index: 3;
+    }
+

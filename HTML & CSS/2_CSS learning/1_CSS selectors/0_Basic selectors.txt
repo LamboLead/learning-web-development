@@ -1,0 +1,44 @@
+CSS BASIC SELECTORS
+
+To specify which properties are applied to which elements in the HTML document, CSS works with the following selectors, in the following preference order:
+
+    1. In-line styles: Styles specified on the same line that the element is defined:
+        HTML:
+            <p style="color: blue;"></p>
+
+    2. By id: Styles applied to elements with a certain id:
+        HTML:
+            <p id="this_paragraph">
+        CSS:
+            #this_paragraph {
+                color: blue;
+            }
+
+    3. By class: Styles applied to elements with a certain class:
+        HTML:
+            <p class="paragraph style"></p>
+        CSS:
+            .paragraph_style {
+                color: blue;
+            }
+
+    4. By attribute / By tag: Styles applied to one kind of element or elements that have a certain attribute:
+        HTML:
+            <a href="www.natalie_portman_goddess.com">
+            <p></p>
+            <div></div>
+        CSS:
+            [href="www.natalie_portman_goddess.com"] {
+                color: red;
+            }
+            p, div {
+                color: blue;
+            }
+
+    5. Universal selector: The style is applied to every HTML element:
+        CSS:
+            * {
+                color: blue;
+            }
+
+Note: Typing '!important' after a selector overrides every other style applied by another selector.

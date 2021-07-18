@@ -1,0 +1,22 @@
+FOCUS EVENTS
+
+These are the available events when the user focuses or defocuses an element.
+
+1. Events
+
+    onblur
+        The element loses focus.
+
+    onfocus
+        The element gets focus.
+
+    onfocusin
+        The element is about to get focus.
+
+    onfocusout
+        The element is about to lose focus.
+
+2. Properties
+
+    .relatedTarget
+        Returns the element related to the element that triggered the event.

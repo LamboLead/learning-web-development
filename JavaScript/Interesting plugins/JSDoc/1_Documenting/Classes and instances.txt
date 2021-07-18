@@ -1,0 +1,48 @@
+JSDOC: DOCUMENTING
+
+* Documenting classes
+
+You can document classes and all of its different methods and properties using @class, @constructor.
+Additional: @example, @see, @todo.
+
+- Syntax
+
+  /**
+    * Class to create a NewObject
+    * @class # Specifies that this documentation belongs to a class
+    * @example # Creates an example section inside the documentation for the class
+    * const newObject = new NewObject(param1, param2, ...);
+    * const result = newObject.newMethod();
+    * @see 'https://another-documentation-page.com' # Specifies another documentation page to look at
+    * @todo Task description # Specifies different remaining tasks related to this class
+  */
+  class NewObject {
+    /**
+      * @constructs # Specifies that this method is a constructor
+      * @param {type} parameter1 Parameter description
+      * @param {type} parameter2 Parameter description
+      * @param {type} ...
+    */
+    constructor(parameter1, parameter2, ...) {
+      ...
+    }
+
+    /**
+      * Does something
+      * @returns {type}
+    */
+    newMethod() {
+      ...
+    }
+  }
+
+* Referencing instances of a class
+
+You can reference an instance of a class with the class itself by using @link.
+
+- Syntax
+
+  /**
+    * Know more in {@link NewObject} # References the NewObject class in the form of a link
+  */
+  const newObject = new NewObject(param1, param2, ...);

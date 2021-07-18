@@ -1,0 +1,19 @@
+Math methods
+
+    .random()
+        Generates a random decimal number between 0 (inclusive) and 1 (exclusive).
+
+    .round()
+        Rounds the number up or down to its nearest whole number.
+
+    .ceil()
+        Rounds the number up to its nearest whole number.
+
+    .floor()
+        Rounds the number down to its nearest whole number.
+
+    .toFixed(<number of decimals>)
+        Rounds the number to the specified number of decimals.
+
+    .max(<arrange of numbers>)
+        Computes the maximum value in an arrange of comma-separated values.

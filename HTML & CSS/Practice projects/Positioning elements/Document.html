@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="document_styles.css" type="text/css">
+    <link rel="stylesheet" href="learning_styles.css" type="text/css">
+
+
+    <title>Positioning elements with CSS</title>
+</head>
+<body>
+    <h1>Element positioning</h1>
+    
+    <main>In this page you'll find different ways in which you can move elements and position them to improve the design of your web page</main><br>
+
+    <section>
+        <nav id="navigation_menu"
+            <strong>Content:</strong>
+            <ol>
+                <li><a href="#id_position_property">Position property</a></li>
+                <li><a href="#id_margin_property">Margin property</a></li>
+                <li><a href="#id_padding_property">Padding property</a></li>
+                <li>
+                    <a href="#id_advanced_properties">Advanced properties</a>
+                    <ul>
+                        <li><a href="#id_float">Float property</a></li>
+                        <li><a href="#id_z_index">Z-index property</a></li>
+                    </ul>
+                </li>
+            </ol>
+        </nav>
+    </section>
+<!-- The position property -->
+    <section>
+        <h2 id="id_position_property">The position property</h2>
+        <p>This property defines the way the element is positioned on the web page</p>
+    
+        <ul>
+            <span class="highlight">position</span> can have the following values:
+            <li><strong>static</strong>: Is the default position value that an element has when it's inserted into the flow. It cannot be offsetted</li>
+            <li><strong>relative</strong>: Keeps the element on the normal flow of the page, unlocking offsetting</li>
+            <li><strong>absolute</strong>: Takes out the element of the normal flow and places it relative to its parent container</li>
+            <li><strong>fixed</strong>: Locks the element relative to the browser window. The element doesn't move when the user scrolls! It doesn't interfere with the position of other elements.</li>
+            <li><strong>sticky</strong>: At first, the element behaves like a relative positioned element. When the user scrolls the wheel, it sticks to the top or bottom of the window until it reaches the end of its parent element
+        </ul>
+
+        <p>
+            You can further modify the position of the elements with
+            <span class="highlight">top</span>, 
+            <span class="highlight">right</span>, 
+            <span class="highlight">bottom</span>, or
+            <span class="highlight">left</span> properties
+        </p>
+        <ul>
+            NOTES:
+            <li>
+                A <span class="highlight">sticky</span> and <span class="highlight">fixed</span> positioned elements must have top or bottom properties to function properly.
+            </li>
+            <li>
+                An element with an <span class="highlight">absolute</span> position, has to be inside another <span class="highlight">relative</span> or <span class="highlight">absolute</span> element to be positioned properly.
+            </li>
+        </ul>
+
+        <div class="internal_divs" style="height: 400px;">
+            <div id="internal_div_with_border">
+                <div style="font-weight: bold; padding: 10px 10px 10px 10px; text-align: center;">Internal div</div>
+                <div class="static_div">This text has a static position</div>
+                <div class="absolute_div">This text has an absolute position</div>
+                <div class="fixed_div">This text has a fixed position</div>
+                <div class="relative_div">This text has a relative position</div>
+                
+            </div>
+            <div id="internal_div_with_border" style="position: absolute; top: 25px; left: 500px;">
+                <div style="font-weight: bold; padding: 10px 10px 10px 10px; text-align: center;">Another internal div</div>
+                <div class="sticky_div">This text has a sticky position and it sticks to the top when you scroll down</div>
+            </div>
+        </div>
+
+        
+        <div style="position: relative; height: 400px; width: fit-content; padding-left: 10px;">
+            <div class="IDE-like_formatting" style="width:1000px ;position: relative;">
+                <code>
+                    &lt;div&gt;<br>
+                        &emsp;&lt;div id="internal_div_with_border"&gt;<br>
+                        &emsp;&lt;div&gt;Internal div&lt;/div&gt;<br>
+                        &emsp;&lt;div class="static_div"&gt;This text has a static position&lt;/div&gt;<br>
+                        &emsp;&lt;div class="absolute_div"&gt;This text has an absolute position&lt;/div&gt;<br>
+                        &emsp;&lt;div class="fixed_div"&gt;This text has a fixed position&lt;/div&gt;<br>
+                        &emsp;&lt;div class="relative_div"&gt;This text has a relative position&lt;/div&gt;<br>   
+                        &lt;/div&gt;<br>
+                        <br>
+                        &lt;div id="internal_div_with_border"&gt;<br>
+                        &emsp;&lt;div&gt;Another internal div&lt;/div&gt;<br>
+                        &emsp;&lt;div class="sticky_div"&gt;This text has a sticky position and it sticks to the top when you scroll down&lt;/div&gt;
+                        &lt;/div&gt;<br>
+                    &lt;/div&gt;<br>
+                </code>
+            </div>
+            <div class="IDE-like_formatting_custom" style="--background-color_code: rgba(255,255,0,0.7); --color_code: black; --position_code: absolute;">
+                <code>
+                    .static_div {<br>
+                        &emsp; position: static;<br>
+                    }
+                </code>
+            </div>
+            <div class="IDE-like_formatting_custom" style="--background-color_code: rgba(255,0,0,0.7); --color_code: white; --position_code: absolute; left: 230px">               
+                <code>
+                    .relative_div {<br>
+                    &emsp; position: relative;<br>
+                    &emsp; top: 70px;<br>
+                    &emsp; left: 150px;<br>
+                    }
+                </code>
+            </div>
+            <div class="IDE-like_formatting_custom" style="--background-color_code: rgba(0,0,255,0.7); --color_code: white; --position_code: absolute; left: 450px;">
+                <code>
+                    .absolute_div {<br>
+                    &emsp; position: absolute;<br>
+                    &emsp; top: 60px;<br>
+                    &emsp; left: 50px;<br>
+                    }
+                </code>
+            </div>
+            <div class="IDE-like_formatting_custom" style="--background-color_code: rgba(150,255,0,0.6); --color_code: black; --position_code: absolute; left: 670px">
+                <code>
+                    .fixed_div {<br>
+                    &emsp; position: fixed;<br>
+                    &emsp; right: 40px;<br>
+                    &emsp; bottom: 100px;<br>
+                    }
+                </code>
+            </div>
+            <div class="IDE-like_formatting_custom" style="--background-color_code: rgba(75,15,15,0.7); --color_code: white; --position_code: absolute; left: 890px">
+                <code>
+                    .sticky_div {<br>
+                    &emsp; position: sticky;<br>
+                    &emsp; top: 0px;<br>
+                    }
+                </code>
+            </div>
+        </div>
+
+    </section>
+
+<!-- The margin property -->
+    <section>
+        <h2 id="id_margin_property">The margin property</h2>
+        <p>This property defines how much space there is between the element and its surroundings.</p>
+
+        <ul>
+            <span class="highlight">margin</span> can have the following values:
+            <li><strong>(numeric value)</strong></li>
+            <li><strong>auto</strong>: Positions the element at the center of its parent element.</li>
+        </ul>
+
+        <p>
+            You can individually adjust each side's margin with 
+            <span class="highlight">margin-top</span>, 
+            <span class="highlight">margin-right</span>, 
+            <span class="highlight">margin-bottom</span>, or
+            <span class="highlight">margin-left</span>.
+        </p>
+    </section>
+
+<!-- The padding property -->
+    <section>
+        <h2 id="id_padding_property">The padding property</h2>
+        <p>This property allows to change how much space there is between the element's content and element's border</p>
+
+        <p><span class="highlight">padding</span> property can only take numerical values</p>
+    </section>
+
+<!-- Advanced properties -->
+    <section>
+        <h2 id="id_advanced_properties">Advanced properties</h2>
+        <p>The following properties will allow you to further custom the position of your elements:</p>
+        
+        <h3 id="id_float">float</h3>
+        <p>This property removes the element from the normal flow of the document and pushes it either left or right of their containing parent element</p>
+
+        <div class="internal_divs" style="width: 500px; height: 400px;">
+            <div class="float_div" id="float_div_1">
+                Float left
+            </div>
+            <div class="float_div" id="float_div_2">
+                Float right
+            </div>
+        </div>
+
+        <div style="position: absolute; top: 185px;">
+            <div class="IDE-like_formatting" id="z-index_code_html" style="left: 550px;">
+                <code>
+                    &lt;div id="float_div_1"&gt;<br>
+                        &emsp;Float left<br>
+                    &lt;/div&gt;<br>
+                    &lt;div id="float_div_2"&gt;<br>
+                        &emsp;Float right<br>
+                    &lt;/div&gt;<br>
+                </code>
+            </div>
+            <div class="IDE-like_formatting" id="z-index_code_css" style="bottom: 135px; left: 750px;">
+                <code>
+                    #float_div_1 {<br>
+                        &emsp;background-color: rgba(75, 105, 15, 0.7);<br>
+                        <br>
+                        &emsp;float: left;<br>
+                    }<br>
+                    #float_div_1 {<br>
+                        &emsp;background-color: rgba(255, 0, 255, 0.7);<br>
+                        <br>
+                        &emsp;float: right;<br>
+                    }<br>
+                </code>
+            </div>
+        </div>
+
+        <h3 id="id_z_index">z-index</h3>
+        <p>This property changes the layer of the elements that are overlapping. It only takes positive integers as values, indicating order</p>
+
+        <div class="internal_divs" style="width: 500px; height: 450px;">
+            <div class="z-index_div" id="z-index_1">
+                I am z-index: 1
+            </div>
+            <div class="z-index_div" id="z-index_2">
+                I am z-index: 2
+            </div>
+            <div class="z-index_div" id="z-index_3">
+                I am z-index: 3
+            </div>
+        </div>
+
+        <div style="position: absolute; top: 1110px;">
+            <div class="IDE-like_formatting" id="z-index_code_html" style="bottom: 420px; left: 550px;">
+                <code>
+                    &lt;div class="z-index_div" id="z-index_1"&gt;<br>
+                        &emsp;I am z-index: 1<br>
+                    &lt;/div&gt;<br>
+                    &lt;div class="z-index_div" id="z-index_2"&gt;<br>
+                        &emsp;I am z-index: 2<br>
+                    &lt;/div&gt;<br>
+                    &lt;div class="z-index_div" id="z-index_3"&gt;<br>
+                        &emsp;I am z-index: 3<br>
+                    &lt;/div&gt;<br>
+                </code>
+            </div>
+            <div class="IDE-like_formatting" id="z-index_code_css" style="bottom: 610px; left: 900px;">
+                <code>
+                    .z-index_div {<br>
+                        &emsp;position: absolute;<br>
+                    }<br>
+                <br>
+                    #z-index_1 {<br>
+                        &emsp;top: 20px;<br>
+                        &emsp;left: 40px;<br>
+                        &emsp;background-color: rgba(190, 0, 190, 1);<br>
+                        <br>
+                        &emsp;z-index: 1;<br>
+                    }<br>
+                    #z-index_2 {<br>
+                        &emsp;top: 85px;<br>
+                        &emsp;left: 150px;<br>
+                        &emsp;background-color: rgba(0, 190, 190, 1);<br>
+
+                        &emsp;z-index: 2;<br>
+                    }<br>
+                    #z-index_3 {<br>
+                        &emsp;top: 150px;<br>
+                        &emsp;left: 20;<br>
+                        &emsp;background-color: rgba(150, 190, 0, 1);<br>
+                        <br>
+                        &emsp;z-index: 3;<br>
+                    }<br>
+                </code>
+            </div>
+        </div>
+    </section>
+
+    <a href="#navigation_menu" class="back_to_top">Back to top</a>
+</body>
+</html>

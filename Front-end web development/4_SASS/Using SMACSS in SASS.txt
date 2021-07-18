@@ -1,0 +1,51 @@
+APLYING SMACSS IN SASS
+
+You remember the categorization applied in SMACSS, and you can apply it in SASS as well.
+
+* File layout
+
+    > 0_Plugins
+        plugins-dir.sass
+        plugins.sass
+
+    > 1_Base
+        base-dir.sass
+        base.sass
+
+    > 2_Layouts
+        layouts-dir.sass
+        layouts.sass
+
+    > 3_Modules
+        modules-dir.sass
+        modules.sass
+
+    > 4_States
+        states-dir.sass
+        states.sass
+
+    > 5_Themes
+        themes-dir.sass
+        themes.sass
+
+    app.sass
+
+* Inside app.sass
+
+Import all of the directory files to use their content
+
+    @import "0_plugins/plugins-dir"
+    @import "1_base/base-dir"
+    @import "2_layouts/layouts-dir"
+    @import "3_modules/modules-dir"
+    @import "4_states/states-dir"
+    @import "5_themes/themes-dir"
+
+- Console: > sass --watch app.sass:app.css
+
+* Inside each one of the -dir.sass files
+
+    @import "filename"
+
+    e.g. Inside "base-dir.sass"
+        @import "base"

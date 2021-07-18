@@ -1,0 +1,57 @@
+RESPONSIVE WEB DESIGN
+
+1. Introduction
+
+Because web pages are increasily being viewed from phones and tablets, the design and layout of a web page has to be responsive to the size of the screen (viewport) of the device.
+
+Responsive web design covers, depending on the size of the viewport:
+
+    > Media queries: Change the presentation of the content.
+    > Responsive images: Change the size and quality of images.
+    > Responsive typography: Change the font size.
+    > CSS flexbox and grid: Change the layout of containers.
+
+Also, take into account the following relative length units:
+
+    > %: Represents a certain length percentage relative to the parent container's dimensions.
+
+    > Viewport units: 
+        Represent a certain length percentage relative to the viewport's dimensions:
+            10vw = 10% of the viewport's width.
+            30vh = 30% of the viewport's height.
+            50vmin = 50% of the viewport's smaller dimension (height or width).
+            70vmax = 70% of the viewport's larger dimensin (height or width).
+    
+    > fr (viewed on 2_CSS grid.txt)
+    > em, rem:
+
+2. Responsive images
+
+To make a responsive image:
+
+    > Set 'max-width', 'min-width', 'max-height', 'min-height' properties, so that the image es never larger than the viewport.
+    > Set 'width' or 'height' property to the value of 'auto', so that the image keeps its aspect ratio.
+    > Use '%' units to adjust the size of the element depending on its parent container.
+    > When setting sizes for high-resolution displays, set the 'height' and 'width' properties to half of their original value to 
+
+    e.g: 
+        img {
+            max-width: 100%
+            height: auto
+        }
+
+3. Responsive typography
+
+To make responsive typography, set the 'font-size' property to numeric values with relative length units (specially viewport units).
+
+4. Responsive web design made easy
+
+These are the crucial ideas to create responsive layouts with ease.
+
+> Look at the bigger picture and work from general styling (fonts, sizing, general positioning of the elements) to the specific details of each element. After that, you can start adding complexity with media queries.
+
+> While looking at the bigger picture, look up for patterns in the layout so you don't end repeating yourself (e.g. reuse classes if layout is equal or similar).
+
+> When you write HTML, pay most of your attention to the most-complex layout (desktop). When you write CSS, you look at the overall styling (colors, fonts, paddings, spacing).
+
+> Start from a mobile perspective first. Then, jump into desktop. It's easier to accomodate small elements on a larger screen than to stuff larger ones on a small screen.

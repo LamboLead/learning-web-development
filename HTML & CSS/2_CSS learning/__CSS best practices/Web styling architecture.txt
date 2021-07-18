@@ -1,0 +1,112 @@
+SCALABLE AND MODULAR ARCHITECTURE FOR CSS
+
+0. Introduction
+
+Standards for code writing are created to improve code readability and mantainability. The Scalable and Modular Architecture for CSS (SMACSS) is a standard created by Jonathan Snook to acomplish that using a structure to write CSS and SASS files.
+
+1. Categorization
+
+One of the key aspects of SMACSS is rule categorization. By doing so, you will begin to see patterns and define better practices around each of these patterns.
+
+There are five types of categorization: Base, Layout, Module, State, and Theme.
+
+> Each category has certain guidelines that apply to it.
+> Each one of the categories must be in one separate file. This makes it easier to find which file a style belongs to.
+
+* Base rules
+
+A Base rule is applied to an element using an element, a descendent, or a child selector; along with any pseudo-classes. It doesn't include any class or ID selectors.
+
+> The purpose of this rule is to define the default styling for how that element should look in all occurrences on the page.
+> Base styles include: Heading sizes, default links styles, default font styles, and body backgrounds.
+> There should be no need to use '!important' in a Base style.
+
+- Examples:
+
+    body, form {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        color: #039;
+    }
+    a:hover {
+        color: #03F;
+    }
+
+* Layout rules
+
+Layout rules are specified to set the layout of the major components of the page: Header, main content area, sidebar, footer.
+
+> Major layout styles are traditionally styled using ID selectors.
+> Some sites specify layout rules using class names so that the styles can be used many times in the page. In these cases, you should put a 'l-' prefix to specify that this is a layout rule.
+
+- Examples
+
+    #article {
+        width: 80%;
+        float: left;
+    }
+
+    .l-fixed #article {
+        width: 600px;
+    }
+    .l-fixed #sidebar {
+        width: 200px;
+    }
+
+* Module rules
+
+Modules are more discrete components of the page. These include navigation bars, carousels, dialogs, widgets, etc.
+
+> Modules can sometimes sit within other modules, too.
+> Each module should be designed to exist as a standalone component. By doing so, modules can easily be moved to different parts of the layout without breaking.
+> Avoid using IDs and element selectors when defining the ruleset for a module. Stick only to class names.
+> If a particular element belongs to a large set of related modules, use subclasses to identify them
+    e.g.
+        <div class="pod pod-callout">This is a pod of type 'callout'</div>
+        <div class="pod pod-insert">This is a pod of type 'insert'</div>
+
+- Examples
+
+    .pod {width: 100%;}
+    .pod input[type="text"] {width: 50%}
+
+    .pod-constained input[type="text"] {width: 100%;}
+
+    .pod-callout {width: 200px;}
+    .pod-callout input[type="text"] {width: 180px;}
+
+
+* State rules
+
+State rules are those that override all other styles. For example, an accordion section may be in a collapsed or expanded state. A message may be in a success or error state.
+
+> It is a good practice to name state rules' classes using the "is-" convention. (e.g. "is-active", "is-tab-active", "is-hidden").
+> Because state rules override preexisting styles, you can use the '!important' keyword. Only state rules should have it.
+
+- Examples
+
+    .tab {
+        background-color: purple;
+        color: white;
+    }
+
+    .is-tab-active {
+        background-color: white !important;
+        color: black !important;
+    }
+
+* Theme
+
+- Examples
+
+    /* In module-name.css */
+    .mod {
+        border: 1px solid;
+    }
+
+    /* In theme.css */
+    .mod {
+        border-color: blue;
+    }

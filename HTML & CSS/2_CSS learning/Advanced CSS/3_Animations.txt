@@ -1,0 +1,70 @@
+CSS ANIMATIONS
+
+CSS allows to create animations in your webpage. To do this, take into account the following aspects:
+
+    @keyframes: Sets what happens within the animation over its duration by specifying its behaviour.
+
+NOTE: Motion in animations only works when the element has its 'position' property set to 'fixed' or 'relative'
+
+1. CSS animation properties
+
+* animation-name
+    Sets the name of the animation, which will be later used by @keyframes to tell CSS which rules go with which animations.
+    - ["text"]
+
+* animation-duration
+    Sets the length of time for the animation
+    - [time in seconds/milliseconds]
+
+* animation-fill-mode
+    Specifies the style applied to an element when the animation has finished.
+    - forwards
+        Keeps the style.
+
+* animation-iteration-count
+    Allows to control how many times to loop through the animation.
+    - [positive integer]
+    - infinite
+
+* animation-timing-function:
+    Controls how quickly an animation changes while it's running.
+    - ease
+        Start slow -> Speed up -> End slow
+    - ease-out
+        Start quickly -> End slow
+    - ease-in
+        Start slow -> End quickly
+    - linear
+        Constant speed
+    - cubic-bezier(x1, y1, x2, y2)
+        x, y represents position vs time. (x1, y1) represents the first point, and (x2, y2) represents the second point of the bezier curve.
+        (e.g. cubic-bezier(0.25, 0.25, 0.75, 0.75) => linear)
+        (e.g. cubic-bezier(0, 0, 0.58, 1) => ease-out)
+        (e.g. cubic-bezier(0.311, 0.441, 0.444, 1.649) => "Bouncing" movement)
+
+2. Example
+
+Create an animation with an element of id="anim" that is color blue, at the middle turns to green, and ends yellow. The animation must last 3 seconds, and it has to start when the user hovers the pointer over the element.
+
+    #anim:hover {
+        position: relative;
+        animation-name: colorful;
+        animation-duration: 3s;
+        animation-iteration-count: 3;
+        animation-timing-function: ease-out;
+    }
+
+    @keyframes colorful {
+        0% {
+            background-color: blue;
+            top: 0px;
+        }
+        50% {
+            background-color: green;
+            top: 50px;
+        }
+        100% {
+            background-color: yellow;
+            top: 0px;
+        }
+    }

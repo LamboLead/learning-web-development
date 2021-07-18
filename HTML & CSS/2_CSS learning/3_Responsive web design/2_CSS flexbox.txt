@@ -1,0 +1,121 @@
+CSS FLEXBOX
+
+1. Introduction
+
+Flexible boxes in CSS (flexbox) allow to create page layouts for a dynamic UI. These are usually applied to container elements (<div/>, <section/>, <article/>), and they automatically change the way their contents are displayed to the user depending on factors like the size of the viewport.
+
+First, you need to set the following property to the container you want to be flexible:
+
+* display: flex
+    Turns the HTML element into a flex container. It allows to use other flex properties to build a responsive webpage
+
+This property makes possible to align any children element into rows or columns.
+
+2. Flexbox properties
+
+# ORDER items to ROWS or COLUMNS (applied to the container)
+
+* flex-direction
+    Specifies how to place the elements on the container.
+
+    - row / row-reverse
+        Places the elements into a row / reversed row.
+    - column / column-reverse
+        Places the elements into a column / reversed column.
+
+* order
+    Rearranges elements on the flex container
+    - [integer (any item)], [integer (any item)], [integer (any item)], ...
+    (e.g. Altering the order of the elements like: item1, item4, item3, item2)
+        order: 1, 4, 3, 2;
+
+# ALIGN items along MAIN AXIS or CROSS AXIS (applied to the container)
+
+    Main axis:
+        > For rows, is X axis.
+        > For columns, is Y axis.
+
+    Cross axis:
+        > For rows, is Y axis.
+        > For columns, is X axis.
+
+* justify-content
+    Specifies the spacing between elements and how to align them in the container relative to its MAIN AXIS.
+
+    - start
+        Aligns items to the start of the flex container (default).
+    - center
+        Aligns items to the center of the container.
+    - end
+        Aligns items to the end of the container.
+    - space-between
+        Aligns items to the center of the main axis, with extra space placed evenly between them. The first and last items are pushed to the edges.
+    - space-around
+        The same as 'space-between', but there is half space at each edge.
+    - space-evenly
+        Distributes space evenly between the items, maximizing space at both ends of the container.
+
+* align-items
+    Specifies how to align and space-out the items in the container relative to its CROSS AXIS.
+
+    - flex-start
+        Aligns items to the start of the flex container (top for row, left for column).
+	- flex-end
+        Aligns items to the end of the container (bottom for row, right for column).
+	- center
+        Aligns items to the center of the container.
+	- stretch
+        Stretch the items to fill the flex container (default).
+	- baseline
+        Aligns items to their baselines.
+
+# WRAPPING items (applied to the container)
+
+* flex-wrap
+    Specifies if the elements can be wrapped and moved to the next row or column depending on the size of the viewport, the size of the items and the size of the container.
+    - nowrap
+        Doesn't wrap items (default).
+    - wrap
+        Wraps items from left-to-right (row), or from top-to-bottom (column).
+    - wrap-reverse
+        The same as 'wrap' but at reversed order.
+
+# SIZING each item (applied to each of the items)
+
+* flex-basis
+    Specifies the initial size of the item.
+    - [numeric (px, em, %, etc)]
+    - auto
+        Sizes the element based on the content inside of it.
+
+* flex-grow
+    Specifies how much each item should grow if the container grows.
+    - [numeric]
+    (Explanation: If item1 has flex-grow: 1 and item2 has flex-grow: 2, item2 will grow twice as fast as item1).
+
+* flex-shrink
+    The same as 'flex-grow' but the container and the items shrink.
+
+* flex
+    Shorthand for 'flex-grow', 'flex-shrink', 'flex-basis' all in one property
+    (e.g: Defining a flex property for an item)
+        flex: 0 1 auto; (default) stands for:
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 10px;
+
+# ALIGNING each item (applied to each of the items)
+
+* align-self
+    Allows to adjust each item's alignment individually, overriding any value set by align-items.
+
+    - flex-start
+        Aligns item to the start of the flex container (top for row, left for column).
+    - flex-end
+        Aligns items to the end of the container (bottom for row, right for column).
+    - center
+        Aligns items to the center of the container.
+    - stretch
+        Stretch the items to fill the flex container (default).
+    - baseline
+        Aligns items to their baselines.

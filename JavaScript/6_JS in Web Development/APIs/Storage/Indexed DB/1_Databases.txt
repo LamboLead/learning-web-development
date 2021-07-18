@@ -1,0 +1,71 @@
+WORKING WITH DATABASES IN INDEXED DB
+
+1. Creating a database
+
+To start working with IndexedDB, you first need to open (connect to) a database.
+
++ Syntax:
+
+    let newRequest = indexedDB.open(<name>, version);
+        
+        Returns a 'newRequest' object.
+        <name> (string) Database's name.
+        <version> (integer): Database's version.
+
+        > newRequest has the following events:
+            'success': Database is ready.
+            'error': Opening has failed.
+            'upgradeneeded': Database is ready, but its version is outdated.
+        > The database can be accessed with '.result' property.
+
+> You can have many databases with different names, but all of them exist within the current domain; which is why different websites cannot access each other's databases.
+> Because IndexedDB is client-side, the developers don't have full-time access to it. So, when a new version of an app is released and the user visits the webpage, you may need to update the database.
+
+- Example:
+
+    let newRequest = indexedDb.open("store", 1);
+
+    newRequest.onupgradeneeded = () => {
+        // Triggers if the client has no database or if it needs an upgrade.
+    }
+    newRequest.onerror = () => {
+        console.error("Error", newRequest.error);
+    }
+    newRequest.onsuccess = () => {
+        let dataBase = openRequest.result;
+        // Continue working with the database using 'dataBase' object
+    }
+
+2. Updating a database
+
+If the local database version is less than the specified in the 'open()' method, the special event 'upgradeneeded' is triggered, and you can compare versions and upgrade data structures as needed.
+
+- Example:
+
+    let newRequest = indexedDb.open("store", 2);
+
+    newRequest.onupgradeneeded = (event) => {
+        // The existing database version is less than  2 (or doesn't exist)
+        let dataBase = newRequest.result;
+        switch(event.oldVersion) {
+            case 0:
+                // Version 0: The client has no database
+                // Perform initialization...
+            case 1: 
+                // Update database...
+        }
+    }
+
+If onupgradeneeded finishes without errors, newRequest.onsuccess triggers and the database is successfully opened.
+
+3. Deleting a database
+
++ Syntax:
+
+    let deleteRequest = indexedDB.deleteDatabase(<name>);
+        Deletes the specified database and returns a handler to track the execution of the operation.
+        <name> (string): The name of the database you want to delete.
+
+        > deleteRequest has the following events that track the result of the operation:
+            'success', 'error'
+

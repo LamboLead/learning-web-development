@@ -1,0 +1,64 @@
+THE LISKOV SUBSTITUTION DESIGN PRINCIPLE
+
+It states that if a class is replaced by one of their subclasses, the program has to run correctly (e.g. A class 'Animal' can be replaced by one of its children, the class 'Cat').
+
+- Example
+
+Creating a bird factory following the Liskov Substitution principle.
+
+    class Bird {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    class FlyingBird extends Bird {
+        # constructor(name) {
+        #   super(...)
+        # }
+        fly() {
+            console.log(`${this.name} is flying!`);
+        }
+    }
+
+    class SwimmingBird extends Bird {
+        # constructor(name) {
+        #   super(...)
+        # }
+        swim() {
+            console.log(`${this.name} is swimming!`);
+        }
+    }
+
+    class Duck extends FlyingBird {
+        # constructor() {
+        #     super(name)
+        # }
+
+        quack() {
+            console.log(`${this.name} is quacking`)
+        }
+    }
+
+    class Penguin extends SwimmingBird {
+        # constructor() {
+        #     super(name)
+        # }
+    }
+
+    const duck = new Duck('Albert');
+    const penguin = new Penguin('Camilo Jaramillo Tobón');
+
+    function makeBirdFly(bird) {
+        bird.fly();
+    }
+
+    function makeBirdSwim(bird) {
+        bird.fly();
+    }
+
+    makeBirdFly(duck);
+    makeBirdSwim(penguin);
+
+* HOMEWORK
+    Translate this from an inheritance perspective into a composition perspective.

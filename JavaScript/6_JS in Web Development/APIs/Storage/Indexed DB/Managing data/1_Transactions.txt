@@ -1,0 +1,89 @@
+TRANSACTIONS ON INDEXED DB
+
+0. Introduction
+
+A transaction consist of a group of operations. If all operations succeed, the transaction succeeds; in the other hand, if only one of the operations fail, the transaction fails.
+
+    > All data operations must be made within a transaction.
+    > You cannot alter object stores inside a transaction, only read or write information to them.
+    > When all transaction requests are finished (the microtasks queue is empty), the transaction is commited and closed automatically. This is why you can't insert an asynchronous operation in the middle of a transaction.
+
+IMPORTANT: To read or write data inside a store, you have to:
+    1. Create a transaction.
+    2. Get a store as an object to operate into.
+    3. Perform a request to the store to create/update/read/delete items from it.
+    4. Handle request success/error.
+
+1. Creating a transaction
+
++ Syntax:
+
+    let trans = <database>.transaction(<store>[, <type>])
+        Returns a 'transaction' object.
+
+        <database> (object): A database object returned by newRequest.result.
+        <store> (string): The name of the store that the transaction will happen.
+        <type> (string): A transaction type, it can be either:
+            "readonly": Can only read. (default).
+            "readwrite": Can read and write data.
+
+1.1. Tracking the status of transactions
+
+To detect the moment of successful completion, you can listen to 'transaction.oncomplete' event:
+
+- Example:
+
+    let trans = db.transaction("books", "readwrite");
+
+    // ... perform operations ...
+
+    transaction.oncomplete = () => {
+        console.log("Transaction is complete!");
+    }
+
+1.2. Aborting transactions
+
+You can manually abort the transaction with 'transaction.abort()' method.
+
+2. Getting a store as an object
+
++ Syntax:
+
+    let store = <transaction>.objectStore(<store>)
+        Returns an 'object store' object.
+
+        <transaction> (object): A transaction returned by <database>.transaction().
+        <store> (string): The name of the store that you want to read-write information into.
+
+3. Perform a request to create/read/update/delete data from the store
+
+If you want to execute a CRUD operation into an object store, you need to create a request to do so. The results of the request can be accessed through the 'request.results' property.
+
+3.1. Adding and updating data to an object store
+
+There are two ways to add and update data to an object store:
+
++ Syntax:
+
+    let request = store.put(<value>[, <key>])
+        Adds the value to the store. If there's already a value with the same key, it will be replaced.
+
+    let request = store.add(<value>[, <key>]);
+        Same as '.put()', but if there's already a value with the same key, the request fails and an error "ConstraintError" is generated.
+
+        <value>: The data you want to store inside the object store.
+        <key>: If 'autoIncrement' property not defined in the store creation, it is the key that refers to the specified value.
+
+IMPORTANT: Reading and deleting data from an object store are covered in 2_Searching.txt
+
+4. Handling request success/error
+
+Requests may fail, not only becauso of possible errors on our side, but also for reasons not related for the transaction itself.
+
+It is possible to handle the failure without cancelling existing changes using the 'request.onerror' event.
+
+    > A failed request automaticallly aborts the transaction, canceling all its changes.
+    > You can prevent the transaction abortion calling 'event.preventDefault()' inside the error handler.
+    > You can track the success of the request calling 'request.onsuccess' event.
+
+...

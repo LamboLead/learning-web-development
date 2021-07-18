@@ -1,0 +1,64 @@
+KEYBOARD EVENTS
+
+These are the available events when a user presses a key on the keyboard.
+
+1. Events
+
+    onkeypress
+        The user presses a key.
+    
+    onkeydown
+        The user is pressing a key.
+
+    onkeyup
+        The user releases a key.
+
+2. Methods
+
+    .getModifierState(...)
+        Returns a boolean whether the specified key is activated.    
+
+3. Properties
+
+    - Value
+
+    .code
+        Returns the code of the key that triggered the event as a string.
+
+    .key
+        Returns the key value of the key represented by the event.
+
+    - Unicode
+
+    .charCode
+        Returns the Unicode character code of the key.
+
+    .keyCode
+        Returns the Unicode character code of the key that triggered the onkeypress event, or the Unicode key code of the key that triggered the onkeydown or onkeyup event.
+    
+    .which
+        Returns the Unicode character code of the key that triggered the onkeypress event, or the Unicode key code of the key that triggered the onkeydown or onkeyup event.
+
+    - Alt, ctrl, meta, shift
+
+    .altKey
+        Returns a boolean whether the 'ALT' key was pressed when the key event was triggered.
+
+    .ctrlKey
+        Returns whether the 'CTRL' key was pressed when the key event was triggered.
+
+    .metaKey
+        Returns whether the 'META' key was pressed when the key event was triggered.
+
+    shiftKey
+        Returns whether the 'SHIFT' key was pressed when the key event was triggered.
+
+    - Other
+
+    .location
+        Returns the location of a key on the keyboard or device.
+    
+    .isComposing
+        Returns whether the state of the event is composing or not.
+
+    

@@ -1,0 +1,52 @@
+WORKING WITH JQUERY
+
+
+
+$(document).ready(function() {
+
+});
+
+1. jQuery syntax
+
+All jQuery functions start with a dollar sign. It selects an HTML element with a selector, and then it does something to that element.
+
+$("<selector>").<function>(...);
+
+3. jQuery functions
+
+3.1. CSS-related
+
+.addClass("class-name")
+    Adds a CSS class to the specified element.
+
+.removeClass("class-name")
+    Removes a CSS clase from the specified element.
+
+.css("property", "value")
+    Changes the CSS value of the specified property of the specified element.
+
+3.2. HTML-related
+
+.prop("property", "value")
+    Change the non-CSS properties of the specified element.
+
+.html("html_text")
+    Replaces the inner HTML text of the specified element with the HTML text specified as the parameter.
+
+.text("non-html-text")
+    Replaces the inner HTML text of the specified element with the non-rendered as HTML text specified as the parameter.
+
+.remove()
+    Removes the specified element from the page.
+
+.appendTo("target-element-selector")
+    Appends the specified element to another element.
+
+.clone()
+    Creates a copy of the specified element.
+
+.parent()
+    Returns the parent of the specified element.
+    
+.children()
+    Returns the children of the specified element.

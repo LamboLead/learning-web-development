@@ -1,0 +1,5 @@
+THE INTEGRATION-SEGREGATION DESIGN PRINCIPLE
+
+This constraint different classes to use only the methods and properties they are intended to have.
+
+...

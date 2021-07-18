@@ -1,0 +1,27 @@
+USER INPUT EVENTS
+
+These are the available events when the user inputs information on an element.
+
+1. Events
+
+    oninput 
+        The element gets user input.
+
+2. Methods
+
+    .getTargetRanges(...)
+        Returns an array containing target ranges that will be affected by the insertion / deletion.
+
+2. Properties
+
+    .data
+        Returns the inserted characters.
+        
+    .dataTransfer
+        Returns an object containing information about the inserted/deleted data.
+
+    .inputType
+        Returns the type of the change (i.e "inserting" or "deleting").
+
+    .isComposing
+        Returns whether the state of the event is composing or not.

@@ -1,0 +1,158 @@
+CSS PSEUDO-CLASSES
+
+A pseudo-class is used to define a special state of an HTML element.
+
+1. Syntax
+
+    CSS:
+        selector:pseudo-class {
+            property: value;
+        }
+
+2. All CSS pseudo-classes
+
+- General pseudo-classes
+
+    :root
+        (e.g. :root)
+        Selects the document's root element.
+        
+    :empty
+        (e.g. p:empty)
+        Selects every <p/> that has no children.
+        
+    :hover
+        (e.g. a:hover)
+        Selects the link <a/> when the mouse hovers over it.
+        
+    :lang(languague)
+        (e.g. p:lang(it))
+        Selects every <p/> element with a language attribute starting with 'it'.
+        
+    :not(selector)
+        (e.g. :not(p))
+        Selects every element that is not a <p/>.
+
+    ---------------------------
+        
+    :active
+        (e.g. a:active)
+        Selects the active link <a/>.
+
+    :target
+        (e.g. #news:target)
+        Selects the current active element with id="news".
+
+    :link
+        (e.g. a:link)
+        Selects all unvisited <a/> links.
+
+    :visited
+        (e.g. a:visited)
+        Selects all visited <a/> links.
+
+- Parents and children
+
+    :only-of-type
+        (e.g. p:only-of-type)
+        Selects ebery <p/> element that is the only <p/> element of its parent.
+    
+    :only-child
+        (e.g. p:only-child)
+        Selects every <p/> element that is the only child of its parent.
+
+    :first-child
+        (e.g. p:first-child)
+        Selects the first child of every <p/>.
+
+    :last-child
+        (e.g. p:last-child)
+        Selects every <p/> element that is the last child of its parent.
+
+    :nth-child(n)
+        (e.g. p:nth-child(2))
+        Selects every <p/> element that is the second child of its parent.
+
+    :nth-last-child(n)
+        (e.g. nth-last-child(2))
+        Selects every <p/> element that is the second last child of its parent.
+
+    ---------------------------
+
+    :first-of-type
+        (e.g. p:first-of-type)
+        Selects every <p/> that is the first element of its parent
+
+    :last-of-type
+        (e.g. p:last-of-type)
+        Selects every <p/> element that is the last one of its parent.
+
+    :nth-of-type(n)
+        (e.g. p:nth-of-type(2))
+        Selects every <p/> element that is the second <p/> element of its parent.
+
+    :nth-last-of-type(n)
+        (e.g. p:nth-last-of-type(2))
+        Selects every <p/> element that is the second last <p/> element of its parent.
+
+- Pseudo-classes in forms
+
+    :focus
+        (e.g. input:focus)
+        Selects the <input> that has focus.
+
+    :checked
+        (e.g. input:checked)
+        Selects every checked <input>.
+
+    ---------------------------
+
+    :invalid
+        (e.g. input:invalid)
+        Selects all <input> elements with an invalid value.
+
+    :valid
+        (e.g. input:valid)
+        Selects all <input> elements with a valid value.
+
+    ---------------------------
+
+    :optional
+        (e.g. input:optional)
+        Selects all <input> elements with no 'required' attribute.
+
+    :required
+        (e.g. input:required)
+        Selects all <input> elements with a 'required' attribute.
+
+    ---------------------------
+
+    :read-only
+        (e.g. input:read-only)
+        Selects all <input> elements with a 'readonly' attribute.
+
+    :read-write
+        (e.g. input:read-write)
+        Selects all <input> elements with no 'readonly' attribute.
+
+    ---------------------------
+
+    :disabled
+        (e.g. input:disabled)
+        Selects every disabled <input>.
+
+    :enabled
+        (e.g. input:enabled)
+        Selects every enabled <input>.
+
+    ---------------------------
+
+    :in-range
+        (e.g. input:in-range)
+        Selects all <input> elements with a value within a specified range.
+
+    :out-of-range
+        (e.g. input:out-of-range)
+        Selects all <input> elements with a value outside a specified range.
+
+

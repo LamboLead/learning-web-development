@@ -1,0 +1,100 @@
+MODULES IN JAVASCRIPT
+
+0. Introduction
+
+The main idea of using modules is to import and export different sections of code between files when needed. You can export classes, functions and variables.
+
+1. Setting up HTML
+
+To allow working with modules, you need to set up some attributes in the HTML file:
+
+    <script type="module" defer="..." src="main.js"></script>
+
+        type="module" tells HTML that you're working with modules.
+        defer="..." 
+
+NOTE : Some browsers don't fully support modules, and the export/import may fail. If you specify the <script> tag like so:
+    
+    <script src="main.js" nomodule></script>
+
+HTML will run this tag instead of the other one for browsers that don't support modules.
+
+2. Exporting
+
+There are two ways of exporting:
+
+- Export default
+    This exports the specified data as the default piece of code from the JavaScript file. Only one item can be imported as default.
+
+    Syntax: export default ClassName;
+
+- Normal export
+    This exports the specified data from the JavaScript file. The file that imports the data has to specify the name of the class/function/variable to use it.
+
+    Syntax: export {functionName, variableName, ClassName, anotherFunctionName};
+
+* Example
+
+>>> In 'module.js' file:
+
+    // You can export inline...
+
+    export default class User {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+    export function printName(user) {
+        console.log(`User's name is ${user.name}`);
+    }
+    export function printAge(user) {
+        console.log(`User is ${user.age} years old`)
+    }
+
+    // Or you can export below...
+    export default User;
+    export {printName, printAge};
+
+3. Importing
+
+You can import modules like so:
+
+- Importing default
+
+    Syntax: import ClassName from 'path'
+
+- Normal importing
+
+    Syntax:
+    > import {functionName, variable, anotherFunctionName} from 'path';
+        Imports data as specified in the original file.
+
+    > import {functionName as nickName1, anotherFunctionName as nickName2} from 'path';
+        Imports data using a nickname to call them in the receiving file.
+
+    > import * as ModuleName from 'path';
+        Imports everything from the specified path creating an object named 'ModuleName' and putting all information inside of it.
+
+NOTE: 'path' is the path of the file that you want to import modules from.
+    > './path' represents relative path.
+    > '/path' represents absolute path. 
+
+* Example
+
+>>> In 'main.js' file
+
+    // Importing default. You can name the class name whatever you want because it is default importing:
+
+    import User from 'module.js'
+
+    const user = new User("Bob", 11);
+    console.log(user);
+
+    // Normal importing
+
+    import {printName as printUserName, printAge as printUserAge};
+
+    printUserName(user); // Bob
+    printUserAge(user); // 11
+

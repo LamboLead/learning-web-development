@@ -1,0 +1,11 @@
+OBJECT METHODS
+
+    .hasOwnProperty(<property>)
+    <property> in <object>
+        Returns true or false depending if that object has a specific property.
+
+    Object.keys(<object>)
+        Returns an array with strings representing each property in the object.
+
+    Object.freeze(<object_name>)
+        Prevents data mutation to objects (arrays included). Any attempt at changing the object will be rejected without an error.

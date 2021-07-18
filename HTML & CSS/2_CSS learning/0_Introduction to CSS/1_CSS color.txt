@@ -1,0 +1,23 @@
+CSS COLOR
+
+1. Color representation
+
+In CSS, you have the following options to specify a color value:
+    > Plain words           (e.g. black, white, blue)
+    > Hex values            (e.g. #000000, #FFF, #0F0)
+    > RGB notation          (e.g. rgb(0, 0, 0), rgb(255, 255, 255), rgb(0, 0, 255))
+    > RGBA notation         (e.g. rgba(0, 0, 0), rgba(255, 255, 255), rgba(0, 0, 255))
+    > hsl (Hue (0 - 255), Saturation(%), Lightness(%))
+                            (e.g. blue = hsl(240, 100%), yellow = hsl(60, 100%, 50%))
+
+2. Color functions
+
+You can create color gradients with CSS with the following functions:
+
+    * linear-gradient([degrees], color_1, color_2, color_3, ...)
+        Creates a linear gradient between the specified colors
+        - (e.g. linear-gradient(90deg, red, yellow))
+
+    * repeating-linear-gradient([degrees], color_1 [distance_1], color_2 [distance_2], ...)
+        Creates a repeating linear gradient between the specified colors and distances
+        - (e.g. repeating-linear-gradient(0deg, red 4px, yellow 5px))

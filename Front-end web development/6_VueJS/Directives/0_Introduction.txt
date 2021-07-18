@@ -1,0 +1,27 @@
+Vue directives
+
+0. Introduction
+
+Directives are a special Vue feature that apply special reactive behavior to the rendered DOM. They are included in the template HTML as an attribute of each component.
+
+1. All supported directives in Vue
+
+- Syntax:
+  <tagName [prefix]-[directive_name]: "arguments..."/>
+
+<span v-bind:title="message"></span>
+  Binds the data inside "message" on the Vue instance to the 'title' attribute in the <span> element
+
+v-bind
+
+v-on
+
+v-model
+
+v-if
+v-else-if
+v-else
+
+v-for
+
+v-html

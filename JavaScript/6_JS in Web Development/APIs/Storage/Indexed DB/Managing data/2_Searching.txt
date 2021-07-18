@@ -1,0 +1,143 @@
+SEARCHING DATA ON INDEXED DB
+
+0. Introduction
+
+On IndexedDB, you can search using the following types inside a store:
+
+    > By a key value or a range of keys that identify each item.
+    > By another object field distinct of the items' keys. This requires an additional data structure (index).
+
+Note: An object store sort key-value pairs by key internally.
+
+1. Searching by keys
+
+Searching methods support 'exact key values' and 'ranges of values' (objects that specify an acceptable key range).
+
+1.1. Creating key ranges:
+
+A key range (containing one or more items' keys) are represented by IDBKeyRange objects, which are created with the following syntax:
+
++ Syntax:
+
+    IDBKeyRange.method(...);
+
++ Methods:
+
+    .only(key)
+        Returns only one key.
+
+    .lowerBound(<value>[, <open>])
+        Returns a key range whose keys are 'equal or lower' than <value>. If <open> is true, it is only 'lower'.
+        
+    .upperBound(<value>[, <open>])
+        Returns a key range whose keys are 'higher or equal' than <value>. If <open> is true, it is only 'higher'.
+
+    .bound(<lower>, <upper>[, <lowerOpen>, <upperOpen>])
+        Means 'between lower and upper'.
+
+1.2. Searching using key ranges:
+
+Now that you have a specific key range, you can search for and return items inside a store. The following are the methods that perform the actual search. They accept a <query> argument, which can be an exact key (literally a string) or a IDBKeyRange object.
+
++ Syntax:
+
+    let request = <store>.method(...);
+
++ Methods:
+
+    .get(<query>)
+        Search for and return the first value by its key or range.
+
+    .getAll([<query>, <count>])
+        Search for and return all values as an array. Limit by <count> if given.
+
+    .getKey(<query>)
+        Search for and return the first key that satisfies the <query> (query is usually a range).
+
+    .getAllKeys([<query>, <count>])
+        Search for and return all the keys that satisfy the <query> (usually a range), up to <count> if given.
+
+    .count(<query>)
+        Returns the total count of keys that satisfy the <query> (usually a range).
+
+- Example: Searching by keys
+
+    ...
+    let request = books.get('js'); // Get one book
+    request = books.getAll(IDBKeyRange.bound('css', 'html')); // Get books with key between 'css' and 'html'
+    request = books.getAll(IDBKeyRange.upperBound('html', true)); // Get books with key < 'html'
+    request = books.getAll(); // Get all books
+    request = books.getAllKeys(IDBKeyRange.lowerBound('js', true)); // Get all books with keys > 'js'
+    ...
+
+2. Searching by field using an index
+
+To search by other object fields, you need to:
+> Create an additional data structure named 'index', which is a tracker for a specified object field inside a object store.
+> Create a virtual store based on that index. For each value of that field, it stores a list of keys for objects that have that value.
+> Perform searching with the same methods used in section 1.2.
+
+2.1. Creating an index
+
+Indexes can only be created inside the 'upgradeneeded' event.
+
++ Syntax:
+
+    let index = <objectStore>.createIndex(<name>, <keyPath>[, <options>])
+        Creates a new tracking field inside the specified <objectStore> for the field specified in <keyPath>.
+
+        <objectStore> (object): Object store returned by <database>.createObjectStore(...);
+        <name> (string): Index name.
+        <keyPath> (string): Path to the object field that the index should track. We're going to search by that field.
+        <option> (object): Optional object with properties:
+            <unique> (bool): If true, there may be only one object in the store with the given value at the keyPath (the specified field is unique).
+            <multiEntry> (bool): Only used if the value on keyPath is an array. In that case, by default, the index will treat the whole array as the key. But if is true, then the index will keep a list of store objects for each value in that array. So array members become index keys.
+
+2.2. Creating a virtual store based on the created index.
+
++ Syntax:
+
+    let searchIndex = <store>.index(<name>);
+        Returns a virtual store which contains the items that have a certain index.
+        <name> (string): Name of the index created previously.
+
+
+- Example: Searching books by price.
+
+    newRequest.onupgradeneeded = () => {
+        let books = db.createObjectStore('books', {keyPath: 'id'});
+        let index = books.createIndex('price_idx', 'price'); // Creates index
+    }
+
+> The index will track price field.
+> The price is not unique. So we don't set "unique" option.
+> The price is not an array, so 'multientry' is not applicable.
+> The index will keep itself up to date automatically.
+
+Now, if you want to search for a given price, you simply apply the same searching methods to the index inside a transaction:
+
+    let transaction = db.transaction("books"); // This is a 'readonly' transaction
+    let books = transaction.objectStore("books");
+    let priceIndex = books.index("price_idx"); // Returns a virtual store
+
+    let request = priceIndex.getAll(10); // Searches for and returns all the items with price = 10 inside the virtual store
+
+    request.onsuccess = () => {
+        if (request.result) {
+            console.log("Books", request.result); // Array of books with price = 10
+        } else {
+            console.log("No such books");
+        }
+    }
+
+3. Delete items
+
+You can delete items with the 'delete()' method. Which receives a query as an argument. The call is similar to 'getAll()'.
+
++ Syntax:
+
+    <objectStore>.delete(<query>)
+        Deletes the item(s) selected by <query> in the specified <objectStore>.
+
+    <objectStore>.clear()
+        Deletes all items in the specified <objectStore>.

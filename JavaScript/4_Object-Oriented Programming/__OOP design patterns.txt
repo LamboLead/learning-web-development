@@ -1,0 +1,232 @@
+OBJECT ORIENTED PROGRAMMING DESIGN PATTERNS
+
+1. The Null Object pattern
+
+- Where to use it?
+Before accessing an object's properties and methods, you check if the object exists. If it does not exist, JavaScript takes it as "null" datatype.
+Instead of creating lots of if statements to check if the object is null, you use the 'Null Object' pattern.
+
+- How to use it?
+You create a fallback object to call instead of 'null' that has the samen properties as the original object, so every time the object is called, you don't have to check if it is null, but you call the fallback object.
+
+- Example
+This mimics a user validation script using an object 'NullUser' to call if the given id in 'printUser()' doesn't match.
+
+class User {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    hasAccess() {
+        return this.name === 'Bob';
+    }
+}
+
+class NullUser {
+    constructor() {
+        this.id = -1;
+        this.name = "Guest";
+    }
+    hasAccess() {
+        return false;
+    }
+}
+
+const Users = [
+    new User(1, 'Bob'),
+    new User(2, 'John')
+];
+
+function getUser(id) {
+    const user = users.find(user => user.id = id);
+    if (user === null) {
+        return new NullUser();
+    } else {
+        return user;
+    }
+}
+
+function printUser(id) {
+    let user = getUser(id);
+    console.log('Hello' + user.name);
+    if (user.hasAccess()) {
+        console.log("You're allowed here");
+    } else {
+        console.log("You're not allowed here");
+    }
+}
+
+2. The Builder pattern
+
+- Where to use it?
+This is useful for when you need to create new objects that have many interlinking parts, or optional fields (for example, a user with 'name', 'age', 'phone', 'address', ...).
+
+- How to use it?
+Use an object builder whose methods serve the purpose of define the properties of the final object. Pay attention to have the ability to chain methods together.
+
+- Example
+
+class Address {
+    constructor(zip, street) {
+        this.zip = zip;
+        this.street = street;
+    }
+}
+
+// Instead of using this:
+
+    class User {
+        constructor(name, age, phone, address) {
+            this.name = name;
+            this.age = age;
+            this.phone = phone;
+            this.address = address;
+        }
+    }
+
+    const user = newUser('Bob', undefined, undefined, new Address('1', 'Main'));
+
+// Use this:
+
+    class User {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    class UserBuilder {
+        constructor(name) {
+            this.user = new User(name);
+        }
+
+        setAge(age) {
+            this.user.age = age;
+            return this;
+        }
+        setPhone(phone) {
+            this.user.phone = phone;
+            return this;
+        }
+        setAddress(zip, street) {
+            this.user.address = new Address(zip, street);
+            return this;
+        }
+        build() {
+            return this.user;
+        }
+    }
+
+    let user = new UserBuilder('Bob').build();
+
+    // You can chain methods too
+    let anotherUser = new UserBuilder('Joe').setAge(10).setPhone('1234567').build();
+
+// You can also use this:
+
+    class User {
+        // You can use optional parameters in your constructor
+        constructor(name, {age, phone, address} = {}) {
+            // If age, phone, or address are not specified, JS will
+            // take them as undefined if there aren't default values set.
+
+            this.name = name;
+            this.age = age;
+            this.phone = phone;
+            this.address = address;
+        }
+    }
+
+    let user = new User('Bob');
+    let otherUser = new User('Joe', {age: 10, address: new Adress('1', 'Main')});
+
+3. The Singleton pattern
+
+- Where to use it?
+
+Although it is not the best solution, you can use it whenever you want to store the state of your application in a centralized way.
+
+- How to use it?
+
+You create a single object which is shared among different resources throughout the application without losing any of the information inside of it (variables, properties, methods, states, ...).
+
+- Pros
+
+> This allows to track the state of your application more easily (it's like a glorified global variable).
+
+- Cons
+
+> Because you create such a large object with so much control over different parts of the application, it is very difficult to test.
+> Refactoring is a mess because you have to change various parts of your code to do it.
+> 'Race condition' may appear, which is defined as the unintended overwriting of information because so many different resources are manipulating a single object at the same time.
+
+- Example
+
+This code creates a 'FancyLogger' class. A single instance of it called 'logger' will be the singleton object that will hold the state of the application.
+
+The singleton pattern makes the constructor (or other method) to check if other instance of the class already exists in the application. If it does, it returns the already-created instance.
+
+    class FancyLogger {
+        constructor() {
+            if (FancyLogger.instance == null) {
+                //FancyLogger.instance represents the first instance of FancyLogger. If it doesn't exist, it will create one. If it does, it will always return the first created instance.
+
+                this.logs = [];
+                FancyLogger.instance = this;
+            }
+            return FancyLogger.instance; // Always returns that single instance every single time from the constructor
+        }
+
+        log(message) {
+            this.logs.push(message);
+            console.log(`FANCY: ${message}`);
+        }
+        printLogCount() {
+            console.log(`${this.logs.length} logs`);
+        }
+    }
+
+    const logger = new FancyLogger();
+    Object.freeze(logger); // Prevents the logger object to be changed in any way
+
+    function logFirst {
+        logger.printLogCount();
+        logger.log("First file");
+        logger.printLogCount();
+    }
+
+    function logSecond {
+        logger.printLogCount();
+        logger.log("Second file");
+        logger.printLogCount();
+    }
+
+    logFirst();
+    logSecond();
+
+4. The Facade pattern
+
+- When to use it?
+
+This pattern is great if you want your code to be highly maintainable.
+
+- How to use it?
+
+It consists on separating the actual business logic code (look and feel) from the programming logic (retrieving data from an external source, for example) using functions.
+
+- Example
+
+...
+
+5. The command pattern
+
+- When to use it?
+
+If your application manages actions that you either want to 'do' and 'undo'.
+
+- How to use it?
+
+It consists on encapsuling all the different operations that a certain algorithm has into individual commands that have a 'execute' and an 'undo' method.
+
+- Example
+
+6. 

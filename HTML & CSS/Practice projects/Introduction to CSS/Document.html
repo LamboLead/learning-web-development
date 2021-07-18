@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="document_styles.css" rel="stylesheet" type="text/css">
+    <link href="learning_styles.css" rel="stylesheet" type="text/css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    
+    <title>Basic CSS concepts</title>
+</head>
+<body>
+    <h1>Basic CSS concepts</h1>
+
+    <main>In this page you'll find basic concepts you must have in mind when creating Cascading Style Sheets for your web pages</main> <br>
+
+    <section>
+        <nav id="navigation_menu">
+            <strong>Content:</strong>
+            <ol>
+                <li><a href="#id_css_box_model">CSS box model</a></li>
+                <li><a href="#id_element_selectors">Element selectors</a></li>
+                <li><a href="#id_css_length_units">CSS length units</a></li>
+                <li>Colors
+                    <ul>
+                        <li><a href="#id_color_theory">Color theory</a></li>
+                        <li><a href="#id_css_color_representation">CSS color representation</a></li>
+                    </ul>
+                </li>
+                <li><a href="#id_css_variables">CSS variables</a></li>
+                <li><a href="#id_fonts">Fonts</a></li>
+            </ol>
+        </nav>
+    </section>
+    <!--
+    <section>
+    <h2>You can use CSS to...</h2>
+        <p style="color:red; font-size: large; font-family: Impact, Haettenschweiler;">Change the color, size and font of text</p>
+        <p id="google_font">Import fonts from Google</p>
+
+        <figure>
+            <img style="width: 500px; height: 246px;" src="CCIsaza.png" alt="Respectable man">
+            <figcaption>Change width and height of images</figcaption>
+        </figure>
+
+        <div id="borders">
+            Add borders and change their properties
+        </div>
+
+        <div>
+            And so on...
+        </div>
+
+    </section>
+
+-->
+<!-- CSS box model -->
+    <section>
+        <h2 id="id_css_box_model">CSS box model</h2>
+        <p>HTML has a format in which to organize the elements on a web page. You must have this in mind to insert new elements into it. There are two types of elements that follow this format:</p>
+
+        <h3>Block-level items</h3>
+        <p>These elements start on a new line every time you include them into the html code:</p>
+        <ul>
+            <li>Headings</li>
+            <li>Paragraphs</li>
+            <li>Sections, articles, divs</li>
+            <li>...</li>
+        </ul>
+
+        <h3>Inline items</h3>
+        <p>These elements sit surronding the existing content, usually on the same line</p>
+        <ul>
+            <li>Images, audio, video</li>
+            <li>Spans</li>
+            <li>...</li>
+        </ul>
+        <br>
+    </section>
+
+<!-- Element selectors -->
+    <section>
+        <h2 id="id_element_selectors">Element selectors</h2>
+        <p>CSS must refer to the elements in your html document to apply their styles. These are the selectors you can use to point to elements (in order of preference)</p>
+        <ul>
+            <li style="color:green; font-family: 'Times New Roman'";>Inline styles as an attribute</li>
+            <br>
+            <div class="IDE-like_formatting">
+                ... style="color:green; font-family: 'Times New Roman'"; ...
+            </div><br>
+
+            <li id="using_id_to_style">Using the ID of the element</li>
+            <br>
+            <div class="IDE-like_formatting">
+                #using_id_to_style {<br>
+                <div class="nested_div">
+                    color: brown;
+                </div>
+                }<br>
+                <br>
+                ... id="using_id_to_style" ...
+            </div><br>
+
+            <li class="list_element_class">Using a class</li>
+            <br>
+            <div class="IDE-like_formatting">
+                .list_element_class {<br>
+                <div class="nested_div">
+                    background-color: blue;<br>
+                    color: white;<br>
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;<br>
+                </div>
+                }<br>
+                <br>
+                ... class="list_element_class" ...
+            </div><br>
+
+            <li><button type="submit">Using attribute values</button></li>
+            <br>
+            <div class="IDE-like_formatting">
+                [type='submit'] {<br>
+                <div class="nested_div">
+                    background-color: darkblue;<br>
+                    color: darkorange;<br>
+                </div>
+                }<br>
+                <br>
+                ... type="submit" ...
+            </div><br>
+            <li>
+                <div class="IDE-like_formatting">!important</div> overrides every other style by any given selector when placed next to a certain property
+            </li>
+        </ul>
+    </section>
+
+<!-- CSS length units -->
+    <section>
+        <h2 id="id_css_length_units">CSS length units</h2>
+        <p>CSS allows to change the size and properties that involve measures of elements. There are two types of length units on which you can insert these measures:</p>
+        <ul>
+            <li><strong>Absolute</strong>: They tie to physical units of length (e.g. in, mm or px)</li>
+            <li><strong>Relative</strong>: They are relative to another length value (e.g. em or rem)</li>
+            
+        </ul>
+        
+    </section>
+
+<!-- Colors -->
+    <section>
+        <h2>Colors</h2>
+        <p>The colors you put and the way you put them in your web page must convey information about what you're saying to the final user. The following sections will provide you with the basics of color theory and how to represent colors in CSS</p>
+
+        <div class="internal_divs">
+            <h3 id="id_color_theory">Color theory</h3>
+            <h4>Basic colors</h4>
+            <p>Digital screens can display these three basic colors:</p>
+            <ul>
+                <li >Red</li><div class="color_divs" style="--var_color_div: #F00;"></div>
+                <li>Green</li><div class="color_divs" style="--var_color_div: #0F0;"></div>
+                <li>Blue</li><div class="color_divs" style="--var_color_div: #00F;"></div>
+            </ul>
+            <p>The combination of them is what we perceive as the other colors of the spectrum, as we can see up next</p>
+
+            <h4>Secondary colors</h4>
+            <p>These are the result of the combination of two basic colors</p>
+            <ul>
+                <li>Yellow</li><div class="color_divs" style="--var_color_div: #FF0;"></div>
+                <li>Cyan</li><div class="color_divs" style="--var_color_div: #0FF;"></div>
+                <li>Magenta</li><div class="color_divs" style="--var_color_div: #F0F;"></div>
+            </ul>
+
+            <h4>Tertiary colors</h4>
+            <p>These are the combination of a basic and a secondary color</p>
+            <ul>
+                <li>Orange</li><div class="color_divs" style="--var_color_div: #FF7F00;"></div>
+                <li>Raspberry</li><div class="color_divs" style="--var_color_div: #FF007F;"></div>
+            </ul>
+
+            <h4>Complementary colors</h4>
+            <ul>
+                <li>Blue & Yellow</li><div class="color_divs" style="--var_color_div: blue;"></div><div class="color_divs" style="--var_color_div: yellow;"></div>
+                <li>Green & Magenta</li><div class="color_divs" style="--var_color_div: lightgreen;"></div><div class="color_divs" style="--var_color_div: Magenta;"></div>
+                <li>Red & Cyan</li><div class="color_divs" style="--var_color_div: red;"></div><div class="color_divs" style="--var_color_div: cyan;"></div>
+            </ul>
+        </div>
+
+        <div class="internal_divs">
+            <h3 id="id_css_color_representation">CSS color representation</h3>
+            <p>In CSS, you can represent colors in the following ways:</p>
+            <ul>
+                <li>Plain words <br>(e.g. 
+                    <span class="color_spans" style="--var_span_color: black;">
+                        black
+                    </span>,
+                    <span class="color_spans" style="--var_span_color: white;">
+                        white
+                    </span>,
+                    <span class="color_spans" style="--var_span_color: blue;">
+                        blue
+                    </span>)
+                </li>
+                <li>
+                    Hexagesimal values <br>(e.g. 
+                    <span class="color_spans" style="--var_span_color: #000000;">
+                        #000000
+                    </span>, 
+                    <span class="color_spans" style="--var_span_color: #FFF;">
+                        #FFF
+                    </span>, 
+                    <span class="color_spans" style="--var_span_color: #00F;">
+                        #00F
+                    </span>)
+                </li>
+                <li>
+                    RGB notation <br>(e.g. 
+                    <span class="color_spans" style="--var_span_color: rgb(0,0,0);">
+                        rgb(0,0,0)
+                    </span>, 
+                    <span class="color_spans" style="--var_span_color: rgb(255,255,255);">
+                        rgb(255,255,255)
+                    </span>, 
+                    <span class="color_spans" style="--var_span_color: rgb(0,0,255);">
+                        rgb(0,0,255)
+                    </span>)
+                </li>
+                <li>RGBA notation <br>(e.g. 
+                    <span class="color_spans" style="--var_span_color: rgba(0,0,0,1);">
+                        rgba(0,0,0,1)
+                    </span>,
+                    <span class="color_spans" style="--var_span_color: rgba(255,255,255,1);">
+                        rgba(255,255,255,1)
+                    </span>,
+                    <span class="color_spans" style="--var_span_color: rgba(0,0,255,1);">
+                        rgba(0,0,255,1)
+                    </span>)
+                </li>
+                <li>Using hsl(hue, %saturation, %lightness) property <br>(e.g. 
+                    <span class="color_spans" style="--var_span_color: hsl(0,0%,0%);">
+                        hsl(0,0%,0%)
+                    </span>,
+                    <span class="color_spans" style="--var_span_color: hsl(360,0%,100%);">
+                        hsl(360,0%,100%)
+                    </span>,
+                    <span class="color_spans" style="--var_span_color: hsl(240,100%,50%);">
+                        hsl(240,100%,50%)
+                    </span>)
+                </li>
+            </ul>
+
+        </div>
+
+    </section>
+
+<!-- CSS variables -->
+    <section>
+        <h2 id="id_css_variables">CSS variables</h2>
+        <p>They allow you to change various properties at the same time</p>
+        <p class="using_css_variables" style="--var_color: yellow;--var_weight: bold;">This is a sample text to show you what you can do with CSS variables</p>
+        <div class="IDE-like_formatting">
+            .using_css_variables {
+                <div class="nested_div">
+                    background-color: var(--var_color, lightgreen);<br>
+                    font-weight: var(--var_weight, light);<br>
+                </div><br>
+                ... class="using_css_variables" style="--var_color: yellow; --var_weight: bold;" ...
+            }
+        </div>
+    </section>
+
+<!-- CSS pseudo-classes -->
+    <section>
+        <h2 id="id_css_pseudo_classes">CSS pseudo-classes</h2>
+        <p>A pseudo-class is a class that is applied to the element it's referring to when certain event happens.</p>
+        Some pseudo-classes:
+        <ul>
+            <li><strong>root</strong>: Is the default class that is applied to the web page if any other styles override it</li>
+            <li><strong>hover</strong>: Event that fires when the mouse hovers over the element</li>
+            <li><strong>focus</strong>: Event that fires when the user focuses over an element (generally using TAB key)</li>
+        </ul>
+
+        <p>Example:</p>
+        <div class="pseudo-classes_example">Hover over me!</div>
+        <br>
+        <div class="IDE-like_formatting">
+            .pseudo-classes_example {<br>
+                <div class="nested_div">
+                    color: white;<br>
+                    background-color: rgba(0, 0, 255, 0.6);<br>
+                    font-family: Lobster;<br>
+                    font-size: 30px;<br>
+                </div>
+            }<br>
+            .pseudo-classes_example:hover {<br>
+                <div class="nested_div">
+                    color: black;<br>
+                    background-color: rgba(255,255,0,1);<br>
+                </div>
+            }<br>
+        </div>
+        
+    </section>
+
+<!-- CSS pseudo-elements -->
+    <section>
+        <h2 id="id_css_pseudo_elements">CSS pseudo-elements</h2>
+        <p>A pseudo-element is a new element that doesn't belong to the html document (it's inserted purely by CSS)</p>
+        <p>Example:</p>
+        <div class="heart"></div>
+        <br>
+        <div class="IDE-like_formatting">
+            .heart {
+                <div class="nested_div">
+                    position: relative;<br>
+                    margin: 20px;<br>
+                    top: 0;<br>
+                    right: 0;<br>
+                    bottom: 0;<br>
+                    left: 0;<br>
+                    background-color: magenta;<br>
+                    height: 50px;<br>
+                    width: 50px;<br>
+                    transform: rotate(-45deg);
+                </div>
+            }<br>
+            .heart::after {
+            <div class="nested_div">
+                background-color: magenta;<br>
+                content: "";<br>
+                border-radius: 50%;<br>
+                position: absolute;<br>
+                width: 50px;<br>
+                height: 50px;<br>
+                top: 0px;<br>
+                left: 25px;
+            </div>
+            }<br>
+            .heart::before {
+            <div class="nested_div">
+                content: "";<br>
+                background-color: magenta;<br>
+                border-radius: 50%;<br>
+                position: absolute;<br>
+                width: 50px;<br>
+                height: 50px;<br>
+                top: -25px;<br>
+                left: 0px;
+            </div>
+            }<br>
+            ... class="heart" ...
+        </div>
+        <br>
+        Some pseudo-elements:
+        <ul>
+            <li><strong>before</strong>: Used to add something before a selected element</li>
+            <li><strong>after</strong>: Used to add something after a selected element</li>
+        </ul>
+    </section>
+
+<!-- Fonts -->
+    <section>
+        <h2 id="id_fonts">Fonts</h2>
+        <div style="font-size: 30px;">
+                <p style="font-family: monospace;">Monospace</p>
+                <p style="font-family: serif;">serif</p>
+                <p style="font-family: sans-serif;">sans-serif</p>
+                <p style="font-family: courier;">courier</p>
+                <p style="font-family: Helvetica;">Helvetica</p>
+                <p style="font-family: lobster;">Lobster</p>
+        </div>
+    </section>
+
+    <a class="back_to_top" href="#navigation_menu">Back to top</a>
+
+</body>
+</html>

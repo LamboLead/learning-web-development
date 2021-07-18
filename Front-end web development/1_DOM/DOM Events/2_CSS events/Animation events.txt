@@ -1,0 +1,22 @@
+ANIMATION EVENTS
+
+These are the available events when you apply an animation to an HTML element.
+
+1. Events
+
+    animationstart
+        When a CSS animation has started.
+
+    animationend
+        When a CSS animation is completed.
+
+    animationiteration
+        When a CSS animation is repeated.
+
+2. Properties
+
+    .animationName
+        Returns the name of the animation.
+
+    .elapsedTime
+        Returns the number of seconds an animation has been running.

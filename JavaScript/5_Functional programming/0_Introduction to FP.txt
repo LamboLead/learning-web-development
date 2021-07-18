@@ -1,0 +1,140 @@
+INTRODUCTION TO FUNCTIONAL PROGRAMMING
+
+Functional Programming is a style of programming where solutions are simple, isolated functions, without any side effects outside the function scope:
+INPUT -> PROCESS -> OUTPUT
+
+Functional programming is about:
+- Isolated functions: The status on the program doesn't change because of the functions, including global variables that are subject to change
+- Pure functions: The functions don't cause any unexpected side effects in the program
+- Functions with limited side effects: The state of the program outside the function is carefully controlled.
+
+1. Functional programming terminollogy
+
+- Callbacks:
+These are the functions that are passed as an argument into another function to decide the invocation of that function.
+
+- Functions as First-class objects:
+Functions that can be assigned to a variable, passed into another function, or returned from another function like any other value.
+
+- High-order functions:
+Functions that take a function as an argument, or return a function as a return value.
+
+- Recursion:
+A function can can at a certain point 'call itself' to avoid any loops.
+
+- Closures:
+A way to implement data hiding (using private variables). For example, when you define a function, it can refer to not only its own local variables, but also to everything outside its context.
+
+- Lambda functions:
+Functions that get passed in or returned from another function
+
+- Mutations:
+The effect of changing the status of the program outside the context of the function. This is a non-desired behavior in FP.
+
+2. Imperative programming vs. Functional programming
+
+The imperative style in programming is one that gives the computer a set of statements to perform a task (e.g. writing a for loop that gives exact directions to iterate over the indices of an array).
+
+The functional style is a form of declarative programming. You tell the computer what you want done by calling a method or a function.
+
+3. Functional programming principles
+
+- Don't alter a variable or object declared outside a function
+Instead, create new variables and objects inside the function and return them if needed.
+
+- Always declare your dependencies explicitly
+If a function depends on a variable or object being present, then pass that variable or object directly into the function as an argument
+
+    Advantages:
+    (1) The function is easier to test because you know what input it takes, and it won't depend on anything else in the program.
+    (2) The function would always produce the same output for the same set of inputs, no matter what part of the code executes it.
+
+- Every function shuld be responsible over a single functionality.
+
+4. Ways of defining a function
+
+- Named function declaration
+    function first(...) {...};
+
+This is the most used in JS, and defines a function named 'first'. Due to hoisting, this function will be available everywhere in the code.
+
+- Anonymous function expression
+    const second = function(...) {...};
+
+This assigns an anonymous function to a variable. The assignment isn't hoisted.
+
+- Named function expression
+    const third = function someName(...) {...};
+
+This is the same as the previous one, except that the function now has its own name. The name of a function is relevant when you want to call it (either normally or recursively).
+
+- Immediately-invoked expression
+    const fourth = (function() {...; return function(...) {...};})();
+
+This style allows to use a closure. For example:
+
+    const myCounter = (function(initialValue = 0) {
+        let count = initialValue;
+        return function() {
+        count++;
+        return count;
+        };
+    })(77);
+    myCounter(); // 78
+    myCounter(); // 79
+    myCounter(); // 80
+    
+In this case, 77 is used as the initial value instead of 0. The inner function can access 'count', but it cannot be accessed anywhere else.
+
+- Function constructor
+    const fifth = new Function(...);
+
+This definition isn't safe and you should not use it.
+
+- Arrow function
+    var sixth = (...) => {...};
+
+This is the most compact definition of a function, and the one you'll try to use whenever possible.
+
+5. Arrow Functions
+
+These behave like normal functions but there are some important differences:
+
+> They can implicitly return a value.
+> The value of 'this' is not bound.
+> There is no 'arguments' object.
+> They cannot be used as constructors, therefore they don't have a prototype property.
+> They cannot be used as generators because they do not allow the 'yield' keyword.
+
+6. Functions in FP
+
+You could classify JS functions as:
+- Pure functions
+    Return a value depending only on its arguments, and have no side effects.
+- Side effects
+    Don't return anything but produce some kind of side effect.
+- Functions with side effects
+    They return some value not entirely depending on its arguments and produce some kind of side effect.
+
+A function may be considered to be pure if it satisfies two conditions:
+
+> Given the same arguments, the function always calculates and returns the same result. This function cannot depend on any outside information or state, I/O results, random numbers, or some external variable.
+
+> When calculating its result, the function doesn't cause any observable side effect. This includes output to I/O, mutation of objects, change to the program state outside of the function, and so on.
+
+Summary: Pure functions don't depend on and modify anything outside their scope, and do always return the same result for the same input arguments.
+
+* Side effects
+
+These are defined as a change in state, or some interaction with elements outside the function scope: The user, a web service, another computer, disk, and event the console. Usual side effects include:
+
+> Changing global variables.
+> Mutating objects received as arguments.
+> Doing any kind of I/O, such as showing an alert message or logging some text.
+> Working with, and changing, the filesystem.
+> Updating a database.
+> Calling a web service.
+> Querying or modifying the DOM.
+> Triggering any external process.
+> And, finally, just calling some other function that happens to produce a side effect of its own. A function that calls an impure function automatically becomes impure on its own.
+

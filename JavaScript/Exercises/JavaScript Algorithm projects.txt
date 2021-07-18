@@ -1,0 +1,243 @@
+JAVASCRIPT ALGORITHM AND DATA STRUCTURES PROJECTS
+
+1. Roman Numeral Converter
+
+Convert the given number into a roman numeral. All roman numerals answers should be provided in upper-case.
+
+    function convertToRoman(num) {
+        // 1. Separate the number in units. e.g. 36 => 3, 6
+        // 2. Create an object {cardinal: roman} for each number
+        // 3. Identify the 
+        // 3. Return the fucking roman
+        let strNumber = num.toString();
+        let arrNumber = strNumber.split("");
+        let romanArr = [{
+        // Units
+        0: "",
+        1: "I",
+        2: "II", 
+        3: "III",
+        4: "IV",
+        5: "V",
+        6: "VI",
+        7: "VII",
+        8: "VIII",
+        9: "IX",
+        }, {
+        // Tens
+        0: "",
+        1: "X",
+        2: "XX",
+        3: "XXX",
+        4: "XL",
+        5: "L",
+        6: "LX",
+        7: "LXX",
+        8: "LXXX",
+        9: "XC",
+        }, {
+        // Hundreds
+        0: "",
+        1: "C",
+        2: "CC",
+        3: "CCC",
+        4: "CD",
+        5: "D",
+        6: "DC",
+        7: "DCC",
+        8: "DCCC",
+        9: "CM"
+        }, {
+        // Thousands
+        0: "",
+        1: "M",
+        2: "MM",
+        3: "MMM"
+        }];
+
+        let indicator = {
+        0: "Units",
+        1: "Tens",
+        2: "Hundreds",
+        3: "Thousands"
+        }
+        arrNumber = arrNumber.reverse();
+        let value;
+        let strRoman = "";
+        for (let i = arrNumber.length - 1; i >= 0; i--) {
+        value = arrNumber[i];
+        console.log(indicator[i], value + " = " + romanArr[i][value]);
+        // switch (value) {
+        //   case 1, 2, 3, 5, 6, 7, 8:
+    
+        // }
+        strRoman = strRoman + romanArr[i][value];
+        }
+        console.log(strRoman);
+        console.log();
+    return strRoman;
+    }
+    
+    convertToRoman(2);
+    convertToRoman(3);
+    convertToRoman(4);
+    convertToRoman(5);
+    convertToRoman(9);
+    convertToRoman(12);
+    convertToRoman(16);
+    convertToRoman(29);
+    convertToRoman(44);
+    convertToRoman(45);
+    convertToRoman(68);
+    convertToRoman(83);
+    convertToRoman(97);
+    convertToRoman(99);
+    convertToRoman(400);
+    convertToRoman(500);
+    convertToRoman(501);
+    convertToRoman(649);
+    convertToRoman(798);
+    convertToRoman(891);
+    convertToRoman(1000);
+    convertToRoman(1004);
+    convertToRoman(1006);
+    convertToRoman(1023);
+    convertToRoman(2014);
+    convertToRoman(3999);
+
+2. Caesar's Cipher
+
+One of the simplest and most widely known ciphers is a Caesar cipher, also known as a shift cipher. In a shift cipher the meanings of the letters are shifted by some set amount.
+
+A common modern use is the ROT13 cipher, where the values of the letters are shifted by 13 places. Thus A ↔ N, B ↔ O and so on.
+
+Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+
+All letters will be uppercase. Do not transform any non-alphabetic character (i.e. spaces, punctuation), but do pass them on.
+
+    function rot13(str) {
+        let abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let shiftedAbc = "NOPQRSTUVWXYZABCDEFGHIJKLM";
+        let regex = /\W|\s/;
+        let decodedStr = "";
+        let index;
+        for (let i = 0; i < str.length; i++) {
+        if (!regex.test(str[i])) {
+            index = shiftedAbc.indexOf(str[i]);
+            decodedStr += abc[index];
+        } else {
+            decodedStr += str[i];
+        }
+        console.log(decodedStr)
+        }
+        return decodedStr;
+    }
+    
+    TEST: rot13("SERR PBQR PNZC!"); // should return "FREE CODE CAMP!"
+    TEST: rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.") // should return "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
+
+3. Cash register
+
+Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), payment as the second argument (cash), and cash-in-drawer (cid) as the third argument.
+
+cid is a 2D array listing available currency.
+
+The checkCashRegister() function should always return an object with a status key and a change key.
+
+Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.
+
+Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.
+
+Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+
+Currency Unit	Amount
+Penny	$0.01 (PENNY)
+Nickel	$0.05 (NICKEL)
+Dime	$0.1 (DIME)
+Quarter	$0.25 (QUARTER)
+Dollar	$1 (ONE)
+Five Dollars	$5 (FIVE)
+Ten Dollars	$10 (TEN)
+Twenty Dollars	$20 (TWENTY)
+One-hundred Dollars	$100 (ONE HUNDRED)
+See below for an example of a cash-in-drawer array:
+
+[
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]
+
+
+    function checkCashRegister(price, cash, cid) {
+        let changeDue = cash - price;
+        let drawerCash = cid.map(currency => currency[1]).reduce((first, second) => first + second).toFixed(2); // The total cash in the drawer
+        let returnChange = {status : "", change : []};
+    
+        console.log("Cash in drawer = $" + drawerCash);
+        console.log("Change due = $" + changeDue);
+    
+        if (drawerCash < changeDue) {
+        returnChange.status = "INSUFFICIENT_FUNDS";
+    
+        } else if (drawerCash == changeDue) {
+        returnChange.status = "CLOSED";
+        returnChange.change = [...cid];
+    
+        } else { // If 'drawerCash' is higher than 'changeDue'
+        returnChange.status = "OPEN";
+    
+        let currency = [...cid];
+        let currencyValues = [0.01, 0.05, 0.1, 0.25, 1, 5, 10, 20, 100]; // Array containing all currencies
+        for (let i = 0; i < currencyValues.length; i++) {
+            currency[i].push(currencyValues[i])
+        }
+        // console.log(currency); // Now, 'currency' is an array containing: ['NAME', amount of money, numeric value]
+    
+        let moneyPerCurrency;
+        for (let i = currency.length - 1; i >= 0; i--) {
+            let count = 0;
+            while (currency[i][1] > 0 && changeDue > 0 && currency[i][2] <= changeDue) {
+            currency[i][1] -= currency[i][2];
+            changeDue -= currency[i][2];
+            currency[i][1] = currency[i][1].toFixed(2);
+            changeDue = changeDue.toFixed(2);
+            count ++;
+            }
+            moneyPerCurrency = count* currency[i][2];
+            // console.log("Money in $" + currency[i][2] + " bills: " + moneyPerCurrency);
+            if (moneyPerCurrency !== 0) {
+            returnChange.change.push([currency[i][0], moneyPerCurrency]);
+            }
+        }
+        returnChange.change = returnChange.change.filter(arr => arr[1] !== 0);
+        let newThing = 0;
+        for (let i = 0; i < returnChange.change.length; i++) {
+            newThing += returnChange.change[i][1];
+        }
+        newThing = newThing.toFixed(2);
+        if (newThing != (cash - price).toFixed(2)) {
+            returnChange.status = "INSUFFICIENT_FUNDS";
+            returnChange.change = [];
+        }
+        }
+        console.log(returnChange);
+        console.log();
+        return returnChange;
+    }
+    
+    // checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]); // should return {status: "OPEN", change: [["QUARTER", 0.5]]}.
+    
+    checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]); // should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}.
+    
+    // checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]); // should return {status: "INSUFFICIENT_FUNDS", change: []}.
+    
+    // checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]); // should return {status: "INSUFFICIENT_FUNDS", change: []}.
+    
+    // checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]); // should return {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}

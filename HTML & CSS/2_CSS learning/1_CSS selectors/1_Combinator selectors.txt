@@ -1,0 +1,36 @@
+CSS COMBINATOR SELECTORS
+
+A combinator is something that explains the relationship between two or more selectors. These are the combinators in CSS:
+
+> Descendant selector ( )
+    Matches all elements that are descentants of a specified element.
+
+    - e.g. Select all <p> elements inside <div> elements:
+        div p {
+            background-color: yellow;
+        }
+
+> Child selector (>)
+    Selects all elements that are the children of a specified element.
+
+    - e.g. Select all <p> elements that are children of a <div> element:
+        div > p {
+            background-color: yellow;
+        }
+
+> Adjacent sibling selector (+)
+    Selects an element that is directly after another specific element.
+
+    - e.g. Select the first <p> elements that are placed immediately after <div> elements:
+        div + p {
+            background-color: yellow;
+        }
+
+> General sibling selector (~)
+    Selects all elements that are siblings of a specified element.
+
+    - e.g. Select all <p> element that are siblings of <div> elements:
+        div ~ p {
+            background-color: yellow;
+        }
+

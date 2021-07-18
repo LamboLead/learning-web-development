@@ -1,0 +1,39 @@
+MULTIMEDIA HTML TAGS
+
+<figure/>
+    Wraps both <img> and <figcaption/> into a single element for accesibility purposes.
+
+    <img>
+        Inserts an image in the document.
+        - src = "URL" (...)
+        - alt = "information"
+            Specifies some text that will be displayes in the page if the image isn't available.
+        - width = "value"
+        - height = "value"
+            Specifies the width and the height of the image.
+
+    <figcaption/>
+        Inserts a text caption that will sit right below the image.
+
+<audio/>
+    Inserts an audio.
+    - controls
+        Inserts an audio controller for the user
+
+    <source>
+        Specifies the source of the audio
+        - src = "URL" (...)
+        - type = "audio/mpeg"
+
+EXAMPLE
+
+<figure>
+    <img src="roundhousedestruction.jpeg" alt="Photo of Camper Cat destroying a house">
+    <figcaption>
+        Master Camper Cat demonstrates proper form of a destruction house technique
+    </figcaption>
+</figure>
+
+<audio controls>
+    <source src="audio/meow.mp3" type="audio/mpeg">
+</audio>

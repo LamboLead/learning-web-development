@@ -1,0 +1,164 @@
+CSS FUNCTIONS
+
+CSS functions are used to set values from many CSS properties. There are functions that can be used for image manipulation, transform shapes, etc.
+
+attr(<attribute-name> <type-or-unit>, <fallback>)
+    Returns the value of the attribute of an HTML element. It can on ly be used in the content property, though.
+    - <attribute-name>
+        Name of the attribute of the HTML element referenced in the CSS.
+    - <type-or-unit>
+        Keyword representing the type (<string>, <color>, <url>, <integer>, <number>, <angle>, <time>, <deg>) or unit (em, ex, px, rem, vw, vh, vmin, vmax, mm, cm, in, pt, or pc) of the referenced attribute.
+
+1. Mathematical functions
+
+calc(<mathematical-operation>)
+    Used to calculate the value of length, angle, time, or number-related properties. It allows to set values based on addition (+), subtraction (-), multiplication (*), and division (/) of different units of measurement.
+
+sin()
+cos()
+tan()
+acos()
+asin()
+atan()
+sqrt()
+hypot()
+pow()
+
+2. Responsive web design functions
+
+These functions only work when applied to sizing properties (width, height, font-size, etc.)
+
+clamp(<minimum-length>, <preferred-length>, <maximum-length>)
+    Sets the length of the property to the preferred length, keeping it in the range between minimum and maximum specified lengths.
+
+min(<value1>, <value2>, ...)
+    Compares each value and sets the length of the property to the minimum of them.
+
+max(<value1>, <value2>, ...) 
+    Compares each value and sets the length of the property to the maximum of them.
+
+3. Color functions
+
+rgba(<red>, <green>, <blue>)
+    Specifies a color value, ranging from 0 to 255 for each color.
+
+rgba(<red>, <green>, <blue>, <alpha-transparency>)
+    Specifies a color value, ranging from 0 to 255 for each color, including alpha-transparency.
+
+hsl(<hue>, <saturation>, <lightness>)
+    Sets a color value in CSS.
+
+hsla(<hue>, <saturation>, <lightness>, <alfa-transparency>)
+    Sets color value in CSS.
+
+linear-gradient(<direction>, <color-list>)
+    Creates an image consisting of a progressive transition between two or more colors along a straight line.
+    - <direction>
+        Specifies the direction of the line that the gradient will be created.
+    - <color-list>
+        Specifies the colors that the gradient will have
+
+repeating-linear-gradient(<direction>, <color-list> <length>, ...)
+    Creates an infinitely repeating linear gradient.
+    
+radial-gradient(<shape>, <extent-keyword>, <position>, colors...)
+    Creates an image consisting of a progressive transition between two or more colors along a radial direction.
+
+repeating-radial-gradient(<direction>, <color-list> <length>, ...)
+        Creates an infinitely repeating radial gradient.
+
+4. Image manipulation functions
+
+These functions only work when applied to the 'filter' property
+
+blur(<length>)
+    Defines the value of pixels on the screen that will blend into each other. Applied to images, background images, or text.
+    - 0px
+        The images remain unchanged.
+
+brightness(<percentage>)
+    Applies a brightness multiplier to the image, making it appear more or less bright.
+    - 0%
+        The image turns completely black.
+    - 100%
+        The image remains unchanged.
+        
+contrast(<percentage>)
+    Manipulates the contrast of images or background images.
+    - < 100%
+        Decreases the contrast.
+    - > 100%
+        Increases the contrast.
+
+drop-shadow(<offsett-x> <offset-y> <blur> <color>)
+    Adds a shadow to images, including their transparent areas.
+
+grayscale(<percentage>)
+    Turns an image into a grayscale image.
+    - 0%
+        The image remains unchanged.
+    - 100%
+        The image turns to grayscale completely.
+
+sepia(<percentage>)
+    Turns the image into sepia (black and white with a brown tint).
+
+hue-rotate(<angle>)
+    Changes the color of the image by rotating the hue on the color wheel.
+
+invert(<percentage>)
+    Inverts the colors of the image, turning it into its negative.
+
+saturate(<percentage>)
+    Changes the color saturation in an image.
+    - < 100%
+        Lowers saturation.
+    - > 100%
+        Increases saturation.
+
+opacity(<percentage>)
+    Sets the degree of transparency of an image, similarly to the 'opacity' property.
+
+
+5. Transformation functions
+
+These functions only work when applied to the 'transform' property.
+
+translate(<translate-x>, <translate-y>)
+    Moves the element relative to the original location by a given value.
+
+translate3d(<translate-x>, <translate-y>, <translate-z>)
+    Moves the element relative to the original location in a three-dimensional space.
+
+scale(<scale-x>, <scale-y>)
+    Scales an element in two-dimensional space horizontally and vertically or simultaneously in both directions.
+
+scale3d(<scale-x>, <scale-y>, <scale-z>)
+    Scales an element in a three-dimensional space.
+
+rotate(<angle>)
+    Rotates an element in two-dimensional space around a rotation point by a given angle. The default rotation point is located in the center of the element and can be changed using the 'transform-origin' property.
+
+rotateX(<angle>) | rotateY(<angle>) | rotateZ(<angle>)
+    Rotates an element around the X|Y|Z axis by a given angle.
+
+rotate3d(<number-x>, <number-y>, <number-z>, <angle>)
+    Rotates elements in a three-dimensional space.
+
+skew(<angle-x>, <angle-y>)
+    Tilts the element in two-dimensional space horizontally and vertically or simultaneously in both directions.
+
+perspective(<length>)
+    Determines the distance from the screen plane to the point of convergence of the lines. It moves the element through the z-axis by a specified length.
+
+6. Shape functions
+
+These functions only work when applied to the 'clip-path' property.
+
+circle([<circle-radius> <position>])
+
+ellipse([<ellipse-radius> <position>])
+
+inset(<offset> [<border-radius>])
+
+polygon(...)

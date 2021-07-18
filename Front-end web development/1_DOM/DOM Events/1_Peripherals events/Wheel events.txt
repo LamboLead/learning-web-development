@@ -1,0 +1,21 @@
+WHEEL EVENTS
+
+These are the available events when the user interacts with the wheel in an HTML document.
+
+1. Events
+
+    onwheel
+        The user rolls up or down the wheel over an element.
+
+2. Properties
+
+    deltaX
+        Returns the horizontal scroll amount of a mouse wheel (x-axis)
+    deltaY
+        Returns the vertical scroll amount of a mouse wheel (y-axis)
+    deltaZ
+        Returns the scroll amount of a mouse wheel for the z-axis
+    
+    deltaMode
+        Returns a number that represents the unit of measurements for delta values (pixels,     lines or pages)
+

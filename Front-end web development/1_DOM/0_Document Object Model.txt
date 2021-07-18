@@ -1,0 +1,104 @@
+DOCUMENT OBJECT MODEL (DOM)
+
+The DOM is a W3C (World Wide Web Consortium) standard for accessing documents:
+
+"The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document."
+
+The W3C DOM standard is separated into 3 different parts:
+
+    > Core DOM - standard model for all document types
+    > XML DOM - standard model for XML documents
+    > HTML DOM - standard model for HTML documents
+
+1. The HTML DOM
+
+The HTML DOM is a standard object model and programming interface for HTML. It defines:
+
+    > The HTML elements as objects
+    > The properties of all HTML elements
+    > The methods to access all HTML elements
+    > The events for all HTML elements
+
+In other words: The HTML DOM is a standard for how to get, change, add, or delete HTML elements, and it can be accessed with JavaScript and other programming languages. In it, all HTML elements are defined as objects.
+
+- Programming interface
+
+The programming interface is the properties and methods of each object.
+
+    > A property is a value that you can get or set (like changing the content of an HTML element).
+    > A method is an action you can do (like add or deleting an HTML element).
+
+- The DOM 'document' object
+
+The 'document' object represents the web page. If you want to access any element in an HTML page, you have to start accessing to it, like so:
+
+    (e.g. Change the content of the element with id="damn" to "Son of a bitch")
+
+        document.getElementById("damn").innerHTML = "Son of a bitch";
+
+2. DOM Nodes and DOM Elements
+
+2.1. DOM Nodes
+
+An HTML DOM document consists of a hierarchy of nodes, and each node can have a parent and / or children. Let's look at the following HTML document:
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>My Page</title>
+        </head>
+        <body>
+            <!-- This is a comment -->
+            <h2>My page</h2>
+            <p id="content"> Thank you for visiting my page!</p>
+        </body>
+    </html>
+
+Here's the hierarchy of nodes:
+
+    DOCTYPE: html
+    HTML
+        HEAD
+            TITLE
+                #text: My Page
+        BODY
+            #comment: This is a comment
+            H2
+                #text: My page
+            P id="content"
+                #text: Thank you for visiting my page!
+
+    - HTML
+        Is a node that has 2 children: HEAD and BODY.
+    - BODY
+        Is a node that has 3 children: A comment, H2, and P. Its parent is HTML node.
+    - P
+        Is a node that has 1 child: The text node "Thank you for visiting my page!"
+
+2.2. DOM Node types
+
+You can use the DOM Node interface to distinguish different types of nodes.
+
+The property 'Node.nodeType' can have one of the following values:
+    - Node.ELEMENT_NODE
+    - Node.ATTRIBUTE_NODE
+    - Node.TEXT_NODE
+    - Node.CDATA_SECTION_NODE
+    - Node.PROCESSING_INSTRUCTION_NODE
+    - Node.COMMENT_NODE
+    - Node.DOCUMENT_NODE
+    - Node.DOCUMENT_TYPE_NODE
+    - Node.DOCUMENT_FRAGMENT_NODE
+    - Node.NOTATION_NODE
+
+Then:
+
+    > A <p/> is an 'ELEMENT_NODE', then, the paragraph <p/> is an element.
+    > The text inside <p/> is a 'TEXT_NODE'.
+    > The 'document' object is a 'DOCUMENT_NODE', and represents the entire document tree of nodes.
+
+2.3. DOM Elements
+
+An element is a node of the type 'ELEMENT_NODE'. In simpler words, an element is a node that's written using a tag in the HTML document. <html>, <head>, <title>, <body>, <h2>, <p> are all elements because are all elements.
+
+Those nodes that are not written with tags (like the 'document' object) are not elements.

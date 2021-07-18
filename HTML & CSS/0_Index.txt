@@ -1,0 +1,43 @@
+HTML & CSS LEARNING INDEX
+
+> 1_HTML Learning
+    > HTML tags
+        0_Introduction & index.txt
+        1_Basic tags.txt
+        2_Sectioning tags.txt
+        3_Accessibility tags.txt
+        4_Multimedia tags.txt
+        5_Text-formatting tags.txt
+        6_Lists & tables.txt
+        7_Forms tags.txt
+
+    0_Introduction to HTML
+
+> 2_CSS Learning
+    > 0_Introduction to CSS
+        0_CSS fundamentals.txt
+        1_CSS color.txt
+
+    > 1_CSS selectors
+        0_Basic selectors.txt
+        1_Combinator selectors.txt
+        2_Pseudo classes.txt
+        3_ Pseudo elements.txt
+
+    > 2_Basic CSS properties
+        0_Text formatting.txt
+        1_Positioning elements.txt
+        2_Customizing elements.txt
+
+    > 3_Responsive web design
+        0_Introduction to responsive web design.txt
+        1_Media queries.txt
+        2_CSS flexbox.txt
+        3_CSS grid.txt
+
+    > Bonus CSS
+        Animations.txt
+
+> Practice projects
+
+

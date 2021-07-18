@@ -1,0 +1,7 @@
+STRING FUNCTIONS
+
+    parseInt("number", [radix])
+        Converts a single or double-quoted "number" into an actual integer datatype. [radix] specifies the base you want to convert the string from (e.g. [radix] = 2 -> Converts the number from binary to integer).
+
+    parseFloat("float")
+        Converts a single or double-quoted "string" into an actual float datatype.

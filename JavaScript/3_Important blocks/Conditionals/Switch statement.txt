@@ -1,0 +1,17 @@
+switch block
+
+switch(lowercaseLetter) {
+    case "a":
+        console.log("A");
+        break;
+    case "b":
+        console.log("B");
+        break;
+    case "c":
+    case "d":
+        console.log("C or D")
+        break;
+    default:
+        console.log("No value");
+        break;
+}

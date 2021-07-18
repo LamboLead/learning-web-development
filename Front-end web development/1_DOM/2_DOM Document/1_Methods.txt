@@ -1,0 +1,106 @@
+DOCUMENT OBJECT METHODS
+
+- Syntax
+    document.method(...)
+
+These are the actions that you can perform on the HTML DOM 'document' object.
+
+* DOCUMENT-RELATED
+
+    .open()
+        Opens the document and prepares it for manipulation.
+
+    .close()
+        Closes the document, preventing it for manipulation.
+
+    .write("text")
+        Writes HTML expressions or JavaScript code to a document.
+
+    .writeln("text")
+        Same as .write(), but adds a newline character after each statement.
+
+    .hasFocus()
+        Returns a boolean that indicates whether the document has focus.
+
+* HTML ELEMENTS-RELATED
+
+    .getElementById(<id_of_the_element>)
+        Finds an element by its id and returns it as an object. If it isn't found, returns null.
+
+            var myElement = document.getElementById("intro"); // returns the element with id="intro"
+
+    .getElementsByTagName("tag")
+        Finds elements by their tag name, returning them in a list as objects.
+
+            var x = document.getElementById("main"); // returns the element with id="main"
+            var y = x.getElementsByTagName("p"); // returns all <p/> elements inside the element with id="main"
+
+    .getElementsByClassName("name")
+        Finds elements by their class name, returning them in a list as objects.
+
+            var x = document.getElementsByClassName("myClass");
+
+    .querySelector(<CSS_selector>)
+        Returns the first element that matches a specified CSS selector.
+
+    .querySelectorAll(<CSS_selector>)
+        Returns a list of elements that match a specified CSS selector.
+
+            var x = document.querySelectorAll("p.intro") // returns all <p/> elements with class="intro"
+
+    .forms[<form_id>]
+        Finds the form element with a specified form id.
+
+            var x = document.forms["frm1"]; // returns the form with id="frm1"
+
+    - MANIPULATE ELEMENTS
+
+        .createElement(<element>)
+            Creates an element inside the document.
+
+* EVENTS
+
+    .createEvent(...)
+        Creates a new event.
+
+    .addEventListener("event", functionName())
+        Attaches an event handler to the document.
+
+    .removeEventListener(...)
+        Removes an event handler from the document.
+
+* NODE-RELATED
+
+    - NODE MANIPULATION
+
+    .adoptNode(<node>)
+        Returns and adopts to the document a specified node from another document.
+
+    .importNode(<node>, <bool>)
+        Imports a node from another document. If the second parameter is true, the node's children will also be imported.
+
+    - NODE CREATION
+
+    .createAttribute("attribute_name")
+        Creates an attribute node, and returns it as an 'attribute' object.
+
+    .createComment("text")
+        Creates a comment node with the specified text.
+
+    .createDocumentFragment()
+        Creates an imaginary node object, with all its properties and methods. It is useful when you want to extract parts of your document, change, add, or delete some of the content, and insert it back to the document.
+
+    .createTextNode("text")
+        Creates a text node. Later, you need to append it to an element node.
+
+    .normalize()
+        Removes empty text nodes, and joins adjacent nodes.
+    
+
+* OTHER METHODS
+
+    .execCommand("command", boolean) (...)
+        Executes the specified command for the selected part of an editable section.
+
+    .fullscreenEnabled()
+        Returns a boolean indicating whether the document can be viewed in fullscreen mode.

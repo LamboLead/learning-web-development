@@ -1,0 +1,78 @@
+FILEREADER API
+
+It is a widely supported API for JavaScript that lets you read and process files asynchronously directly in the browser.
+
+Blob: It is a file-like object of immutable, raw data; which can be read as text or binary data.
+
+0. Getting started
+
+You need an HTML element that receives the files to process:
+
+    <input type="file" id="file_upload">
+
+And also, attach an event handler for when the element has changed:
+
+    let fileButton = document.getElementById("file_upload");
+    fileButton.addEventListener("change", startUpload);
+
+    function startUpload() {
+        let reader = new FileReader() // Returns a newly constructed file reader.
+        // ...
+    }
+
+1. Properties
+
+    .error
+        Throws an error representing the issue while reading the file.
+
+    .readyState
+        Returns a number indicating the state of the FileReader:
+        - 0
+            No data has been loaded yet.
+        - 1
+            Data is currently being loaded.
+        - 2
+            The entire read request has been completed.
+
+    .result
+        Returns the file's contents. This property is valid only after the read operation is complete.
+
+2. Event handlers
+
+    - Syntax:
+        reader.onevent = () => {...}        //        reader.addEventListener("event", function)
+
+    .onabort
+        Triggered each time the reading operation is aborted.
+        
+    .onerror
+        Triggered each time the reading operation encounters an error.
+
+    .onload
+        Triggered each time the reading operation is successfully completed.
+
+    .onloadstart
+        Triggered each time the reading is starting.
+
+    .onloadend
+        Triggered each time the reading operation is completed (either success or failure).
+
+    .onprogress
+        Triggered while reading a Blob content.
+
+3. Methods
+
+    .abort()
+        Aborts the read operation.
+    
+    .readAsArrayBuffer()
+        Starts reading the contents of the specified Blob. It returns an Array Buffer representing the file's data with the result attribute.
+
+    .readAsBinaryString()
+        Starts reading the contents of the specified Blob. It returns the raw binary data from the file as a string with the result attribute.
+
+    .readAsDataURL()
+        Starts reading the contents of the specified Blob. It returns the data:URL representing the file's data with the result attribute.
+
+    .readAsText()
+        Starts reading the contents of the specified Blob. It returns the contents of the file as a text string.

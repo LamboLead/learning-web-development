@@ -1,0 +1,136 @@
+USEFUL FP METHODS FOR ARRAYS
+
+The following methods are useful when working with arrays in Functional Programming style, and by using them, you avoid using loops. They won't alter the original array, which means that they are pure functions.
+
+4.1. The .map() method
+
+The map method iterates through all elements of the specified array, and returns an array of the same length as the original, with each element passed through a function. Also, if its callback function doesn't alter the original array, map will not do it either.
+
+This is how .map() method behaves:
+
+    Array.prototype.myMap = function(callback) {
+        var newArray = [];
+        for (let i = 0; i < this.length; i++) {
+            newArray.push(callback(this[i]));
+        }
+        return newArray;
+    };
+
+4.2. The .filter() method
+
+It calls a function on each element of an array and returns a new array containing only the elements for which that function returns true. In other words, it filters the array based on the function passed to it.
+
+This is how .filter() method behaves:
+
+    Array.prototype.myFilter = function(callback) {
+        var newArray = [];
+        for (let i = 0; i < this.length; i++) {
+            if (callback(this[i])) {newArray.push(this[i]);}
+        }
+        return newArray;
+    }
+
+4.3. The .slice() method
+
+It returns a copy of certain elements of an array. It takes two arguments: The first one is the index of where to begin the slice, and the second one is the index of where to end the slice (non-inclusive). If no arguments are provided, the default is to copy all the original array.
+
+    var arr = ["Cat", "Dog", "Tiger", "Zebra"];
+    var newArray = Arr.slice(1,3);
+
+It's better to use .slice() instead of .splice(), because the last one mutates the original array, leading to unexpected results.
+
+4.4. The .concat() method
+
+Returns a concatenation of arrays without mutating original ones. In FP, it's better to use .concat() instead .push(), because the last one mutates the original array.
+
+4.5. The .reduce() method
+
+Is the most general of all array operations in JavaScript. It iterates over each item in an array and returns a single value (string, number, object, array) using a callback function, which is called on each iteration.
+
+In the following example, and object is returned containing the names of the users as properties with their ages as values
+
+    const users = [
+        {name: 'John', age: 34},
+        {name: 'Amy', age: 20}, 
+        {name: 'CamperCat', age: 2}
+    ]
+
+    const usersObj = users.reduce((obj, user) => {
+        obj[user.name] = user.age;
+        return obj;
+    }, {});
+    console.log(usersObj);
+
+The console will display {John: 34, Amy: 20, CamperCat: 2}
+
+4.6. The .sort() method
+
+Sorts the elements of an array according to the callback function:
+
+JavaScript's default sorting method is by string Unicode point value, which may return unexpected results. Therefore, it is encouraged to provide a callback function to specify how to sort the array items. When such a callback function, normally called compareFunction, is supplied, the array elements are sorted according to the return value of the compareFunction: 
+    
+> If compareFunction(a,b) returns < 0, then a will come before b.
+> If compareFunction(a,b) returns > 0, then b will come before a.
+> If compareFunction(a,b) returns == 0, then a and b will remain unchanged.
+
+IMPORTANT: .sort() mutates the original array.
+
+    function ascendingOrder(arr) {
+        return arr.sort(function(a,b) {
+            return a - b;
+        });
+    }
+    ascendingOrder([1, 5, 2, 3, 4])
+
+The function will return [1, 2, 3, 4, 5]
+
+    function reverseAlpha(arr) {
+        return arr.sort(function(a, b) {
+            return a === b ? 0 : a < b ? 1 : -1; // Change the less-than to more-than to sort in alphabetical order
+        });
+    }
+    reverseAlpha(['l', 'h', 'z', 'b', 's']);
+
+The function will return ['z', 's', 'l', 'h', 'b']
+
+4.7. The .split() method
+
+It splits a string into an array of strings, taking an argument for the delimiter.
+
+    var str = "Hello World!";
+    var bySpace = str.split(" "); // returns ["Hello", "World!"]
+
+    var otherStr = "How9are7you2today";
+    var byDigits = otherStr.split(/\d/); // returns ["How", "are", "you", "today"]
+
+    var anotherStr = "Hello World, I-am code";
+    var byNonLetters = anotherStr.split(/\W/);
+
+4.8. The .join() method
+
+It joins the elements of an array together to create a string. It takes an argument that is used to separate the array elements in the string.
+
+    var arr = ["Hello", "World"];
+    var str = arr.join(" "); // returns "Hello World"
+
+4.9. The .every() method
+
+Iterates over each element of an array, and checks if every one of them passes a particular test, returning true if all values meet the criteria, and false if not.
+
+    var numbers = [1, 5, 8, 0, 10, 11];
+    var arrCheck = numbers.every(function(currentValue) {
+        return currentValue < 10;
+    });
+    console.log(arrCheck); // returns false
+
+4.10. The .some() method
+
+Checks if any element of an array passes a particular test, returning true if any of the values meet the criteria, and false if not.
+
+    var numbers = [10, 50, 8, 220, 110, 11];
+    var arrCheck = numbers.some(function(currentValue) {
+        return currentValue < 10;
+    });
+    console.log(arrCheck); // returns true
+
+The following methods are useful when working with arrays in Functional Programming style, and by using them, you avoid using loops. They won't alter the original array, which means that they are pure functions.

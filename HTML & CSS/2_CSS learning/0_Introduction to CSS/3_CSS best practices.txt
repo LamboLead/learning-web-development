@@ -1,0 +1,28 @@
+CSS BEST PRACTICES
+
+Maintaining larger stylesheets are a pain in the ass when the CSS file is not structured properly. These are some best practices while working with CSS to help improve readability and mantainability.
+
+* Look up at the coding style guide for the project
+    Whether you're working with a team on an existing project or not, it is mandatory to keep the code consistent. Check and follow the existing style guide for CSS, or create one if it does not exist.
+
+* Keep code consistent
+    Using the same naming conventions for your classes, chosing a method of describing color, or mantaining consistent format (how many spaces for indentation?) are some of the main aspects of keeping code consistent.
+
+* Comment your CSS
+    Adding comments to your CSS will help you and others find stuff faster. A good tip is to add a special character to search for to jump right into that part of the CSS. e.g:
+        /* || General styles */
+        ...
+        /* || Typography */
+        ..
+
+* Create logical sections in your stylesheet
+    It's a good idea to keep all of the common styling first in the stylesheet. You will tipically have rules set up for body, p, h1 ... h6, ul and ol, table, and links.
+    After the general styling, you could define a few utility classes (some classes that are applied to lots of different elements).
+    Then, you can add everything that is used sitewide (basic page layout, header, navigation styling, and so on).
+    Finally, you can include CSS code for specific things, broken down by the context, page, or component in which they are used.
+
+* Avoid overly-specific selectors
+    There will be times when making something more specific makes sense. However, this will generally be an excepction rather than usual practice.
+
+* Break large stylesheets into multiple smaller ones.
+    In those particular cases where you have very different styles for distinct parts of the site, you might want to have a stylesheet that includes all the global rules, and smaller ones that include specific rules needed for those sections.

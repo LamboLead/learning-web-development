@@ -1,0 +1,86 @@
+WEB DEVELOPMENT PROJECTS WORKFLOW
+
+This document contains the steps or workflow of web development projects.
+
+0. Types of projects
+
+There are three main types of projects that you should be aware of:
+
+- Freelancing project
+  A project in which you are directly in contact with the client (as a developer or if you have your own company).
+
+- Company project
+  A project in which you work for a company, and you are dealing with a project manager or tech lead.
+
+- Own project
+  A project that reflect your great ideas and shows them into the world. You have all the freedom to choose everything in this project.
+
+1. Get all the requirements
+
+To have a clear view of what you'll be building, you should get all the requirements listed below (applicable mostly for freelancing).
+Document EVERYTHING.
+
+- Objective, purpose, and scope
+  What is going to be built?
+  Why is it going to be built?
+  What will your work be related to?
+    Will you be building the entire application?
+    Will you be in charge of the design?
+    Will you be handling deployment?
+
+- Target audience
+  What is the audience for this application? Teens & young people? Old people?
+  This information is vital for user experience and user interface aspects
+
+- Technology requirements / API requests
+  Which languages, databases, frameworks will be used?
+  Which APIs will need to be used?
+
+- Budget
+  How much will you charge for the work? (it is better to go for a fixed rate for freelancing).
+  How much technologies charge for their use? (API requests, hosting services).
+
+- Deployment
+  Where will the page be hosted? How is deployment going to work?
+
+2. Create a timeline
+
+Taking into account the requirements listed in the previous point, you should carefully establish a timeline.
+
+> Set and document different parts of the project in the timeline (e.g. By August 10th the UI layout will be ready, and by August 20th the logic will be ready, database, backend, etc).
+> You can use some productivity software to improve your workflow and track the progress of the project.
+> For freelancing and maybe companies: Always tell them longer that you think to have room for errors.
+
+3. Wireframing
+
+The purpose of this step is to show what will be created before starting to code and to clarify the design ideas accorging to the requirements.
+
+> Wireframe: Is a low-fidelity and simple sketch of the application's interface - which components go where? -. This will help the designer to settle his ideas. You can start by sketching with pen and paper, and then creating a more mature wireframe in some graphical interface (Figma, Sketch, etc.).
+
+After the wireframe is complete, you should send it to the tech lead or client for approval (although this step may be done by other people, especially in companies).
+
+4. Coding
+
+Now that you know the technologies you'll be using, you can:
+
+> Set up the development environment (install frameworks, create a folder layout, set up a Git repository with branches, etc.)
+> Research other similar projects for inspiration.
+> Code, code, code...
+
+Follow the timeline rigorously!
+
+5. Communicate
+
+Communication is key to complete projects succesfully and keep clients happy working with you.
+
+> Keep in communication with the client / manager / team, and make sure that you're always in the same page.
+> Use a project management software to track work between the team. Also, engage in at least one weekly phone or video call with the people you're working for / with.
+> Get feedback for your code.
+
+6. Testing
+
+Testing is THE way to ensure that your project won't break. Here are some tips:
+
+> Test thoroughly for each milestone of the project.
+> Test on multiple platforms, OS, and browsers.
+> After deployment, you should test even more.

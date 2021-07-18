@@ -1,0 +1,33 @@
+JSDOC: DOCUMENTING
+
+* Documenting the type of variables
+
+You can specify the type of the documented variable using @type. You can also specify the type of its components.
+
+- Syntax
+  /**
+    * @type {type<subType | subType|...>} or @type {{property1: type, property2: type, ...}}
+  */
+  const variable = ...
+
+- Example: Documenting an array of numbers
+  
+  /**
+    * An array of numbers
+    * @type {Array<Number>}
+  */
+  const arrayOfNumbers = [10, 20, 30, 40]
+
+- Example: Documenting an object
+
+  /**
+    * An object describing a user
+    * @type {{id: number | string, firstName: string, lastName: string, age: number}}
+  */
+  let user = {
+    id: 1,
+    firstName: "Gasim",
+    lastName: "bo",
+    age: 69
+  }
+  

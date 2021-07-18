@@ -1,0 +1,30 @@
+1. Define HTML structure with Lorem Ipsum text.
+3. Apply positioning (display, position....) and size styles
+2. Apply basic styles (colors, fonts...)
+4. Fill HTML information
+5. Apply media queries
+6. Apply animations if necessary
+
+
+Web-development rules:
+
+Notation to name things:
+
+id: [tag]_<name_of_the_element>
+class: <class-name>
+
+Media-queries width-pixel range:
+
+        Vertical        Horizontal
+Phone   360x640         640x360
+        375x812         812x375
+Tablet  768x1024        1024x768
+        1024x1366       1366x1024
+Laptop                  1280x950
+Desktop                 1920x1080
+
+
+- 300px to 700px
+- 701px to 1000px
+- 1001px to 1500px
+- 1501px to 3000px

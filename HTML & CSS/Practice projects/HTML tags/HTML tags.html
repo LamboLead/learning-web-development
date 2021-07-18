@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML tags</title>
+</head>
+<body>
+    <h1>h1 tag is for main title</h1>
+    <h2>h2 tag is for subtitles</h2>
+
+    <hr>
+
+    
+    <header>header tag wraps introductory information</header>
+
+    <br>
+
+    <nav>
+        nav tag is for navigating the page:
+        <ol>
+            <li><a href="#Textper1">Text personalization</a></li>
+            <li>
+                <a href="#Multi1">Multimedia</a>
+                <ul>
+                    <li><a href="#Img1">Image</a></li>
+                    <li><a href="#Audio1">Audio</a></li>
+                </ul>
+            </li>
+            <li><a href="#Form1">Forms</a></li>
+            <li><a href="#Access1">Accesibility</a>/li>
+        </ol>
+    </nav>
+
+    <a href="#">anchor tag with dead link</a><br>
+    <a href="https://www.bing.com/images/search?q=natalie+portman&qs=n&form=QBIDMH&sp=-1&pq=natalie+portman&sc=8-15&cvid=69598D9D3C3F48C38E1AA0CB6165DCEE&first=1&tsc=ImageBasicHover" target="_blank">anchor tag that will lead you to Natalie Portman photos</a>
+
+
+    <h3 id="Textper1">Text personalization</h3>
+    <p><time datetime="2021-01-13">Today</time>, I was very happy because I used time tag, which allows to put timestamps for people with visual impairments</p>
+    <p>I am going to list the tags with which you can personlize your text:</p>
+    <ul>
+        <li><strong>strong tag</strong> makes the text bold</li>
+        <li><u>u tag</u> underlines the text</li>
+        <li><em>em tag</em> displays the text as italicized</li>
+        <li><s>s tag</s> draws a horizontal line across the text</li>
+    </ul>
+
+    <h3 id="Multi1">Multimedia</h3>
+    <h4 id="Img1">Images</h4>
+    <figure>
+        <p>The following image has a link</p>
+        <a href="https://www.msn.com/es-co/noticias/otras/echan-a-bruce-willis-de-una-farmacia-al-negarse-a-llevar-tapabocas/ar-BB1cJ8RN?ocid=msedgntp"><img src="CCIsaza.png" alt ="Image of a respectable man"></a>
+        <figcaption>
+            While chatting via online, Mr. Isaza looks very happy
+        </figcaption>
+    </figure>
+    <br>
+    <h4 id="Audio1">Audio</h4>
+    <audio controls>
+        <source src="c.mp3" type="audio/mpeg">
+    </audio>
+
+    <h3 id="Form1">Forms</h3>
+    <form action="#">
+        <p>With form tag you can include forms into your web page</p>
+        <label for="text1">This is a type text input: </label>
+        <input type="text" id="text1" placeholder="placeholder attribute">
+
+        <fieldset>
+            <legend>This is a group of type radio elements</legend>
+            <label for="radio1">Radio 1</label>
+            <input type="radio" id="radio1" name="radios" value="one" checked>
+            <label for="radio2">Radio 2</label>
+            <input type="radio" id="radio2" name="radios" value="two">
+        </fieldset>
+
+        <fieldset>
+            <legend>This is a group of type checkbox elements</legend>
+            <input type="checkbox" id="check1" name="checks" value="one">
+            <label for="check1">Checkbox 1</label>
+            <br>
+            <input type="checkbox" id="check2" name="checks" value="two" checked>
+            <label for="check2">Checkbox 2</label>
+        </fieldset>
+        
+        <button type="submit">Submit</button>
+        <button type="reset">Reset options</button>
+    </form>
+    
+    <h3 id="Access1">Accesibility</h3>
+    <h4>Sectioning elements</h4>
+    <main>
+        <p>main tag wraps the main content</p>
+        <article>article tag groups independent content</article>
+        <section>section tag groups related content</section>
+        <div>div tag groups content</div>
+    </main>
+        
+    <br>
+
+    <!-- This is a comment -->
+</body>
+</html>

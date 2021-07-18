@@ -1,0 +1,63 @@
+IMMEDIATELY INVOKED FUNCTION EXPRESSION (IIFE)
+
+1. Introduction to Immediately Invoked Function Expressions
+
+Some functions are executed as soon as they are declared:
+
+    (function () {
+        console.log("Chirp, chirp!");
+    })();
+
+The function has no name and it's not stored in a variable. The two parentheses at the end of the function cause it to be immediately executed.
+
+2. Creating a module with IIFE
+
+IIFEs are ofted used to group related functionality into a single object or module.
+
+    let motionModule = (function() {
+        return {
+            glideMixin: function(obj) {
+                obj.glide = function() {
+                    console.log("Gliding on the water"));
+                };
+            },
+            flyMixin : function(obj) {
+                obj.fly = function() {
+                    console.log("Flying, wooosh!");
+                };
+            }
+        }
+    })();
+
+You have an IIFE that returns an object motionModule. This object contains all of the mixin behaviors as properties of the object. The advantage of the module is that all of the motion behaviors can be packaged into a single object that can be used by other parts of the code:
+
+    motionModule.glideMixin(duck);
+    duck.glide();
+
+EXAMPLE:
+
+Create a module named funModule to wrap the two mixins isCuteMixin and singMixin. funModule should return an object.
+
+    let funModule = (function() {
+        return {
+        isCuteMixin: function(obj) {
+            obj.isCute = function() {
+            return true;
+            }
+        },
+        singMixin: function(obj) {
+            obj.sing = function() {
+            console.log("Singing to an awesome tune");
+            }
+        }
+        }
+    })();
+
+    let duck = {
+        name: "Damn"
+    }
+    funModule.isCuteMixin(duck);
+    duck.isCute(); // returns true
+
+    funModule.singMixin(duck);
+    duck.sing

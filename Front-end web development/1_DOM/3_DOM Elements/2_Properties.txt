@@ -1,0 +1,154 @@
+ELEMENT OBJECT PROPERTIES
+
+- Syntax
+    element.property = [optional];
+
+These are the values for the 'element' object that you can get or set:
+
+* ELEMENT-RELATED
+
+    .namespaceURI
+        Returns the namespace URI of the element.
+
+    .contentEditable
+        Sets or returns whether the content of the element is editable or not.
+
+    .isContentEditable
+        Returns a boolean whether the content of the element is editable.
+
+    .tagName
+        Returns the tag name of the element.
+
+    .ownerDocument
+        Returns the rood element ('document' object) of the element.
+
+    - ATTRIBUTE
+
+    .attributes
+        Returns a NameNodeMap of the element's attributes (read-only).
+
+    .accessKey
+        Sets or returns the accesskey attribute of the element.
+
+    .lang
+        Sets or returns the value of the lang attribute of the element.
+
+    .dir
+        Sets or returns the value of the dir attribute of an element.
+
+    .title
+        Sets or returns the value of the title attribute of the element.
+
+    .id
+        Sets or returns the value of the id attribute of the element.
+
+    .tabIndex
+        Sets or returns the value of the tabindex attribute of the element.
+
+    - CONTENT & TEXT-RELATED
+
+    .innerHTML
+        Sets or returns the text content of the node and its descendants.
+
+    .outerHTML
+        Sets or returns the content of the element (including the start tag and the end tag).
+
+    .outerText
+        Sets or returns the outer text content of the node and its descendants.
+
+    .textContent
+        Sets or returns the textual content of a node and its descendants.
+
+    - CSS STYLING-RELATED
+
+    .style
+        Sets or returns the value of the style attribute of the element.
+
+    .classList
+        Returns the classname(s) of the element.
+
+    .className
+        Sets or returns the value of the class atribute of the element.
+
+    .clientHeight / .clientWidth
+        Returns the height / width of the element, including padding.
+    
+    .clientLeft / .clientTop
+        Returns the width of the left / top border of the element.
+
+    .offsetHeight / .offsetWidth
+        Returns the height / width of the element, including padding, border, and scrollbar.
+
+    .offsetLeft / .offsetTop
+        Returns the horizontal / vertival offset position of the element.
+
+    .offsetParent
+        Returns the offset container of the element.
+
+    .scrollHeight / .scrollWidth
+        Returns the entire height / width of tha element, including padding.
+
+    .scrollLeft / .scrollTop
+        Sets or returns the number of pixels an element's content is scrolled vertically / horizontally.
+    
+
+* NODE & CHILD-RELATED
+
+    - NODES
+
+    .nodeName
+        Returns the name of the node.
+
+    .nodeType
+        Returns the node type of the node.
+
+    .nodeValue
+        Sets or returns the value of a node.
+
+    .parentNode
+        Returns the parent node of the element.
+
+    .parentElement
+        Returns the parent element node of the element.
+    
+    - CHILDREN
+
+    .childElementCount
+        Returns the number of child elements that the element has.
+
+    .childNodes
+        Returns a collection of the element's child nodes (including text and comment nodes).
+
+    .children
+        Returns a collection of the element's child element (excluding text and comment nodes).
+
+    .firstChild
+        Returns the first child node of the element.
+
+    .firstElementChild
+        Returns the first child element of the element.
+
+    .lastChild
+        Returns the last child node of the element.
+    
+    .lastElementChild
+        Returns the last child element of the element.
+
+    - SIBLINGS
+
+    .nextSibling
+        Returns the next node at the same node tree level.
+
+    .nextElementSibling
+        Returns the next element at the same node tree level.
+
+    .previousSibling
+        Returns the previous node at the same node tree level.
+
+    .previousElementSibling
+        Returns the previous element at the same node tree level.
+
+* FORM-RELATED
+
+    .checked
+        Returns a boolean whether a type="radio" or type="checkbox" is checked.

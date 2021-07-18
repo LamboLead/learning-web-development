@@ -1,0 +1,81 @@
+/* CSS selectors */
+    :root {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #paragraph1 {
+        color: blue;
+    }
+    #using_id_to_style {
+        color: brown;
+    }
+
+    .list_element_class {
+        background-color: blue;
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    [type='submit'] {
+        background-color: darkblue;
+        color: darkorange;
+    } 
+/* <== CSS selectors */
+
+/* CSS variables */
+    .using_css_variables {
+        background-color: var(--var_color, lightgreen);
+        font-weight: var(--var_weight, light);
+        width: 550px;
+    }
+/* <== CSS variables */
+
+/* CSS pseudo-classes */
+    .pseudo-classes_example {
+        width: 200px;
+        margin-left: 10px;
+
+        color: white;
+        background-color: rgba(0, 0, 255, 0.6);
+
+        font-family: Lobster;
+        font-size: 30px;
+    }
+    .pseudo-classes_example:hover {
+        color: black;
+        background-color: rgba(255,255,0,1);
+    }
+/* <== CSS pseudo-classes */
+
+/* CSS pseudo-elements */
+    .heart {
+        position: relative;
+        margin: 20px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: magenta;
+        height: 50px;
+        width: 50px;
+        transform: rotate(-45deg);
+    }
+    .heart::after {
+        background-color: magenta;
+        content: "";
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0px;
+        left: 25px;
+    }
+    .heart::before {
+        content: "";
+        background-color: magenta;
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: -25px;
+        left: 0px;
+    }
+/* <== CSS pseudo-elements */

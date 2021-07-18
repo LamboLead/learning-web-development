@@ -1,0 +1,79 @@
+JAVASCRIPT LEARNING INDEX
+
+1_ Introduction to JS.txt
+
+> 2_Datatypes
+    > Arrays
+        0_Basics.txt
+        1_Methods.txt
+        2_Arrays&Loops.txt
+
+    > Numbers
+        0_Basics.txt
+        1_Methods.txt
+        2_Math Methods.txt
+
+    > Objects
+        0_Basics.txt
+        1_Methods.txt
+        2_Destructuring assignment.txt
+
+    > Strings
+        0_Basics.txt
+        1_Methods.txt
+        2_Functions.txt
+        3_Template literals.txt
+        > Regular Expressions
+            0_Introduction.txt
+            1_Operators&Flags.txt
+            2_Methods.txt
+            Examples.txt
+
+> 3_Important blocks
+    > Conditionals
+        If statement.txt
+        Switch statement.txt
+
+    > Loops
+        Do-While.txt
+        For.txt
+        While.txt
+
+    Functions.txt
+
+> 4_Object-Oriented Programming
+    0_Introduction to OOP.txt
+    1_Objects.txt
+    2_Methods.txt
+    3_Instances&properties.txt
+    4_ Inheritance.txt
+    5_ IIFE.txt
+    
+    __Getters & Setters.txt
+    __JSON.txt
+    __Promises.txt
+    __keywords.txt
+
+> 5_Functional Programming
+    0_Introduction to FP.txt
+    1_FP methods.txt
+    2_Currying and partial application.txt
+    Examples.txt
+
+> 6_JS in Web Development
+    1_Introduction.txt
+    2_Debugging.txt
+    3_Export & import.txt
+
+> Code snippets
+    > Math-related
+        Random.txt
+
+    > Recursion
+        Array insertion.txt
+
+> Exercises
+    Basic Algorithm Scripting.txt
+    Intermediate Algorithm Scripting.txt
+    JavaScript Algorithm projects.txt
+

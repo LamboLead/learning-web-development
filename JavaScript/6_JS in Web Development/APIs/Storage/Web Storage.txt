@@ -1,0 +1,40 @@
+WEB STORAGE
+
+0. Introduction
+
+It is a mechanism to store data locally on the user's browser. It is composed of "Session Storage" and "Local Storage". There are some aspects to consider while working with Web Storage:
+
+> It is not secure to store sensitive data and can be accessed by any website using any code.
+> It scan store more data than cookies (up to 5MB).
+> It stores information only on the browser. Therefore it is not a substitute for a server-based database.
+> It is asynchronous: Although each operation executes one after another, loading times depend on the user's hardware.
+> It stores data in a key-value pair configuration. Both keys and values can only be strings.
+
+1. Methods
+
+.setItem(<key>, <value>)
+    Adds a key-value pair to Local Storage.
+
+.getItem(<key>)
+    Fetchs or retrieves the value from Local Storage using its key.
+
+. removeItem(<key>)
+    Removes an item from Local Storage using its key.
+
+.clear()
+    Deletes all information saved in Local Storage.
+
+2. Session Storage
+
+Session Storage is a way of storing information locally that is deleted when the user closes the browser's window or tab.
+
+- Syntax:
+    sessionStorage.method(...);
+
+3. Local Storage
+
+LocalStorage is a way of storing information locally that doesn't have any expiration date. This means that the data will always persist, even after the browser window is closed.
+
+- Syntax:
+    localStorage.method(...);
+

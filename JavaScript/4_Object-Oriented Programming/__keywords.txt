@@ -1,0 +1,14 @@
+OOP KEYWORDS IN JAVASCRIPT
+
+    <instance> instanceof <Constructor>
+        Returns a boolean depending if a variable is an instance of a certain constructor.
+
+    <instance>.hasOwnProperty(<property>)
+        Returns a boolean depending if a specified property is an own property of the specified instance.
+
+    <constructor>.<prototype>.isPrototypeOf(<instance>);
+        Returns a booleand depending if a specified prototype of a constructor is the prototype of a specified instance.
+
+    typeof <data>
+        Returns the type of the input data.
+    

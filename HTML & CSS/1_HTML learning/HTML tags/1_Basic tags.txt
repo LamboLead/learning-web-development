@@ -1,0 +1,60 @@
+BASIC HTML TAGS
+
+<html/>
+    Starts the structure for the web page.
+    - lang
+        Specifies the language.
+
+<head/>
+    Contains all the settings and specifies the included files on the web page.
+
+    <meta>
+        Adds machine-readable information to an HTML document. It doesn't display to the website visitors.
+        - charset
+            Specifies the character set (encoding) used in the website to display it properly.
+        - name
+            Provides a context for the value of the 'content' attribute.
+        - content
+            Defines the values for the meta element.
+    <link>
+        Represents a link to an external source.
+        - href = "URL"
+            Specifies the URL of the external document
+        - crossorigin (...)
+        - rel = "value"
+            Indicates what is the external resource that the current HTML document is linked to.
+        - type = "information"
+            Informs about the content of the external document.
+
+    <title>
+        Specifies the title of the web page that will be shown on the browser tab.
+
+<body/>
+    Body: Contains all the visible content for the user of the webpage. It frames all of the webpage visible content.
+
+    <style/>
+        Allows to insert CSS code to customize the design of the webpage.
+
+    <h1 ... h6/>
+        From largest to smallest, this tag allows to put titles in the webpage.
+    
+    <br>
+        Newline
+
+    <p/>
+        Paragraph: Encloses its content and puts a newline in between itself and the elements surronding it.
+
+    <a/>
+        Anchor: Creates a hyperlink anchor to another resource
+        - href = "URL"
+            Specifies the URL of the external document
+        - target = "value"
+            Specifies the default browser context to load the new information into
+            [_blank, _self (default), _top, _parent]
+        - rel = "value" (...)
+
+    <hr>
+        Horizontal rule: Creates a horizontal line to separate the content on the webpage.
+
+    <span>
+        Tag whose only purpose is to apply a certain style to the content it surrounds.

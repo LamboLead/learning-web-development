@@ -1,0 +1,3 @@
+THE DOCUMENT OBJECT
+
+When an HTML document is loaded into a web browser, it becomes a document object.

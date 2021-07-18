@@ -1,0 +1,133 @@
+/* Document styles */
+    :root {
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        background-color: rgba(0, 0, 50, 1)
+    }
+
+    section {
+        position: relative;
+        margin-top: 20px;
+        height: min-content;
+        padding: 0px 10px 5px 10px;
+
+
+        background-color: transparent;
+        border-style: solid;
+        border-color: lightgray;
+    }
+
+    a {
+        color: white;
+    }
+
+    .internal_divs {
+        position: relative;
+        margin: 10px 20px 10px 20px;
+        z-index: 1;
+        padding: 5px 5px 5px 5px;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    #internal_div_with_border {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        border-style: dashed;
+        border-width: 2px;
+
+
+        width: 400px;
+        height: 350px;
+    }
+
+    .color_divs {
+        position: relative;
+        width: 30px;
+        height: 15px;
+        margin-left: 5px;
+
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10%;
+        background-color: var(--var_color_div, black);
+    }
+
+    .color_spans {
+        background-color: rgb(255, 115, 0);
+        color: var(--var_span_color, black);
+        font-weight: bold;
+    }
+
+    .highlight {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 1px;
+        padding: 2px;
+    }
+
+    .back_to_top {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+
+        padding: 2px 5px 2px 10px;
+        z-index: 10;
+
+        width: 120px;
+        height: 30px;
+        border-color: #FF7F00;
+        border-style: solid;
+
+
+        color: #FF7F00;
+        background-color: transparent;
+
+        font-family: 'Segoe UI';
+        font-size: 20px;
+    }
+
+    .back_to_top:hover {
+        border-color: lightgray;
+        color: lightgray;
+    }
+
+/* IDE-like_formatting */
+.IDE-like_formatting {
+    background-color: lightgray;
+    color: black;
+
+    font-family: 'Courier New';
+    font-weight: 500;
+    font-size: 15px;
+
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: fit-content;
+}
+.IDE-like_formatting_custom {
+    background-color: var(--background-color_code, lightgray);
+    color: var(--color_code, black);
+
+    font-family: 'Courier New';
+    font-weight: 500;
+    font-size: 15px;
+
+    border-radius: 5px;
+
+    position: var(--position_code, static);
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 250px;
+}
+
+#z-index_code_html {
+    position: relative;
+}
+#z-index_code_css {
+    position: relative;
+}

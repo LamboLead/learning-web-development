@@ -1,0 +1,45 @@
+CSS POSITIONING PROPERTIES
+
+* position
+    Specifies the mode of the positioning for the element (some values only work if the parent element also has a defined position)
+        - relative
+            Positions the element relative to its current position in the normal flow, without changing the position of other elements.
+        - absolute
+            Locks the element in place relative to its parent container. It changes the position of other elements.
+        - fixed
+            Locks the element relative to the browser window, causing the element not to move when the user scrolls.
+        - sticky
+            (...)
+            left, right, top, bottom (offsets the element from the direction inserted) (...)
+
+* top, bottom, left, right
+    Offsets the element from the defined position
+        - [numeric]
+
+* margin
+    Controls the amount of space between an element's border and surrounding elements.
+        - auto
+            Centers the element horizontally.
+        - [top], [right], [bottom], [left]
+            Numeric values for top, right, bottom and left margin.
+
+* vertical-align
+    Sets the vertical align of an element.
+        - baseline
+            The element is alined with the baseline of the parent (default).
+        - [length]
+            Raises or lowers the element by the specified length (including negative values).
+        - sub | super
+            The element is aligned with the subscript|superscript baseline of the parent.
+        - top | text-top | middle | bottom | text-bottom | initial | inherit
+            ...
+
+* float
+    Removes the element from the normal flow of the document and pushes either left or right of their containing parent element
+        - left / right
+            Pushes the element left or right.
+
+* z-index
+    Changes the layer of elements that are overlapping.
+        - [positive integer]
+            The element that has the highest integer shows first.

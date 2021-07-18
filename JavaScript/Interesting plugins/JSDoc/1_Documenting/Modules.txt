@@ -1,0 +1,15 @@
+JSDOC: DOCUMENTATION
+
+* Documenting modules
+
+If you have a module with different functions and variables, you can mark that module as what it is using @module.
+
+- Syntax
+  # inside 'module.js'
+  /**
+    * Module description
+    * @module ModuleName
+  */
+  function funcName() {...}
+  function funcName2() {...}
+  function funcName3() {...}

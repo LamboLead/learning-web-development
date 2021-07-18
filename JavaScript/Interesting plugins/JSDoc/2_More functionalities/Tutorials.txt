@@ -1,0 +1,37 @@
+JSDOC: CREATING TUTORIALS
+
+You can create tutorials in HTML or MarkDown syntax to explain parts of your code and display them in the documentation.
+
+* Steps:
+
+> Create a new folder called 'tutorials'.
+
+> Create different files inside this folder. These files will contain different tutorials in whose you will explain different parts of your code. MarkDown formatting is more convenient for this task. (for example: 'first-tutorial.md', 'second-tutorial.md')
+
+> Go to the 'jsdoc.json' file and copy the following setting:
+  {
+    ...
+    "opts": {
+      ...
+      "tutorials": "./tutorials" # This will reference the folder in which the tutorial files are saved.
+    }
+  }
+
+> To configure the tutorials names and other settings, create a new file inside 'tutorials' called 'tutorials.json', and copy the following setting:
+  {
+    "first-tutorial": {
+      "title": "Getting Started" # The title that the documentation page will show for 'first-tutorial.md'
+    },
+    "second-tutorial": {
+      "title": "Installation" # Same for 'second-tutorial.md'
+    }
+  }
+
+* Referencing tutorials from different elements
+
+If you want to reference a particular tutorial inside the documentation of a module, for example, you go to the module's documentation and type:
+
+  /**
+    * @module
+    * My Math Module - Learn more at {@tutorial second-tutorial}
+  */

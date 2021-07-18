@@ -1,0 +1,70 @@
+CSS units
+
+In this section, all CSS units will be covered, along with some tips to use a certain unit depending on the use case.
+
+1. General types of units
+
+1.1 Absolute units
+
+These units are generally considered to always be the same size (they are not relative to anything).
+
+Unit    Name                    Equivalent to:
+> cm    Centimeters             1cm = 38px = 25/64in
+> mm    Millimeters             1mm = 1/10 of 1cm
+> Q     Quarter-millimeters     1Q = 1/40th of 1cm
+> in    Inches                  1in = 2.54cm
+> pc    Picas                   1pc = 1/6th of 1in
+> pt    Points                  1pt = 1/72th of 1in
+> px    Pixels                  1px = 1/96th of 1in
+
+1.2. Relative units
+
+These units are relative to something else. With these units, you can make it so the size of the text or other elements scales relative to everything else on the page.
+
+Unit        Relative to:
+> em        Font size of the parent (for typography properties), and font size of the element itself (for other properties like 'width')
+> ex        x-height of the element's font
+> ch        The width of the glyph "0" of the element's font
+> rem       Font size of the root element
+> lh        Line height of the element
+> vw|vh     1% of the viewport's width|height
+> vmin      1% of the viewport's smaller dimension (width or height)
+> vmax      1% of the viewport's larger dimension (width or height)
+> %         1% of the parent element's specified dimension
+
+2. ems and rems
+
+The 'em' unit means "My parent element's font-size" in the case of typography. For children elements whose font-size is defined in a certain value in ems, each successive level of nesting gets progressively larger.
+
+The 'rem' unit means "The root element's font-size". For children  elements whose font-size is defined in a certain value in rems, each successive level of nesting stays the same.
+
+3. Percentages (%)
+
+Percentages are always relative to some other value (generally the parent element). For example, if you set an element's font-size as a percentage it will be a percentage of the font-size of the parent.
+
+3. Tips
+
+- The only absolute unit used on screen is pixels.
+    Absolute units are more useful when used for print rather than screen output. This is because on the screen the elements' dimensions can be modified.
+    
+- min- and max- sizes:
+    Use these properties when you want some property to be 'at least' or 'at most' a certain value. This is very useful for dealing with variable amounts of content while avoiding overflow.
+    
+- Declare font-size for elements with rems:
+    It is generally a good practice to declare a font-size for the :root of the document in pixels as a reference, and then declare each element's font-size with rem.
+    
+- Declaring widths:
+    Use percentages to declare widths, along with max-width in ch units to improve readability. You don't want to go above 75 characters per line.
+    
+- Declaring heights:
+    Ask yourself if you really need to declare a height. If you have to, is better to declare a min-height so that if the element shrinks, you avoid text overflow. You can also declare height with percentages, rems, or even vh (take into account the keyboard in mobile devices).
+    
+- Declaring margins and paddings:
+    If you want to keep margins or paddings to grow or shrink with the size of the text, use em. If you want to keep margins or paddings consistent despite the text size, use rem.
+    e.g. You can give a consistent margin of 1rem to all of your text elements (p, lists, headings) and it will be consistent thoughout the entire document; or you can change to 1em and the spacing will be bigger in headings rather than paragraphs, because their font-size is bigger.
+
+- Margins and padding as percentages:
+    When you use margin and padding set in percentages, the value is calculated from the inline size of the containing block (The width, when working in a horizontal language); rather than being calculated from the width and height of the parent element. This means you can have equal-sized margins and padding.
+
+- Declaring media queries:
+    Declare media queries using ems for browser-compatibility issues. Also, think of them as the last resource to add complexity to the layout. Keep them as short as possible: media queries shouln't be the same size as the normal CSS code.

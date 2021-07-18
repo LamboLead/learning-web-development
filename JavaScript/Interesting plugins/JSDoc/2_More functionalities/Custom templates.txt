@@ -1,0 +1,17 @@
+JSDOC: MODIFY DOCUMENTATION TEMPLATES
+
+You can use a different layout for your documentation to be presented.
+
+> You can find the different available templates inside the folder 'node_modules > jsdoc > templates'. The default template is called 'default'.
+> You can select the template that you want to use by setting it up inside the 'jsdoc.json' file, like so:
+  {
+    ...
+    "opts": {
+      ...
+      "template": "./node_modules/jsdoc/templates/default"
+    }
+  }
+
+* Using custom templates
+
+You can download (or install using npm) different and better templates for jsdoc made by the community by searching 'jsdoc templates'. This way, you download them, and reference them inside the 'jsdoc.json' file.

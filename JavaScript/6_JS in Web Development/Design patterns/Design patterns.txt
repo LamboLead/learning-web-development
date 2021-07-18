@@ -1,0 +1,36 @@
+A design pattern is a reusable solution that can be applied to commonly occurring problems in software design (writing JavaScript web applications, for example). These are templates for how to solve problems, which can be used in different situations.
+
+They have the following main benefits:
+
+> Patterns are proven solutions which reflect the experience and insights of prior developers.
+> Patterns can be easily reused, making them quite robust.
+> Patterns can be expressive, which means thay can help us gain a better understanding of the code.
+
+
+* Anti-patterns
+
+These are bad design patterns that are worth documenting. Some examples are:
+
+> Defining a large number of global variables in the global context.
+> Modifying the Object class prototype.
+> Using JavaScript in an inline form.
+> Using 'document.write' instead of 'document.createElement'.
+
+* Creational Design patterns
+
+These focus on handling object creation mechanisms where objects are created in a manner suitable for the situation we're working in.
+
+Examples: Constructor, Factory, Abstract, Prototype, Singleton, and Builder.
+
+* Structural Design patterns
+
+These are concerned with object composition and idenfity simple ways to make relationships between different objects.
+
+Examples: Decorator, Facade, Flyweight, Adapter, Proxy.¨
+
+* Behavioral Design patterns
+
+These focus on improving or streamlining the communication between disparate objects in a system.
+
+Examples: Iterator, Mediatro, Observer, Visitor.
+

@@ -1,0 +1,60 @@
+INTRODUCTION TO EVENTS IN JAVASCRIPT
+
+HTML events are things that happen to HTML events. When JavaScript is used in HTML pages, it can react on these events, executing code when the event occurs.
+
+1. Syntax
+
+> Embedded JavaScript inside HTML elements
+
+    HTML:
+    <element event="someJavascript">
+
+        (e.g. Calling the callDate() function on an onclick event)
+            <button onclick="callDate()">The time is?</button>
+
+2. Event objects
+
+When an event occurs in HTML, the event belongs to a certain event object. For example, a mouse click event belongs to the 'MouseEvent' object.
+
+All event objects are based on the 'event' object, and they inherit all of their properties and methods. These are the most common event objects:
+
+> Peripherals:
+    - KeyboardEvent
+        Related to keyboard interaction.
+    - MouseEvent
+        Rela ted to mouse interaction.
+    - WheelEvent
+        Rela ted to mousewheel interaction.
+    - TouchEvent
+        Related to touch interaction.
+
+> CSS
+    - AnimationEvent
+        Related to CSS animations.
+    - TransitionEvent
+        Related to CSS transitions.
+
+> User-elements interaction:
+    - InputEvent
+        Related to user input.
+    - DragEvent
+        Related to drag and drop interaction.
+    - FocusEvent
+        Related to focus of elements.
+    - UiEvent
+        Related to user interface interaction.
+
+> System-web page interaction:
+    - ClipboardEvent
+        Related to the modification to the clipboard.
+    - HashChangeEvent
+        Related to changes on the URL of the web page.
+    - PageTransitionEvent
+        Related to the navigation to, and away from web pages.
+    - PopStateEvent
+        Related to changes in the history event.
+    - StorageEvent
+        Related to changes in the window's storage area.
+    
+
+

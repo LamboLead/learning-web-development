@@ -1,0 +1,41 @@
+INTRODUCTION TO REGULAR EXPRESSIONS
+
+Regular expressions are used in programming languages to match parts of strings. You create patterns to help you do that matching.
+
+If you want to find the word 'the' in the string 'The dog chased the cat', you could use the following regular expression: /the/. Notice that quote marks are not required within the regular expression.
+
+JavaScript has multiple ways to use regexes. One way to test a regex is using the .test() method, which returns true or false if your pattern finds something or not.
+
+    let testStr = "freeCodeCamp";
+    let testRegex = /Code/;
+    testRegex.test(testStr); # returns true
+    /code/.test(testStr); # returns false
+
+- Operators and flags
+
+Those are special characters that modify the behaviour of the matching.
+
+Operators are written in the regex pattern.
+
+    let ourRegex = /yes|no|maybe/ # conditional operator
+
+Flags are written outside the regex pattern, and can be combined:
+
+    let our Regex = /Repeat/gi # Return several matches and ignore casing flags combined
+
+- Greedy vs. Lazy Matching
+
+A greedy match finds the longest possible part of a string that fits the regex pattern and returns it as a match. This is the default mode for regular expressions.
+
+A lazy match finds the smallest possible part of the string that satisfies the regex pattern. It can be activated with the '?' character in the location of the regex where you want it on.
+
+e.g. 
+    let ourString = "titanic";
+    let greedyRegex = /t[a-z]*i/;
+    let lazyRegex = /t[a-z]*?i/;
+    ourString.match(greedyRegex); # returns "titani"
+    ourString.match(lazyRegex); # returns "ti"
+
+- Usability of regex
+
+Regular expressions in JavaScript are used to pattern-match an HTML string.

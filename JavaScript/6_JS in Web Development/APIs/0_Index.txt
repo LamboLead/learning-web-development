@@ -1,0 +1,16 @@
+JAVASCRIPT APIS INDEX
+
+> 1_Storage
+    > IndexedDB
+        0_Introduction.txt
+        1_Databases.txt
+        2_Object stores.txt
+        > 3_Managing data
+            1_ransactions.txt
+            2_Searching.txt
+            3_Cursors.txt
+
+    Web storage.txt
+
+> ...
+

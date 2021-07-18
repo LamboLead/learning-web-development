@@ -1,0 +1,34 @@
+ACCESIBILITY HTML TAGS
+
+<header/>
+    Wraps introductory information or navigation links for its parent tag. Works well around content repeated across multiple pages.
+
+<main/>
+    Wraps the main content of the page. There has to be only one per page.
+
+<footer/>
+    Wraps around information or links sitting at the bottom of the page.
+
+<nav/>
+    Wraps around the main navigation links in the page.
+
+<time/>
+    Wraps a date or time
+    - datetime = "date"
+    Specifies a certain date on a standardized format.
+
+EXAMPLE
+
+<header></header>
+<nav></nav>
+<main></main>
+<p> Master Camper Cat officiated the cage match between goro and Scorpion <time datetime="2013-02-13">last Wednesday</time>, which ended in a draw.</p>
+<footer></footer>
+
+TIPS
+
+> Use alt attribute for your images to improve accesibility for the users with visual impediments.
+> Pick your headers (h1...h6) so that they have semantic meaning and relate to each other.
+> h1 should only appear once in your HTML code.
+> Anchor tags should wrap text that is meaningful and relates to the link that is referencing to (avoid "Click here" and related)
+> Use the attribute accesskey to add interactivity to keyboard-only users on interactive elements (links, buttons, and form controls)

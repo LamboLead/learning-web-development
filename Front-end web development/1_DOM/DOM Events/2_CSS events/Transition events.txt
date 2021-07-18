@@ -1,0 +1,19 @@
+TRANSITION EVENTS
+
+These are the available events when you apply a transition to an HTML element.
+
+1. Events
+
+    transitionend
+        When a CSS transition has completed.
+
+2. Properties
+
+    .propertyName
+        Returns the name of the property the transition is being applied to.
+
+    .elapsedTime
+        Returns the number of seconds a transition has been running.
+
+    .pseudoElement
+        Returns the name of the pseudo-element of the transition.

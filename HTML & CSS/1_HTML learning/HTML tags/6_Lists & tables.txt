@@ -1,0 +1,11 @@
+LISTS AND TABLES HTML TAGS
+
+<ul/>
+    Unordered List: Groups a collection of elements, marking them with bullet points.
+
+<ol/>
+    Ordered List: Groups a collection of elements, marking them in order.
+
+    <li/>
+        List element: Specifies that the content it wraps is an element of an ordered or unordered list.
+

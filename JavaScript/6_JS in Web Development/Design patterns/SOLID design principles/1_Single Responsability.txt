@@ -1,0 +1,27 @@
+SINGLE RESPONSABILITY DESIGN PRINCIPLE
+
+It establishes that all of the classes, modules, functions inside of the code, should have a single reason to change. It means that if some code changes inside a class, module, or function, it has to change only in that code and not other part of the code.
+
+- Example:
+
+Let's build a simple calory tracker.
+
+    class CaloryTracker {
+        constructor(maxCalories) {
+            this.maxCalories = maxCalories;
+            this.currentCalories = 0;
+        }
+        trackCalories(caloryCount) {
+            this.currentCalories += caloryCount;
+            if (this.currentCalories > this.maxCalories) {
+                notifyUser('Max calories exceeded');
+            }
+        }
+    }
+
+    function notifyUser(message) {
+        console.log(message);
+    }
+
+> Note that the class 'CaloryTracker' has only one reason to change (that is, if its method 'trackCalories' change).
+> If the 'notifyUser' function were specified as a method inside the 'CaloryTracker' class, then the class will have two reasons to change, and it would violate the Single Responsibility principle.

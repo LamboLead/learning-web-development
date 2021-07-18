@@ -1,0 +1,100 @@
+MOUSE EVENTS
+
+These are the available events when the mouse interact with the HTML document.
+
+1. Events
+
+    - CLICK-RELATED
+
+    onclick
+        The user clicks on the element.
+
+    oncontextmenu
+        The user right-clicks on the element to open a context menu.
+
+    ondblclick
+        The user double-clicks on the element.
+
+    onmousedown
+        The user presses a mouse button over the element.
+
+    onmouseup
+        The user releases a mouse button over the element.
+
+    - POINTER-RELATED
+    
+    onmouseenter
+        The pointer is moved onto the element
+
+    onmouseleave
+        The pointer is moved out of the element.
+
+    onmousemove
+        The pointer is moved while it is over the element.
+
+    onmouseover
+        The pointer is moved onto the element or onto one of its children.
+
+    onmouseout
+        The pointer is moved out of an element or out of one of its children.
+
+2. Methods
+
+    .getModifierState()
+        Returns a boolean whether the specified key is activated.
+
+3. Properties
+
+    - ALT, CTRL, META, SHIFT
+
+    .altKey
+        Returns a boolean whether the "ALT" key was pressed when the mouse event was triggered..
+
+    .ctrlKey
+        Returns whether the "CTRL" key was pressed when the mouse event was triggered.
+
+    .metaKey
+        Returns whether the "META" key was pressed when an event was triggered.
+
+    .shiftKey
+        Returns whether the "SHIFT" key was pressed when an event was triggered.
+
+    - MOUSE BUTTONS
+
+    .button
+        Returns which mouse button was pressed.
+
+    .buttons
+        Returns which mouse buttons were pressed when the mouse event was triggered.
+
+    .which
+        Returns which mouse button was pressed when the mouse event was triggered.
+
+    - COORDINATES
+
+    .clientX
+        Returns the horizontal coordinate of the mouse pointer, relative to the current window, when the mouse event was triggered.
+    .clientY
+        Returns the vertical coordinate of the mouse pointer, relative to the current window, when the mouse event was triggered.
+
+    .offsetX
+        Returns the horizontal coordinate of the mouse pointer relative to the position of the edge of the target element
+    .offsetY
+        Returns the vertical coordinate of the mouse pointer relative to the position of the edge of the target element
+
+    .pageX
+        Returns the horizontal coordinate of the mouse pointer, relative to the document, when the mouse event was triggered.
+    .pageY
+        Returns the vertical coordinate of the mouse pointer, relative to the document, when the mouse event was triggered.
+
+    .movementX
+        Returns the horizontal coordinate of the mouse pointer relative to the position of the last mousemove event
+    .movementY
+        Returns the vertical coordinate of the mouse pointer relative to the position of the last mousemove event
+
+    .screenX
+        Returns the horizontal coordinate of the mouse pointer, relative to the screen, when an event was triggered.
+    .screenY
+        Returns the vertical coordinate of the mouse pointer, relative to the screen, when an event was triggered.
+    
+    

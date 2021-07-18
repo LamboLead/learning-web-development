@@ -1,0 +1,146 @@
+BASIC REACT EXERCISES
+
+1. Simple counter
+
+Write a simple counter that updates its value with three buttons: One for incrementing, one for decrementing, and one for reseting the counter.
+
+    class Counter extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                count: 0
+            };
+            this.increment = this.increment.bind(this);
+            this.decrement = this.decrement.bind(this);
+            this.reset = this.decrement.bind(this);
+        }
+        increment() {
+            this.setState(state => ({
+                count: state.count + 1
+            }));
+        }
+        decrement() {
+            this.setState(state => ({
+                count: state.count - 1
+            }));
+        }
+        reset() {
+            this.setState(state => ({
+                count: 0
+            }));
+        }
+        render() {
+            return (
+                <div>
+                    <button className="btn" onClick={this.increment}>Increment!</button>
+                    <button className="btn" onClick={this.decrement}>Decrement!</button>
+                    <button className="btn" onClick={this.reset}>Reset!</button>
+                    <h3>Count: {this.state.count}</h3>
+                </div>
+            )
+        }
+    }
+
+2. Controlled input
+
+React can control the internal state for certain elements like input and textarea. Create a controlled input that is being tracked by an 'input' property in the state of the component.
+
+    class ControlledInput extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                input: ''
+            };
+        }
+        updateInput(event) {
+            this.setState({
+                input: event.target.value
+            });
+        }
+        render() {
+            return (
+                <div>
+                    <input value={this.state.input} onChange={this.updateInput}/>
+                    <h4>Controlled input:<h4>
+                    <p>{this.state.input}</p>
+                </div>
+            )
+        }
+    }
+
+3. Controlled form
+
+Create a controlled form composed of an input and a submit button. When the user clicks in a button to submit it, an h1 element tracks the value in the input.
+
+    class ControlledForm extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                input: '',
+                submit: ''
+            }
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+        }
+        handleChange(event) {
+            this.setState({
+                input: event.target.value
+            })
+        }
+        handleSubmit(event) {
+            event.preventDefault();
+            this.setState(state => ({
+                submit: state.input
+            }));
+        }
+        render() {
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <input value={this.state.input} onChange={this.handleChange}>
+                        <button type="submit">Submit!</button>
+                    </form>
+                    {/* The h1 will show the value of the input on submit */}
+                    <h1>{this.state.submit}</h1>
+                </div>
+            )
+        }
+    }
+
+4. Simple To-do list
+Create a simple to-do list that receives its tasks as a string separated by commas from a text area.
+
+    class ToDoList extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                userInput: '',
+                toDoList: []
+            }
+        }
+        handleChange(event) {
+            this.setState({
+                userInput: event.target.value
+            });
+        }
+        handleSubmit(event) {
+            let taskArr = this.state.userInput.split(",");
+            this.setState({
+                toDoList: taskArr
+            });
+        }
+        render() {
+            const listItems = this.state.toDoList.map((task) => <li>{task}</li>);
+            return (
+                <div>
+                    <textarea
+                    onChange={this.handleChange}
+                    value={this.state.userInput}
+                    placeholder="Separete tasks with commas"/>
+                    <br/>
+                    <button onClick={this.handleSubmit}>Create list</button>
+                    <ul>{listItems}<ul>
+                </div>
+            )
+        }
+    }

@@ -1,0 +1,7 @@
+INTRODUCTION TO INDEXED DB
+
+It is a powerful database built into the browser. It is intended for offline apps.
+
+> It is much more powerful and supports bigger volumes of data than web storage.
+> It stores almost any kind of values by keys, with multiple key types.
+> Its interface is event-based.

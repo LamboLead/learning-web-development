@@ -1,0 +1,44 @@
+REGULAR EXPRESSION EXAMPLES
+
+1. Username checker
+
+Write a regex expression that test the following rules on some usernames.
+
+- Usernames can only be alpha-numeric characters.
+- The only numbers have to be at the end (zero or more).
+- Username cannot start with the number.
+- Username letters can be lowercase and uppercase.
+- Usernames have to be at least two characters long. A two-character username can only use alphabetical letters.
+
+    let username = "Gasimbo123";
+    let userCheck = /^[a-z][a-z]+\d*$|^[a-z]\d\d+$/i;
+    let result = userCheck.test(username);
+
+2. Password checker
+
+Write a regex expression that test the following rules for passwords:
+
+- It must have between 3 and 6 characters.
+- It must have at least one number.
+
+    let password = "abc123";
+    let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+    checkPass.test(password);
+
+3. String to spinal case
+
+Convert a string to spinal case. Spinal case is all lowercase words joined by dashes
+
+    function spinalCase(str) {
+        str = str.replace(/\s+|_+/g, "-");
+        str = str.replace(/([a-z])([A-Z])/g, "$1-$2");
+        str = str.toLowerCase();
+        console.log(str)
+        return str;
+    }
+    
+    spinalCase('This Is Spinal Tap');
+    spinalCase('thisIsSpinalTap');
+    spinalCase('The_Andy_Griffith_Show');
+    spinalCase('Teletubbies say Eh-oh');
+    spinalCase('AllThe-small Things');

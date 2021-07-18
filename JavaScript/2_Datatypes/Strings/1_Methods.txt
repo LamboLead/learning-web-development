@@ -1,0 +1,33 @@
+String Methods
+
+- Inform about strings
+
+    .length
+        Returns the length of the string.
+
+    .endsWith(<string>);
+        Returns true if a string ends with another string
+
+- Modify strings
+
+    .toLowerCase()
+        Lowercase the entire string
+
+    .toUpperCase()
+        Uppercase the entire string
+
+    .repeat(<value>)
+        Returns the repeated string by a specified value
+
+    .substring(<index_1>, <index_2>)
+        Returns a trimmed string from the original, limited by the specified indexes
+
+    .charCodeAt(<index>)
+        Returns the numeric unicode value of the character at the specified index.
+
+            'ABC'.charCodeAt(0); // returns 65, because that is the unicode value of 'A'
+
+    String.fromCharCode(<character1>, <character2>, ...)
+        Returns the equivalent symbols from the specified unicode character values .
+
+            String.fromCharCode(65); // returns 'A'

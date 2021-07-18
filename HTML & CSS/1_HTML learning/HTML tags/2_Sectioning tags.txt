@@ -1,0 +1,12 @@
+SECTIONING HTML TAGS
+
+<article/>
+    Groups independent, self-contained content (e.g. a blog entry).
+
+<section/>
+    Groups related content, generally inside an <article>.
+
+<div/>
+    Groups content, not necessarily correlated with one another.
+
+"If a book is the <article>, each chapter is a <section>. When there's no relationship between groups of content, use a <div>".

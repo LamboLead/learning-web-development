@@ -1,0 +1,64 @@
+OPEN/CLOSED DESIGN PRINCIPLE
+
+This principle states that a function, for whatever it does, has to be open for scalability, but closed for changing.
+
+This means that a function must be designed so that it knows what to do when new data is called inside of it, instead of changing the function to suit the new data.
+
+NOTE: If you use lots of if or switch statements in your functions, you're probably trying to suit the new incoming data to the function, violating this principle.
+
+- Example
+
+Building a question-maker using the Open/Closed desing principle:
+
+    class MultipleChoiceQuestion {
+        constructor(description, options) {
+            this.description = description;
+            this.options = options;
+        }
+        printQuestionChoices() {
+            this.options.forEach((option, index) => {
+                console.log(`${index + 1}. ${option}`);
+            });
+        }
+    }
+
+    class TextQuestion {
+        constructor(description) {
+            this.description = description;
+        }
+
+        printQuestionChoices() {
+            console.log('Answer: ______________________');
+        }
+    }
+
+    class RangeQuestion {
+        constructor(description) {
+            this.description = description;
+        }
+
+        printQuestionChoices() {
+            console.log('Minimum: ______________________');
+            console.log('Maximum: ______________________');
+        }
+    }
+
+    const questions = [
+        new BooleanQuestion('Was this video useful?'),
+        new MultipleChoiceQuestion(
+            'What is your favourite language?',
+            ['CSS', 'HTML', 'JS', 'Python']
+        ),
+        new TextQuestion('Describe your favourite JS feature'),
+        new RangeQuestion('What is the speed limit in  your city?')
+    ];
+
+Here, a class for each type of question was created. Then, an instance of each type was created inside a 'questions' array. Up next, a function to ask all of the questions will be created.
+
+    function askQuestions(quiz) {
+        quiz.forEach(question => {
+            console.log(question.description);
+            question.printQuestionChoices();
+            console.log();
+        });
+    }

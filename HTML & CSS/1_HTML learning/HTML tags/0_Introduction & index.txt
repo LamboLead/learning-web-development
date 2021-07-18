@@ -1,0 +1,47 @@
+INTRODUCTION AND INDEX OF HTML TAGS
+
+1. Index
+
+    1_Basic tags.txt
+    2_Sectioning tags.txt
+    3_Accesibility tags.txt
+    4_Multimedia tags.txt
+    5_Text-formatting tags.txt
+    6_Lists & tables.txt
+    7_Forms tags.txt
+
+2. Content
+
+Each file contains specific tags depending on their use, the attributes you can add to them, and some examples to show their use.
+
+- 1_Basic tags.txt
+    Contains the fundamental tags you need to create the basic skeleton of the web page.
+
+- 2_Sectioning tags.txt
+    Contains the tags you need to create sections and further organize the web page.
+
+- 3_Accesibility tags.txt
+    Contains the tags that improve the accesibility for disabled people to consume web pages, and serve the developer as orientation.
+
+- 4_Multimedia tags.txt
+    Contains the tags which insert and specify multimedia.
+
+- 5_Text-formatting tags.txt
+    Contains the tags you can use to format the text.
+
+- 6_Lists & tables.txt
+    Contains the tags related to the creation of lists and tables.
+
+- 7_Forms tags.txt
+    Contains the tags you need to create forms and its corresponding elements
+
+3. Shared common attributes
+
+All tags share the following attributes:
+
+    - id
+    - style
+    - class
+    - hidden
+
+4. Event-related attributes

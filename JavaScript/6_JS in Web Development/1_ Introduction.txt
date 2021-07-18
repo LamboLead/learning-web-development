@@ -1,0 +1,7 @@
+JavaScript in Web Development
+
+1. Create a Module Script
+
+Today, JS is huge and some websites are built entirely with it. The following snippet will insert a .js file into an HTML file.
+
+    <script type="module" src="filename.js"></script>

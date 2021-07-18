@@ -1,0 +1,23 @@
+CSS MEDIA QUERIES
+
+Media queries change the presentation of the content based on the viewport's dimensions.
+
+1. Syntax
+
+    @media (condition) {
+        property: value;
+    }
+
+2. Example
+
+In this example, if the 'max-height' of the viewport is 800px (tablets), the 'font-size' of <p/> elements turn to 10px.
+
+    p {
+        font-size: 20px;
+    }
+
+    @media (max-height: 800px) {
+        p {
+            font-size: 10px;
+        }
+    }

@@ -1,0 +1,29 @@
+1. Using the console
+
+    console.log();
+
+
+2. Check the type of a variable
+
+    typeof <thing>;
+
+    JavaScript recognizes six immutable data types: Boolean, Null, Undefined, Number, String, and Symbol; and one type for mutable items Object (arrays are objects as well).
+
+3. Error types
+
+Syntax errors: Refer to wrong syntax writing.
+
+    ReferenceError
+        Occurrs when the name of a function or a variable doesn't exist.
+
+    SyntaxError
+        Occurrs when JS expected a character but finds another one (e.g. not closing a parentheses or curly bracket).
+    
+Runtime errors: Refer to errors that occur during the execution of the code, even while the syntax is correct.
+
+    e.g.
+    When a function's arguments are supplied in the incorrect order.
+
+    Off By One Errors: When iterating through an array, if the index is incorrectly specified, the program may throw a reference "index out of range".
+
+    Infinite loops: When the terminal conditions for a loop are not set correctly, and the loop runs undefinitely.

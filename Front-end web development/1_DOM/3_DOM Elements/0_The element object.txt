@@ -1,0 +1,5 @@
+THE ELEMENT OBJECT
+
+HTML elements are a subtype of a node (ELEMENT_NODE), covering every node that is created using tags.
+
+Its text content is not included in it as it is another type of node (TEXT_NODE) that is appended to the element node.

@@ -1,0 +1,65 @@
+JSDOC: DOCUMENT JAVASCRIPT AUTOMATICALLY
+
+0. What is JSDoc?
+
+JSDoc is a documentation generator tool. It is supported by and created for JavaScript to document about the code that you've written to improve its maintainability, reusability, readibility, and quality.
+
+1. Setting up JSDoc in your project
+
+After initializing a npm instance inside your project with '$ npm init' and installing JSDoc with the command '$ npm i jsdoc', you must set up a configuration file for jsdoc called 'jsdoc.json'. Inside of it, and depending on the setup that you want, you must type the following JSON:
+
+{
+  "plugins": [], # Names the plugins for JSDoc to extend its functionality
+  "source": {
+    "include": ["root"], # Scans comments inside the folder 'root'
+    "includePattern": ".js$", # Scans comments from files whose names end with '.js'
+    "excludePattern": "(node_modules|documentation)" # Exclude 'node_modules' and 'docs' folders from scanning
+  },
+  "templates": { # Set up documentation formatting
+    "cleverLinks": true, # Activates clever links inside the web page
+    "monospaceLinks": false # Mmm
+  },
+  "opts": { # Set up scanning options
+    "recurse": "true", # Scan for files inside a tree of folders inside the 'root' folder
+    "destination": "./documentation" # Creates the documentation inside the folder 'documentation'
+  }
+}
+
+Then, inside a terminal, write the following command to start scanning and outputting documentation files:
+  '$ jsdoc -c jsdoc.json'
+If it doesn't work because jsdoc is installed locally, use npx command.
+  '$ npx jsdoc -c jsdoc.json'
+
+After entering the command, JSDoc will create a new page with the documentation that it scans.
+
+READ DOCUMENTATION ON JSDOC FOR MORE INFORMATION: 'https://jsdoc.app/about-configuring-jsdoc.html'
+
+2. JSDoc Syntax
+
+JSDoc uses a special syntax to recognize the code and output documentation about it:
+
+  /**
+    * This is the full name of the user
+    * @type {string}
+  */
+  const fullName = "Gasimbo"
+
+This will create documentation for the variable 'fullName'.
+
+There are other flags for different functionalities that will be listed below in this document.
+
+3. TypeScript-like error checking
+
+JsDoc and VSCode are a great pair to work with, because if you type the following line at the first line of the script:
+
+  // @ts-check
+
+VSCode will throw errors if what you've written as documentation is not consistent with the code (just like TypeScript).
+
+This feature can also be enabled if you type inside the command prompt of VSCode:
+
+  > Preferences: Open Workspace Settings (JSON)
+
+And then you write inside the JSON file:
+
+  "javascript.implicitProjectConfig.checkJs": true

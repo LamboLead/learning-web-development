@@ -1,0 +1,27 @@
+STRINGS BASICS
+
+Strings are text enclosed by single or double-quotes.
+
+"This is a string"
+'This is also a string'
+
+Escape characters
+
+Because some characters belong to JS syntax, you must put escape characters to use them inside of strings.
+
+    \"  Double-quote                            "
+    \'  Single-quote                            '
+    \\  Backslash
+    \n  Newline
+    \r  Carriage return
+    \t  Tab
+    \b  Word boundary
+    \f  Form feed
+
+Indexing
+
+You can refer to certain characters of a string by indexing them
+
+    var myString = "Hello World!";
+    var char1 = myString[4] # refers to 'o'
+    var char2 = myString[-1] # refers to '!'

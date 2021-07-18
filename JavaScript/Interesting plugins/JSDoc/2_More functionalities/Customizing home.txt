@@ -1,0 +1,26 @@
+JSDOC: CUSTOMIZING HOME
+
+At first, the start page won't show anything. You can place usefule information here:
+
+* Setting project's information
+
+> At the start of your main .js file, type the following:
+  /**
+    * @file main-filename.js Is the main file
+    * @author your name
+    * @see <a href="https://your-personal-web-page">Your Name</a>
+  */
+
+* Insert a README.md file
+
+> Create a README.md file containing a 'landing page' for your project.
+
+> Go to the 'jsdoc.json' file and type:
+  {
+    ...
+    "opts": {
+      ...
+      "readme": "./README.md"
+    }
+  }
+

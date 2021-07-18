@@ -1,0 +1,143 @@
+WORKING WITH SASS
+
+0. Introduction
+
+SASS (Sintactically Awesome Style Sheets) is a CSS preprocessor that includes many useful features that CSS doesn't have.
+
+* Running SASS
+
+    sass --watch styles.sass:styles.css
+
+1. Creating SASS variables
+
+With SASS, you can create different variables to use later in your CSS code. You create one like so:
+
+    $variable-name: value;
+
+You use them like so:
+
+    h1 {
+        property: $variable-name;
+    }
+
+2. Nesting SASS code
+
+To improve readability and mantainability, you can nest different selectors inside their corresponding parent in the SASS stylesheet, like so:
+
+    nav {
+        background-color: red;
+        ul {
+            list-style: none;
+            li {
+                display: inline-block;
+            }
+        }
+    }
+
+3. Use mixins to create reusable code
+
+In SASS, a mixin is a group of CSS declarations that can be reused throughout the stylesheet. A mixin is like a function for CSS, and you declare one like so:
+
+    @mixin box-shadow($x, $y, $blur, $c)
+        -webkit-box-shadow: $x $y $blur $c
+        -moz-box-shadow: $x $y $blur $c
+        -ms-box-shadow: $x $y $blur $c
+        box-shadow: $x $y $blur $c
+
+A mixin is called via the @include directive, like so:
+
+    div
+        @include box-shadow(0px, 0px, 4px, #fff)
+
+4. Use conditionals to add logic to the stylesheet
+
+The @if, @else if, and @else directives in SASS works like in JavaScript:
+
+    @mixin text-effect($val)
+        @if $val == danger
+            color: red
+        @else if $val == alert
+            color: yellow
+        @else if $val == success
+            color: green
+        @else
+            color: black
+
+    span
+        @include text-effect(success) // Color is green
+
+5. Create loops inside the stylesheet
+
+5.1. @for loops
+
+    The @for directive adds styles in a loop, similarly to a for loop in JavaScript. There are two types of loops
+
+    "start through end": Includes the last number as part of the count.
+    "start to end": Doesn't include the last number as part of the count.
+
+        @for $i from 1 through 12
+            .col-#{$i}
+                width: 100%/12 * $i
+
+    The syntax '#{...}' represents a string. When the SASS file is converted to CSS, it looks like this:
+
+        .col-1
+            width: 8.33333%
+
+        .col-2
+            width: 16.66667%
+        ...
+        .col-12
+            width: 100%
+
+    This is a powerful way to create a grid layout, for example.
+
+5.2. @each loop
+
+The @each directive loops over each item in a list or map. On each iteration, the variable gets assigned to the current value from a list or a map.
+
+- Looping through lists
+    @each $color in blue, red, green
+        .#{$color}-text
+            color: $color
+
+- Looping through maps
+    $colors: (color1: blue, color2: red, color3: green)
+
+    @each $key, $color in $colors
+        .#{$key}-text
+            color: $color
+
+5.3. @while loop
+
+The @while directive loops as long as a condition is met. Its functionality is similar to the JavaScript while loop.
+
+    $x: 1
+    @while $x <= 5
+        .text-#{$x}
+            font-size: 15px * $x
+
+        $x: $x + 1
+
+6. Use SASS partials to split your styles into smaller chunks
+
+In SASS, partials are separate files that hold segments of CSS code. These are imported and used in other SASS files.
+
+> Names for partials start with "_", which tells SASS it is a small segment of CSS, and not to convert it into a CSS file.
+> SASS files end with .scss file extension.
+> To bring the code in the partial into another SASS file, use the @import directive.
+
+For example, if all your mixins are saved in a partial named "_mixins.scss", and they are needed in the "main.scss" file, you type the following to import the partial:
+    @import 'mixins'
+
+7. Extend a set of CSS styles to another element.
+
+@extend feature in SASS makes it easy to borrow the CSS rules from one element and build upon them in another. Because the new element is inheriting the rules set to another element, this is a simple way to reuse existing rules.
+
+    .panel 
+        background-color: red
+        height: 70px
+
+    .big-panel
+        @extend .panel
+        width: 150px

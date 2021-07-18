@@ -1,0 +1,53 @@
+THE DEPENDENCY INVERSION DESIGN PRINCIPLE
+
+When you are using an API or using an external resource to add some functionality to your application, this principle states that a piece of code must be put as an intermediary between your application and the external resource, which contains all of the behavior that you want the external resource to do.
+
+This brings the benefit that if you want to use another external resource, your application doesn't have to change to accomodate it. You just need to implement the changes inside the piece of code bridging the gap.
+
+NOTE: This is also named as the 'Facade design pattern'.
+
+- Example
+
+Build a payment processor for Stripe using the Dependency Inversion design principle.
+
+    // This is your store
+    class Store {
+        constructor(paymentProcessor) {
+            this.paymentProcessor = paymentProcessor;
+        }
+
+        purchaseBike(quantity) {
+            this.paymentProcessor.pay(200 * quantity);
+        }
+        purchaseHelmet(quantity) {
+            this.paymentProcessor.pay(15 * quantity);
+        }
+    }
+
+    // This is the Stripe payment processor
+    class StripePaymentProcessor {
+        constructor(user) {
+            this.stripe = new Stripe(user)
+        }
+        
+        pay(ammountInDollars) {
+            this.stripe.makePayment(ammountInDollars * 100);
+        }
+    }
+
+    // This is the Stripe API
+    class Stripe {
+        constructor(user) {
+            this.user = user;
+        }
+        makePayment(ammountInCents) {
+            console.log(`${this.user} made payment of ${ammountInCents} with Stripe`);
+        }
+    }
+
+    const store = new Store(new StripePaymentProcessor('John'));
+
+    store.purchaseBike(2);
+    store.purchaseHelmet(2);
+
+Note that the 'StripePaymentProcessor' is bridging the gap between your application 'Store' and the 'Stripe' API. If you were going to introduce a new way of payment (e.g. Paypal), you just need to create a new 'PayPalPaymentProcessor' to bridge the gap, instead of changing the entire structure of 'Store' to accomodate it.

@@ -1,0 +1,44 @@
+JSDOC: DOCUMENTATION
+
+* Documenting custom types
+
+If you have various custom objects, you can document them as well using @typedef, @property, and @type
+
+- Syntax
+  /**
+    * Custom type name
+    * @typedef {type} Custom type name
+    * @property {type} property1 Property description
+    * @property {type} property2 Property description (Optional)
+    * @property {type} ...
+  */
+
+- Example: Documenting a custom object
+
+  /**
+    * User
+    * @typedef {Object} User
+    * @property {string} name User Name
+    * @property {number} age User Age (Optional)
+    * @property {boolean | string} isActive User state
+  */
+
+  /**
+    * @type {User}
+  */
+  const newUser = {
+    id: 1,
+    name: "Gasimbo",
+    age: 69,
+    isActive: true
+  }
+
+  /**
+    * @type {User}
+  */
+  const newUser2 = {
+    id: 2,
+    name: "Gosimba",
+    age: 96,
+    isActive: 'false'
+  }

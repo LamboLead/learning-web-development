@@ -1,0 +1,60 @@
+DESTRUCTURING ASSIGNMENT
+
+It is a special syntax to assign values taken directly from an object.
+
+Take the following object:
+
+    const user = {name: 'John Doe', age: 34};
+
+Instead of assigning variables from objects like this:
+
+    const name = user.name;
+    const age = user.age;
+
+You can use the destructuring assignment:
+
+    const {name, age} = user; # only works in variables with the same property's names
+    const {name: userName, age: userAge} = user; # you can change the name of the variables too (userName and userAge).
+
+- Destructuring assignment in nested objects
+
+    You can also destructure values from nested objects:
+
+        const user = {
+            johnDoe: {
+                age: 34,
+                email: 'johnDoe@freeCodeCamp.com'
+            }
+        };
+
+        const {johnDoe: { age: userAge, email: userEmail}} = user; # within user, we extracted age (userAge) and email (userEmail)
+
+- Assigning variables to array elements
+
+    You can assign multiple variables from arrays using destructuring assignment:
+
+        const NUMBERS_ARRAY = [1, 2, 3, 4, 5, 6];    
+        
+        const [a, b] = NUMBERS_ARRAY; # a is equal to 1. b is equal to 2
+        const [a, b, ,, c] = NUMBERS_ARRAY; # a is equal to 1. b is equal to 2. c is equal to 5
+
+    You can also capture the rest of the non-assigned elements:
+
+        const [a, b, ...arr] = NUMBERS_ARRAY; # a = 1, b = 2, arr = [3, 4, 5, 6]
+
+    Note: The rest element only works correctly as the last variable in the list.
+
+- Pass an object as a function's parameters
+
+    You can destructure the object in a function argument itself:
+        
+        const data = {
+            name : "Gabe Itches",
+            age: 69,
+            nationality: "Japanese",
+            location: "Bolivia"
+        }
+
+        const profileUpdate = ({name, age, nationality, location}) => // Function code;
+
+    When data is passed as an argument to profileUpdate, its values are destructured from the object to use inside the function.

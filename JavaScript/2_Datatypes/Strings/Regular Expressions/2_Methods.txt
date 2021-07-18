@@ -1,0 +1,18 @@
+REGULAR EXPRESSION METHODS
+
+<regex>.test(<string>)
+
+    Returns true or false if match or not.
+
+<string>.match(<regex>)
+
+    Returns the actual matches found within the string in the form of an array.
+
+<wrong_string>.replace(<regex>, <replace_with>)
+
+    Scans 'wrong_string' and looks for /regex/. If it finds it, it replaces the match with 'replace_with'. Then it returns the new string.
+
+    If the /regex/ contains grouping, you can access each group with dollar signs '$'
+
+        let regEx = /(\w+)\s(\w+)/;
+        "Code Camp".replace(regEx, '$2 $1') # Returns 'Camp Code'

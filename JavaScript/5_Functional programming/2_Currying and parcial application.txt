@@ -1,0 +1,37 @@
+CURRYING AND PARTIAL APPLICATION
+
+1. Currying
+
+The 'arity' of a function is the number of arguments it requires. 'Currying' means to convert a function of 'N-arity' into 'N' functions of 'arity' 1.
+In other words, it restructures a function so it takes one argument, then returns another function that takes another argument, an so on.
+
+    function unCurried(x, y) { // an uncurried function
+        return x + y;
+    }
+
+    function curried(x) { // a curried function
+        return function (y) {
+            return x + y;
+        }
+    }
+
+    const curried = x => y => x + y // another curried function in arrow-syntax
+
+    curried(1)(2) // returns 3
+
+This is useful in your program if you can't supply all the arguments at one time.
+You can save each function call into a variable, then, when the other argument is ready, call the variable with the new argument, like so:
+
+    var funcForY = curried(1); // the other argument is not ready yet!
+    console.log(funcForY(2)); // returns 3
+
+2. Partial applications
+
+These are described as applying a few arguments to a function at a time and returning another function that is applied to more arguments:
+
+    function impartial(x, y, z) { // a normal function
+        return x + y + z;
+    }
+
+    var partialFunction = impartial.bind(this, 1, 2); // a partial function. It binds the normal function and allows an argument to be called later
+    console.log(partialFunction(10)); // returns 13

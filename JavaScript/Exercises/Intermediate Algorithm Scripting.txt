@@ -1,0 +1,392 @@
+1. Sum all numbers in a range
+
+We'll pass you an array of two numbers. Return the sum of those two numbers plus the sum of all the numbers between them. The lowest number will not always come first.
+
+For example, sumAll([4,1]) should return 10 because sum of all the numbers between 1 and 4 (both inclusive) is 10.
+
+    function sumAll(arr) {
+        if (arr[0] > arr[1]) {
+        let temp = arr[0];
+        arr[0] = arr[1];
+        arr[1] = temp;
+        }
+        let sum = 0;
+        for (let i = arr[0]; i <= arr[1]; i++) {
+        sum += i;
+        }
+        return sum;
+    }
+
+    TEST: sumArr([1, 4]);
+    TEST: sumArr([4, 1]);
+
+2. Diff Two Arrays
+
+Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. In other words, return the symmetric difference of the two arrays.
+
+Note: You can return the array with its elements in any order.
+
+    function diffArray(arr1, arr2) {
+        let filteredArr1 = arr1.filter(element => arr2.indexOf(element) == -1);
+        let filteredArr2 = arr2.filter(element => arr1.indexOf(element) == -1);
+        // console.log(filteredArr1.concat(filteredArr2));
+        return filteredArr1.concat(filteredArr2);
+    }
+    
+    TEST: diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+    TEST: diffArray(["andesite", "grass", "dirt", "dead shrub"], ["andesite", "grass", "dirt", "dead shrub"]);
+
+3. Seek and destroy
+
+You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. Remove all elements from the initial array that are of the same value as these arguments.
+
+Note: You have to use the arguments object.
+
+    function destroyer(arr, ...args) {
+        let newArr = [...arr];
+        let argsArr = [...args];
+        newArr = arr.filter(element => argsArr.indexOf(element) == -1)
+        return newArr;
+    }
+    
+    TEST: destroyer([1, 2, 3, 1, 2, 3], 2, 3); // returns [1, 1]
+    TEST: destroyer([1, 2, 4, 5, 2, 3], 2, 3); // returns [1, 4, 5]
+
+4. Property checker
+
+Make a function that looks through an array of objects (first argument) and returns an array of all objects that match name an value pairs from an object (second argument). Each name and value pair of the object (second argument) has to be present in each of the objects returned by the function.
+
+For example, if the first argument is:
+    [{first: "Romeo", last: "Montague"}, {first: "Mercutio", last: null}, {first: "Tybalt", last: "Capulet"}]
+And the second argument is:
+    {last: "Capulet"}
+The function must return [{first: "Tybalt", last: "Capulet"}]
+
+    function propertyChecker(arr, obj) {
+        let objKeys = Object.keys(obj); // returns an array of all the keys present in obj
+
+        let filteredArr = arr.filter(function(eachObj) {
+            // Up next: A filtering loop that removes the objects that:
+            // 1. Doesn't have the property
+            // 2. The value for that property doesn't match
+            for (let i = 0; i < objKeys.length; i++) {
+                if (!(eachObj.hasOwnProperty(objKeys[i])) || (obj[objKeys[i]] !== eachObj[objKeys[i]])) {
+                    return false;
+                }
+            } // End of the filtering loop
+            return true;
+        });
+
+        return filteredArr;
+    }
+
+5. Spinal tap
+
+Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+
+    function spinalCase(str) {
+        str = str.replace(/\s+|_+/g, "-"); // replace spaces and underscores with "-"
+        str = str.replace(/([a-z])([A-Z])/g, "$1-$2"); // captures every lowercase and uppercase group of letters and replaces it with the same group separated with "-"
+        str = str.toLowerCase(); // converts the string to lowercase
+        console.log(str)
+        return str;
+    }
+    
+    TEST: spinalCase('This Is Spinal Tap');
+    TEST: spinalCase('thisIsSpinalTap');
+    TEST: spinalCase('The_Andy_Griffith_Show');
+    TEST: spinalCase('Teletubbies say Eh-oh');
+    TEST: spinalCase('AllThe-small Things');
+
+6. Pig Latin
+
+Alter a string following this rules:
+- If a word begins with a consonant, take the first consonant or consonant cluster, move it to the end of the word, and add ay to it.
+
+- If a word begins with a vowel, just add way at the end.
+
+Input strings are guaranteed to be English words in all lowercase.
+
+    function translatePigLatin(str) {
+        let regexVowel = /^[aeiou]/;
+        let regexConsonant = /[^aeiou]+/;
+        if (regexVowel.test(str)) {
+        return str + "way";
+        } else {
+        let first = str.match(regexConsonant);
+        return str.slice(first[0].length) + str.slice(0, first[0].length) + "ay";
+        }
+    }
+    
+    TEST: console.log(translatePigLatin("glove"));
+    TEST: console.log(translatePigLatin("consonant"));
+    TEST: console.log(translatePigLatin("paragraphs"));
+    TEST: console.log(translatePigLatin("algorithm"));
+
+7. DNA pairing
+
+The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.
+
+Base pairs are a pair of AT and CG. Match the missing element to the provided character.
+
+Return the provided character as the first element in each array.
+
+For example, for the input "GCG", return [["G", "C"], ["C","G"], ["G", "C"]]
+
+    function pairElement(str) {
+        let arr = str.match(/\w/g);
+        arr = arr.map(function(element) {
+        switch(element) {
+            case "G":
+            return [element, "C"];
+            case "C":
+            return [element, "G"];
+            case "A":
+            return [element, "T"];
+            case "T":
+            return [element, "A"];
+        }
+        });
+        return arr;
+    }
+    
+    TEST: pairElement("GCG");
+    TEST: pairElement("ATCGA");
+
+8. Missing letters
+
+Find the missing letter in the passed letter range and return it. If all letters are present, return undefined
+
+    function fearNotLetter(str) {
+        let abecedary = "abcdefghijklmnopqrstuvwxyz";
+        let index = abecedary.indexOf(str[0]);
+        for (let i = 0; i < str.length; i++) {
+        if (!(str[i] === abecedary[i + index])) {
+            return abecedary[i + index];
+        }
+        }
+    }
+    
+    TEST: fearNotLetter("abce"); // should return "d"
+    TEST: fearNotLetter("defgi"); // should return "h"
+    TEST: fearNotLetter("abc") // should return undefined
+
+9. Sorted union
+
+Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays.
+
+Examples:
+
+> uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]) should return [1, 3, 2, 5, 4].
+
+> uniteUnique([1, 2, 3], [5, 2, 1]) should return [1, 2, 3, 5].
+
+> uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]) should return [1, 2, 3, 5, 4, 6, 7, 8].
+
+    function uniteUnique(...args) {
+        let finalArr = [];
+        finalArr = finalArr.concat(args[0])
+        for (let i = 1; i < args.length; i++) {
+        args[i] = args[i].filter(element => finalArr.indexOf(element) == -1);
+        finalArr = finalArr.concat(args[i]);
+        }
+        return finalArr;
+    }
+    
+    TEST: uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+    TEST: uniteUnique([1, 2, 3], [5, 2, 1]);
+    TEST: uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]);
+
+10. Convert HTML entities
+
+Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.'"
+
+    function convertHTML(str) {
+        let symbols = [["&", "&amp;"], ["<", "&lt;"], [">", "&gt;"], ["\"", "&quot;"], ["\'", "&apos;"]];
+        let regex;
+        for (let i = 0; i < symbols.length; i++) {
+        regex = new RegExp(symbols[i][0], "g");
+        str = str.replace(regex, symbols[i][1]);
+        }
+        console.log(str);
+        return str;
+    }
+    
+    TEST: convertHTML("Dolce & Gabbana");
+    TEST: convertHTML("Hamburgers < Pizza < Tacos");
+
+11. Sum all odd fibonacci numbers
+
+Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
+
+The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+
+For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
+
+    function sumFibs(num) {
+        let i = 1;
+        let j = 1;
+        let sum = 0;
+        let oddArr = [1];
+        while (i <= num) {
+        sum = i + j;
+        i = j;
+        j = sum;
+        oddArr.push(i);
+        }
+        oddArr = oddArr.filter(function(element) {
+        return (element % 2 != 0 && element <= num);
+        });
+        let newSum = oddArr.reduce((first, second) => first + second);
+        return newSum
+    }
+    
+    TEST: sumFibs(10); // should return 10
+    TEST: sumFibs(1000) // should return 1785
+    TEST: sumFibs(4000000) // should return 4613732
+    TEST: sumFibs(4) // should return 5
+    TEST: sumFibs(75024) // should return 60696
+    TEST: sumFibs(75025) // should return 135721
+
+12. Sum all prime numbers
+
+A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. For example, 2 is a prime number because it is only divisible by 1 and 2. In contrast, 4 is not prime since it is divisible by 1, 2 and 4.
+
+Rewrite sumPrimes so it returns the sum of all prime numbers that are less than or equal to num.
+
+    function sumPrimes(num) {
+        let divisibleBy;
+        let primeArr = [];
+        for (let i = 1; i <= num; i++) {
+        divisibleBy = 0;
+        for (let j = i; j > 1; j--) {
+            if (i % j == 0) {divisibleBy++;}
+        }
+        if (divisibleBy == 1) {primeArr.push(i);}
+        }
+        let sum = primeArr.reduce((first, second) => first + second);
+        return sum;
+    }
+    
+    TEST: sumPrimes(977); // should return 73156
+
+13. Smallest Common Multiple
+
+This is a shitty one. Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+The range will be an array of two numbers that will not necessarily be in numerical order.
+
+For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+
+    function smallestCommons(arr) {
+        arr.sort((a,b) => a - b);
+        const numberDivisors = arr[1] - arr[0] + 1
+    
+        // Largest possible value for mcm
+        let upper = 1;
+        for (let i = arr[0]; i <= arr[1]; i++) {
+        upper *= i;
+        }
+    
+        // Test all multiples of arr[1]
+        for (let multiple = arr[1]; multiple <= upper; multiple += arr[1]) {
+        // Check if every value in the range divides multiple
+        let divisorCount = 0;
+        for (let i = arr[0]; i <= arr[1]; i++) {
+            // Count divisors
+            if (multiple % i === 0) {
+            divisorCount += 1;
+            }
+        }
+        if (divisorCount === numberDivisors) {
+            return multiple;
+        }
+        }
+    }
+    
+    
+    TEST: smallestCommons([5,1]); // should return 60
+    TEST: smallestCommons([2, 10]) // should return 2520
+
+14. Steamroller
+
+Flatten a nested array. You must account for varying levels of nesting.
+
+    function steamrollArrray(arr) {
+        const flattenedArray = [];
+        // Loop over array contents
+        for (let i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+                // Use recursion to flat entries that are arrays
+                flattenedArray.push(...steamrollArray(arr[i]));
+            } else {
+                // Copy contents that are not arrays
+                flattenedArray.push(arr[i]);
+            }
+        }
+        return flattenedArray;
+    }
+
+    TEST: steamrollArray([1, [2], [3, [[4]]]]); // should return [1, 2, 3, 4]
+    TEST: steamrollArray([1, [], [3]]); // should return [1, 3]
+    TEST: steamrollArray([1, {}, [3, [4]]]); // should return [1, {}, 3, 4]
+
+15. Binary to string
+
+Return an English translated sentence of the pased binary string
+the binary string will be space separated
+
+    function binaryAgent(str) {
+        let binaryArr = str.split(" ");
+        let unicodeArr = binaryArr.map(char => parseInt(char, 2));
+        let strArr = unicodeArr.map(char => String.fromCharCode(char));
+        return strArr.join("");
+    }
+
+    TEST: binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111") // should return "Aren't bonfires fun!?"
+    TEST: binaryAgent("01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001") // should return "I love FreeCodeCamp!"
+
+16. Arguments Optional
+
+Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.
+
+For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function.
+
+If either argument isn't a valid number, return undefined.
+
+
+    function addTogether(...args) {
+        let len = args.length;
+
+        if (len === 2) {
+            if (checkNumber(args[0]) && checkNumber(args[1])) {
+                return args[0] + args[1];
+            } else {
+                return undefined;
+            }
+
+        } else if (len === 1) {
+            if (checkNumber(args[0])) {
+                // Create a function 'sumAnother', which will hold the final result of the sum if the two parameters are specified
+                var sumAnother = function(secondValue) {
+                    if (checkNumber(secondValue)) {
+                        return args[0] + secondValue;
+                    } else {
+                        return undefined;
+                    }
+                }
+            return sumAnother;
+        } else {
+            return undefined;
+        }
+        }
+    }
+    
+    function checkNumber(value) {
+        return typeof value === "number";
+    }
+    
+    TEST: (addTogether(2,3)); // should return 5
+    TEST: (addTogether(2)); // should return [Function: sumAnother]
+
+    

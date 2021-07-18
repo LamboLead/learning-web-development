@@ -1,0 +1,30 @@
+CSS FUNDAMENTALS
+
+CSS (Cascade-StyleSheets) is a language that allows the customization of web pages.
+
+1. CSS Box Model
+
+Each element in an HTML document has a predefined way of arranging itself. Here are the two main arrangements and the elements that perform them by default:
+
+    > Block-level items: The elements automatically start on a new line
+        - <header>
+        - <p>
+        - <article>, <section>, <div>
+
+    > Inline items: The elements sit within the surrounding content in the same line
+        - <figure>, <img>
+        - <span>
+
+2. Measurement units
+
+To specify the position or size of elements in an HTML document, CSS works with the following categories of measurement units:
+
+    > Absolute: These tie to physical units of length.
+        - in (inches)
+        - mm (millimeters)
+        - px (pixels)
+
+    > Relative: These units are defined relative to another length, generally the one of the parent.
+        - %
+        - em
+        - rem

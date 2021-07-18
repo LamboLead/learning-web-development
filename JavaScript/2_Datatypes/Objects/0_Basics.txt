@@ -1,0 +1,63 @@
+OBJECTS BASICS
+
+1. Creating an object
+
+Objects are just collections of key-value pairs. They are pieces of data (values) mapped to unique identifiers called properties (keys)
+
+    const tekkenCharacter = {
+        player: 'Hwoarang',
+        fightingStyle: 'Tae Kwon Doe',
+        human: true
+    };
+
+2. Inserting new key-value pairs
+
+You can insert new properties to your object in different ways.
+
+- Dot notation (single-words):
+
+In this example, the property 'origin' is a single word. In this case, dot notation is used:
+
+    tekkenCharacter.origin = 'South Korea';
+
+- Bracket notation (multiple-words):
+
+In this example, the property 'hair color' is two words. In this case, bracket notation is used:
+
+    tekkenCharacter['hair color']  = 'dyed orange';
+
+You can also define a property using a variable. 
+
+    const eyes = 'eye color';
+    tekkenCharacter[eyes] = 'brown';
+
+After adding everything, the object will look like this:
+
+    {
+        player: 'Hwoarang',
+        fightingStyle: 'Tae Kwon Doe',
+        human: true,
+        origin: 'South Korea',
+        'hair color': 'dyed orange',
+        'eye color': 'brown'
+    };
+
+3. Access key-value pairs
+
+4. Delete key-value pairs
+
+If we wanted to remove the apples key, we can remove it by using the delete keyword like this:
+
+    delete foods.apples;
+
+5. Iterate through the keys of an object
+
+You can iterate through the keys of an object with a for...in loop, like so:
+
+    for (let user in users) {
+        console.log(user);
+    }
+
+6. Generate and array of all object keys
+
+We can also generate an array which contains all the keys stored in an object using the Object.keys() method and passing in an object as the argument. This will return an array with strings representing each property in the object. Again, there will be no specific order to the entries in the array.

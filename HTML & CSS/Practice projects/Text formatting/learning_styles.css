@@ -1,0 +1,15 @@
+/* Main properties */
+    .text_customization {
+        background-color: yellow;
+        color: black;
+
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
+        font-weight: 300;
+        font-style: oblique;
+        text-decoration: dotted;
+        text-align: center;
+        text-transform: capitalize;
+
+        width: 800px;
+    }

@@ -1,0 +1,26 @@
+JSDOC: DOCUMENTING
+
+* Documenting functions
+
+You can document what a function does (using any of its declaration syntaxes), what are its parameters and its return value, using @param and @returns.
+
+- Syntax
+  /**
+    * Function description
+    * @param {type} parameter1 Parameter description
+    * @param {type} parameter2 Parameter description
+    * @param {type} ...
+    * @returns {type} Return value description
+  */
+  function functionName(parameter1, parameter2, ...) {...}
+
+- Example: Documenting a function
+  /**
+    * Adds two numbers
+    * @param {number} n1 First Number
+    * @param {number} n2 Second Number
+    * @returns {number} Total of operation
+  */
+  function add (n1, n2) {
+    return n1 + n2;
+  }

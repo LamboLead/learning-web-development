@@ -1,0 +1,172 @@
+ELEMENT OBJECT METHODS
+
+- Syntax
+    element.method(...)
+
+These are the actions that you can perform on the HTML DOM 'element' object.
+
+* ELEMENT-RELATED
+
+    .blur()
+        Removes focus from the element.
+
+    .focus()
+        Gives focus to the element.
+
+    .iSDefaultNamespace("namespaceURI")
+        Returns a boolean whether a specified namespaceURI is the default.
+
+    .isSupported("feature", "version")
+        Returns a boolean whether a specified feature is supported on the element.
+
+    - ATTRIBUTES
+
+    .getAttribute("attribute")
+        Returns the specified attribute value of the element.
+
+    .hasAttribute("attribute")
+        Returns a boolean whether an element has a specified attribute.
+        
+    .hasAttributes()
+        Returns a boolean whether an element has any attributes.
+    
+    .getAttributeNode("attribute")
+        Returns the specified attribute node as an 'attribute' element.
+
+    .setAttribute("attribute", "value")
+        Sets or changes the specified attribute to the specified value.
+
+    .setAttributeNode(<attribute_node>)
+        Sets or changes the specified attribute node.
+
+    .removeAttribute("attribute")
+        Removes a specified attribute from an element.
+
+    .removeAttributeNode(<attribute_node>)
+        Removesa and returns a specified attribute node.
+
+    - FORMS
+
+    .value
+        Returns the value of an <input/> element.
+
+    - CSS STYLING
+
+    .getBoundingClientRect()
+        Returns the size of an element and its position relative to the viewport.
+
+    .matches("CSS_selector")
+        Returns a boolean whether the element is matched by a specific CSS selector or not.
+    
+    .closest("CSS_selector")
+        Returns the closest element that matches a CSS selector.
+
+    - OTHER
+
+    .requestFullScreen()
+        Shows the element in fullscreen mode.
+
+    .exitFullScreen()
+        Exits the element from fullscreen mode.
+
+    .scrollIntoView([boolean])
+        Scrolls the specified element into the visible area of the browser window.
+
+    .toString()
+        Converts an element to a string.
+
+* NODE & CHILD-RELATED
+
+    .compareDocumentPosition(<element2>)
+        Returns an integer that represents the position of two elements in the document.
+
+    - NODE
+
+    .cloneNode(<node_to_clone>)
+        Clones the node.
+
+    .contains(<node>)
+        Returns a boolean whether a node is a descendant of another node.
+
+    .isEqualNode(<node>)
+        Checks if two elements are equal.
+
+    .isSameNode(<node>)
+        Checks if two elements are the same node.
+
+    .normalize()
+        Joins adjacent text nodes and removes empty text nodes in the element.
+
+    - CHILDREN
+
+    .hasChildNodes()
+        Returns a boolean whether an element has any child nodes.
+
+    .appendChild(<node>)
+        Adds a new child node to the element as the last one.
+
+    .remove()
+        Removes the element from the DOM.
+
+    .removeChild(<node>)
+        Removes a child node from the element.
+
+    .replaceChild(<new_node>, <old_node>)
+        Replaces a child node in the element.
+
+    .insertAdjacentElement("position", <element>)
+        Inserts an HTML element at the specified position relative to the current element.
+        > position:
+            - afterbegin
+            After the beginning of the element (as the first child).
+            - afterend
+                After the element.
+            - beforebegin
+                Before the element.
+            - beforeend
+                Before the end of the element (as the last child).
+
+    .insertBefore(<new_node>, <existing_node>)
+        Inserts a new child node before a specified, existing child node.
+
+    .insertAdjacentHTML("position", "text")
+        Inserts an HTML formatted text at the specified position relative to the current element.
+        > position:
+            - afterbegin
+                After the beginning of the element (as the first child).
+            - afterend
+                After the element.
+            - beforebegin
+                Before the element.
+            - beforeend
+                Before the end of the element (as the last child).
+        
+    .insertAdjacentText("position", "text")
+        Inserts text into the specified position relative to the current element.
+
+    - FIND ELEMENTS
+
+    .getElementsByTagName("tag")
+        Returns a collection of all child elements with the specified tag name.
+
+    .getElementsByClassName("class")
+        Returns a collection of all child elements with the specified class name.
+
+    .querySelector("CSS_selector")
+        Returns the first child of the element that matches a specified CSS selector.
+        
+    .querySelectorAll("CSS_selector")
+        Returns a collection of the children of the element that match a specified CSS selector.
+
+* EVENT-RELATED
+
+    .addEventListener("event", functionName())
+        Attaches an event handler to the element.
+
+    .removeEventListener("event", functionName())
+        Removes an event handler from the element.
+
+    .click()
+        Simulates a mouse-click on the element.
+
+    

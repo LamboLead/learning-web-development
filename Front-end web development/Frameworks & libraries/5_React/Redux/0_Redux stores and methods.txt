@@ -1,0 +1,43 @@
+REDUX
+
+Redux is a state manager framework which works beautifully with React, although it can be used with different web technologies.
+
+1. Redux stores
+
+In Redux, there is a single state object responsible for the entire state of the application that feeds data to all React components inside the application. This single state object is housed inside the Redux store.
+
+  Redux.createStore(<reducerFunction>)
+    Creates a Redux store.
+    <reducerFunction> : A function which takes a state object as an argument and returns 'state'
+      
+      const reducer = (state = 5) => {
+        return state;
+      };
+      let store = Redux.createStore(reducer);
+
+2. Methods
+
+Any time that the app wants to update state, it must do so through the Redux store. You can interact with it using the following methods:
+
+- Syntax:
+  
+  let store = Redux.createStore(...);
+  store.<method(...)>;
+
+  .getState()
+    Returns the current state held in the redux store.
+
+  .dispatch(<action>)
+    Sends a specific action to the store to update the state of the application.
+
+  .subscribe(<callback>)
+    Subscribes listener function to the store, which is called whenever the action is dispatched against the store.
+    <callback> : Listener function
+
+    You can subscribe a function that logs a message every time an action is received and the store is updated.
+
+
+00. Good practices
+  > First principle of Redux: All app state is held in a single state object in the store.
+  > State is read-only. The reducer function must always return a new copy of state, and never modify it directly. You are responsible for enforcing state immutability in your reader functions.
+  > Assign action types as read-only constants, then reference these constants wherever they are used. This allows them to be changed more easily if needed.

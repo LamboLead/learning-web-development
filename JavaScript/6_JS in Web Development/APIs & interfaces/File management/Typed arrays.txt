@@ -1,0 +1,34 @@
+1. Typed arrays
+
+Is an array-like datatype which contents are strictly controlled by their size in bits.
+
+There are different kinds of typed arrays:
+
+Integer typed arrays (IntNArray): Every element in the array is an integer and occupies N bits.
+
+> Int8Array: From -128 to 127.
+> UInt8Array: From 0 to 255.
+> UInt8ClampedArray: From 0 to 255. If it finds a negative number, it converts it to 0.
+
+> Int16Array: From -32768 to 32767
+> UInt16Array: From 0 to 65535.
+> UInt16ClampedArray: ...
+
+> Int32Array: From -2147483648 to 2147483647.
+> UInt32Array: From 0 to 4294967295.
+> UInt32ClampedArray: ...
+
+Float typed arrays (FloatNArray): Every element in the array can be an integer or a float and occupies N bits.
+> Float32Array: From 1.2E-38 to 3.4E+38.
+> Float64Array: From 5.0E-324 to 1.8E308.
+
+2. ArrayBuffer object
+
+It is the container for all typed arrays. It represents the chunk of memory that is set aside to hold the typed arrays.
+
+Although the ArrayBuffer holds the binary data, it cannot modify it without a DataView.
+
+3. DataView object
+
+It is the object that takes an ArrayBuffer and allows the interaction and modification of its elements.
+

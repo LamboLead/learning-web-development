@@ -1,0 +1,6 @@
+FETCH API
+
+It provides an interface for fetching resources (including accross the network), providing a more powerful and flexible feature set.
+
+  fetch(<url>, <init>)
+    Starts the process of fetching a resource from the network and returns a promise that is fulfilled once the response is available.

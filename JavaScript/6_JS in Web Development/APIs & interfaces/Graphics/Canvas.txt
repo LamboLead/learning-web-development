@@ -1,0 +1,16 @@
+CANVAS API
+
+It provides a means for drawing graphics via JavaScript and HTML canvas element. It can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing.
+
+It largely focuses on 2D graphics. The WebGL API draws hardware-accelerated 2D and 3D graphics.
+
+1. Methods
+
+  - Syntax:
+
+    HTMLCanvasElement.<method(...)>
+
+  .toDataURL(<type>, <imageQuality>)
+    Returns a data URI containing a representation of the image.
+    <type> : A DOMString that specifies the format to return the image (default is 'image/png').
+    <imageQuality> : A number between 0 and 1 indicating the image quality to use for image formats that use lossy compression ('image/jpeg', 'image.webp') (default is 0.92).

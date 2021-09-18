@@ -1,0 +1,189 @@
+CONDITIONAL RENDERING
+
+
+1. Using an 'if/else' statement
+
+You can use a standard if/else statement to render one view or another of a component:
+
+  class MyComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        display: true // Indicator for the displaying of the view
+      }
+    }
+    render() {
+      if (this.state.display) {
+        return (
+          <div>
+            <h1>This is the first view!</h1>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <h1>This is the second view!</h1>
+          </div>
+        )
+      }
+    }
+  }
+
+2. Using the '&&' operator
+
+If you're tracking different conditions in a component,  use the '&&' operator instead of various 'if/else if' statements, like so:
+
+  class MyComponent extends React.Component {
+    ...
+    render() {
+      return (
+        <div>
+          {this.state.display && <h1>This is the first view!</h1>}
+          {!this.state.display && <h1>This is the second view!</h1>}
+        <div>
+      )
+    }
+  }
+
+3. Using a ternary expression
+
+A ternary operator is a shortcut of an 'if/else' statement in JavaScript, and you can use it to render views in React:
+
+  class MyComponent extends React.Component {
+    ...
+    render() {
+      const buttonOne = <button onClick={this.submit}>Submit</button>
+      const buttonTwo = <button>You may enter</button>
+      const buttonThree = <button>You shall not pass</button>
+      return (
+        <div>
+          {
+            this.state.userAge === "" ?
+              buttonOne: (
+                this.state.userAge < 18 ?
+                  buttonThree : buttonTwo
+              )
+          }
+        </div>
+      )
+    }
+  }
+
+The previous example renders different buttons depending on the value of the property 'userAge' inside the state.
+
+4. Using props
+
+It consists of using the value of a given prop to automatically make decisions about what to render:
+
+  class Results extends React.Component {
+    ...
+    render() {
+      return (
+        <h1>{this.props.result ? "You Win!" : "You Lose!"}</h1>
+      );
+    }
+  }
+
+  class GameOfChance extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        counter: 1
+      };
+      this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick() {
+      this.setState((prevState) => ({
+        counter: prevState.counter + 1
+      }));
+    }
+    render() {
+      const chance = Math.random() >= 0.5;
+      return (
+        <div>
+          <button onClick={this.handleClick}>Play again</button>
+          <Results result={chance}/>
+          <p>{'Turn' + this.state.counter}</p>
+        </div>
+      );
+    }
+  }
+
+The previous example renders a child component depending on the expression evaluated by its parent component. This expression is passed as props.
+
+5. Using Array.map() and Array.filter()
+
+You can render elements dinamically using 'Array.map()'.
+
+When you create an array of elements, each one needs a unique 'key' attribute set to a unique value. React uses these keys to keep track of which items are added, changed or removed:
+
+  const frontEndFrameworks = [
+    'React',
+    'Angular',
+    'Ember',
+    'Knockout',
+    'Vue'
+  ];
+  function Frameworks() {
+    const renderFrameworks = frontEndFrameworks.map((item, index) => {
+      return <li key={`fwork-${index}`}>{item}</li>
+    });
+    return (
+      <div>
+        <h1>Popular Front End JavaScript Frameworks</h1>
+        <ul>
+          {renderFrameworks}
+        </ul>
+      </div>
+    );
+  }
+
+Array.filter() filters the contents on an array based on a condition, and then returns the new array:
+
+  class MyComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        users: [
+          {
+            username: 'Jeff',
+            online: true
+          },
+          {
+            username: 'Alan',
+            online: false
+          },
+          {
+            username: 'Mary',
+            online: true
+          },
+          {
+            username: 'Jim',
+            online: false
+          },
+          {
+            username: 'Sara',
+            online: true
+          },
+          {
+            username: 'Laura',
+            online: true
+          }
+        ]
+      };
+    }
+    render() {
+      const usersOnline = this.state.users.filter((user) => {
+        return user.online
+      }); // Filtered array with online users
+      const renderOnline = usersOnline.map((item, index) => {
+        return <li key={`user-${index}`}>{item.username}</li>
+      }); // Online users rendered as 'li' elements
+      return (
+        <div>
+          <h1>Current Online Users:</h1>
+          <ul>{renderOnline}</ul>
+        </div>
+      );
+    }
+  }

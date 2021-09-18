@@ -1,0 +1,87 @@
+INTRODUCTION TO REACT COMPONENTS
+
+React works with components. Everything in React is a component, and because a JSX component represents HTML, you can compose your UI from many separate and isolated components, making it easier to maintain complex user interfaces.
+
+1. Types of components
+
+There are two main types of components:
+
+* Stateles functional component
+
+  It is any function which accepts props and returns a JSX element. It is created using a JavaScript function, and it doesn't use internal state.
+
+  You can create one like so:
+
+    const DemoComponent = function() {
+      return (
+        <div className="customClass" />
+      );
+    }
+
+* Stateless or stateful component
+
+  It is created using ES& class syntax:
+
+    class DemoComponent extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        return (
+          <h1>Hello!</h1>
+        );
+      }
+    }
+
+    ReactDOM.render(<DemoComponent />, document.getElementById("first_div"));
+
+  Because it extends from React.Component class, it has access to many useful React features, such as local state and lifecycle hooks.
+
+  It passes 'props' to the the constructor of the parent class (React.Component) using 'super(props)'.
+
+  The stateful component has a 'state' property defined as an object in its constructor:
+
+    class DemoComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          prop1: "value1",
+          prop2: "value2"
+        }
+      }
+      render() {
+        return (
+          <h1>Hello!</h1>
+        );
+      }
+    }
+
+  NOTE: A common pattern is to try to minimize statefulness and as to create stateless functional components wherever possible. This helps contain the state to a specific area of the application, improving development and maintenance of the app.
+
+2. Using composition to create a component
+
+React allows to insert components inside of another components using composition:
+
+  const ChildComponent = () => {
+    return (
+      <div>
+        <p>Child component</p>
+      </div>
+    )
+  }
+
+  const ParentComponent extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return (
+        <div>
+          <h1>I am the parent</h1>
+          </ChildComponent />
+        </div>
+      )
+    }
+  }
+
+You can render any type of component within other components.

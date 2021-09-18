@@ -1,0 +1,11 @@
+REACTDOM API
+
+It is React's rendering API that renders React elements to the DOM.
+
+- Rendering JSX elements into the DOM
+
+  ReactDOM.render(<<componentToRender />>, <targetNode>);
+    Renders the specified component in the DOM
+    <componentToRender> : React's component to render.
+    <targetNode> : DOM node that the component will be rendered into.
+

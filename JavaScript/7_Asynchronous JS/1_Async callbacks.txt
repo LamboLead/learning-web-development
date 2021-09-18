@@ -1,0 +1,17 @@
+ASYNCHRONOUS CALLBACKS
+
+Callbacks are functions that are specified as arguments when calling another function. The execution of this function is triggered by a certain events (the user clicks some element, a resource has loaded, a timeout has finished, etc). This means that the callback function won't be executed until the event is fired, making it asynchronous.
+
+Some callback functions run synchronously (Array.forEach()). The following example makes use of the '.onload' event handler when a resource has finished loading from an external source using a 'XMLHttpRequest':
+
+  function loadAsset(url, type, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    
+    xhr.onload = () => {
+      callback(xhr.response);
+    },
+
+    xhr.send();
+  }
+

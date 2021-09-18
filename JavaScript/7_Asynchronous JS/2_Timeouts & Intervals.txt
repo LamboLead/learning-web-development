@@ -1,0 +1,51 @@
+TIMEOUTS AND INTERVALS
+
+JavaScript has traditional functions for running code asynchronously after a set period of time has elapsed, or at a regular interval (e.g. a set number of times per second).
+
+1. setTimeout() and setInterval()
+
+  setTimeout(<callback>, <time interval>, [<parameters>])
+    It executes some code once after the specified time period of time.
+    <callback> : Callback function to execute
+    <time interval> : Time in milliseconds
+    <parameters> : Optional parameters that are passed to the callback if specified.
+    
+  setInterval(<callback>, <timeInterval>, [<parameters>])
+    It executes some code repeatedly every time the specified period of time has completed.
+    <callback> : Callback function to execute
+    <time interval> : Time in milliseconds
+    <parameters> : Optional parameters that are passed to the callback if specified.
+
+- Considerations
+
+  > The specified amount of time is the minimum time of execution, rather than the guaranteed time: The time interval starts counting only after the main thread is empty.
+  > You can clear a timeout or interval by assigning it to a variable and using the 'clearTimeout()' function:
+
+      let greet = setTimeout(console.log("Hello"), 2000);
+      clearTimeout(greet);
+
+  > Recursive timeouts: You can run code repeatedly using setInterval():
+
+      let i = 1;
+      setTimeout(function run() {
+        console.log(i);
+        i++;
+        setTimeout(run, 100);
+      }, 100);
+    
+    The difference between recursive setTimeout() and setInterval is that recursive setTimeout ensures that the inner function runs precisely at the specified time period (in this case, 100ms); on the other hand, setInterval() doesn't take into account the time spent running the code, so it is not that precise.
+
+2. requestAnimationFrame() ...
+
+It is a specialized enqueueing function created for running animations efficiently in the browser. It runs a specified block of code before the browser next repaints the display, allowing the execution to be paired with the device's display frame rate.
+
+It has some advantages over setInterval() and setTimeout():
+> It runs at a framerate optimized for the device, making it suitable for animations.
+> It supports optimization for animations, like stopping the execution if the tab isn't active or the animation is scrolled of the page (read more on CreativeJS).
+
+  function draw() {
+    // Drawing code goes here
+    requestAnimationFrame(draw);
+  }
+
+  draw();

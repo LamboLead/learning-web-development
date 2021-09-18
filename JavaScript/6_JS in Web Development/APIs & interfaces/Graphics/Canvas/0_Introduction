@@ -1,0 +1,6 @@
+CANVAS API
+
+It provides a means for drawing graphics via JavaScript and HTML canvas element. It can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing.
+
+It largely focuses on 2D graphics. The WebGL API draws hardware-accelerated 2D and 3D graphics.
+

@@ -1,0 +1,96 @@
+JAVASCRIPT PROMISES
+
+0. Introduction
+
+A promise is an object representing the completion of failure of an asynchronous operation. It tells the browser 'I promise to get back to you with the answer as soon as I can'.
+
+You can create promises via a constructor, or using some special asynchronous methods that return a promise.
+
+1. Creating promises using the constructor
+
+'Promise()' is a constructor function which takes two parameters as callbacks:'resolve' and 'reject'. These determine the outcomes of the promise.
+
+	const myPromise = new Promise((resolve, reject) => {
+		// Code...
+	});
+
+- The 'resolve' and 'reject' methods
+
+A promise has three states:
+> 'pending': The promise is executing. It leaves this state if the promise is completed.
+> 'fulfilled': The promise was fulfilled using 'resolve'. It is executed when the async operation was successful.
+> 'rejected': The promise is rejected using 'reject'. It is executed when the async operation has failed.
+
+	const myPromise = new Promise((resolve, reject) => {
+		if(condition here) {
+			resolve("Promise was fulfilled");
+		} else {
+			reject("Promise was rejected");
+		}
+	});
+
+The example above uses strings for the argument of these functions, but it can really be anything. Often, it might be an object, that you would use data from, to put on your website or elsewhere.
+
+2. Creating promises using the fetch() method.
+
+The fetch() API is a modern and more efficient version of XMLHttpRequest. It returns a promise which already has the 'resolve' and 'reject' embedded inside the code:
+
+	fetch('products.json')
+		.then((response) => response.json())
+		.then((json) => {
+			let products = json;
+			initialize(products);
+		})
+		.catch((error) => {
+			console.log('Fetch problem: ', error.message);
+		});
+
+The state, results, or errors of the asynchronous operation can be accessed using specific promise's methods.
+
+3. Handle the results of a promise
+
+- Handle a fulfilled promise
+
+You can access the result of a promise using the '.then()' method. It is executed immediately after your promise is fulfilled with 'resolve'. Here’s an example:
+
+	myPromise.then((result) => {
+		// Code...
+	});
+
+- Handle a rejected promise
+
+'catch' is the method that handles the promise when it has been rejected. It is executed immediately after the 'reject' method is called. Here’s the syntax:
+
+	myPromise.catch((error) => {
+		// Code...
+	});
+
+- Considerations
+	> A promise can only succed or fail once.
+	> If a promise has succeeded or failed and you later add a success/failure callback, the correct callback will be called, even though the event took place earlier.
+
+4. Handling multiple promises
+
+You can run some code only after all/some of the specified promises have been fulfilled with the following methods:
+
+	Promise.all(<array of promises>)
+		Returns a new Promise that will fulfill only when all promises in the specified are fulfilled. If only one of the promises is rejected, the whole new promise will be rejected.
+		The result of the new fulfilled promise is an array with all the results from the array of promises.
+		<array of promises> : Array of promises to wait for.
+
+	Promise.allSettled(<array of promises>)
+		Returns a new Promise that resolves after all of the given promises have either been fulfilled or rejected.
+		The result of the new fulfilled promise is an array of objects that each describes the outcome of each promise.
+		<array of promises> : Array of promises to wait for.
+
+5. Running final code after a promise is fulfilled/rejected
+
+You can run some final code after a promise is fulfilled/rejected with the '.finally()' method:
+
+	myPromise
+		.then((response) => response.json())
+		.catch((error) => console.log(error))
+		.finally(() => {
+			// Run final code
+		})
+

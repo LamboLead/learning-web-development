@@ -20,7 +20,7 @@ There are three main types of projects that you should be aware of:
 To have a clear view of what you'll be building, you should get all the requirements listed below (applicable mostly for freelancing).
 Document EVERYTHING.
 
-- Objective, purpose, and scope
+- Objective, purpose, scope, and overall software architecture (if needed)
   What is going to be built?
   Why is it going to be built?
   What will your work be related to?
@@ -29,8 +29,8 @@ Document EVERYTHING.
     Will you be handling deployment?
 
 - Target audience
-  What is the audience for this application? Teens & young people? Old people?
-  This information is vital for user experience and user interface aspects
+  What is the end user for this application? Teens & young people? Old people?
+  This information is vital for user experience and user interface aspects.
 
 - Technology requirements / API requests
   Which languages, databases, frameworks will be used?

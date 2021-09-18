@@ -1,0 +1,20 @@
+ASYNCHRONOUS JAVASCRIPT
+
+0. Introduction
+Tipically, JavaScript is single-threated (sinchronous). It means that each line of code executes one after another, and the execution of the following line doesn't happen until the last one has been executed.
+
+However, when dealing with operations that demand loading times, JavaScript allows to execute asynchronous code. Those Web APIs that fetch resources from an external source (a file from a network or a database) and return data from it work with asynchronous code.
+
+1. Asynchronous code
+
+There are different ways of writing asynchronous code in JavaScript:
+
+- Async callbacks
+- Promises
+- Timeouts and intervals
+- Async/await syntax
+...
+
+2. The event queue
+
+Asynchronous operations are put into an event queue, which runs after the main thread has finished processing, so that thet don't block subsequent JavaScript code from running...

@@ -1,0 +1,48 @@
+ASYNC-AWAIT KEYWORDS
+
+The 'async' and 'await' keywords are extensions of promises. They also allow to execute asynchronous code by creating an underground promise.
+
+1. async
+
+The 'async' keywords turns a function into an asynchronous function. They allow to write promise-based code as if it were synchronous, without blocking the execution thread.
+
+> Asynchronous functions will always return a promise.
+> If no 'return' statement is provided inside the function, it promise automatically returns a resolved promise with an 'undefined' result.
+> You can use the 'async' keyword with every type of function definition.
+> You can access the result of the async function using the '.then()' method.
+
+- Syntax:
+
+	async function functionName() {
+		// code
+	}
+	functionName().then();
+
+2. await
+
+The 'await' keyword only works inside async functions with regular JavaScript code (however, it can be used on its own with JavaScript modules).
+
+The 'await' keyword can be put in front of any async function to pause the code execution on that line until the promise fulfills; it then returns the resulting value without the use of the '.then()' method.
+
+- Example:
+
+	async function myFetch() {
+		let response = await fetch('coffee.png');
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+		let myBlob = await response.blob();
+		return URL.createObjectURL(myBlob);
+	}
+
+	myFetch()
+		.then((result) => result.json())
+		.catch((error) => {
+			console.log('There has been a problem with the fetch operation:', error.message);
+		});
+
+
+NOTE:
+> Async-Await makes execution sequential. This means that parallelled execution is not allowed.
+
+INVESTIGATE: Promise.all()

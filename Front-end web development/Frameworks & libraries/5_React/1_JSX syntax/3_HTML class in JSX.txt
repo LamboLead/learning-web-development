@@ -1,0 +1,41 @@
+STYLING JSX ELEMENTS
+
+* Inline styles in JSX
+
+  You can define inline styles in JSX by setting them as the 'style' attribute, whose value is a JavaScript object:
+
+  <div style={{color: "yellow", fontSize: "16px"}}>
+    Mellow Yellow
+  </div>
+
+  Note the camelCase for the 'fontSize' property.
+
+  You can also create a style object when you have a large set of styles to keep your code organized:
+
+    class Colorful extends React.Component {
+      ...
+      render() {
+        const styleSheet = {
+          color: "purple",
+          fontSize: "40rem",
+          border: "2px solid purple"
+        };
+        return (
+          <div style={styleSheet}>
+            Style me!
+          </div>
+        );
+      }
+    }
+
+* Define an HTML class or another argument in JSX
+
+  To define an argument inside a JSX element, use camelCase
+
+  const JSX = (
+    <div>
+      <h1 className="my-class">This is a title with a class</h1>
+    </div>
+  )
+
+* 

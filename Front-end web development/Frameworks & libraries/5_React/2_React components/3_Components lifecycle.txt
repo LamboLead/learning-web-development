@@ -1,0 +1,80 @@
+LIFECYCLE HOOKS
+
+Lifecycle hooks are special methods that allow to perform actions at different points in the lifecycle of a component.
+
+1. List of lifecycle methods
+
+- Syntax:
+
+  class MyComponent extends React.Component {
+    constructor(props) {...}
+
+    lifeCycleHook() {
+      // Some code
+    }
+
+    render() {...}
+  }
+
+  componentWillMount()
+    Called before the 'render()' method when a component is being mounted to the DOM.
+
+  componentDidMount()
+    Called after the component is mounted to the DOM. Any calls to 'setState()' here will trigger a re-rendering of the component.
+
+    > If you call an API inside this method, and set the state with the data that the API returns, it will automatically trigger an update once the data is received.
+    > This is the best method to attach any event listeners for specific funcionality.
+
+  shouldComponentUpdate(<nextProps>, <nextState>)
+    Called every time child components receive new state or props, declaring specifically if the components should update or not.
+    This method must return a boolean value that tells React whether or not to update the component. You can compare the current props (this.props) to the next props (<nextProps>) to determine if you need to update or not, and return true or false accordingly.
+
+  componentDidUpdate()
+    Called every time the component's state or props are updated.
+
+  componentWillUnmount()
+    Called before the component is unmounted and destroyed.
+
+2. Adding custom event listeners
+
+You can add custom event listeners to different components using the lifecycle hook 'componentDidMount()':
+
+  class MyComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        message: ''
+      };
+      this.handleEnter = this.handleEnter.bind(this);
+      this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+    componentDidMount() {
+      // Adds a 'keydown' event listener to the document once the component is mounted to the DOM
+      document.addEventListener("keydown", this.handleKeyPress);
+    }
+    componentWillUnmount() {
+      // Removes the 'keydown' event listener from the document once the component is being removed from the DOM
+      document.removeEventListener("keydown", this.handleKeyPress);
+    }
+    handleEnter() {
+      this.setState((state) => ({
+        message: state.message + 'You pressed the enter key! '
+      }));
+    }
+    handleKeyPress(event) {
+      if (event.keyCode === 13) {
+        this.handleEnter();
+      }
+    }
+    render() {
+      return (
+        <div>
+          <h1>{this.state.message}</h1>
+        </div>
+      );
+    }
+  };
+
+* Best practice
+  When declaring custom event listeners, it is good to add them inside the 'componentDidMount()' method and remove them inside the 'componentWillUnmount()' method to clean unnecesary event listeners and avoid memory leak.
+

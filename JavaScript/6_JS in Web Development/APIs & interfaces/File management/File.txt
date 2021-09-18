@@ -1,0 +1,39 @@
+FILE INTERFACE
+
+It provides information about files and allows JavaScript to access their content.
+
+Ways to retrieve a file object:
+> From a FileList object returned as a result of a user selecting files using the 'input' element.
+> From a drag and drop operation's DataTransfer object.
+> From the 'mozGetAsFile()' API on an HTML 'canvas' element.
+
+A File object is a specific kind of Blob and can be used in any context that a Blob can; for example: FileReader, URL.createobjectURL(), createImageBitMap(), XMLHttpRequest.send().
+
+0. Constructor
+
+  File(...)
+
+1. Properties
+
+  - Syntax:
+
+    File.prototype.<property> = ...
+
+  .lastModified
+    Returns the last modified time of the file in milliseconds.
+
+  .lastModifiedDate
+    Returns the last modified 'Date' of the referenced file.
+
+  .name
+    Returns the name of the referenced file.
+
+  .size
+    Returns the size of the file in bytes.
+
+  .type
+    Returns the MIME type of the file (look for MIME).
+
+2. Methods
+
+  File methods are inherited from the Blob interface.

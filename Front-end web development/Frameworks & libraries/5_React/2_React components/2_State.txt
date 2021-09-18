@@ -1,0 +1,223 @@
+STATE IN REACT
+
+State consists of any data your application needs to know about, that can change over time.
+
+1. State fundamentals
+
+* Creating a state for a component
+
+  You create a state in a React component by declaring a state property on the component class in its constructor. This initializes the component with state when it is declared:
+
+    class StatefulComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          prop1: "value1",
+          prop2: "value2"
+        }
+      }
+      render() {...}
+    }
+
+  > You have access to the state object throughout the life of the component. You can updated, render it on the UI, and pass it as props to child components.
+  > You can only manage state by creating a class component that extends React.Component.
+
+* Render state in the UI
+
+  To render the state of a component in the UI, you can access it inside the 'render()' method in curly braces:
+
+    class StatefulComponent extends React.Component {
+      ...
+      render() {
+        return (
+          <div>{this.state.prop1}</div>
+        );
+      }
+    }
+
+  You can perform manipulations on the state after rendering it by writing some JS inside the 'render()' method before the 'return' statement:
+
+    class StatefulComponent extends React.Component {
+      ...
+      render() {
+        const myProperty = this.state.prop1;
+        return (
+          <div>{myProperty}</div>
+        );
+      }
+    }
+
+* Setting state
+
+  You can change the components state using the 'setState()' method:
+
+    this.setState({
+      username: "Lewis"
+    });
+
+  React may batch multiple state updates in order to improve performance. This means that the state updates through the 'setState()' method can be asynchronous. There is an alternative syntax to work around this problem:
+
+  - Binding 'this' to a class method
+
+  You can also define methods for your component class. A class method typically needs to use the 'this' keyword so it can access properties on the class inside the scope of the method.
+
+  You need to allow the class methods to work with the 'this' keyword that refers to the class itself. To accomplish this, you need to bind 'this' to the new method inside the class' constructor:
+
+    class MyComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          text: "Hello"
+        };
+        this.handleClick = this.handleClick.bind(this); // Bounding of the 'this keyword' with the 'handleClick()' method.
+      }
+      handleClick() {
+        this.setState({
+          text: "You clicked!"
+        });
+      }
+      render() {
+        return (
+          <div>
+            <button onClick={this.handleClick}>Click me!</button>
+            <h1>{this.state.text}</h1>
+          </div>
+        );
+      }
+    }
+
+  - Use the previous state to update it
+
+  Sometimes you might need to know the previous state when updating it. Because updating the state is asynchronous, you can't rely on the previous value of this.state to do so.
+
+  Instead, you should pass 'setState' a function that allows to access state and props:
+
+    this.setState((state, props) => ({
+      counter: state.counter + props.increment
+    }));
+
+    this.setState(state => ({
+      counter: state.counter + 1
+    }));
+
+  Note the wrapping of the object literal in parentheses.
+
+2. More advanced state management
+
+* Create a controlled input
+
+  HTML elements such as 'input' and 'textarea' maintain their own state in the DOM as the user types. With React, you can move this state into a React component's state.
+
+  The user input now becomes part of the application's state. Typically, if you have React components with input fields the user can type into, it will be a controlled input form. See the following example:
+
+    class ControlledInput extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          input: '' // Empty string in which the state of the component will be stored
+        }
+        this.handleChange = this.handleChange.bind(this);
+      }
+      handleChange(event) { // Method that will handle the state updating
+        this.setState({
+          input: event.target.value
+        });
+      }
+      render() {
+        return (
+          <div>
+            <input type="text" value={this.state.input} onChange={this.handleChange} /> {/* Controlled input element */}
+        <p>{this.state.input}</p> {/* Element in which the state will be rendered */}
+          </div>
+        );
+      }
+    }
+
+* Create a controlled form
+
+  You can create a controlled form by defining a method that triggers when the form is submitted:
+
+    class MyForm extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          input: '',
+          submit: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+      handleChange(event) {
+        this.setState({
+          input: event.target.value
+        });
+      }
+      handleSubmit(event) { // Method that handles the form submission
+        event.preventDefault();
+        this.setState((state) => ({
+          submit: state.input
+        }));
+      }
+      render() {
+        return (
+          <div>
+            <form onSubmit={this.handleSubmit}> {/* onSubmit handler */}
+              <input type="text" value={this.state.input} onChange={this.handleChange}/>
+              <button type='submit'>Submit!</button> {/* Button that submits the form */}
+            </form>
+            <h1>{this.state.submit}</h1>
+          </div>
+        );
+      }
+    }
+
+* Pass state and callbacks as props to child components
+
+  You can have a stateful component containing some important state and pass it as props to child components.
+
+  You can pass methods to a child just like a regular prop. It is assigned a name and you have access to that method using 'this.props' in the child component.
+  This is how you allow child components to interact with their parent components
+
+    class StatefulComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          name: "Laura Thong",
+          inputValue: ""
+        }
+      }
+      handleChange(event) {
+        this.setState({
+          inputValue: event.target.value
+        });
+      }
+      render() {
+        return (
+          <div>
+            {/* Note how the stateless component is passed state properties (name and inputValue) and methods (handleChange) */}
+            <StatelessComponent name={this.state.name} input={this.state.inputValue} handleChange={this.handleChange}/>
+          </div>
+        )
+      }
+    }
+
+    const StatelessComponent = (props) => {
+      return (
+        <div>
+          <p>{props.name}</p>
+          {/* Note how the stateless component has its value attribute as 'this.props.input' and the onChange handler is equal to 'this.props.handleChange', which is the same method from its parent component */}
+          <input type="text" value={this.props.input} onChange={this.props.handleChange} />
+        </div>
+      )
+    }
+
+
+000. Paradigms in React
+
+  - Unidirectional dataflow
+    State flows in one direction down the tree of the application's components (from the stateful components to child components). The child components only receive the state that they need.
+
+  - Rendering and state logic separation
+    Complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of the components simply receive state from the parent as props.
+    This creates a separation where state management is handled in one part of code and UI rendering in another.
+    This principle of separating state logic from UI logic is one of React's key principles.

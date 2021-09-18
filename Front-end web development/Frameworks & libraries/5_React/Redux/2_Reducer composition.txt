@@ -1,0 +1,22 @@
+REDUCER COMPOSITION IN REDUX
+
+Redux provides reducer composition as a solution for a complex state model, avoiding the division of state into multiple pieces.
+
+1. Reducer composition
+
+You define multiple reducers to handle different pieces of your application's state, then compose these reducers together into one root reducer using the 'combineReducers()' method. It is then passed into the 'createStore()' method.
+
+  Redux.combineReducers(<reducerObject>)
+    Returns a root reducer, which is composed of the specified reducers inside <reducerObject>
+
+  - Example:
+    
+    const authenticationReducer = (...) => {...}
+    const notesReducer = (...) => {...}
+
+    const rootReducer = Redux.combineReducers({
+      auth: authenticationReducer,
+      notes: notesReducer
+    });
+
+  Now, the key 'notes' will contain all of the state associated with the notes and handled by the 'notesReducer'

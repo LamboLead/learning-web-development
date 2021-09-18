@@ -1,0 +1,21 @@
+DATA URLS
+
+These are URLs prefixed with the 'data:' scheme. They allow content creators to embed small files in web documents.
+
+- Syntax:
+
+  data:[<mediatype>][;base64],<data>
+
+    <mediatype> : MIME type string to identify the format and type of the file.
+
+1. Base64 encoding
+
+Is a group of binary-to-text encoding schemes that represent binary data in ASCII string format by translating into a radix-64 representation.
+
+> Because they only consist of ASCII characters, base64 strings are generally url-save, which is why they can be used to encode data in Data URLs.
+> Some browsers have a limit for the length of URLs: its maximum for Opera 11 is 65535 characters long, and for Edge is 4GB.
+> Do not use them as an encoding scheme to secure critical data: Decoding base64 strings can be done by any programming language.
+
+
+
+

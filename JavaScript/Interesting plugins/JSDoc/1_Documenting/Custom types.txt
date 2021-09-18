@@ -18,8 +18,8 @@ If you have various custom objects, you can document them as well using @typedef
   /**
     * User
     * @typedef {Object} User
-    * @property {string} name User Name
-    * @property {number} age User Age (Optional)
+    * @property {string} name Name of the user
+    * @property {number} [age] Age of the user
     * @property {boolean | string} isActive User state
   */
 

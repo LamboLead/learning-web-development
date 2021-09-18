@@ -1,0 +1,39 @@
+THE OBSERVER PATTERN
+
+It is a design pattern that remains one of the best practices for designining decoupled systems (systems that consist of one or more standalone components that are connected to one another, but can operate on their own).
+
+"It establishes a one-to-many relationship between components, so that when the main object changes state, all of its dependencies are notified and updated automatically."
+
+> Subject: The main object that will change state at first.
+> Observer: A dependency of the main object that will receive the notification and update accordingly to the change in the subject.
+> Subscription: The act of an observer to establish a relationship with a certain subject.
+
+- Example
+
+  Observers "Current Weather" and "Forecasting display" are subscribed to subject "Weather station" to listen for updates in the weather.
+
+  The data flow goes like this:
+    Weather Station -> Current Weather
+                    -> Forecasting display
+
+  The flow of data is handled like so:
+    'Current Weather' and 'Forecasting display' may have an 'update()' function that gets called by 'Weather station'.
+
+  Bad practice:
+    'Current Weather' and 'Forecasting display' are constantly checking if 'Weather station' has updates. This is a bad practice because most of this checking by each of the observers will be wasted.
+
+- Uses
+
+> Subject: Usual objects with certain methods.
+> Observer: A piece of code that subscribes to a subject to track its state.
+
+It consists of observers that are subscribed to different subjects to look for incoming events.
+
+When an observer receives an event about something that happened to the subject they are attached to, they can react to that by executing something useful, depending on the received information.
+
+- Uses
+
+> This pattern is useful when you need multiple objects to maintain consistency throughout the application without having them tightly coupled.
+
+> Observers can be removed from a subject to attach another one, adding to their flexibility. With this, you can build dynamic relationships between subjects and observers that make up robust functionality.
+

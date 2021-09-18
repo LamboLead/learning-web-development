@@ -2,8 +2,6 @@ FILEREADER API
 
 It is a widely supported API for JavaScript that lets you read and process files asynchronously directly in the browser.
 
-Blob: It is a file-like object of immutable, raw data; which can be read as text or binary data.
-
 0. Getting started
 
 You need an HTML element that receives the files to process:
@@ -20,7 +18,14 @@ And also, attach an event handler for when the element has changed:
         // ...
     }
 
+0. Constructor
+
+    const reader = new FileReader();
+
 1. Properties
+
+    - Syntax:
+        FileReaderInstance.<property>
 
     .error
         Throws an error representing the issue while reading the file.
@@ -40,7 +45,8 @@ And also, attach an event handler for when the element has changed:
 2. Event handlers
 
     - Syntax:
-        reader.onevent = () => {...}        //        reader.addEventListener("event", function)
+        FileReaderInstance.<onevent>...
+        FileReaderInstance.addEventListener("<event>", ...)
 
     .onabort
         Triggered each time the reading operation is aborted.
@@ -61,6 +67,9 @@ And also, attach an event handler for when the element has changed:
         Triggered while reading a Blob content.
 
 3. Methods
+
+    - Syntax:
+        FileReaderInstance.<method(...)>
 
     .abort()
         Aborts the read operation.

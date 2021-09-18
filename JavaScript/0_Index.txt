@@ -65,6 +65,13 @@ JAVASCRIPT LEARNING INDEX
     2_Debugging.txt
     3_Export & import.txt
 
+> 7_Asynchronous JS
+    0_Introduction.txt
+    1_Async callbacks.txt
+    2_Timeouts & Intervals.txt
+    3_Promises.txt
+    4_Async & await.txt
+
 > Code snippets
     > Math-related
         Random.txt

@@ -1,0 +1,63 @@
+RESPONSE INTERFACE
+
+It represents the response to a request made by the Fetch API.
+
+0. Constructor
+
+  let response = new Response([<body>], [<init>])
+  <body> : Object defining a body for the response. It can be null, or one of: Blob, BufferSource, FormData, ReadableStream, URLSearchParams, USVString.
+  <init> : Options object containing any custom settings that you want to apply to the response:
+    - status
+      The status code for the response.
+    - statusText
+      Status message associated with the status code.
+    - headers
+      Any headers you want to add to the response, contained within a Headers object, or object literal of String key/value pairs (see HTTP headers).
+
+1. Properties
+
+  .body
+    A ReadableStream of the body contents.
+
+  .bodyUsed
+    Boolean value that declares wether the body has been used in a response yet.
+
+  .headers
+    The Headers object associated with the response.
+
+  .ok
+    Boolean indicating wether the response was successful (status in the range 200-299) or not.
+
+  .redirected
+    Indicates wether or not the response is the result of a redirect (its URL list has more than one entry).
+
+  .status
+  .statusText
+  .type
+  .url
+
+2. Methods
+
+  .arrayBuffer()
+    Returns a promise that resolves with an ArrayBuffer representation of the response body.
+
+  .blob()
+    Returns a promise that resolves with a Blob representation of the response body.
+
+  .clone()
+    Creates a clone of the Response object.
+
+  .error()
+    Returns a new Response object associated with a network error.
+
+  .formData()
+    Returns a promise that resolves with a FormData representation of the response body.
+
+  .json()
+    Returns a promise that resolves with the result of parsing the response body text as JSON.
+
+  .redirect()
+    Creates a new response with a different URL.
+
+  .text()
+    Returns a promise that resolves with a text representation of the response body.

@@ -1,0 +1,67 @@
+PROPS IN REACT COMPONENTS
+
+In React, 'props' are properties that can shared among different components.
+
+* Passing props to a stateless functional component
+
+  Say you have an <App /> component which renders a child component called <CurrentDate />, which is a stateless functional component.
+  You can pass <CurrentDate /> a 'date' property (whose value is a JavaScript Date()) by writing:
+
+    <App>
+      <CurrentDate date={Date()} />
+    </App>
+
+  Because <CurrentDate /> is a stateless functional component, it has access to this value like so:
+
+    const CurrentDate = (props) => {
+      <h1>The current date is: {props.date}</h1>
+    };
+
+* Pass an array as props
+
+  You can pass an array to a JSX element as props. It must be treated as JavaScript (therefore, wrapped in curly braces):
+    <ParentComponent>
+      <ChildComponent colors={["green", "blue", "red"]} />
+    </ParentComponent>
+
+  You can access the array by typing:
+
+    const ChildComponent = (props) => {
+      <p>{props.colors.join(", ")}</p>
+      {/* Or use other array methods */}
+    }
+
+* Set default props
+
+  You can assign default props to a component as a property of the component itself, for example:
+
+    MyComponent.defaultProps = {location: 'San Francisco'}
+
+  Now, <MyComponent /> will have the default property 'location' set to 'San Francisco'. React will take it when no other property is specified.
+
+* Use propTypes to define the properties you expect
+
+  React provides type-checking features to verify that components receive props of the correct type:
+
+    MyComponent.propTypes = {handleClick: PropTypes.func.isRequired}
+
+  The previous example requires the prop 'handleClick' to be the type 'function'. The '.isRequired' syntax tells React that 'handleClick' is a required property for that component.
+
+  NOTES:
+    > It is considered a best practice to set 'propTypes' when you know the type of a prop ahead of time.
+    > As of React v15.5.0, PropTypes is imported independently from React, like this: import PropTypes from 'prop-types';
+
+* Passing props to an ES& class component
+
+  To access the props from an ES6 class component, you use the 'this' keyword prefacing it:
+
+    class MyComponent extends React.Component {
+      constructor (props) {...}
+      render() {
+        return (
+          <div>
+            <h1>Your prop is: {this.props.passedProp}</h1>
+          </div>
+        )
+      }
+    }

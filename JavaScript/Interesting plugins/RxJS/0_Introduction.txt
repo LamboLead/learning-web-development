@@ -1,0 +1,130 @@
+RXJS - REACTIVE X
+
+ReactiveX is a multiplatform API that allows to program asynchronously by controlling the flow of data throughout the application. RxJS is its JavaScript implementation.
+
+Asynchronous programming: A programming feature that allows to execute code without depending on the execution of previous code.
+
+1. When is Rx appropiate?
+
+It offers a natural paradigm when dealing with the following sequences of events:
+> UI events (mouse click, keyup, mouse move, etc).
+> Domain events (a property has changed, a collection was updated, "an order was filled", "a registration was accepted", etc.).
+> Infrastructure events (file watcher, system watcher).
+> HTTP requests or database calls.
+
+1. Installation
+
+You can install RxJS in the root folder of your project with npm using the following command:
+
+  npm install rxjs
+
+Inside the package.json file, put the following:
+
+  {
+    ...
+    "scripts": {
+      "start": "webpack-dev-server --mode development"
+    },
+    ...
+  }
+
+Marble diagrams
+
+2. Getting started
+
+The main object that you want to import from the RxJS folder is the observable:
+
+  import * as Rx from 'rxjs/Observable';
+
+3. Glosary
+
+Stream of data: Events emitted by the user over time.
+Observable: It is a wrapper that handles a stream of data.
+Observer: A component that reacts to changes made by the observable by subscribing to it.
+
+Suscription: A dependency relationship between an observer and the observable to update the observer whenever the observable is updated.
+
+The Observer component can use different methods to show the status of the stream of data when it is transmitted to the observable:
+
+  .next()
+    Called whenever a new value is emitted.
+
+  .error()
+    Whenever the observable throuws an error.
+
+  .complete()
+    Whenever the observable won't produce more values in the future and the subscription can end (some wont end).
+
+
+#   import {Observable} from 'rxjs/Observable';
+
+#   let observable = Observable.create()
+
+# This creates an observable object (there are many ways to create them).
+
+#   let observable = Observable.create((observer) => {
+#     observer.next('Hey guys!');
+#   });
+
+#   observable.subscribe((value) => console.log(value));
+
+
+- Example: Creating a simple mouse observer
+
+You can create an infinite and asynchrounous observable that handles the mouse click event.
+
+You can import RxJS using their CDN:
+
+HTML:
+  <script scr="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
+  <button>Click me</button>
+
+JS:
+  let button = document.querySelector('button');
+
+  let observer = {
+    next: function(value) {
+      console.log(value);
+    },
+    error: function(error) {
+      console.log(error);
+    },
+    complete: function() {
+      console.log("Completed!");
+    }
+  }
+
+  Rx.Observable.fromEvent(button, 'click').subscribe(observer)
+
+- Example: Building an observable from scratch
+
+  Rx.Observable.create(function(obs) {
+    obs.next('A value')
+  }).subscribe(observer);
+
+4. RxJS methods
+
+  .fromEvent(element, 'event')
+    ...
+
+5. RxJS operators
+
+  mapTo(...)
+    ...
+
+  merge(stream1, stream2, ...)
+    Takes as input multiple streams and outputs a single stream that emits all of their values.
+    k
+  - Low-order operators
+
+    map((oldValue) => {newValue})
+      Creates a new value for each value passed as a parameter inside the callback. The new value is emitted into the output stream.
+
+  
+  - High-order operators
+
+    exhaustMap((oldValue) => {newObservable})
+      ...
+
+    switchMap((oldInput) => {newOutput})
+      For each input creates and switches to a new output.

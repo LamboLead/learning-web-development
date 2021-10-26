@@ -1,0 +1,22 @@
+EXPRESS
+
+Express.js is a Node.js framework that simplifies creation of the back-end of the application. It helps to organize and manage the web application into an MVC architecture on the server side.
+
+It helps to manage everything, from routes to requests and views.
+
+It is a part of the MEAN stack, a full stack JavaScript solution used in building fast, robust, and maintainable production web applications: MongoDB (database), Express (web framework), AngularJS (front-end framework), NodeJS (Back-end framework).
+
+It makes it easier to organize your application's functionality with middleware and routing, it adds 
+
+1. Starting a Express server
+
+To create a new Express application, type the following:
+
+- Syntax:
+
+  var express = require('express');
+  var app = express();
+
+To investigate:
+- routes
+- port

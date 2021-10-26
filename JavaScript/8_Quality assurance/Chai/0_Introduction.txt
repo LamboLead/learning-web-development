@@ -1,0 +1,81 @@
+CHAI
+
+Chai is a JavaScript testing library that helps you confirm that your program behaves the way you expect.
+
+Chai allows to write tests that describe your program's requirements and see if it meets them.
+
+0. Setting up Chai
+
+- Installation
+  You need to install Chai, Chai HTTP, Mocha, and Zombie testing libraries by adding them to the 'package.json' file.
+
+- Folder set up
+  Create a /tests folder in which all the 'test1.js' will be stored.
+
+9. More JavaScript testing frameworks/libraries
+
+- Mocha
+> Runs in the browser.
+> Simple async support.
+> Works with any assertion library.
+> Supports config file.
+
+- Cypress
+> Time-travel feature.
+> Great debuggability & real-time reloads.
+> Automatic waiting.
+
+- Jasmine
+> Runs in the server and browser.
+> Good documentation.
+> No external dependencies.
+
+- Jest
+> Works in the browser and server, including frameworks and libraries like React, Angular, Vue, Node, TypeScript, etc.
+> Isolated tests.
+> Zero config needed.
+
+- Protractor
+> Supports native events and browser-specific drivers.
+> Emulates a real user.
+
+- Chai
+> Works with NodeJS and browsers.
+> Integrates well with Mocha.
+> Adds lots of assertions.
+> Works well with testing frameworks and can be customized with plugins.
+
+- TestCafe
+> Supports mobile and desktop browsers.
+> Can identify JavaScript errors.
+> Can be written in JavaScript or TypeScript.
+> Code changes are immediately reflected.
+
+- Nightwatch
+> Uses Selenium webdriver API.
+> Powerful when testing on Node.JS applications.
+> Simplifies the process of writing tests.
+> Large support community, easiest to setup, simple language.
+
+10. For investigation:
+
+* General
+
+- Behavioural Driven Development
+
+- Unit testing:
+  Writing tests that check if a function or piece of code works.
+  > Only calls the specific function or executes the piece of code to run the test.
+  > These are run all over the development phase to ensure that everything works as you introduce more changes into the application.
+
+- Integration testing:
+  Writing tests to check if the different pieces of code work together properly.
+  > ...
+> 
+
+* Mocha
+  - Test suite
+  Group of related tests
+
+* Chai
+  - Assertions

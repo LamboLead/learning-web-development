@@ -1,0 +1,58 @@
+ASYNCHRONOUS ACTIONS
+
+At some point you'll need to call asynchronous endpoints in your Redux app.
+
+To handle them, Redux provides the 'Redux Thung middleware' designed specifically for this purpose.
+
+  > To include it, you pass it as a second optional argument to 'Redux.createStore()' function.
+  > Then, to create an asynchronous action, you return a function in the action creator that takes 'dispatch' as an argument. Within this function, you can dispath actions and perform asynchronous requests.
+
+- Example: Create and handle data from asynchronous actions.
+
+  const REQUESTING_DATA = 'REQUESTING_DATA';
+  const RECEIVED_DATA = 'RECEIVED_DATA';
+
+  const requestingData = () => {return {type: REQUESTING_DATA}};
+  const receivingData = (data) => {
+    return {type: RECEIVED_DATA, users: data.users};
+  };
+
+  const handleAsync = () => { // Function that handles the async operation
+    return (dispatch) => {
+      store.dispatch(requestingData()); // Dispatching of the requestData action
+      
+      setTimeout(() => { // Simulation of the async operation
+        let data = {
+          users: ['Jeff', 'William', 'Alice']
+        }
+        store.dispatch(receivingData(data)); // Dispatching of the receiveData action
+      }, 2500);
+    }
+  }
+
+  const defaultState = {
+    fetching: false,
+    users: []
+  }
+
+  const asyncDataReducer = (state = defaultState, action) => {
+    switch(action.type) {
+      case REQUESTING_DATA:
+        return {
+          fetching: true,
+          users: []
+        }
+      case: RECEIVED_DATA:
+        return {
+          fetching: false,
+          users: action.users
+        }
+      default:
+        return state;
+    }
+  };
+
+  const store = Redux.createStore(
+    asyncDataReducer,
+    Redux.applyMiddleware(ReduxThung.default)
+  ); // Creates a store and passes the reducer and the middleware as arguments

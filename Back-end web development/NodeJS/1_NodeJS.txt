@@ -1,0 +1,8 @@
+NODE JS
+
+It is a JavaScript runtime environment on the server-side. It was written by ___ on C++ using Google's V8 JavaScript interpreter for Chrome.
+
+1. The Node console
+
+It is a console that Node provides to be able to see what's going on with the code during the development process.
+

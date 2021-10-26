@@ -1,0 +1,65 @@
+REACT + REDUX
+
+A typical application that uses React and Redux has the following characteristics:
+
+  > Has a single Redux store that handles the state of the entire app.
+  > The React components subscribe to only the pieces of data in the store that are relevant to their role.
+  > Actions are dispatched directly from React components, which then trigger store updates.
+  > There are exceptions when individual components may have a local state specific only to them, so they don't need to be subscribed to the store.
+
+You need to use the 'react-redux' package to integrate Redux with React. It provides a way for you to pass Redux state and dispatch to your React components as props.
+
+React Redux provides a small API with two key features: The 'Provider' component and the 'connect()' method.
+
+1. Provider component
+
+  The 'Provider' is a wrapper component that wraps your React app. It allows you to access the Redux store and displatch functions throughout your component tree.
+
+  It takes two props: The Redux store and the child components of your app.
+
+  - Syntax:
+
+    const Provider = ReactRedux.Provider;
+
+		<Provider store={reduxStore}>
+			<App />
+		</Provider>
+
+  The 'Provider' component allows to provide state and displatch to your React components, specifying exactly what state and actions you want. You accomplish this by creating two functions: 'mapStateToProps()' and 'mapDispatchToProps()'.
+
+		mapStateToProps(<state>)
+			Function that receives a <state> as a parameter, and returns a new state object with certain properties and values.
+
+		mapDispatchToProps(dispatch)
+			Function that returns a new object with a certain property equal whose value is a function that dispatches a previously defined action creator.
+
+    - Example:
+
+      const actionCreator = (parameter) => {
+        return {
+          type: 'something'
+          parameter
+        }
+      }
+
+      function mapDispatchToProps(dispatch) {
+        return {
+          submitNewParam: (parameter) => {
+            dispatch(actionCreator(parameter));
+          }
+        }
+      }
+
+2. Connect method
+
+After having defined 'mapStateToProps()' and 'mapDispatchToProps()' functions, you can now use them to map state and dispatch to the props of one or your React components. You do this using the 'connect()' method.
+
+- Syntax:
+	
+	const connect = ReactRedux.connect;
+
+  connect([<mapStateToProps>], [<mapDispatchToProps>])(<ReactComponent>)
+    Function that takes two optional parameters as functions and is called immediately with your React component.
+
+> 'mapStateToProps' and 'mapDispatchToProps' are optional because you may have a component taht only needs to access state but doesn't need to dispatch any actions, or viceversa.
+> If you want to omit one of the above arguments, pass 'null' in its place.

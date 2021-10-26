@@ -1,0 +1,41 @@
+ENVIRONMENT VARIABLES
+
+These are variables that allow you to set the behavior of the NodeJS environment. 
+
+They are stored in the .env file, which is a hidden file used to pass environment variables to the application.
+
+It can be used to store data that you want to keep private or hidden from the user:
+> API keys from external services.
+> Configuration options.
+
+- Storing environment variables
+
+> Create a new .env file in the root folder of your project.
+> Create your desired environment variable using the following format:
+
+  # variable name is uppercase and separated with low dashes
+  VAR_NAME_1 = value1
+  VAR_NAME_2 = value2
+
+- Accessing environment variables
+
+  These are accessible from the app using the following syntax:
+    process.env.VAR_NAME_1
+
+- Example
+  Make a JSON response uppercase or not depending on the MESSAGE_STYLE variable.
+
+  > Inside the .env file:
+    MESSAGE_STYLE = uppercase
+
+  > Inside the MyApp.js file:
+    var express = require('express');
+    var app = express();
+
+    app.get("/json", (req, res) => {
+      if (process.env.MESSAGE_STYLE === "uppercase") {
+        res.json("message": "HELLO WORLD");
+      } else {
+        res.json("message": "Hello world");
+      }
+    });

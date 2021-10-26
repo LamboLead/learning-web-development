@@ -1,0 +1,87 @@
+GSAP TWEENS
+
+A Tween instance is an object that controls the behavior of an animation.
+
+1. Creating tweens
+
+- Syntax:
+  gsap.<tweenType>(...);
+
+- Methods:
+
+  .to(<target(s)>, <properties>)
+    Animates the specified targets from their computed values TO the specified properties.
+
+    <target(s)>: Objects to animate (raw object, array of objects, or CSS selectors)
+    <properties>: Object with property-value pairs to animate to, including optional 'special properties' (including custom properties from raw objects).
+  
+  .from(<target(s)>, <properties>)
+    Animates the specified targets FROM the specified properties to their computed values.
+
+  .fromTo(<target(s)>, <propertiesFrom>, <propertiesTo>)
+    Animates the specified targets specifying their 'from' and 'to' properties.
+
+  .set(<target(s)>, <properties>)
+    It sets the specified target to the specified properties instantly.
+  
+* Special properties
+  Reserved keywords used by GSAP to define callbacks, delays, easing, staggers, and more
+
+  duration: Duration of the animation in seconds.
+  delay: Delay before starting the animation.
+  ease: Easing function that should be used
+  stagger: Staggers the starting time for each target/element animation.
+
+  - Callbacks
+
+    Functions invoked depending on their functionality:
+      > onStart: Invoked when the animation starts.
+      > onUpdate: Invoked every time the animation updates/renders.
+      > onComplete: Invoked when the animation finishes.
+      > onReverseComplete
+      > onRepeat:
+
+    You can specify different parameters for the callback as an array:
+    e.g.
+      gsap.to("#logo", {duration: 1, x: 100, onComplete: tweenComplete, onCompleteParams: ["done"]})
+
+2. Controlling tweens by using getter and setter methods
+
+Once the Tween instance is stored in a variable, you can control the animation very easily with its methods:
+
+- Syntax:
+  var tween = gsap.<tweenType>(...);
+  tween.<method>(...);
+
+- Methods
+
+  .pause() / .resume()
+    Pauses / resumes the animation
+  
+  .reverse()
+    Reverses the animation
+
+  .seek(<timestamp>)
+    Jumps to the specified timestamp in the animation.
+
+  .progress(<percentage>)
+    Jumps to the specified percentage of the animation.
+
+  .timeScale(<timeScale>)
+    Scales the duration of the animation, making it faster or slower.
+
+  .kill()
+    Kills the tween and makes it eligible for garbage collection.
+
+3. Getting current values for properties of an element
+
+You can get the current value of a property for an element by using the 'this.targets()' method inside of any of the callback function special properties from a tween or a timeline.
+
+e.g.
+
+  gsap.to(".class", {x: 100, onUpdate: function() {
+    let elem = this.targets[0];
+    console.log(gsap.getProperty(elem, "x"));
+  }});
+
+Read 'Animating SVG with GSAP': https://greensock.com/svg-tips/

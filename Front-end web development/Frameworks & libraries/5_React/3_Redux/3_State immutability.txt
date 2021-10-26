@@ -1,0 +1,109 @@
+STATE IMMUTABILITY IN REDUX
+
+Immutable state means that you never modify state directly. Instead, you return a new copy of it.
+
+By enforcing immutable state on a Redux app, you can debug code using the different updates of the state.
+
+1. Enforcing state immutability on arrays
+
+There are several array methods to enforce immutability over an array:
+
+- Example: Using the .concat() method
+
+  const ADD_TO_DO = 'ADD_TO_DO';
+
+  const tasks = [ // Array of strings representing tasks
+    'Go to the store',
+    'Clean the house',
+    'Cook dinner',
+    'Learn to code'
+  ];
+
+  const immutableReducer = (state = tasks, action) => {
+    switch (action.type) {
+      case ADD_TO_DO:
+        return tasks.concat([action.task]); // '.concat()' enforces array immutability
+      default:
+        return state;
+    }
+  };
+
+  const addTask = (task) => {
+    return {
+      type: ADD_TO_DO,
+      task
+    }
+  };
+
+  const store = Redux.createStore(immutableReducer);
+
+- Example: Using the spread operator
+
+  const immutableReducer = (state = ['Do not mutate state!'], action) => {
+    switch (action.type) {
+      case 'ADD_TO_DO':
+        return [...state, action.task]; // Returns a new copy of state and pushes the new element to it
+      default:
+        return state;
+    }
+  };
+
+  const addTask = (task) => {
+    return {
+      type: 'ADD_TO_DO',
+      task
+    }
+  }
+
+  const store = Redux.createStore(immutableReducer);
+
+- Example: Removing an item from an array
+
+  const immutableReducer = (state = [0,1,2,3,4,5], action) => {
+    switch(action.type) {
+      case 'REMOVE_ITEM':
+        // Don't mutate state here or the tests will fail
+        return state.slice(0, action.index).concat(state.slice(action.index + 1, state.length));
+      default:
+        return state;
+    }
+  };
+
+  const removeItem = (index) => {
+    return {
+      type: 'REMOVE_ITEM',
+      index
+    }
+  }
+
+  const store = Redux.createStore(immutableReducer);
+
+2. Enforce state immutability on objects
+
+You can enforce state immutability in objects using 'Object.assign()'.
+'Object.assign()' takes a target and source objects and maps properties from the source object to the target object. Any matching properties are overwritten.
+
+  const defaultState = {
+    user: 'CamperBot',
+    status: 'offline',
+    friends: '732982',
+    community: 'freeCodeCamp'
+  };
+
+  const immutableReducer = (state = defaultState, action) => {
+    switch (action.type) {
+      case 'ONLINE':
+        let newState = {status: 'online'};
+        return Object.assign({}, state, newState); // Creates a new copy of 'state' and overwrites its properties
+      default:
+        return state;
+    }
+  }
+
+  const wakeUp = () => {
+    return {
+      type: 'ONLINE'
+    }
+  };
+
+  const store = Redux.createStore(immutableReducer);

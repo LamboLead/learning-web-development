@@ -210,14 +210,3 @@ State consists of any data your application needs to know about, that can change
         </div>
       )
     }
-
-
-000. Paradigms in React
-
-  - Unidirectional dataflow
-    State flows in one direction down the tree of the application's components (from the stateful components to child components). The child components only receive the state that they need.
-
-  - Rendering and state logic separation
-    Complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of the components simply receive state from the parent as props.
-    This creates a separation where state management is handled in one part of code and UI rendering in another.
-    This principle of separating state logic from UI logic is one of React's key principles.

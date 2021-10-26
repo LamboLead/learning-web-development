@@ -1,0 +1,68 @@
+GSAP TIMELINES
+
+A timeline is a container of tweens, placing them one after the other. 
+> Tweens can overlap or have gaps between them.
+> As the timeline playhead moves, it renders its tween children accordingly.
+> Timelines can be nested within timelines to make modular code for animations (separating each animation in small timelines and make them part of a bigger timeline).
+
+1. When to use a timeline?
+> To control a group of animations.
+> To build a sequence without adding lots of delay values to make automatic timing adjustments.
+> To modularize the animation code.
+> To fire a callback function based on the execution of a group of animations.
+
+2. Creating timelines
+
+- Syntax:
+  let timeline = gsap.timeline(<options>)
+  timeline.<method>(...)
+
+    <options>
+      Object with different options for the timeline.
+
+- Methods:
+  .add(<tween>, <position>)
+    Adds the specified tween to the timeline
+    <position>: Specifies the timestamp start of the execution of the tween
+      "+=X" (gap): X seconds after the end of the timeline.
+      "-=X" (overlap): X seconds before end of timeline.
+      "X" (absolute): At X seconds from the beginning of timeline.
+
+  .to(<target(s)>, <properties>, <position>)
+  .from(<target(s)>, <properties>, position)
+  .fromTo(<target(s)>, <propertiesFrom>, <propertiesTo>)
+    Same as '.add(gsap.to(...))' / '.from(gsap.to(...))' / '.fromTo(gsap.to(...))'
+
+* Timeline special properties
+  
+- Syntax:
+  let timeline = gsap.timeline({<property> : <value>, ...})
+
+- Property-value:
+
+  defaults: <propertyObject>
+    Makes all children tweens and timelines to inherit values.
+    e.g:
+      let tl = gsap.timeline({defaults: {duration: 1}});
+
+  repeat: <number>
+    Repeats the timeline according to the specified value.
+
+  repeatDelay: <seconds>
+    Specifies the delay before each repetition of the timeline.
+
+  yoyo: <boolean>
+    If 'true', playback will alternate forwards and backwards on each repeat.
+
+  delay: <seconds>
+    Delay before the timeline should start.
+
+  onComplete, onRepeat, onUpdate: <callback>
+    Function to call according to the callback name.
+
+* Notes about timelines
+  > You can chain different methods for a single timeline.
+  > By default, animations are inserted one after the other, but you can modify the order of the animations in a timeline with the 'position' parameter.
+  > You can control timelines by using almost the same getter and seter setter methods from tweens.
+
+

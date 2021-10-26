@@ -1,0 +1,95 @@
+THE FREELANCER HANDBOOK
+
+Steps to become a freelancer:
+
+1. Learn the craft
+
+- Mandatory
+  > Learn React & Vue frontend frameworks.
+  > Learn quality assurance and testing in web development.
+  > Learn how to deploy a website (hosting, domains, servers, infrastructure, etc).
+
+- For later
+  > Learn Backend languages and frameworks (JavaScript & Node.js, or Python & Django).
+  > Learn data visualization.
+  > Learn databases (SQL, noSQL).
+
+1.1. Build a personal portfolio
+
+  Build a web page that stores:
+    > Who you are and what can you do for people.
+    > Projects that you've worked on.
+    > Testimonies of people and companies that have worked with you.
+    > A personal blog in which you can post different articles and thoughts.
+    > Social media links and ways to contact you.
+
+1.2. Build meaningful and useful projects
+
+  Figure out what are the types of web applications that the market requires most, and build them. You can build them for fake companies or people (retailerX, gymY, blogZ, etc), or directly build websites for local businesses and offer them, even if they haven't asked for it.
+
+  Some ideas:
+  > Web application that consumes an external API and displays all the data in a simple and intuitive way (using data visualization).
+  > Landing page for a product, a business; or a personal portfolio for an artist, etc.
+  > E-commerce site that manages payments, inventory, shopping cart, user authentication and security.
+
+2. Set up everything for your company
+
+  > Take care of all legal and financial aspects of your company:
+    - Build a format for your contracts.
+    - Consult with the local Chamber of Commerce. Do you need to form a new company (and are there any benefits of creating one)? How does taxation work? Do you need to set up a liability ensurance? Which documents do you need to take care over which period of time?
+    - Create a new bank account.
+    - Set up a system to manage the finances in the company.
+    - Track all the potential business expenses (hosting, cloud services, branded emails, business cards, etc).
+
+  > Think about the services you are providing and the niche(s) that you'll be working on. Ask the following questions:
+    - Are you interested in the service and niche that you are entering?
+    - Can your services be scalable? Is enough market out there to work? Can you reuse the work that you've done in the past?
+    - Can your work be outsourced?
+
+  > Take care of the initial marketing for your company:
+    - Build a brand for your company.
+    - Build an appealing website.
+    - Set up a branded email.
+    - Print business cards for networking.
+    - Set up your LinkedIn and other social media profiles. Announce your skills, projects, certifications from local and external sources, etc. Say that you're available for freelance work.
+
+3. Find clients for your business
+
+  Initially, you can do so in the following ways:
+
+    > Telling your relatives and people you know about what you're doing. Casually make people aware of your work (you may be surprised).
+    > Networking (time-consuming, but could be rewarding in the long run).
+    > LinkedIn and social media (you may be surprised).
+    > Using freelancing pages like Upwork and Fiverr (low payments and vast competition).
+
+  Tip: Go to local businesses and offer your services. Maybe they dont have a web page, or the page is terrible, or it needs some improvements. You may need to  do it for free for your first clients to start building your reputation and gain experience in the field by creating real projects for real people.k
+
+  However, you need to start working on a long-term strategy to ensure that the clients come to you, and charge more for your work. Set aside some time to build your brand by:
+    > Building your referral base. Build great products for people and always offer a great customer service (set and meet realistic deadlines and keep in contact with customers). If you do a great job for one customer, it is likely that he will refer you to other people that might be another potential customers.
+    > Create platforms like blogs or a YouTube channel that work as a go-to for your potential customers on your desired topics.
+
+3. Build your reputation and gain experience.
+
+  > You can also go for freelancing platforms like Upwork and Fiverr. Start with small projects with little or no payment to get good reviews from people and gain visibility.
+
+  > Also, build an online presence by marketing your services on social media.
+
+3. Set up your charging fees and raise them over time
+
+0. Some tips:
+
+* Time management-related:
+    > A freelancer job is like a full-time job or even more time-consuming. Set up your schedule according to this.
+
+* Finance-related:
+    > Don't fund with debt. Always prioritize profit.
+  
+* Business-related:
+    > You can start taking every client that comes to you. However, you should pick a niche and don't try to grapple everything as soon as possible: This will make the business more scalable.
+    > 
+
+* Money-making related:
+    > Focus on your most profitable and high-paying actions. Look at profit in terms of earned money per unit of input.
+    > Charge flat fees. This way you can take advantage of the work that you've done in the past to speed up the process and earn more in less time.
+    > Try to build another source of income that won't require you working on it to aliviate the unpredictability of the freelancing income (offer hosting for your clients, for example).
+

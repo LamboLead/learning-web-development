@@ -1,0 +1,225 @@
+1. Schemas & models
+
+A schema is like a blueprint in which the documents inside the database are going to be formatted within a collection.
+
+Schemas are the building block for models, which allow you to create instances of your objects (documents).
+
+To create a schema to save data about a person, type:
+
+  const {Schema} = mongoose;
+
+  const personSchema = new Schema({
+    name: {type: String, required: true},
+    age: Number,
+    favoriteFoods: [String]
+  });
+
+To create a Person model based on the person schema, type:
+
+  let Person = mongoose.model('Person', personSchema);
+
+2. Create and save a record of a model with 'document.save()'
+
+Now that you have a Person model, you can create a person document like so:
+
+  let <document> = <Model>({
+    prop1: value1,
+    prop2: value2,
+    ...
+  });
+  document.save((err, data) => {
+    // some processing here...
+  })
+
+- Example
+  Create and save a person into the database
+
+    const createAndSavePerson = (done) => {
+      let migue = Person({
+        name: "Miguel Duque",
+        age: -2,
+        favorite Foods: ["Pizza", "Trago"]
+      });
+      migue.save((err, data) => {
+        if (err) return console.error(err);
+        done(null, data);
+      });
+    };
+
+NOTE:
+  > It is good practice to store all CRUD operations inside functions. All of them should receive a 'done()' callback function that tells when a CRUD operation has finished.
+  'done()' must be called as done(null, data) on success, or done(err) on error.
+
+  > All following CRUD methods take a callback function as their last parameter that verifies the completion of the operation:
+
+    <document/Model>.<crudOperation>((err, data) => {
+      // do some processing here...
+    });
+
+3. Create many records with 'Model.create()'
+
+You may need to create many instances of your models (for example, when seeding a database with initial data):
+
+  <Model>.create(<arrayOfObjects>, <callback>)
+    Saves the specified <arrayOfObjects> inside the database.
+
+- Example
+  Create many persons and save them inside the database.
+
+    const createManyPeople = (arrayOfPeople, done) => {
+      Person.create(arrayOfPeople, (err, data) => {
+        if (err) return console.error(err);
+        done(null, data)
+      });
+    };
+
+    let people = [
+      {name: "Frankie", age: 74, favoriteFoods: ["Del Taco"]},
+      {name: "Sol", age: 76, favoriteFoods: ["roast chicken"]},
+      {name: "Robert", age: 78, favoriteFoods: ["wine"]}
+    ];
+    createManyPeople(people);
+
+4. Searching the database
+
+  <Model>.find(<queryDocument>, <callback>)
+    Searches the database and returns an array of matches depending on the given <queryDocument>
+
+  <Model>.findOne(<queryDocument>, <callback>)
+    Searches the database and returns the first document that matches the given <queryDocument>. It is useful when searching by properties declared as unique.
+
+  <Model>.findById(<document_id>, <callback>)
+    Searches by the '_id' property of the documents and returns the one that matches. The '_id' property added automatically by MongoDB when saving new documents inside a model.
+
+* (INVESTIGATE ALL THE SEARCH OPTIONS)
+
+- Example
+  Find all the people having a given name.
+
+    const findPeopleByName = (personName, done) => {
+      let found = Person.find({name: personName}, (err, data) => {
+        if (err) return console.error(err);
+        done(null, data);
+      });
+      return found;
+    };
+
+- Example
+  Find just one person which has a certain food in the person's favorites.
+
+    const findOneByFood = (food, done) => {
+      let found = Person.findOne({favoriteFoods: [food]}, (err, data) => {
+        if (err) return console.error(err);
+        done(null, data);
+      });
+      return found;
+    };
+
+- Example
+  Find the person that matches the given '_id'.
+
+    const findPersonById = (personId, done) => {
+      let found = Person.findById(personId, (err, data) => {
+        if (err) return console.error(err);
+        done(null, data);
+      });
+      return found;
+    }
+
+5. Perform data editing
+
+Sometimes you may want to find, update and save a document. In the olden days you needed to find the document in the database, edit it, and save it again; just like in the following example:
+
+- Example
+  Find a person with the specified '_id', add "hamburger" to the list of the person's 'favoriteFoods', and save the updated person.
+
+    # Function definition
+    const findEditSave = (personId, done) => {
+      let foodToAdd = "hamburger";
+
+      # Find the person by its '_id'. 'found' takes place as the 'done()' callback function from 'findPersonById' that returns its result on success
+      findPersonById(personId, (err, found) => {
+        if (err) return console.error(err);
+
+        # Push 'hamburger' to the person's favorite foods
+        found.favoriteFoods.push(foodToAdd);
+
+        # Save 'found' into the database
+        found.save((err, updatedPerson) => {
+          if (err) return console.error(err);
+          done(null, updatedPerson); # 'done' now returns the result of the 'save operation'
+        });
+      });
+    };
+
+Recent versions of Mongoose have methods to simplify document updating.
+
+  <Model>.findOneAndUpdate(<queryDocument>, <updateDocument>, <optionsObject>, <callback>)
+    Finds the document in the <Model> that matches the <queryDocument> and updates its content according to <updateDocument>. Then, it returns the unmodified document.
+    <optionsObject> modifies the behavior of the method.
+
+- Example
+  Find a person by its 'Name' and set the person's age to 20. Return the new updated document.
+
+    const findAndUpdate = (personName, done) => {
+      const ageToSet = 20;
+      let updated = Person.findOneAndUpdate(
+        {name: personName},
+        {age: ageToSet},
+        {new: true}, # Returns the updated person instead of the default
+        (err, data) => {
+          if (err) return console.error(err);
+          done(null, data);
+        }
+      );
+      return updated;
+    };
+
+6. Perform data deletion
+
+You use the following methods to find documents and remove them from the database:
+
+  <Model>.findByIdAndRemove(<id>, <callback>)
+    Finds a document by its <id> and deletes it.
+
+  <Model>.findOneAndRemove(<queryDocument>, <callback>)
+    Finds the first match of the <queryDocument> and deletes it.
+
+  <Model>.remove(<queryDocument>, <callback>)
+    Finds all the documents that match <queryDocument> and deletes them.
+
+7. Perform advanced searching
+
+If the (err, data) => {...} callback is not passed to the search methods, the query won't be executed. You can store the query in a variable for later use.
+
+You can then chain different queries to perform a more advanced searching. The actual search will be executed when you finally chain the method '.exec()', passing the said callback as a parameter.
+
+- Example
+  Create a function to find people who like the food specified by the variable 'foodToSearch'. Sort them by name, limit the results to two documents, and hide their age.
+
+    const queryChain = (done) => {
+      let foodToSearch = "burrito";
+      let people = Person.find({favoriteFoods: foodToSearch})
+        .sort({name: 1})
+        .limit(2)
+        .select({age: 0})
+        .exec((err, data) => {
+          if (err) return console.error(err);
+          done(null, data);
+        });
+      return people;
+    };
+
+  
+8. Data operations
+
+You can perform some data operations using the following methods:
+
+  <resultArray>.sort(<queryDocument>)
+    Performs the sorting of an array by the properties specified in <queryDocument>. If the value of such properties is 1, the results are sorted in ascending order. If it is -1, they are sorted in descending order.
+
+  <resultArray>.limit(<number>)
+    Limit the size of the result array to the specified <number>.
+
+  <resultArray>.select(<queryDocument>)
+    Shows the <resultArray> with some of its elements with hidden properties, according to <queryDocument>. If the value of a property is 0 it is hidden. If it is 1, it remains visible.

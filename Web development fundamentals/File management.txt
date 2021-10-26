@@ -1,0 +1,55 @@
+FILE MANAGEMENT IN WEB DEVELOPMENT
+
+This section describes how to organize the files for a web project locally and in the server.
+
+* Where should the website live inside the computer?
+
+When working on a website locally, you should keep all related files in a single folder that mirrors teh published website's file structure on the server. This folder should have a meaningful name.
+
+* Casing and spacing
+
+You should name folders and files completely in lowercase with no spaces because:
+> Many computers (specially servers), are case-sensitive.
+> Browsers, web servers, and programming languages do not handle spaces consistently. Instead of spaces or underscores, separate words using hyphens "-".
+
+* Folder structure
+
+You should use the following folder structure for the website that you're building, depending on the technology that you are going to be using:
+
+- Vanilla JavaScript
+
+  > ...
+  > node_modules (contains all node modules files)
+  > public (contains images, SVGs, videos, fonts, and other assets)
+    > img
+    > svg
+    > fonts
+    ...
+  > src (contains all website-related files and folders)
+    > js (contains all JavaScript files)
+    > styles (contains all SASS/SCSS/CSS files)
+    index.html (contains the homepage content)
+  package.json
+  package-lock.json
+  README.md
+  ...
+
+- React
+  > ...
+  > build (contains the website code ready for production)
+  > node_modules
+  > public (contains all images, fonts, and other assets)
+    index.html
+    > fonts
+    > images
+    ...
+  > src (contains all website-related files)
+    > styles (contains all SASS/SCSS/CSS files)
+    > components (contains all React files separated by components)
+  package.json
+  package-lock.json
+  README.md
+
+
+
+

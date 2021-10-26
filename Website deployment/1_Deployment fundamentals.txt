@@ -1,0 +1,116 @@
+WEBSITE DEPLOYMENT
+
+1. Steps to put a webside online
+
+  > Create the website
+
+    You can create a website using HTML, CSS, and JavaScript (complementing with many libraries and frameworks); or using a Content Management System like WordPress or Joomla.
+
+  > Get a custom domain name
+
+    You need to buy a domain for your website. These are for sell at pages like Hostinger.com, domains.google, namecheap.com, get.tech, etc.
+
+  > Getting web hosting
+  
+    You then need for a server in which to place all your files. Depending on your webpage (static or dynamic), you may need different hosting solutions (shared hosting, a Virtual Dedicated Server, Virtual Private Server, etc).
+    Hosting can be found at Hostinger.com, Heroku, UltraHost, Siteground, FastComet, scalaHosting, dreamHosting, hostGator, AWS, Google Cloud, etc.
+
+  > Configure DNS settins
+
+  > Set up a custom e-mail address
+
+2. Domains
+
+  The domain is the URL that the user will type into his browser that will point to your webpage. It has the following structure:
+
+    <domain>.<top-level-domain>
+
+    <domain> : The name of your webpage
+    <top-level-domain> : The last part of the domain, that will usually describe the field that the website is pointing to.
+
+  You need to buy a new domain to acquire it, and you can do so from domain-selling websites.
+  
+  Tips on creating a new domain
+    > Pick a less-common TLD if you can because these are more available.
+    > Pick the most unique domain possible to help your website be more accessible and memorable for potential users.
+    > Pick a highly searchable domain to improve your Search Engine Optimization score.
+
+3. Hosting
+
+  There are different hosting solutions that you can take depending on your needs:
+
+  - Shared web hosting
+    > The website is hosted in a server that is shared between many other websites.
+    > Resources are shared between different websites as well.
+    > It is the most inexpensive solution in the market.
+    > It has support for different CMSs, depending on the advertisements of the company that provides the service.
+
+  - VPS (Virtual Private Server) hosting
+    > It is a virtual server located inside a data certer of a hosting provider.
+    > The client is provided with root access to the virtual server, so it can be fully customizable.
+    > It is less expensive than a dedicated server, but more expensive than shared web hosting.
+    
+  - DS (Dedicated Server) hosting
+    > It is a physical server located inside a data center of a hosting provider.
+    > It is fully customizable by the client.
+    > It is the most expensive service.
+
+  - WordPress web hosting
+    > It is a shared web hosting service in which all the websites are built around WordPress.
+    > It is a highly optimized solution for WordPress websites, and includes several features specifically for them.
+    > It usually supports SQL databases, that go along with WordPress and PHP.
+
+  - Cloud hosting
+    > It is a service that offers a network of interconnected servers that provide hosting to the web application.
+    > It has better latency than the other solutions because the end user can fetch data from the nearest server in the network.
+    > It is time consuming to upload changes to the website.
+
+
+  There are different services that allow you to host your website:
+
+  > BlueHost
+  > Hostinger
+  > UltraHost
+  > HostGator
+  > ScalaHosting: Good reviews for VPS hosting.
+  > DreamHost
+  > SiteGround
+  > CloudWays
+
+4. TCP/IP
+
+Transmission Control Protocol and Internet Protocol is a protocol that connects the user with his requested information over the internet.
+
+It is composed of the following layers:
+- Application
+
+  Composed of programs and applications that the user is interacting with that require a connection to the internet.
+  It has different protocols like 'HTTP' for web applications, or 'SMTP' for emailing.
+- Transport
+  It has different protocols, like 'TCP' or 'UTP'. These are useful for low latency applications like gaming or streaming.
+- Internet
+  Uses the IP protocol to map the different endpoints to their destination.
+  ...
+
+4. DNS (Domain Name System)
+
+The DNS is the system that stores the different domains (or records) and links them with a specified IP address (look at Cloudflare).
+
+There are different DNS record categories:
+- Server records (NS)
+  These records point to the server in which all the other DNS records will be stored.
+- Website records (A)
+  These records link the URL of the webpage to an IP address that points to the server that stores the website files.
+- Mail records (MX)
+  These records point to you email hosting provider
+- CNAME records
+  These records are aliases (redirects) that point visitors to a different domain or subdomain.
+- TXT records
+  These records associate different credentials with your domain. Their purpose is to provide additional information to your domain to make them more trustworthy.
+
+Nameservers
+DNS record types and common settings
+DNS providers
+Tools to manage DNS
+
+5. 

@@ -1,0 +1,21 @@
+REACT'S BEST PRACTICES AND PARADIGMS
+
+1. Paradigms in React
+
+  - Unidirectional dataflow
+    State flows in one direction down the tree of the application's components (from the stateful components to child components). The child components only receive the state that they need.
+
+  - Rendering and state logic separation
+    Complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of the components simply receive state from the parent as props.
+    This creates a separation where state management is handled in one part of code and UI rendering in another.
+    This principle of separating state logic from UI logic is one of React's key principles.
+
+2. Best practices
+
+  - Ensuring the correct types of props
+    Use proptypes on passing props to components to ensure the data keeps clean over time.
+  - Modifying state:
+    Do not modify state directly. Instead, return a new state as a copy of the old one.
+  - Custom events inside lifecycle hooks:
+    When declaring custom event listeners, it is good to add them inside the 'componentDidMount()' method and remove them inside the 'componentWillUnmount()' method to clean unnecesary event listeners and avoid memory leak.
+  

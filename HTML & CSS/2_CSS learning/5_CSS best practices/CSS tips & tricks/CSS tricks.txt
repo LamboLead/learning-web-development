@@ -1,0 +1,70 @@
+CSS TRICKS
+
+* Colors
+
+- Use hsl() instead of rgb() or hex values
+    hsl stands for 'hue', 'saturation', and 'lightness'. This format makes easier to compute a nice-looking color palette. Also, it is very intuitive to interpret with the color preview integrated in VSCode.
+
+* Layout
+
+- Use CSS flexbox for simple layouts
+    Flexbox allows to create simple layouts inside containers with ease. Use it as much as possible instead of all the old positioning properties.
+
+- Use CSS grid for complex layouts
+    If you have lots of rows and columns to take care of, use CSS grid and all of its properties depending on the layout that you want to create.
+
+* Responsive dimensions & media queries
+
+- When starting to code the styling for a new webpage, tackle the layout first and scale from the mobile version
+    Make your website responsive before applying any advanced styles to it. Focus first on the mobile version of the webpage to work with the minimum space available, and scale it to larger screens.
+
+- Use the 'orientation' options for media queries to further specify the size of the viewport
+    The orientiation option specifies if the screen is in 'portrait' (the width is smaller than the height) or 'landscape' (the width is larger than the height). You can use it if you want a certain layout to stay as it is depending on the orientation, regardless of the width or height of the viewport.
+
+- Use media queries as the absolute last resort to ensure responsiveness
+    Try to make the website as responsive as possible at first and leave media queries to add complexity later on. Tacke the mobile layout first and add complexity on the desktop version.
+    Also, avoid having too many breakpoints for different devices, so that a single media query works for several devices in the market. <Investigate different common breakpoints...>
+
+- For texts, if you don't need to set a height, don't do it
+    As the screen becomes smaller, the text will want to overflow and get out of its container. Instead, set a fixed min-height and a height of 'fit-content'.
+
+- Use relative units instead of fixed units
+    Use units like 'rem', 'em', or 'ch' to ensure responsive dimensions for your elements and fonts.
+    'em' relates to the percentage value of the parent's font size.
+    'rem' relates to the percentage value of the root's font size.
+    'ch' relates to the multiple of the width of the '0' glyph in the current font-size and font-family.
+    'lh' relates to the line-height property of the element.
+    'vw', 'vh' relate to 1% of the viewport's width and height.
+    'vmin', 'vmax' relate to 1% of the viewport's smaller and larger dimension.
+
+- Use clamp() function
+    The clamp() function allows to specify an minimum, maximum, and preferred value for the specified dimension (width, height, font-size, padding, margin, etc). Use it as much as possible instead of media queries if you can.
+
+- Keep your paragraphs clean by using clamp() and ch units
+    A pleasant paragraph to read has between 45 to 75 characters per line. You can set the paragraph's width to clamp(45ch, 50%, 75ch) to keep this relation.
+
+- Maintain the aspect ratio of the specified element with 'aspect-ratio' property
+    The aspect-ratio property keeps the aspect ratio of the specified element, disregarding the dimensions of the viewport.
+
+* Other
+
+- Use CSS variables to refactor code easily
+    Define a global variable in the :root element for those properties that are used extensively throughout the application. So that it makes easier to change them in the future.
+    You can override those variables inside each element if needed.
+    Also you can define CSS variables as an inline style inside the HTML and handle their value to do something useful.
+
+- Use the 'counter-reset' property to keep track of numerated elements
+    You can numerate elements dinamically by using the counter-increment property, which starts at 1, and increments the counter every time the counter is called inside the browser (for each element, for example).
+
+* Dropdown menus and navbars
+
+- Use the :focus-within pseudo-class to apply styles if children are on focus
+    The :focus-within pseudo-class allows to apply different styles to an element if it or its children are on focus as well. This is particularely useful in dropdown menus.
+
+- Use the scroll-padding property to prevent navbar interference
+    The scroll-padding property adds padding to the page when the user scrolls a certain amount in the page to stop the navbar at the top to block the page content.
+
+* Browser compatibility
+
+- Use vendor prefixes to ensure browser compatibility
+    Prefixes like '-webkit', '-moz', '-ms', '-o' are used to ensure browser compatibility for different properties. You can use preprocessors like SASS to jump over this problem.

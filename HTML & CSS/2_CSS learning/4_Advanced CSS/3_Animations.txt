@@ -18,6 +18,8 @@ NOTE: Motion in animations only works when the element has its 'position' proper
 
 * animation-fill-mode
     Specifies the style applied to an element when the animation has finished.
+    - alternate
+        Alternates between the two states of the animation
     - forwards
         Keeps the style.
 

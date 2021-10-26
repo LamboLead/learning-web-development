@@ -1,0 +1,23 @@
+INTRODUCTION TO GSAP
+
+It is an animation library for JavaScript. It animates anything that JavaScript can touch with amazing performance.
+
+> It is a property manipulator. It changes different element properties many times per second. From CSS properties, SVG attributes, objects rendered to a canvas, camera position in a 3D scene (for libraries like Three.js or Pixi.js), etc.
+> Works with React, Vue, and Angular front end frameworks.
+
+- Composition
+
+  It is composed of its core (GSAP core), and different plugins, easing tools, utility methods, and more:
+
+  Interesting plugins:
+    > DrawSVG: Creates 'drawing' animations easily by manipulating the stroke properties of an SVG.
+    > MorphSVG: Morphs SVG paths by animating the data inside the 'd' attribute inside an SVG.
+    > SplitText: Makes it easy to break apart text in an HTML element so that each character-word-line has its own <div>, making animations simple.
+    > Draggable: Makes any DOM element draggable, spinnable, tossable, etc, using mouse and/or touch events. You can pair it with InertiaPlugin to decelerate the motion based on momentum.
+    > MotionPath: Animates any object along a path or arbitrary property values.
+
+- Installation
+  You can add the following script tag:
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+
+  Or installing it via NPM/Yarn.

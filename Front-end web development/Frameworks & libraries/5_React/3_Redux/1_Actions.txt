@@ -1,0 +1,142 @@
+ACTIONS IN REDUX
+
+All state updates in Redux have to go through the Redux store, and are triggered by dispatching actions.
+
+An action is a JavaScript object that contains information about an action event that has occurred. The Redux store receives these action objects, and then updates its state accordingly.
+
+1. Action basics
+
+- Creating an action
+
+  You create a Redux action by creating an object with a 'type' property that specifies what does the action perform:
+
+    let action = {
+      type: 'LOGIN'
+    };
+
+  - Sending the action to the store
+
+  You send an action to the redux store so it can update its state by using action creators. An action creator is a JavaScript function that returns an action:
+
+    function actionCreator() {
+      return action;
+    }
+
+  Then, you have to dispatch actions to the Redux Store:
+
+    store.dispatch(actionCreator());
+
+  The whole process looks like this:
+
+    const store = Redux.createStore((state = {login: false}) => state);
+    let action = {type = 'LOGIN'};
+    let loginAction = () => {
+      return {type: 'LOGIN'};
+    }
+
+    store.dispatch(action); // These lines are equivalent
+    store.dispatch(loginAction()); // These lines are equivalent
+
+- Handling the action in the store using a reducer
+
+  The redux store then needs to respond to that action. This is the job of a reducer function.
+
+  Reducer functions are reponsible for the state modifications that take place in response to actions:
+
+    const reducer = (state = {login: false}, action) => {
+      if (action.type === 'LOGIN') {
+        return {login: true};
+      } else {
+        return state;
+      }
+    }
+
+  It takes a state and an action as arguments, and it will always return a new state. It is a pure function because it has no side effects.
+
+- Using a switch statement to handle multiple actions
+
+  It is a common practice to use a switch statement to handle all the types of actions to update different states, like so:
+
+    const defaultState = {
+      authenticated: false
+    };
+
+    const authReducer = (state = defaultState, action) => {
+      switch (action.type) {
+        case 'LOGIN':
+          return {authenticated: true};
+          break;
+        case 'LOGOUT':
+          return (authenticated: false);
+          break;
+        default:
+          return state;
+      }
+    }
+
+    const store = Redux.createStore(authReducer);
+
+    const loginUser = () => {
+      return {
+        type: 'LOGIN'
+      }
+    }
+    const logoutUser = () => {
+      return {
+        type: 'LOGOUT'
+      }
+    }
+
+    store.dispatch(loginUser()) // Logs the user in
+    store.dispatch(logoutUser()) // Logs the user out
+
+* Composing reducers
+
+Redux provides reducer composition as a solution for a complex state model, avoiding the division of state into multiple pieces.
+  
+You define multiple reducers to handle different pieces of your application's state, then compose these reducers together into one root reducer using the 'combineReducers()' method. It is then passed into the 'createStore()' method.
+  
+  Redux.combineReducers(<reducerObject>)
+    Returns a root reducer, which is composed of the specified reducers inside <reducerObject>
+
+  - Example:
+    
+    const authenticationReducer = (...) => {...} // This is a reducer
+    const notesReducer = (...) => {...} // This is a reducer
+
+    const rootReducer = Redux.combineReducers({
+      auth: authenticationReducer,
+      notes: notesReducer
+    });
+
+Now, the key 'notes' will contain all of the state associated with the notes and handled by the 'notesReducer'.
+
+* Sending action data to the store
+
+Actions usually originate from some user interaction and tend to carry information. The Redux store often needs to know about this data.
+
+	const ADD_NOTE = 'ADD_NOTE'; // Always declare the type of your actions at first
+
+	const notesReducer = (state = 'Initial State', action) => {
+		switch (action.type) {
+			case "ADD_NOTE":
+				return action.text;
+			default:
+				return state;
+		}
+	}; // Reducer that will handle the 'addNoteText()' action creator
+
+	const addNoteText = (note) => {
+		return ({
+			type: ADD_NOTE,
+			text: note
+		});
+	}; // Action creator that passes an argument 'note' as the 'text' property of the action.
+
+	// State management:
+	const store = Redux.createStore(notesReducer);
+
+	console.log(store.getState()); // Logs 'Initial State'
+	store.dispatch(addNoteText('Hello!')); // Updates the state
+	console.log(store.getState()); // Logs 'Hello!'
+

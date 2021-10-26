@@ -1,0 +1,157 @@
+ROUTES IN EXPRESS
+
+A route is some Express code that associates an HTTP verb ('GET', 'POST', 'PUT', 'DELETE'), a URL pattern, and a function called to handle that pattern.
+
+There are many ways to create routes in Express. The most popular is like following:
+
+  - Syntax
+
+  app.<method>(<path>, <handler>)
+    Creates a new route.
+    <method> : An HTTP method in lowercase.
+    <path> : Relative path on the server (string or regular expression).
+    <handler> : Function that Express calls when the route is matched. They take the form:
+      function(<req>, <res>) {...}
+        <req> : The request object.
+        <res> : The response object.
+
+- Responding a request with a string
+
+  You can respond to any request with a string like so:
+
+    app.get(<path>, (req, res) => {
+      res.send("This is your response string");
+    });
+
+- Responding a request with a file
+
+  If the user makes a 'GET' request, you can send him your desired file using the 'res.sendFile(path)' method. It will set the appropiate headers to specify how to handle the file you want to send to the user's browser.
+
+  - Syntax:
+    ...
+    app.get(<path>, (req, res) => {
+      res.sendFile(<pathOfTheFile>);
+    });
+
+  NOTE: It is a good practice to calculate <pathOfTheFile> using the '__dirname' Node global variable
+
+  - Example:
+    Send the /views/index.html file as a response to 'GET' requests to the root "/" path
+
+      var express = require("express");
+      var app = express();
+
+      var absolutePath = __dirname + "/views/index.html";
+      app.get("/", (req, res) => {
+        res.sendFile(absolutePath);
+      });
+
+- Responding with static assets
+
+  You may need to use static assets (stylesheets, scripts, or images) for your application to work properly. In Express, you can place this functionality using the middleware 'express.static(path)':
+  
+  - Syntax:
+    express.static(<path>)
+      <path> : Absolute path of the folder containing the static assets you want to send to the user.
+
+  - Example
+    Mount the 'express.static()' middleware to the requests to the path /public 
+
+      ...
+      var pathToAssets = __dirName + "/public";
+      app.use("/public", express.static(pathToAssets));
+
+1.3. Route chaining
+
+  You can use the syntax:
+    app.route(<path>).<method1>(handler).<method2>(handler)
+  to chain different HTTP methods on the same path route, which saves some typing and ensures a cleaner code.
+
+2. APIs
+
+- Responding with JSON data (APIs)
+  
+  An API (Application Programming Interface) is a connection between computers or computer programs. It is a type of software interface, that offers a service to other pieces of software (generally data).
+
+  A REST (REpresentational State Transfer) API allows data exchange in a simple way. The client only needs to know where the resource is (the URL), and the action it wants to perform to the resource (the method). These are the following methods for REST APIs:
+
+    'GET': Used to read an existing resource without modifying it.
+    'POST', 'PUT', 'PATCH': Used to update a resource with the data sent.
+    'DELETE': Used to delete a resource.
+
+  The preferred data format for moving information is JSON. You can pass JSON-formatted data using the method 'res.json(object)':
+
+  - Syntax:
+    
+    res.json(<jsObject>);
+    Responds to the request with a JSON-formatted JavaScript object.
+      <jsObject> : A JavaScript object.
+
+  - Example
+    Create a simple API that responds with JSON data when the user makes a request using the 'GET' method at the path "/json".
+
+      var express = require('express');
+      var app = express();
+
+      ...
+      app.get("/json", (req, res) => {
+        res.json({"message": "Hello JSON"});
+      });
+
+2.1. Getting input from the client
+
+When building an API, users need a way to communicate to us what they want to get from our service. You can achieve this in different ways:
+
+- Using route parameters
+  
+  Route parameters are are named segments of the URL, delimited by slashes. The captured values can be found in the 'req.params' object.
+
+  - Example
+    Build an echo server mounted at the route GET /:word/echo that responds with a JSON object with the structure {echo: word}.
+
+      app.get("/:word/echo", (req, res) => {
+        res.json({"echo", req.params.word});
+      });
+
+  This way, if the user makes a request using the URL: yourapp.com/freecodecamp/echo, then he will receive:
+    {"echo": "freecodecamp"}
+
+- Using the query parameter
+
+  You can get input from the client by encoding the data after the route path using a query string.
+  The query string is delimited by a question mark (?), and includes field=value couples, each couple separated by an ampersand (&).
+
+  Express can parse the data from the query string and you can access it using the 'req.query' object.
+
+  - Example
+    Build an API endpoint mounted at GET /name. Respond with a JSON document with the structure {"name" : "firstname lastname"}, which will be encoded in a query string '?first=myName&last=myLastname' inside the URL.
+
+      app.get("/name", (req, res) => {
+        let first = req.query.first;
+        let last = req.query.last;
+        res.json({"name": `${first} ${last}`});
+      });
+
+2.2. Handling 'POST' requests
+
+In these kinds of requests the data is hidden in the request body, which is a part of the HTTP request (also called the payload).
+
+To parse the data coming from POST requests, you have to install the 'body-parser' package, which allows to use a series of middleware that decode this data in different formats. Except from 'GET', all the other methods can have a payload, which 'body-parser' can handle as well.
+
+The 'POST' request is accesible via the 'req.body' object.
+
+  - Example
+    Use body-parser to handle data coming from a 'POST' request. Build an API endpoint mounted at POST /name. Respond with a JSON document with the structure {"name" : "firstname lastname"}.
+
+      # Some settings
+      var bodyParser = require("body-parser");
+
+      let middleware = bodyParser.urlencoded({extended: false}); # INVESTIGATE ON THE .urlencoded method and its different parameters
+      app.use(middleware);
+
+      # Handle requests
+      app.post("/name", (req, res) => {
+        let first = req.body.first;
+        let last = req.body.last;
+        res.json({"name": `${first} ${last}`});
+      });

@@ -1,0 +1,66 @@
+NPM (Node Package Manager)
+
+It is a command line tool to install, create, and share JavaScript packages written for Node.js.
+
+Before starting a project, take some time to explore some packages that other people may have already created.
+
+1. Package.json
+
+The package.json file is the center of any Node.js or npm package. It consists of a simgle JSON object that stores information about all the installed packages in the application to make it work properly.
+
+It has the following structure:
+
+  {
+    "name": "the-name-of-the-project",
+    "author": "The Project's author",
+
+    #Important information to sell the user your project
+    "description": "Description of the project",
+    "keywords": ["Array", "Of", "Descriptive", "Words"],
+
+    # "license" tells the user what and what not to do with your project
+    "license": "MIT",
+    "version": "1.2.0",
+
+    # The "dependencies" key is used to tell npm which packages to install for the project to work correctly in other machine.
+    "dependencies": {
+      "package1": "2.3.2", # Uses the 2.3.2 version of package1
+      "package2": "~1.3.8", # Allows updates to any 1.3.x version of package2
+      "package3": "^1.3.8" # Allows updates to any 1.x.x version of package3
+      ...
+    },
+
+    # The "main" key specifies the main file for the project.
+    "main": "mainFile.js",
+
+    # "scripts" key contains different scripts that npm can run to automate tasks on the development process.
+    "scripts": {
+      "script1": "node mainFile.js",
+      "script2": "...",
+      ...
+    },
+
+    # The "repository" key specifies where the project is stored on the cloud.
+    "repository": {
+      "type": "git",
+      "url": "https://LamboLead/the-ultimate-to-do-list.git"
+    }
+
+  }
+
+2. Versioning the project
+
+Semantic Versioning (SemVer) is an industry standard for software versioning that makes easier to manage dependencies.
+
+Libraries, frameworks or other tools published on npm should use SemVer to clearly communicate what kinds of changes were made in each update.
+
+- Syntax
+
+  "package_name": "<MAJOR>.<MINOR>.<PATCH>"
+
+  MAJOR: Number that should increment when you make incompatible API changes.
+  MINOR: Number that should incremenet when you add functionality in a backwards-compatible manner.
+  PATCH: Number that should increment when you make backwards-compatible bug fixes.
+
+3. Installing new packages
+

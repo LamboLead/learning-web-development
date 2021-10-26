@@ -1,0 +1,104 @@
+REACT HOOKS
+
+Hooks are a feature introduced on React v16.8. These are functions that let you use state and lifecycle features on function components.
+
+You can use the different hooks that React provides or build your own ones.
+
+0. Rules of hooks
+
+- Built-in hooks start with 'use'.
+
+- Don't call hooks inside loops, conditions, or nested functions.
+  React relies on the order that the hooks are processed for each render, this is why you can only call hooks at the top level of React function components or custom hooks.
+
+
+1. Built-in hooks
+
+1.1. useState()
+  
+  const [<stateVariable>, <callback>] = useState(<initialState>);
+    Allows to add state into a function component.
+    Returs a pair of values: The current state and the function that updates it.
+    <stateVariable> : Variable in which the state will be stored.
+    <callback> : Function that will update the <stateVariable> when called.
+    <initialState> : Initial value for the <stateVariable>
+
+  - Example: Create a simple counter
+
+    import React, {useState} from 'React'
+
+    function Example() { // [1]
+
+      const [count, setCount] = useState(0); // [2]
+
+      return (
+        <div>
+          <p>You clicked {count} times</p> // [3]
+          <button onClick={() => setCount(count + 1)}> // [4]
+            Click me!
+          </button>
+        </div>
+      );
+    }
+
+    [1]: Note the usage of a function component.
+    [2]: useState() declares the state variable 'count' and the function that will update it 'setCount'. 'count' has an initial value of 0.
+    [3]: The 'count' state variable can be referenced by its name.
+    [4]: The 'count' state variable is updated using 'setCount()'.
+
+  > React will remember the current value of the state variable between re-renders.
+  > State variables can hold from strings and numbers to objects and arrays.
+
+1.2. useEffect()
+
+  useEffect(<callback>, [<arrayOfStateVariables>])
+    Allows to perform side effects in function components.
+    It is similar to 'componentDidMount()' and 'componentDidUpdate()' combined. It tells React that the component needs to do something after rendering or updating it, or when the specified state variables change.
+    <callback> : Callback function that will run its code after the first rendering and every update of the component.
+    <arrayOfStateVariables> : Optional array of state variables that when changes are applied to them, useEffect runs.
+  
+  - Example: Create a counter making use of useEffect()
+
+    import React, {useState, useEffect} from 'react';
+
+    function Example() {
+      const [count, setCount] = useState(0);
+
+      useEffect(() => {
+        document.title = `You clicked ${count} times`;
+      });
+      return (...)
+    }
+
+  There are some effects that need cleanup to avoid memory leak:
+
+  - Example: Create a component that manages a friend status of a social network
+
+    import React, {useState, useEffect} from 'react';
+
+    function FriendStatus(props) {
+      const [isOnline, setIsOnline] = useState(null);
+
+      useEffect(() => {
+
+        function handleStatusChange(status) { // [1]
+          setIsOnline(status.isOnline);
+        }
+
+        ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange); // [2]
+
+        return function cleanup() { // [3]
+          ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+        };
+      });
+
+      if (isOnline === null) return 'Loading...';
+      return isOnline ? 'Online' : 'Offline';
+    }
+
+    [1]: Declared the 'handleStatusChange()' function that updates the state according to the 'status' argument
+    [2]: Custom method that calls 'handleStatusChange()'
+    [3]: Returns a function that cleans up the effect after re-rendering. This keeps the addition and removal of subscriptions close together.
+
+  > Effects that need cleanup phase have to return a function that clean the effect.
+

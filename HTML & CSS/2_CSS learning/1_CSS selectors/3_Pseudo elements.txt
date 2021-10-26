@@ -2,16 +2,14 @@ CSS PSEUDO ELEMENTS
 
 A pseudo-element is used to style specified parts of an element.
 
-1. Syntax
+- Syntax
 
     CSS:
         selector::pseudo-element {
             property: value;
         }
 
-2. All CSS pseudo-elements
-
-- Text formatting pseudo-element
+1. Text formatting pseudo-elements
 
     ::first-line
         Used to add a special style to the first line of a text. It can only be applied to block-level elements.
@@ -39,7 +37,7 @@ You can apply the following to the text formatting pseudo-elements:
     > line-height
     > clear
 
-- Element insertion pseudo-elements
+2. Element insertion pseudo-elements
 
 For these pseudo-elements to work properly, define in the element the property: 'content: "";'
 
@@ -53,7 +51,7 @@ For these pseudo-elements to work properly, define in the element the property: 
 ::after
     Used to insert some content after the content of an element.
 
-- Other pseudo-elements
+3. Other pseudo-elements
 
     ::selection
         Matches the portion of an element that is selected by a user.
@@ -63,6 +61,11 @@ For these pseudo-elements to work properly, define in the element the property: 
             > Background properties
             > cursor
             > outline
+
+    ::-webkit-scrollbar
+    ::-webkit-scrollbar-track
+    ::-webkit-scrollbar-thumb
+        Modifies the scrollbar properties
 
 
 

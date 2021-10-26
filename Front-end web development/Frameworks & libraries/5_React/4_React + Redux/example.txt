@@ -1,0 +1,160 @@
+EXAMPLE: CONNECTING REACT WITH REDUX
+
+A React-Redux application may have the following workflow:
+  1. Build the React component(s):
+    > Build the local state infrastructure
+    > Identify which need to be connected to the Redux store. Imagine the data flow between the component tree.
+
+  2. Extract the state logic to Redux
+    > Build the Redux components you need to handle state in your application.
+
+  3. Map state and dispatch props
+    > Use 'mapToStateProps()' and 'mapDispatchToProps()' to link state in Redux to props in React.
+
+  4. Connect the React app with Redux:
+    > Call 'Provider' component and 'connect()' method from 'ReactRedux'.
+    > Define a 'Container' component returned by the 'connect()' method and pass the main React component as a parameter.
+    > Create an <App /> component that renders <Provider store={ReactStore}/> and the <Container /> component inside of <Provider />.
+
+  5. Extract the local state into Redux:
+    > Pass all the required information to the React components from the Redux store as props.
+    > Make sure to retrieve all data from the Redux store as props inside the React components.
+
+- Example:
+  Build a simple React + Redux application that takes a message using a input element and renders it using an unordered list.
+
+  // -> -> React <- <-
+
+    // 1. Build the React component
+
+    class Presentational extends React.Component {
+      constructor(props) {
+        super(props);
+
+        // Old state definition:
+
+        # this.state = {
+        #   input: '',
+        #   messages: []
+        # }
+
+        // New state definition:
+        // The '<messages' property will be passed as props from the Redux store
+
+        this.state = {
+          input: ''
+        }
+      }
+
+      handleChange(event) {
+        this.setState({
+          input: event.target.value
+        });
+      }
+
+      // Old 'submitMessage()' definition:
+
+      # submitMessage() {
+      #   this.setState((prevState) => ({
+      #     messages: [...prevState.messages, prevState.input],
+      #     input: ''
+      #   }));
+      # }
+
+      // New 'submitMessage()' definition:
+      // 'submitNewMessage()' is passed as props from the <Container /> component, using 'mapDispatchToProps()' method (see it below).
+      // 'submitNewMessage()' takes a new message as a parameter. This new message comes from 'this.state.input' (local state).
+
+      submitMessage() {
+        this.props.submitNewMessage(this.state.input);
+        this.setState({
+          input: ''
+        });
+      }
+
+
+      render() {
+        // Old 'listItems' definition:
+
+        # let listItems = this.state.messages.map((item, index) => {
+          # return <li key={`li-${index}`}>{item}</li>
+        # });
+
+        // New 'listItems' definition:
+        // The 'messages' array is passed as props from <Container /> <- <Provider /> as props
+
+        let listItems = this.props.messages.map((item, index) => {
+          return <li key={`li-${index}`}>{item}</li>
+        });
+
+        return (
+          <div>
+            <h2>Type in a new message:</h2>
+            <input type="text" onChange={this.handleChange} value={this.state.input} />
+            <button onClick={this.submitMessage}>Submit</button>
+            <ul>
+              {listItems}
+            </ul>
+          </div>
+        )
+      }
+    }
+
+  // -> -> Redux <- <-
+
+    // 2. Extract the state logic to Redux
+  
+    const ADD = 'ADD';
+    const addMessage = (message) => {
+      return {
+        type: ADD,
+        message: message
+      }
+    }
+    const messageReducer = (state = [], action) => {
+      switch (action.type) {
+        case ADD:
+          return [...state, action.message];
+        default:
+          return state;
+      }
+    }
+
+    const store = Redux.createStore(messageReducer);
+
+  // -> -> React-Redux <- <-
+
+    // 3. Map state and dispatch to props
+
+    const mapStateToProps = (state) => {
+      return {messages: state}
+    }
+    const mapDispatchToProps = (dispatch) => {
+      return {
+        submitMessage: (newMessage) => {
+          dispatch(addMessage(newMessage));
+        }
+      }
+    }
+    
+    // 4. Connect the React app with Redux
+
+    const Provider = ReactRedux.Provider;
+    const connect = ReactRedux.connect;
+
+    const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
+
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        return (
+          <Provider store={store}>
+            <Container />
+          </Provider>
+        )
+      }
+    }
+
+    // 5. Extract local state into Redux (See comments inside <Presentational />)

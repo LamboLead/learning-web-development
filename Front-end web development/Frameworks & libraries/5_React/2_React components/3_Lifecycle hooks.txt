@@ -75,6 +75,3 @@ You can add custom event listeners to different components using the lifecycle h
     }
   };
 
-* Best practice
-  When declaring custom event listeners, it is good to add them inside the 'componentDidMount()' method and remove them inside the 'componentWillUnmount()' method to clean unnecesary event listeners and avoid memory leak.
-

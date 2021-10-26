@@ -1,0 +1,13 @@
+SEARCH ENGINE OPTIMIZATION
+
+SEO is the term that refers to the rank that search engines (Google, Bing, etc) give your website so that is prioritized over others in searches.
+
+Tips to improve the SEO of your pages:
+
+> Use web hosting companies that provide tools to improve your SEO.
+> Low Latency: Pages that load in more than 1s are ranked lower.
+> Ease of navigation: The website has to be easy for search engines and users to navigate (good HTML structure, provided accesibility, responsiveness & good mobile website).
+> Use <h1> tags: These are the first tags that search engines scan to put as the header on searches.
+> Use compact images and media to improve loading speeds.
+> Get rid of pop-ups alerts.
+> Avoid infinite scrolling because it cannot be used by search engines to scrape other links inside your webpage.

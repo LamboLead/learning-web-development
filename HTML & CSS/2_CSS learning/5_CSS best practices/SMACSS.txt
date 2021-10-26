@@ -11,7 +11,7 @@ One of the key aspects of SMACSS is rule categorization. By doing so, you will b
 There are five types of categorization: Base, Layout, Module, State, and Theme.
 
 > Each category has certain guidelines that apply to it.
-> Each one of the categories must be in one separate file. This makes it easier to find which file a style belongs to.
+> Each one of the categories must be in one separate folder. This makes it easier to find which file a style belongs to.
 
 * Base rules
 
@@ -19,6 +19,7 @@ A Base rule is applied to an element using an element, a descendent, or a child 
 
 > The purpose of this rule is to define the default styling for how that element should look in all occurrences on the page.
 > Base styles include: Heading sizes, default links styles, default font styles, and body backgrounds.
+> Here, you can define certain SASS rules and variables that will appear in the rest of the code.
 > There should be no need to use '!important' in a Base style.
 
 - Examples:

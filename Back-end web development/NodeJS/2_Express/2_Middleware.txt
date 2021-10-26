@@ -1,0 +1,62 @@
+MIDDLEWARE IN EXPRESS
+
+Middleware consists on functions that intercept route handlers and add some information to the response.
+
+<middleware> functions take the following structure:
+function(req, res, next) {
+  next(); # Called to keep running the process
+}
+
+1. Mountind middlewares
+
+- Mounting middleware at routes that handle requests at a certain path
+
+  app.use([<path>], <middleware>)
+    Mounts a middleware for the requests going to the specified <path>.
+    <path> (optional) : Path for the files in the server that the middleware will be attached to when the user makes a request. If it is not specified, the middleware will be applied to all requests.
+    <middleware> : Callback that handles the addition of information to the requests.
+
+- Mounting middleware to a specific route
+
+  app.<method>(<path>, <middleware>)
+    Mounts a middleware for the requests going to the specified <path>.
+      <method> : HTTP method.
+      <path> : Path for the files in the server that the middleware will be attached to when the user makes a request.
+      <middleware> : Callback that handles the addition of information to the requests.
+
+NOTE: As Express evaluates functions in the order they appear in the code, if you want your middleware to work for a specific route, it should be mounted before its declaration.
+
+2. Root level middlewares
+
+  They execute in every route, and can provide useful information for every request to the server.
+
+  - Example
+    Implement a root-level logger middleware that logs in the console a message with the format: "req.method req.path - req.ip"
+
+      ...
+      app.use((req, res, next) => {
+        console.log(`${req.method} ${req.path} - ${req.ip}`);
+        next();
+      });
+
+    With this code, for every request to the server, you'll be able to see the method, the requested path and the ip of the user that makes the request.
+
+3. Middleware chaining
+
+  Middleware can be chained inside the route definition. This approach has the following benefits:
+  > Allows to reuse code because it splits the server operations into small units.
+  > You can perform some validation of the data by calling external functions designed to filter data and handle errors.
+
+  - Example:
+    Chain two different middleware functions to create a time server
+
+      app.get(
+        '/user',
+        (req, res, next) => {
+          req.time = new Date().toString(); # Some synchronous operation that saves the current time into the 'time' property of req.
+          next();
+        },
+        (req, res) => {
+          res.json({"time", req.time}); # Response with the current time in JSON format
+        }
+      );

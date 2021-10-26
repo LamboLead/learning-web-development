@@ -1,0 +1,54 @@
+MONGO DB
+
+It is a database application that stores JSON documents that you can use in your application. It is a non-relational database, which means that Mongo stores all associated dat in one record, instead of storing it across many preset tables as in a SQL database.
+
+1. Create a new database with MongoDB Atlas
+
+MongoDB Atlas is a MongoDB Database-as-a-Service platform. It is a service that will configure and host the database for you. Here are the steps to create a new MongoDB database using MongoDB Atlas:
+
+- Create a new MongoDB account
+  > If you don't have a MongoDB account, go to https://account.mongodb.com/account/register and sign up.
+
+- Create a new cluster
+  > Create a new project, select your desired option for functionality and click 'Create'.
+  > Select your desired options for the cluster and click on the green 'Create Cluster' button. Wait until the cluster is created.
+
+- Create a new user for the database
+  > Click on 'Database Access' tab
+  > Click the 'Add New Database User' button.
+  > Enter a new username and password for the new user. (admin-user, 0NG7Xm2js9ng2dbz).
+  > Select the desired user privileges.
+  > Click the 'Add User' button.
+
+- Allow access from all IP addresses
+  > Click on 'Network Access' tab.
+  > Click the 'Add IP Address' button.
+  > Click the 'ALLOW ACCESS FROM ANYWHERE' button.
+  > Click the 'Confirm' button.
+
+- Connect to your cluster
+  > Click on 'Databases' tab.
+  > Click on the 'Connect' button of your cluster.
+  > Click on 'Connect your application' option.
+  > You should see the URI you'll use to connect to your database. Copy it, replace <password> and keep it safe.
+
+2. Connect Mongoose to your MongoDB database
+
+Mongoose is a popular npm package often installed alonside MongoDB. It allows to use plain JavaScript objects instead of JSON, making it easier to work with Mongo. It also allows to creat blueprints for your documents (schemas), so wrong data cannot be saved accidentally.
+
+To connect Mongoose to the database, once you've created your cluster in MongoDB Atlas or whatever, you will be given a URI for your database. Follow these steps to connect Mongoose to MongoDB
+
+> Make sure that you install MongoDB and Mongoose from npm.
+> Save your MongoDB URI inside the .env file.
+> Inside the main file for you application, type:
+
+  var mongoose = require('mongoose');
+  mongoose.connect(
+    process.uri.MONGO_URI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
+  );
+
+

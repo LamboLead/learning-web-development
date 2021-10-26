@@ -1,0 +1,9 @@
+FREELANCING PLAN
+
+> Complete 'Front End Development Libraries' certification.
+> Complete 'Back End Development and APIs' certification.
+> Learn about website deployment.
+> Build the MVP of your personal web page and host it on the Internet.
+> Complete 'Quality Assurance' certification.
+> Build an e-commerce site project that handles payments and a simple inventory using React.js and Redux (improve it over time adding a more complex inventory, shopping cart, user authentication and security).
+> Do some business with Mauricio

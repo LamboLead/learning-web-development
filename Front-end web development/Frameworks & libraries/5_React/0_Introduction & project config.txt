@@ -1,0 +1,172 @@
+REACT
+
+React is a Front End framework that allows to build websites faster using components.
+
+1. Setting up a React project from scratch
+
+  > Open cmd and type the following commands:
+
+    - Check that Node.js is installed in your machine
+      $ node -v
+
+    - Create a package.json
+      $ npm init -y
+
+      A package.json file contains useful information about your project. It holds which packages and libraries and their versions that you are using in your projects.
+
+    - Install React and ReactDOM
+      $ npm install react react-dom
+
+      This creates a new folder 'node_modules' which contains all the modules you are using in your project (do not touch this folder), and a new file 'package-lock.json' which locks the version of the libraries and packages so that they not update unintendly.
+
+    - Install Babel and all its dependencies
+      $ npm install @babel/core @babel/preset-env @babel/preset-react babel-loader
+
+      '@babel/core' is the basic Babel package.
+      '@babel/preset-env' is the Babel package that allows you to use all modern versions of JavaScript because it transpiles them to older versions to have all the browser support.
+      '@babel/preset-react' is the Babel package that interprets React and JSX code and transpiles it into JavaScript.
+      'babel-loader' Intermediary that connects Babel to webpack.
+
+      Webpack is a package that allows to unify all the different parts of the code (React, JSX, JavaScript, etc) and creates a new JS file that contains everything that contains everything to make it work in all browsers (INVESTIGATE WEBPACK).
+
+    - Install all webpack dependencies
+      $ npm install webpack webpack-cli html-webpack-plugin style-loader css-loader file-loader webpack-dev-server
+
+      'webpack-cli'
+      'html-webpack-plugin' finds the main .html file and links the main .js file to it
+      'style-loader' is the loader for styles
+      'css-loader' is the loader for css
+      'file-loader' is the loader for local files
+      # 'sass-loader' is the loader for sass
+      'webpack-dev-server'
+
+  > Create a new file '.babelrc' and write:
+
+    {
+      "presets": ["@babel/preset-react", "@babel/preset-env"]
+    }
+
+  > Create a new 'webpack.config.js' and write:
+
+    // Set up for the webpack package
+
+    const HtmlWebpackPlugin = require("html-webpack-plugin");
+    const path = require("path");
+
+    module.exports = {
+      entry: "./src/index.js", // Use the 'index.js' file as a starter
+      output: { // Output .js file 
+        filename: "bundle.[hash].js",
+        path: path.resolve(__dirname, "dist"),
+      },
+      plugins: [ // Use the 'index.html' file as the main .html file
+        new HtmlWebpackPlugin({
+          template: "./src/index.html",
+        }),
+      ],
+      resolve: { // Look at the files using the following extensions
+        modules: [__dirname, "src", "node_modules"],
+        extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
+      },
+      module: {
+        rules: [ // Use the specified loader on the files that match the test regex
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: require.resolve("babel-loader"),
+          },
+          {
+            test: /\.css$/,
+            use: ["style-loader", "css-loader"],
+          },
+          {
+            test: /.png|svg|jpg|gif$/,
+            use: ["file-loader"],
+          },
+        ],
+      },
+    };
+
+  > Inside 'package.json', type the following to set up the development environment:
+    
+    {
+      ...
+      "scripts": {
+        "start": "webpack-dev-server --hot --open", // Sets up the local server for development
+        "build": "webpack --config webpack.config.js --mode production" // Creates a production-ready .js file
+
+      },
+      ...
+    }
+
+  > Create a 'src' folder. This folder will contain all your project's files.
+
+  > Create a new 'App.js' file and create your new React component that will wrap all your other React components (optional: Create an 'App.css' file with all your styles. Put a 'image.jpg' file inside the project):
+    
+    import React from "react";
+    import 'App.css';
+    import thumb from './thumb1.jpg';
+
+    const App = () => {
+      return (
+        <div>
+          <h1 className="my-class">Your app goes here</h1>
+        </div>
+      );
+    }
+
+    export default App;
+
+  > Create a new 'index.js' file that will render all your React components:
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App';
+
+    ReactDOM.render(<App />, document.querySelector("#root"));
+
+  > Create a new 'index.html' file, and type:
+
+    <html lang="en">
+      ...
+    <body>
+      <div id="root"></div>
+    </body>
+    </html>
+
+  > You're ready to open the development server. Open cmd and type:
+    $ npm run start
+
+  This runs the 'start' script that will start the local development server for you to see your project.
+
+# /*
+# import React from 'react';
+# import ReactDOM from 'react-dom';
+# import { Provider, connect } from 'react-redux';
+# import { createStore, combineReducers, applyMiddleware } from 'redux';
+# import thunk from 'redux-thunk';
+
+# import rootReducer from './redux/reducers';
+# import App from './components/App';
+
+# const store = createStore(
+#   rootReducer,
+#   applyMiddleware(thunk)
+# );
+
+# ReactDOM.render(
+#   <Provider store={store}>
+#     <App/>
+#   </Provider>,
+#   document.getElementById('root')
+# );
+# */
+2. Setting up a React project using 'create-react-app'
+
+  Run:
+    $ npx create-react-app <your-project-name>
+
+  This will set up the entire structure and install all the useful dependencies you need to code a React project.
+
+  If you need to install Sass, run:
+    $ npm i sass

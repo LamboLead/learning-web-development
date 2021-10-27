@@ -1,0 +1,19 @@
+SVG ANIMATION WITH GSAP
+
+GSAP makes possible to animate SVG elements much easier, even handling support for older browsers.
+
+With GSAP, you can:
+- Basic transformations & operations:
+  > Scale, rotate, skew, and move using 2D transformations ensuring full compatibility among browsers.
+  > Animate different SVG attributes (x, y, radius, width, etc) by using the AttrPlugin.
+  > Use percentage-based x and y transforms, which are not supported on the original SVG spec.
+
+- Setting the origin of the element for transformations:
+  > Set easily the transformOrigin property of a path, treating it like a DOM element instead of a children from an SVG element.
+  > Apply smooth changes in the transformOrigin property for each transformation with 'smoothOrigin' set to 'true' to avoid unexpected jumps in the animation.
+  > Set the transformOrigin property of an element relative to the SVG's global coordinate space rather than relative to the element itself with 'svgOrigin'.
+
+- SVG motion
+  > Drag SVG elements, setting accurate bounds and implementing hit-testing with 'Draggable' plugin; a realistic physics model with 'InertiaPlugin'.
+  > Move any kind of element along a path, including autorotation, offset, looping, etc by using the 'MotionPathPlugin'.
+  

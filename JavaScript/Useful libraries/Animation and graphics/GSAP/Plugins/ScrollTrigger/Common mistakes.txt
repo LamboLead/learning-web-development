@@ -1,0 +1,3 @@
+COMMON SCROLLTRIGGER MISTAKES
+
+See: https://greensock.com/st-mistakes/

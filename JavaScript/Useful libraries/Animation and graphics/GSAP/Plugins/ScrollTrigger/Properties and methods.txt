@@ -1,0 +1,3 @@
+SCROLLTRIGGER PROPERTIES AND METHODS
+
+See: https://greensock.com/docs/v3/Plugins/ScrollTrigger

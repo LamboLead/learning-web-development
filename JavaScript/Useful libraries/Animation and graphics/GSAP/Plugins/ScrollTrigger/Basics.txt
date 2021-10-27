@@ -1,0 +1,174 @@
+SCROLLTRIGGER PLUGIN FOR GSAP
+
+ScrollTrigger creates scrolling animations, or trigger anything scroll-related, even if it has nothing to do with animations.
+
+1. Getting started with ScrollTrigger
+
+If you use ScrollTrigger for animation purposes, you add it as a property inside a Tween or a Timeline:
+
+- Syntax:
+  let tween = gsap.to(<target(s)>, {
+    scrollTrigger: {...}
+  });
+
+- Example:
+  let timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".container",
+      pin: true,
+      start: "top top",
+      end: "+=500",
+      scrub: 1,
+      snap: {
+        snapTo: "labels",
+        duration: {min: 0.2, max: 3},
+        delay: 0.2,
+        ease: "power1.inOut"
+      }
+    }
+  });
+
+If you use ScrollTrigger for things non-related to animations, you create it from the ScrollTrigger class as a configuration object:
+
+- Syntax:
+  ScrollTrigger.create({<propertiesAndMethods>})
+
+- Example:
+  ScrollTrigger.create({
+    trigger: "#id",
+    start: "top top",
+    endTrigger: "#otherID",
+    end: "bottom 50%+=100px",
+    onToggle: self => {
+      console.log("toggled, isActive:", self.isActive)
+    },
+    onUpdate: (self) => {
+      console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity());
+    }
+  })
+
+2. Configuration properties
+
+These properties are created inside the ScrollTrigger object.
+
+* Development
+
+  id: <String>
+    Arbitrary and unique identifier for the ScrollTrigger instance, which can be used with 'ScrollTrigger.getById()'. This Id is added to the markers.
+
+  markers: <Object/Boolean>
+    Adds markers that are helpful during development.
+    If true, markers are added with the default properties (startColor: "green", endCoor: "red", fontSize: "16px", fontWeight: "normal", indent: 0). If its value is an object, you can customize the stated properties.
+
+* General
+
+  scroller: <String/Element>
+    CSS selector or element that is scrollable that will be used instead of the default scrollable element (viewport).
+
+  animation: <TweenOrTimeline>
+    A Tween/Timeline that should be controlled by the ScrollTrigger. Only one animation is controlled per Trigger. To control several animations, put them inside a timeline.
+
+  trigger: <String/Element>
+    Element or CSS selector of the element whose position in the normal document flow is used to calculate where the ScrollTrigger starts.
+
+  start: <String/Number/Function>
+    Specifies the starting position of the ScrollTrigger.
+    <String>: Describes a place on the trigger and a place on the scroller that must meet in order to start the ScrollTrigger.
+      e.g. "bottom 80%" equals 'When the bottom of the trigger hits 80% down from the top of the viewport'.
+    <Number>: Exact scroll value in pixels.
+    <Function>: Function that gets called whenever ScrollTrigger refreshes and calculates its positions. It returns a String or a Number.
+
+  end: <String/Number/Function>
+    Specifies the ending position of the ScrollTrigger.
+    <String>: Describes a place on the endTrigger and a place on the scroller that must meet to end the ScrollTrigger.
+      e.g. "bottom center" equals 'When the bottom of the endTrigger hits the center of the scroller'.
+    <Number>: Exact scroll value in pixels.
+      e.g. 200 means 'when the viewport/scroller scrolls by 200px'
+    <Function>: Function that gets called whenever ScrollTrigger refreshes and calculates its positions. It returns a String or a Number.
+
+  endTrigger: <String/Element>
+    Element or CSS selector of the element whose position in the normal document flow is used for calculating where the ScrollTrigger ends.
+    The default endTrigger is the trigger element itself.
+
+  toggleActions: <String>
+    Determines how the linked animation is controlled at the four distinct toggle places (onEnter, onLeave, onEnterBack, onLeaveBack). Check out all the keywords at: https://greensock.com/docs/v3/Plugins/ScrollTrigger
+      e.g. "play pause resume reset" will play the animation when entering, pause it when leaving, resume it when entering again backwards, and reset it when scrolling all the way back past the beginning.
+
+  toggleClass: <String/Object>
+    Adds or removes a class to an/multiple element(s) when the ScrollTrigger toggles active/inactive.
+    <String>: Name of the class to add to the trigger element.
+    <Object>: Toggle a class for elements other than just the trigger.
+      e.g. toggleClasss: {targts: ".my-selector", className: "active"}
+
+  once: <Boolean>
+    If true, the ScrollTrigger will 'kill()' itself as soon as the end position is reached once, making it eligible for garbage collection.
+
+  fastScrollEnd: <Boolean/Number>
+    If true, will force the current ScrollTrigger's animation if you leave its trigger area faster than a certain velocity (default: 2500px/s).
+    If number, it specifies the stated velocity.
+
+* Callbacks
+
+  onEnter: <Function>
+    Callback for when the scroll position moves forward past the 'start'. It receives an object with certain properties.
+      e.g.
+        onEnter: ({progress, direction, isActive}) => {
+          console.log(progress, direaction, isActive)
+        }
+
+  onEnterBack: <Function>
+    Callback for when the scroll position moves backward past the 'end' (tipically, when the trigger is scrolled back into view).
+    Receives an object with properties stated for 'onEnter'.
+
+  onLeave: <Function>
+    Callback for when the scroll position moves forward past the 'end' (tipically when the trigger is scrolled out of view).
+    Receives an object with properties stated for 'onEnter'.
+
+  onLeaveBack: <Function>
+    Callback for when the scroll position moves backward past the 'start' (tipically when the trigger is scrolled all the way past the start).
+    Receives an object with properties stated for 'onEnter'.
+
+  onRefresh: <Function>
+    Callback for when the refresh occurs (tipically, a resize event), which forces ScrollTrigger to recalculate all of its positioning.
+    Receives an object with properties stated for 'onEnter'.
+
+  onUpdate: <Function>
+    Callback that gets called every time the progress on the ScrollTrigger changes.
+    Receives an object with properties stated for 'onEnter'.
+
+    onToggle: <Function>
+    
+* Scrub
+    
+  scrub: <Boolean/Number>
+  onScrubComplete: <Function>
+
+* Snap
+
+  snap: <Number/Array/Function/Object/"labels"/"labelsDirectional">
+  onSnapComplete: <Function>
+
+* Element pinning
+  
+  pin: <Boolean/String/Element>
+  pinnedContainer: <Element/String>
+  pinReparent: <Boolean>
+  pinSpacer: <Element>
+  pinSpacing: <Boolean/String>
+  pinType: <String>
+
+  anticipatePin: <Number>
+    Numerical value that anticipates the pinning of elements to avoid delays on the pinning due to the browser rendering methods.
+
+- Horizontal animations
+
+  horizontal: <Boolean>
+    If true, it assumes that the setup uses horizontal scrolling.
+
+  containerAnimation: <TweenOrTimeline>
+    Monitors the container's horizontal animation to know when to trigger the specified Tween or Timeline (as horizontal scrolling is not native scrolling).
+
+  
+
+
+* Common ScrollTrigger mistakes

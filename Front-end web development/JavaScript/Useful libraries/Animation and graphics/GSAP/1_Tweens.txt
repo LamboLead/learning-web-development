@@ -31,6 +31,7 @@ A Tween instance is an object that controls the behavior of an animation.
   delay: Delay before starting the animation.
   ease: Easing function that should be used
   stagger: Staggers the starting time for each target/element animation.
+  yoyo: ...
 
   - Callbacks
 

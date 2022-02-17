@@ -26,7 +26,9 @@ It can be used to store data that you want to keep private or hidden from the us
   Make a JSON response uppercase or not depending on the MESSAGE_STYLE variable.
 
   > Inside the .env file:
-    MESSAGE_STYLE = uppercase
+    {
+      MESSAGE_STYLE = "uppercase"
+    }
 
   > Inside the MyApp.js file:
     var express = require('express');

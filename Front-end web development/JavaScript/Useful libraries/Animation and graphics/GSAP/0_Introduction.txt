@@ -21,3 +21,5 @@ It is an animation library for JavaScript. It animates anything that JavaScript 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
 
   Or installing it via NPM/Yarn.
+
+    $ npm install gsap

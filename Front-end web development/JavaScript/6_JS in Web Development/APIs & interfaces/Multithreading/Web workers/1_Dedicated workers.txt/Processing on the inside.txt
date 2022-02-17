@@ -1,0 +1,47 @@
+PROCESSING DATA INSIDE THE SCOPE OF THE WORKER
+
+The WorkerGlobalScope interface represents the scope of any worker.
+
+> Each worker has its own event loop.
+> The interface is specialized by each worker type:
+  'DedicatedWorkerGlobalScope' for dedicated workers
+  'SharedWorkerGlobalScope' for shared workers
+  'ServiceWorkerGlobalScope' for service workers
+> You can access this scope using the 'self' property.
+
+Dedicated workers have their own global scope. You have access to the following events, methods and properties by using the 'self' keyword inside a worker:
+
+1. Properties and methods
+
+- Syntax:
+  self.<property>
+  self.<method>(<argument>)
+
+- Properties:
+  .name
+    Name that the worker was optionally given when it was created
+
+  .location
+    WorkerLocation object associated with the worker (location of the script, among other information).
+
+  .navigator
+    WorkerNavigator object associated with the worker (a subset of the Navigator from the main thread, adapted to workers).
+
+- Methods:
+  .close()
+    Closes the particular scope of the worker, discarding any tasks queued in the WorkerGlobalScope.
+
+  .postMessage(<data>)
+    Sends a message to the parent document that first spawned the worker.
+
+2. Events
+- Syntax:
+  self.<onevent> = <callback>
+  self.addEventListener("<event>", <callback>)
+
+- Events:
+  message
+    Fires when the worker receives a message from its parent
+
+  messageerror
+    Fires when the worker receives a message that can't be deserialized

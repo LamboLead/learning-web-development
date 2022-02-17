@@ -1,0 +1,36 @@
+THE NetworkInformation API
+
++ WARNING: Experimental technollogy
+This API provides you with different information about the active connection of the user as measured by the browser.
+
+1. Properties & methods
+
+It can be accessed through the 'connection' property of the 'navigator' API.
+
+- Syntax:
+  window.navigator.connection.<method or property>
+
+- Properties
+
+  .effectiveType
+    The effective connection type of the user. Can be "4g", "3g", "2g", "slow-2g".
+
+  .downlink
+    Effective bandwidth estimate in Mb/s, rounded to the nearest multiple of 25kb/s.
+    
+  .downlinkMax
+    Maximum downlink speed in Mb/s.
+
+  .rtt
+    Round-trip time. Time in milliseconds that it took for the data to go to the server and go back to the device, rounded to the nearest multiple of 25 milliseconds.
+
+  .saveData
+    Returns true if the user has set a reduced data usage option on the device.
+
+  .type
+    Type of connection a device is using to communicate with the network. Can be "bluetooth", "cellular", "ethernet", "none", "wifi", "wimax", "other", "unknown".
+
+- Events
+
+  onchange
+    Fired when the connection information changes.

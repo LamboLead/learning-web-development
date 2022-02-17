@@ -141,6 +141,10 @@ These properties are created inside the ScrollTrigger object.
 * Scrub
     
   scrub: <Boolean/Number>
+    Links the progress of the animation directly to the scrollbar so it acts like a scrubber. Some smoothing can be applied so that it takes a little time for the playhead to catch up with the scrollbar's position.
+    <Boolean>: If true, links the animation progress to the scrollbar.
+    <Number>: Amount of time of smoothing in seconds.
+
   onScrubComplete: <Function>
 
 * Snap
@@ -151,7 +155,10 @@ These properties are created inside the ScrollTrigger object.
 * Element pinning
   
   pin: <Boolean/String/Element>
+    Pins the specified element during the time that ScrollTrigger is active, appearing to 'stick' in its starting position, while the rest of the content continues scrolling underneath it.
+
   pinnedContainer: <Element/String>
+    
   pinReparent: <Boolean>
   pinSpacer: <Element>
   pinSpacing: <Boolean/String>

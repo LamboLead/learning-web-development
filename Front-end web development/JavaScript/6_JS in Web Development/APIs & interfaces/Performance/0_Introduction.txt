@@ -1,0 +1,26 @@
+MEASURING PERFORMANCE IN WEBSITES
+
+You need to measure performance in your websites because a great part of a good user experience depends into it (the time the website takes to do something when the user gives an order).
+
+- What to measure?
+
+Measure the performance on your website based on the RAIL model:
+
+> Response: Time between the user clicks on a button and the site reacts to it (ideally less than 100ms).
+> Animation: Smoothness of the animation being displayed (ideally more than 50fps, or 17ms between frames).
+> Idle: 
+> Load: Time that the page takes to load its resources [Investigate about first contentful paint (about 1s), time to interaction, etc].
+
+- When to measure?
+
+There are three ways in which you can measure it:
+
+> Locally (during development), by using Edge DevTools.
+> Pre-release (before sending page to production), with Lighthouse CI, for example.
+> In production (with real user-experiences), by using Web Performance APIs.
+
+- Examples of what you can track
+
+> DNS performance: Response time of your DNS provider.
+> Page load: Loading time in between the user clicks your link, and the page loads completely.
+> 

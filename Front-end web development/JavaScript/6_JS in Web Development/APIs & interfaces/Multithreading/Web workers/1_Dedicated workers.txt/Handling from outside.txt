@@ -1,0 +1,50 @@
+USING THE WORKER INTERFACE INSIDE THE MAIN THREAD
+
+A worker interface represents a background task created from the main thread, which can receive, process, and send messages back to its creator.
+
+1. Constructor
+
+let worker = new Worker(<URL>, [<options>])
+  Creates a new worker from the JS file referenced using the specified URL.
+  <options>
+    Object containing the following option properties:
+    - type:
+      A DOMString specifying the type of worker to create. Can be 'classic' (default) or 'module'.
+    - credentials:
+      A DOMString specifying the type of credentials to use for the worker. Can be 'omit' (default, no credentials required), 'same-origin', 'include'.
+    - name:
+      DOMString specifying an identifying name for the DedicatedWorkerGlobalScope.
+
+2. Methods
+
+- Syntax:
+  worker.<method>(<arguments>)
+
+- Methods:
+  .postMessage(<data>)
+    Sends a message consisting of any JavaScript object to the worker's inner scope.
+
+  .terminate()
+    Immediately terminates the worker, preventing it from finishing its operations.
+
+3. Events
+
+- Syntax:
+  worker.<onevent> = <callback>
+  worker.addEventListener("<event>", <callback>)
+
+- Events:
+  message
+    Fires whenever a MessageEvent of type 'message' occurs. Its content is stored in the event's 'data' property.
+
+  messageerror
+    Fires whenever the MessageEvent fails.
+
+  error
+    Fires whenever an ErrorEvent of type 'error' occurs.
+
+  rejectionhandled
+    Fires every time a Promise rejects.
+
+  unhandledrejection
+    Fires when a Promise rejects with no handler to catch the rejection.

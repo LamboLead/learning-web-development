@@ -1,0 +1,39 @@
+.quickSetter(<target(s)>, <properties>)
+  Works like a .set function. It is optimized for changing a target(s)' properties very regularly.
+
+
+GSAP UTILS
+
+'gsap.utils' provides access to some helpful utility functions:
+
+- Syntax:
+  let someUtil = gsap.utils.<propertyOrMethod>
+
+- Methods
+
+  .checkPrefix(<CSSProperty>)
+    Prefixes the provided CSS property if necessary
+    e.g.
+      gsap.utils.checkPrefix("transform") // returns "msTransform" when run in IE9.
+
+  .clamp(<minimum>, <maximum>, <valueToClamp>)
+    Clamps a value to fit within a specific range and returns it, the minimum or maximum depending on its value.
+
+  .distribute()
+  .getUnit()
+  .interpolate()
+  .mapRange()
+  .normalize()
+  .pipe()
+  .random()
+  .selector()
+  .shuffle()
+  .snap()
+  .splitColor()
+
+  .toArray(<Selector/ArrayOfObjects>)
+    Converts any object (even selected by text) into a flat array
+
+  .unitize()
+  .wrap()
+  .wrapYoyo()

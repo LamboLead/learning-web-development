@@ -1,0 +1,55 @@
+THE PERFORMANCE INTERFACE
+
+It provides access and modification to all PerformanceEntry objects.
+
+1. Methods
+
+- Syntax
+  performance.<method>([<arguments>])
+
+- Methods (accessing entries):
+  .getEntries()
+    Returns the current list of entries.
+
+  .getEntriesByType(<type>)
+    Returns a list of entries filtered by the specified type.
+
+  .getEntriesByName(<name>)
+    Returns a list of entries filtered by the specified name.
+
+- Methods (manipulating mark & measure entries):
+  .mark(<name>)
+    Creates a new PerformanceMark entry with the specified name. Names don't have to be unique.
+
+  .clearMarks([<name>])
+    Clears the marks with the specified name.
+
+  .measure(<name>, <startEntryName>, <endEntryName>)
+    Creates a new measure with the specified name between the two specified marks or other entries.
+
+  .clearMeasures([<name>])
+    Clears the measures with the specified name.
+
+- Methods (instant measures, managing performance buffer, and other):
+
+  .now()
+    Returns a DOMHighResTimeStamp representing the number of milliseconds that have passed since the time origin.
+
+  .setResourceTimingBufferSize(<size>)
+    Sets the browser's resource timing buffer size to the specified number. It is recommended to set it to at least 150.- Methods (instant measurements):
+
+  .clearResourceTimings()
+    Remove all entries with type of 'resource' and sets the size of the performance data buffer to zero
+
+  .toJSON()
+    Returns a JSON representation of the performance object's properties.
+  
+2. Events
+
+- Syntax:
+  performance.<onevent> = <callback>
+  performance.addEventListener("<event>", <callback>)
+
+- Events:
+  resourcetimingbufferfull
+    Fired when the broser's resource timing buffer is full.

@@ -29,7 +29,7 @@ A timeline is a container of tweens, placing them one after the other.
       "X" (absolute): At X seconds from the beginning of timeline.
 
   .to(<target(s)>, <properties>, <position>)
-  .from(<target(s)>, <properties>, position)
+  .from(<target(s)>, <properties>, <position>)
   .fromTo(<target(s)>, <propertiesFrom>, <propertiesTo>)
     Same as '.add(gsap.to(...))' / '.from(gsap.to(...))' / '.fromTo(gsap.to(...))'
 
@@ -63,6 +63,6 @@ A timeline is a container of tweens, placing them one after the other.
 * Notes about timelines
   > You can chain different methods for a single timeline.
   > By default, animations are inserted one after the other, but you can modify the order of the animations in a timeline with the 'position' parameter.
-  > You can control timelines by using almost the same getter and seter setter methods from tweens.
+  > You can control timelines by using almost the same getter and setter methods from tweens.
 
 

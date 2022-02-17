@@ -1,0 +1,25 @@
+WEB WORKERS API
+
+Web workers allows to run a script operation in a thread separate from the main thread of a web application. The laborious processing can be performed in a separate thread, allowing the main thread (UI thread) to run without being blocked/slowed down.
+
+- Worker characteristics:
+> You can run almost any code you like inside a worker thread. However, the worker doesn't have access to the DOM, or some default methods and properties of the 'window' object.
+> Data is sent between workers and the main thread using a message pattern. Both sides send their message using the 'postMessage()' method, and respond to them via the 'onmessage' event handler. The data is copied rather than shared.
+
+- Types of workers
+> Dedicated workers: Workers utilized by a single script. Their global scope can be accessed via the 'self' keyword.
+> Shared workers: Workers that can be utilized by multiple scripts running in different windows, iFrames, etc; as long as they are in the same domain as the worker. They are more complex than dedicated workers because scripts must communicate via an active port.
+> Service workers: Workers that act as proxy servers that sit between web applications, the browser, and the network. Their goal is to enable the creation of effective offline experiences, intercept network requests and take appropiate action based on whether the network is available; among other things.
+
+
+
+1. Using workers
+
+
+- Creating a worker
+
+It is created using a constructor that runs a named JavaScript file:
+
+  let worker = new Worker('<file_name.js>');
+
+The 

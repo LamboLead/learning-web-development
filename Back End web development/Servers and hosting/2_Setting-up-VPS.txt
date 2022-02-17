@@ -1,0 +1,104 @@
+SETTING UP A VPS SERVER
+
+Because a VPS server is like a virtual computer inside a server, you need to set it up properly so that you can host your websites there.
+
+Included in the setting-up of your server, there are the following aspects, which all will be done using the command line:
+> Log into the server and write commands
+> Install new software and make updates
+> Set up new user accounts, if necessary
+> Set up a firewall
+
+1. Log into the VPS using SSH
+
+There are many ways to connect to a website besides the browser
+
+- File Transfer Protocol (FTP):
+> It allows to upload, download and edit files in your server.
+> It doesn't allow to emmit commands to the server.
+
+- Secure Shell access (SSH):
+> It allows to emit commands to the server.
+> Has strong cyphering protocols, making it very secure.
+
+Once you register in a VPS plan, your hosting provider must provide you with the following data:
+> IP address of the server.
+> 'root' username (A user with all the privileges of a system).
+> 'root' password (for the root account).
+
+If you are using Windows in your local machine, you need to install an SSH client. There are two recommended options: Bitvise and PuTTY. The tutorials will cover the interaction with PuTTY.
+
+Once you have PuTTY installed in your machine, execute it and follow the instructions:
+
+(Window: PuTTY Configuration)
+  > Type the IP address of your server, and leave the Port number as default (22). This port is used to log in securely and for the Secure File Transfer Protocol (SFTP).
+  > Select the option 'SSH' for the connection type.
+  > Press the 'Open' button.
+
+(Window: PuTTY Command Line (press ENTER for each step))
+  > Insert you login credentials. If everything is correct, you should see the information of your server.
+
+2. Update the server
+Following the previous steps in the command line, you should see a message indicating if there is a new package or security updates to do to the server. Do the following:
+
+(Window: PuTTY Command Line)
+  $ apt update  # Lists the packets to update
+  $ apt dist-upgrade  # Updates the listed packets
+  [Wait until the process finishes]
+  $ reboot  # Restarts the server
+  > Close the command line, and wait for a minute or two.
+  > Log into the server. If everything is OK, there won't be any more packets to update.
+
+3. Create a new user and modify its privileges
+You will create a new user. The root account has complete access to the system, and you can screw up things very easily with this kind of power.
+The new account to create is one of a normal user, but with superuser privileges. This kind of user needs to add the prefix 'sudo' to every command that he wants to execute with root privileges. Follow the steps:
+
+(Window: PuTTY Command Line)
+  $ adduser {yournewuser} # Adds a new user account to the server
+  $ usermod -aG sudo {yournewuser}  # Adds the 'superuser' privileges to the user being created
+
+4. Set up a public key authentication
+Following the previous steps, you will create a password for your new user. This is a special kind of password that uses the SSH protocol.
+
+The SSH protocol uses an encrypted key located in the server (public key). This key can only be decrypted by another key located in your local machine as a file (private key) and a password-phrase.
+
+To generate new SSH keys on Windows, you can use the application 'PuTTYgen'. Install it and follow the steps:
+(Window: PuTTY Key Generator)
+  > Click on 'Generate' button, and move the cursor around.
+  > Configure the key passphrase in the corresponding field.
+  > Click on 'Save private key', and save the resulting file (private key) in your PC. Don't close this window yet, as you need to copy the public key.
+
+You should now set up the public key into the server. Follow the steps:
+
+(Window: PuTTY Command Line)
+  > Log into your server.
+  $ # su - {yournewuser}  # Navigates to the directory corresponding to the new account being created
+  $ mkdir ~/.ssh  # Creates a new folder named '.ssh'
+  $ chmod 700 ~/.ssh  # Restrict privileges to the '.ssh' folder
+  $ nano ~/.ssh/authorized_keys # Opens the nano editor, which allows to modify the new file 'authorized_keys' in the server.
+  > Copy the public key from the PuTTYgen window and paste it into the nano editor.
+  > Press 'CTRL+X' to close the editor, and press 'Y' to confirm changes.
+  $ chmod 600 ~/.ssh/authorized_keys # Restrict privileges to the 'authorized keys' file
+  $ exit  # Returns to the root user
+
+You must now set upt PuTTY so that it can use your private key to log into the server as your newly created user.
+
+(Window: PuTTY Configuration)
+  > Go to 'Connection > SSH > Auth'. You will find a field called 'Private key file for authentication'.
+  > Click on 'Browse', and select the file that you saved as the private key.
+
+You should tell your server to disable the usual authentication method. Follow the steps:
+
+(Window: PuTTY Command Line)
+  > Log into the server using the SSH method.
+  $ sudo nano /etc/ssh/sshd_config  # Opens the nano editor into the file 'sshd_config'
+  > Look for the line with the sequence 'PasswordAuthentication'. Delete the '#' sign in front of it. Set its corresponding value from 'Yes' to 'No'.
+  > Save the changes in the file (by pressing 'CTRL+X') and restart the server.
+
+Next time that you want to log into your server, you can only do it using your private key and passphrase.
+
+5. Set up a firewall for the VPS
+
+
+
+
+

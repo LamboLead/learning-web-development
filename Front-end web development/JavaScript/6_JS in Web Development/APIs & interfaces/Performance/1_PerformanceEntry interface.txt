@@ -1,0 +1,113 @@
+THE PerformanceEntry INTERFACE
+
+The browser dedicates a buffer to record different performance metrics based on the time that a certain event happened. Such metrics are recorded in the form of Performance entries.
+
+An entry is a single data point or metric in the performance timeline. It has the following common properties, which are extended according to the type of the entry:
+
+1. Methods & properties
+
+- Syntax:
+  PerformanceEntry.<property>
+  
+- Properties:
+
+  .name
+    Name of the performance entry when the metric was created.
+
+  .entryType
+    Type of the performance entry
+
+  .startTime
+    A DOMHighResTimeStamp representing the starting time for the performance entry.
+
+  .duration
+    A DOMHighResTimeStamp representing the time value of the duration of the performance event.
+html5rocks.com/en/tutorials/webperformance/basics/
+- Methods:
+
+  .toJSON()
+    Returns the JSON serialization of the PerformanceEntry object, specific to its type.
+
+2. Types of performance entries
+
+There are different types of performance entries, based on what's being loaded, certain events, etc:
+
+* PerformanceNavigationTiming
+
+Entry related to the loading of the HTML document when the user clicks on the link for the website. [Investigate Navigation Timing chart].
+
+- Getting the PerformanceNavigationTiming entry:
+  performance.getEntriesByType("navigation")
+    Returns an array of NavigationTiming entries.
+
+- Properties:
+  name: 'URL of the site'
+  entryType: 'navigation'
+  startTime: 0
+  duration: <total time until onLoad>
+  type: "navigation", "reload", "back_forward", ...
+  transferSize
+  encodedBodySize
+  decodedBodySize
+  nextHopProtocol: "http/1.1", "h2", ...
+  ...
+
+* PerformanceResourceTiming
+
+  Entry related to the successful loading of resources (except HTML), like JavaScript code, media, etc. [Investigate Resource Timing chart].
+  
+- Getting the PerformanceResourceTiming entry:
+  performance.getEntriesByType("resource")
+    Returns an array of ResourceTiming entries
+
+- Properties:
+  entryType: 'resource'
+  startTime: <time in which the resource started loading>
+  initiatorType:
+    "script" (for JavaScript)
+    "link", "img" (for HTML)
+    "css" (for fonts, background images, etc)
+    "xmlhttprequest" (for XMLHttpRequest)
+    "beacon" (for sendBeacon)
+    "" (for fetch(), Worker(), etc)
+
+* PerformancePaintTiming
+
+Entry related to the rendering of frames since their loading starts.
+
+- Getting the PerformancePaintTiming entry:
+  performance.getEntriesByType("paint")
+    Returns an array of PaintTimingEntries
+  Using PerformanceObserver
+
+- Properties:
+  entryType: "paint"
+  "first-paint": <time in which the browser first rendered after navigation>
+  "first-contentful-paint": <time in which the browser first rendered any text, image, non-white canvas, or SVG>
+
+* PerformanceMark & PerformanceMeasure
+
+  A PerformanceMeasure is a entry that the developer can use to measure time between two PerformanceMarks (set points) in any operation. You can interact with them using the following methods:
+
+- Syntax:
+
+  performance.<method>()
+
+- Methods:
+
+  .mark(<name>)
+    Creates a new PerformanceMark entry with the specified name. Names don't have to be unique.
+  .clearMarks([<name>])
+    Clears the marks with the specified name.
+  .measure(<name>, <startEntryName>, <endEntryName>)
+    Creates a new measure with the specified name between the two specified marks or other entries.
+  .clearMeasures([<name>])
+    Clears the measures with the specified name.
+
+- Get the PerformanceMark & PerformanceMeasure entries:
+
+  performance.getEntriesByName(<mark or measure name>)
+    Retrieves an array of entries that match the specified name.
+
+* PerformanceLongTaskTiming
+* PerformanceFrameTiming

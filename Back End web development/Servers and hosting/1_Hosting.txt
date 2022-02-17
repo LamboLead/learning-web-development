@@ -1,0 +1,5 @@
+There are different types of hosting:
+
+1. Shared hosting
+2. VPS
+3. Dedicated server

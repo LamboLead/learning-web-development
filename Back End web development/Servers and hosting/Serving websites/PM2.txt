@@ -1,0 +1,26 @@
+PM2 WEB SERVING TOOL
+
+PM2 is a tool that manages the serving of websites.
+
+2. Commands
+
+$ pm2 startup ubuntu
+  Starts the pm2 service automatically on server start.
+
+$ pm2 start {yourjsfile.js}
+  Starts an Express instance in the server.
+
+$ pm2 stop {yourjsfile.js}
+  Stops the execution of the specified Express instance.
+
+$ pm2 status
+  Shows the different instances of Express currently running in the server.
+
+$ pm2 restart {yourjsfile.js}
+  Restarts the specified Express instance.
+
+$ pm2 logs
+  Shows a log of all the actions made by de developer.
+
+$ pm2 flush
+  Flush the pm2 logs.

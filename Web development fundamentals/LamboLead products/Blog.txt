@@ -1,0 +1,30 @@
+BLOG
+
+* Description
+  Website with various pages to show large amounts of text and images. Great for companies or people that want to talk a lot about one or different topics.
+
+* Attributes and recommendations
+  > Emphasis on styling and responsiveness.
+  > Backend may be required, depending on the infrastructure that you want the user to interact with.
+  > Great emphasis on SEO, may offer ad integration. Fast loading times.
+
+* Maximum completion time
+  27 days (great content addition infrastructure, ad integration, one extra functionality + web hosting)
+
+* Timeline
+  (Contract signing)
+  - Design
+  > UI sketch [3 days]
+  (Meeting: Sketch presentation)
+  > Wireframing and colour palette [3 days]
+  (Meeting: Wireframes presentation)
+  - Coding
+  > Responsive UI construction [4 days]
+  > Content management infrastructure construction [5 days]
+  > Adding basic functionalities [4 days]
+  > Adding extra functionalities [2 days per functionality]
+  > Testing [1-2 days]
+  - Website deployment
+  > Deployment set up [1-2 days]
+  > Final testing [1-2 days]
+  (Product delivery)

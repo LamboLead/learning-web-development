@@ -1,0 +1,26 @@
+INSTALL NODEJS AND NPM IN THE UBUNTU VPS
+
+If you want to install the latest stable versino of Node.JS and NPM in your Ubuntu VPS, follow the steps:
+
+(Window: PuTTY Command Line)
+  > Log into your server
+  $ sudo apt update # Update APT cache
+  $ sudo apt install nodejs # Installs NodeJS
+  $ sudo apt install npm  # Installs NPM
+  $ nodejs -v # Check the installed version of NodeJS
+
+If you want to install a specific version of NodeJS, follow the steps:
+
+(Window: PuTTY Command Line)
+  > Log into your server
+  $ sudo apt install wget # Installs wget, a command to download files from the internet
+  $ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash  # Downloads NVM, a version manager
+  $ source ~/.profile # Allow NVM to be used from the bash profile of your user
+  $ nvm ls-remote # Shows all available NodeJS to install
+  $ nvm install 10.15.1 # Installs NodeJS v10.15.1, the version with most support and stability
+  $ node -v # Checks the successful installation of NodeJS
+
+If you want to unistall NodeJS, follow the steps:
+(Window: PuTTY Command Line)
+  $ nvm deactivate  # Deactivates NodeJS
+  $ nvm uninstall v10.15.1  # Uninstalls NodeJS v10.15.1

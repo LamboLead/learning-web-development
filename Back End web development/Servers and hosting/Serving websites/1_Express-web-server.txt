@@ -1,0 +1,15 @@
+SERVING WEBSITES USING EXPRESS+NGINX+PM2 WEB SERVER
+
+NGINX is...
+
+Follow the steps to serve websites using an NGINX+PM2+Express web server:
+
+> Install NodeJS, NPM in your server
+> Set up a folder for your new proyect and paste all your files inside that folder
+> Install all the required dependencies for your project (among them, Express).
+> Install pm2 by typing
+  $ npm install -g pm2
+> Serve your application by typing
+  $ pm2 start {yourserver.jsfile}
+> Make sure that the port used in your express application is allowed to be used in your firewall.
+> Your application is now being served!

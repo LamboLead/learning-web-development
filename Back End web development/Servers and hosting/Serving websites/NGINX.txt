@@ -1,0 +1,56 @@
+NGINX WEB SERVER
+
+NGINX is a web server, similar to Apache, that...
+
+1. Set up NGINX on Ubuntu
+
+To start using NGINX as your web server, follow the steps:
+
+(Window: PuTTY Command Line)
+  > Log into your server
+  $ sudo apt install nginx  # Installs NGINX web server into your VPS
+  > Enter your IP address in the browser to check that NGINX was installed propery.
+
+Now, you need to modify some settings. Follow the steps:
+(Window: PuTTY Command Line)
+  $ sudo nano /etc/nginx/sites-available/default  # Opens the 'default' file for NGINX
+  > Copy the following in the file, then save and close file:
+    ...
+    server_name {yourdomain.com} {www.yourdomain.com}
+    location / {
+      # First attempt to serve request as file, then
+      # as directory, then fall back to displaying a 404.
+      # try_files $uri $uri/ =404;
+      proxy_pass http://localhost:5000; # Whatever port your app runs on
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_set_header Host $host;
+      proxy_cache_bypass $http_upgrade;
+    }
+    ...
+  > 
+
+2. Useful NGINX commands
+
+> Check installed version of NGINX
+  $ nginx -v
+
+> Check configuration syntax
+  $ nginx -t
+
+> Start service
+  $ systemctl start nginx
+  $ service nginx start
+
+> Enable service
+  $ systemctl enable nginx
+  $ service nginx enable
+
+> Restart service
+  $ systemctl restart nginx
+  $ service nginx restart
+
+> Check status
+  $ systemctl status nginx
+  $ service nginx status

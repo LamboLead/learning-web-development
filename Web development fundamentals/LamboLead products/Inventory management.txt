@@ -1,0 +1,33 @@
+INVENTORY MANAGEMENT
+
+* Description
+  Website to manage inventory of a store. Great for companies, stores or people who are managing their inventory using spreadsheets or other ancient and non-scalable technologies.
+
+* Attributes and recommendations
+  > Basic styling, no need to emphasize on design.
+  > Great emphasis on backend. Database and system architecture design is fundamental.
+  > Emphasis on ease-of-use. The user needs to fill data seamlessly.
+  > Fast loading times, very low resource demanding.
+
+* Maximum completion time
+  34 days (thorough system and database design, whole days on meetings, one extra functionality + web hosting)
+
+* Timeline
+  (Contract signing)
+  - System design
+  (Meeting: Information requirements for the form) [1 day]
+  > Database design [4 days]
+  > System architecture design [5 days]
+  > UI sketch and wireframing [3 days]
+  (Meeting: System architecture and database approval) [1 day]
+  - Coding
+  > Responsive UI construction [2 days]
+  > Database construction [2 days]
+  > CRUD construction & logic [6 days]
+  > Adding extra functionalities [3 days per functionality]
+  > Testing [1-2 days]
+  (Meeting: Project presentation)
+  - Website deployment
+  > Deployment set up [2-3 days]
+  > Final testing [1-2 days]
+  (Product delivery)

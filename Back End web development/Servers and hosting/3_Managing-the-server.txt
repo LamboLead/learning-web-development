@@ -1,0 +1,64 @@
+MANAGING THE SERVER
+
+To manage your server properly, you need to use the command line. The essential commands are listed below:
+
+* Navigation through the VPS
+
+$ ls
+  Shows all the files and folders inside the current directory.
+  
+
+$ cd {new/directory}
+  Browses to the specified directory
+
+$ mkdir {new/directory}
+  Creates a new folder inside the current directory
+
+$ pwd
+  Shows the current directory.
+
+$ find
+  Searches for files and directories.
+
+* File/folder management
+  
+$ mv {source/directory} {end/directory}
+  Moves files from one folder to another.
+
+$ cp {source/directory} {end/directory}
+  Copies files from one directory to another.
+
+$ tar
+  Creates and decompresses compressed files.
+
+$ wget
+  Downloads files from the internet.
+
+$ du {filename}
+  Gets the size of the file
+
+$ nano {filename}
+  Opens the 'nano' editor to see and modify files inside the command line.
+
+$ vi
+  Opens the 'vim' editor to see and modify files inside the command line.
+
+$ cat {filename}
+  Shows the content of a file.
+
+$ touch {name}
+  Creates a new file.
+
+$ rm {filename}
+  Deletes a file
+
+$ grep {filename} {phrase}
+  Looks for a specific phrase on the file
+
+* General commands
+
+$ history
+  Shows the last 50 commands used.
+
+$ clear
+  Cleans the terminal screen.

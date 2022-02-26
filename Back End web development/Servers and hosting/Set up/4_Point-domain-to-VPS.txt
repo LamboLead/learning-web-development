@@ -1,0 +1,50 @@
+POINT A DOMAIN TO A VPS SERVER
+
+This guide will tell you how to point an existing domain to your VPS using two different methods:
+> Changing the 'A record' in the actual DNS zone.
+> Setting up a new DNS zone with custom name servers.
+
+For this process, you will need the dedicated IP of your VPS.
+
+* Method 1: Point a domain to a VPS using an 'A record'
+
+This is an easy solution. It implies changing the actual A record in the authorized DNS zone. This means that the changing of A record must be carried out in the DNS-zone where the DNS points to.
+
+If you pick this option, the DNS-zone file will remain with the actual provider (including all its entries CNAME, MX, NS, and other registers).
+
+1. Know which DNS your domain is pointing to
+
+You can know where your domain points to by using a 'DNS searching tool', or opening the terminal and type the following command:
+  $ dig NS +short {your-domain.com}
+
+Now that you know, browse to your provider and open the DNS-zone of your domain.
+
+2. Add DNS entries
+
+You can now choose between two options. Find and replace the information, as shown below:
+
+- Option 1:
+Use two A records, one for the 'www' subdomain, and other for the domain itself.
+
+  Name              TTL     Type  Address
+  example.com       14400   A     {yourserveraddress}
+  www.example.com   14400   A     {yourserveraddress}
+
+- Option 2:
+Use an A record for the domain and CNAME for the 'www' subdomain.
+
+  Name              TTL     Type    Address
+  example.com       14400   A       {yourserveraddress}
+  www.example.com   14400   CNAME   {your-domain.com}
+
+3. Verify your changes to the DNS
+
+After pointing your domain to the VPS, you need to verify if the registers were added correctly. This DNS propagation can take up to 24 hours. However, most of the DNS verification tools give instantaneous results. Also, you can use the 'dig' command in the terminal:
+  $ dig A +short {your-domain.com}
+
+If the result is the IP address of your VPS, you just need to wait until the DNS propagates all over the world.
+Once the DNS is completely active, you will see a VPS default page when you visit your domain using your browser.
+
+* Method 2: Point the domain to a VPS using custom DNSs
+
+[Complete: https://www.hostinger.co/tutoriales/apuntar-dominio-vps]

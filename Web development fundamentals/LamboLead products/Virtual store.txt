@@ -1,0 +1,33 @@
+VIRTUAL STORE
+
+* Description
+  Complex website that, depending on its functionalities, could serve as the front-side of a company or store. Great for companies that have physical stores and want to start selling their products online.
+
+* Attributes and recommendations
+  > Emphasis on functionality, SEO, fast loading times. VPS hosting is recommended.
+  > Strong security and encryption.
+  > Strong backend. Database and system architecture is fundamental.
+  > Emphasis on ease-of-use.
+
+* Maximum completion time
+  37 days (content management infrastructure, two extra functionalities + web hosting)
+
+* Timeline
+  (Contract signing)
+  - Design
+  (Meeting: Information requirements for the store)
+  > UI sketch [3 days]
+  > System architecture design [5 days]
+  (Meeting: UI sketch and system architecture approval)
+  > Wireframing and color palette [3 days]
+  (Meeting: Wireframes presentation)
+  - Coding
+  > Responsive UI construction [3 days]
+  > Content management infrastructure [5 days]
+  > Adding basic funcionalities [5 days]
+  > Adding 2 extra functionalities [3 days per functionality]
+  > Testing [1-2 days]
+  - Website deployment
+  > Deployment set up [2-3 days]
+  > Final testing [1-2 days]
+  (Product delivery)

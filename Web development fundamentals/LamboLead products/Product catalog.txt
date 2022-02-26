@@ -1,0 +1,30 @@
+VIRTUAL CATALOG
+
+* Description
+  Website to show people the products inside a store. Great for restaurants, pet shops, fashion stores, or stores in general.
+
+* Attributes and recommendations
+  > Great emphasis on styling, colors and design. You should capture the personality of the business at hand.
+  > No backend, basic hosting is recommended.
+  > Great emphasis on mobile presentation.
+  > Fast loading times.
+
+* Maximum completion time
+  26 days (full catalog design, one extra functionality + web hosting)
+
+* Timeline
+  (Contract signing)
+  - Design
+  > UI sketch [4 days]
+  (Sketch presentation)
+  > Wireframing and colour palette [5 days]
+  (Wireframes presentation)
+  - Coding
+  > Responsive UI construction [5 days]
+  > Adding basic functionalities [3 days]
+  > Adding extra functionalities [2 days per functionality]
+  > Testing [1-2 days]
+  - Website deployment
+  > Deployment set up [1-2 days]
+  > Final testing [1-2 days]
+  (Product delivery)

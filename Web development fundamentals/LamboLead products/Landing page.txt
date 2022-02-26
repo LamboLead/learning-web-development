@@ -1,0 +1,31 @@
+LANDING PAGE
+
+* Description
+  Website to display a product, service, or show the portfolio of a person or a company.
+
+* Attributes & recommendations
+  > Visually appealing, great emphasis on design, themes and colors.
+  > Little to any backend, shared hosting is recommended.
+  > If the page is going to visit the website very often, it is good to make it shine by adding one or two additional features.
+  > Unless the client has his own logo, it is better for the developer to design it.
+
+* Maximum completion time
+  23 days (three pages, one extra functionality + web hosting)
+
+* Timeline:
+  (Contract signing)
+  - Design
+  > UI sketch [3 days]
+  (Meeting: Sketch presentation)
+  > Wireframing and colour palette [4 days]
+  (Meeting: Wireframes presentation)
+  - Coding
+  > Responsive UI construction [4 days]
+  > Adding basic functionalities [4 days]
+  > Adding extra functionalities [2 days per functionality]
+  > Testing [1-2 days]
+  (Meeting: Project presentation)
+  - Website deployment
+  > Deployment set up [1-2 days]
+  > Final testing [1-2 days]
+  (Product delivery)

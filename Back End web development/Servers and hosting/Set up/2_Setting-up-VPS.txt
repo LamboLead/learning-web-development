@@ -38,6 +38,7 @@ Once you have PuTTY installed in your machine, execute it and follow the instruc
   > Insert you login credentials. If everything is correct, you should see the information of your server.
 
 2. Update the server
+
 Following the previous steps in the command line, you should see a message indicating if there is a new package or security updates to do to the server. Do the following:
 
 (Window: PuTTY Command Line)
@@ -49,6 +50,7 @@ Following the previous steps in the command line, you should see a message indic
   > Log into the server. If everything is OK, there won't be any more packets to update.
 
 3. Create a new user and modify its privileges
+
 You will create a new user. The root account has complete access to the system, and you can screw up things very easily with this kind of power.
 The new account to create is one of a normal user, but with superuser privileges. This kind of user needs to add the prefix 'sudo' to every command that he wants to execute with root privileges. Follow the steps:
 
@@ -57,6 +59,7 @@ The new account to create is one of a normal user, but with superuser privileges
   $ usermod -aG sudo {yournewuser}  # Adds the 'superuser' privileges to the user being created
 
 4. Set up a public key authentication
+
 Following the previous steps, you will create a password for your new user. This is a special kind of password that uses the SSH protocol.
 
 The SSH protocol uses an encrypted key located in the server (public key). This key can only be decrypted by another key located in your local machine as a file (private key) and a password-phrase.
@@ -98,7 +101,22 @@ Next time that you want to log into your server, you can only do it using your p
 
 5. Set up a firewall for the VPS
 
+Finally, you need to set up a firewall for your server. It restricts which ports allow traffic to access the server, blocking various attacks.
+You can do it using the 'iptables' program. This process is explained up next:
 
+[COMPLETE: https://www.hostinger.co/tutoriales/configurar-servidor-vps/]
 
+Or, you can do it using 'ufw', a Firewall manager for Ubuntu. Follow the steps:
+(Window: PuTTY Command Line)
+  $ sudo apt-get install ufw  # Installs ufw in the VPS
+  $ sudo su # Enters the root session (to have complete privileges)
+  $ ufw status  # Checks the ufw service status
+  $ ufw allow 22  # Allows to use the port 22 for any connection (important. If this port is not active when the ufw is activated, the SSH connection will finish and the user won't be able to enter again)
+  $ ufw enable  # Activates the ufw service
+  $ ufw status verbose
 
-
+Now, you should allow access to your desired ports with ufw. Follow the steps:
+(Window: PuTTY Command Line)
+  $ ufw allow http  # Activates the port 80, corresponding with the http protocol
+  $ ufw allow https  # Activates the port 443, corresponding with the https protocol
+  $ ufw allow 5000

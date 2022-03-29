@@ -1,0 +1,42 @@
+INTRODUCTION TO VUE
+
+Vue is a JavaScript framework for building UIs. It provides a declarative and component-based programming model that helps to develop user interfaces, be it simple or complex, in an efficient way.
+
+1. Main features
+
+> Declarative rendering: It extends standard HTML with a template syntax that allows to write HTML based on JavaScript state.
+> Reactivity: Vue automatically tracks JavaScript state changes and updates the DOM accordingly.
+
+2. Ways of using Vue
+
+Vue can be used in different ways to strike the optimal balance between stack complexity, developer experience and end performance.
+
+It can be used like the following
+
+- Standalone Script File
+  > No build step required.
+  > Easiest way to implement Vue, if the backend already renders HTML and the frontend logic isn't so complex.
+  > It can be used as a smaller Vue version, called 'petite-vue'.
+
+- Embedded Web Components
+  > Used to build standard Web Components that can be embedded in any HTML page, regardless of how they are rendered.
+  > Can be embedded in legacy applications, static HTML pages, or applications built with other frameworks.
+
+- Single-Page Application
+  > Vue controls the entire page, handling data updates and navigation without having to reload the page.
+  > Recommended for applications that require rich interactivity and non-trivial stateful logic on the frontend.
+
+- FullStack / Server-Side Rendering (SSR)
+  > Recommended for applications in which SEO score and time-to-content is important. In this case, pure-client SPAs are problematic for rendering times.
+  > Vue provides first-class APIs to render an application into HTML strings on the server, allowing end users to see the content immediately while the JS is being downloaded.
+  > You can use Nuxt, a higher-level vue-based framework, which allows to develop a fullstack application using Vue and JavaScript.
+
+- JAMStack / Static-Site Generation (SSG)
+  > Allows to render an entire application into HTML if the required data is static, improving site performance. Vue can still provide rich interactivity on the client side once the content has been rendered.
+
+- Beyond the Web
+  You can also:
+  > Build desktop apps with Electron or Tauri.
+  > Build mobile apps with Ionic Vue.
+  > Build desktop and mobile apps from the same codebase with Quasar.
+  > Use Vue's Custom Rendered API to build custom renderers targeting WebGL, or the terminal.

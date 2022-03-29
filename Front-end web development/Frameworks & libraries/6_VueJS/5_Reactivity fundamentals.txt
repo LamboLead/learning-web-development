@@ -1,0 +1,115 @@
+REACTIVITY IN VUE
+
+Link: https://vuejs.org/guide/essentials/reactivity-fundamentals.html
+
+1. Declaring reactive state
+
+You can declare reactive state of a component by using the Options API and the 'data' option, whose value is a function that returns an object.
+
+When creating a new component instance, Vue will call this function and wrap the returned object it its reactivity system:
+
+  export default {
+    data() {  # This declares the reactive state of the component
+      return {
+        count: 1
+      }
+    },
+    mounted() { # this is a lifecycle hook
+      console.log(this.count);  # 'this' refers to the component instance
+      this.count = 2;
+    }
+  }
+
+2. Declaring methods
+
+You can add methods to a component instance with the 'methods' option.
+
+  export default {
+    data() {
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      increment() { # Don't use arrow functions when defining methods
+        this.count++;
+      }
+    },
+    mounted() {
+      this.increment(); # methods can be called in lifecycle hooks or inside other methods
+    }
+  }
+
+You can access the methods within the component itself:
+
+  <button @click="increment">{{count}}</button>
+
+* The DOM update timing
+
+When you mutate reactive state, the DOM is updated automatically (Vue puts changes in a buffer) on the next 'tick' in the update cycle. To wait for the DOM update to complete after a state change, use the 'nextTick()' global API.
+
+  import {nextTick} from 'vue';
+
+  export default {
+    methods: {
+      increment() {
+        this.count++;
+        nextTick(() => {
+          # Access updated DOM
+        });
+      }
+    }
+  }
+
+* Deep reactivity
+
+In Vue, state is reactive by default. You can expect changes to be detected even when you mutate nested objects or arrays:
+
+  export default {
+    data() {
+      return {
+        obj: {
+          nested: {count: 0},
+          arr: ['foo', 'bar']
+        }
+      }
+    }, 
+    methods: {
+      mutateDeeply() {
+        this.obj.nested.count++;
+        this.obj.arr.push('baz');
+      }
+    }
+  }
+
+* Stateful methods
+
+If you need to dinamically create a method function, you can do the following:
+
+  import {debounce} from 'lodash-es'
+
+  export default {
+    methods: {
+      click: debounce(function() {
+        # Respond to click
+      }, 500)
+    }
+  };
+
+This approach is problematic because this function is stateful (it maintains some internal state on the elapsed time).
+
+To keep each component instance's debounced function independent of the others, you can create the debounced version in the 'created' lifecycle hook.
+
+  export default {
+    created() {
+      this.debouncedClick = _.debounce(this.click, 500); # each instance now has its own copy of 'debounced' handler
+    },
+    unmounted() {
+      this.debouncedClick.cancel(); # cancels the timer when the component is removed
+    },
+    methods: {
+      click() {
+        # respond to click
+      }
+    }
+  }

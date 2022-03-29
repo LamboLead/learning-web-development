@@ -1,0 +1,73 @@
+CREATING A VUE APPLICATION
+
+Link: https://vuejs.org/guide/essentials/application.html
+
+Every Vue application requires a root component that can contain other components as its children.
+
+To create a new Vue application, you need to create a new app instance by using the 'createApp' function.
+
+  import {createApp} from 'vue';
+  const app = createApp({
+    /* root component options */
+  });
+
+2. Mounting the application
+
+You need to mount the application instance if you want to render it into the DOM. Do it with the '.mount()' method:
+
+  <div id="app"></div>
+
+  app.mount('#app')
+
+The content of the root component will be rendered inside the container element. The '.mount()' method should always be called after all app configurations and asset registrations.
+
+3. In-DOM rendering
+
+You can write the root component's template directly inside the mount container.
+
+> The following code renders a button inside the '#app' container. It updates the count variable every time it is clicked. 
+
+  <div id="app">
+    <button @click="count++">{{count}}</button>
+  </div>
+
+  import {createApp} from 'vue';
+  const app = createApp({
+    data() {
+      return {
+        count: 0
+      }
+    }
+  });
+
+  app.mount('#app');
+
+4. Application configurations
+
+Every application instance exposes a '.config' object that allows to configure a few app-level options. It must be set before mounting the app.
+
+> The following code defines an app-level error handler that captures errors from all descendent components:
+  
+  app.config.errorHandler = (err) => {
+    // Handle error
+  }
+
+> The following code registers a component inside the app's scope. It allows the 'TodoDeleteButton' available anywhere in the app.
+  
+  app.component('TodoDeleteButton', TodoDeleteButton);
+
+5. Creating multiple application instances
+
+The 'createApp' API allows multiple Vue applications to coexist on the same page, each one with its own scope for configuration and global assets.
+
+  const app1 = createApp({
+    // ...
+  });
+  app1.mount("#container-1");
+  const app2 = createApp({
+    // ...
+  });
+  app2.mount("#container-2");
+
+You can use this setup to enhance server-rendered HTML and only need Vue to control specific parts of a large page.
+- Advice: Create multiple small application instances and mount them on the elements they are responsible for.

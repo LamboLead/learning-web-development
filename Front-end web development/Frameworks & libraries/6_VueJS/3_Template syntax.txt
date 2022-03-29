@@ -1,0 +1,102 @@
+TEMPLATE SYNTAX
+
+Link: https://vuejs.org/guide/essentials/template-syntax.html
+
+Vue uses an HTML-based template syntax that allows to bind the rendered DOM to the underlying component.
+
+1. Data binding in Vue
+
+Up next, you will see all the different forms in which you can bind data to HTML
+
+> Text interpolation
+  The value inserted inside the '{{msg}}' will be replaced with the value of the 'msg' property from the corresponding component instance.
+
+    <span>Message: {{msg}}</span>
+
+> Raw HTML (v-html directive)
+  With the 'v-html' directive, you can directly render HTML code.
+
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+> Attribute bindings (v-bind directive)
+  Instructs Vue to keep the element's 'id' attribute in sync with the component's dynamicId property.
+
+    <div v-bind:id="dynamicId"></div>
+    <div :id="dynamicId"></div> #shorthand
+
+> Boolean attributes
+  Instructs Vue to disable a button if the 'isButtonDisabled' property has a truthy value.
+
+    <button :disabled="isButtonDisabled">Button</button>
+
+> Dynamic binding
+  You can bind an object with different attributes to a component like so:
+
+    data() {
+      return {
+        objectOfAttrs: {
+          id: 'container',
+          class: 'wrapper'
+        }
+      }
+    }
+
+    <div v-bind="objectOfAttrs"></div>
+
+> Using JavaScript expressions
+    Vue supports the full power of JavaScript expressions inside all the data bindings:
+
+      {{number + 1}}
+      {{ok ? 'YES' : 'NO'}}
+      {{message.split('').reverse().join('')}}
+
+      <div :id="`list-${id}`"></div>
+
+    You can also call functions inside a binding expression:
+      <span :title="toTitleDate(date)">
+        {{formatDate(date)}}
+      </span>
+
+2. Vue directives
+
+Directives in Vue are special attributes that start with the v-prefix. Vue provides a number of built-in directives, like the following:
+
+  v-if = "JS expression"
+    Removes/inserts the associated element depending on the truthiness of the expression it englobes
+
+      <p v-if="seen">Now you see me</p>
+
+    Displays <p> if 'seen' is truthy
+
+  v-bind:<attribute> = "value"
+    Reacitely updates an HTML attribute, when the associated property has changed.
+
+      <a v-bind:href="url">...</a>
+      <a :href="url">...</a>
+
+    Updates the 'href' attribute in the <a> element when the 'url' property changes.
+
+      <a v-bind:[someAttribute]="url">...</a>
+      <a :[someAttribute]="url">...</a>
+
+    You can also evaluate the attributes as JS expressions.
+
+  v-on:<event> = "callback"
+    Listens to DOM events and executes functions accordingly.
+
+      <a v-on:click="doSomething">...</a>
+      <a @click="doSomething">...</a>
+
+    Executes the callback 'doSomething' when the <a> element is clicked.
+
+      <a v-on:[someEvent]="doSomething">...</a>
+      <a @[someEvent]="doSomething">...</a>
+
+    You can also evaluate the events as JS expressions.
+
+3. Modifiers
+
+These are special prefixes...
+
+- Important:
+  Template expressions only have access to a restricted list of globals like Math and Date. If you want to add additional globals, you need to add them to the 'app.config.globalProperties' object.

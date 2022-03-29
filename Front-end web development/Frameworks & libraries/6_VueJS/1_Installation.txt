@@ -1,0 +1,23 @@
+QUICK START TO VUE
+
+You can start a Vue project by using the following tools:
+
+> With build tools
+> Online (by using StackBlitz)
+> Local (by downloading the npm package)
+
+1. Installing Vue locally
+
+To install Vue locally, follow the instructions:
+
+> Install and execute 'create-vue'
+  $ npm init vue@latest
+> Choose the optional features that you want to implement in the project.
+> Once the project is created, install dependencies and start the development server:
+  $ cd <your-project-name>
+  $ npm install
+  $ npm run dev
+> (optional) Install 'Volar' extension for Vue development.
+
+> Once you are ready to ship the app to production, run the following:
+  $ npm run build

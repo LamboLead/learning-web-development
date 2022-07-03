@@ -1,0 +1,110 @@
+WATCHERS
+
+Link: https://vuejs.org/guide/essentials/watchers.html
+
+1. Basic usage
+
+You can use the 'watch' option to trigger a function whenever a reactive property changes:
+
+  export default {
+    data() {
+      return {
+        question: '',
+        answer: 'Questions usually contain a question mark',
+
+      }
+    },
+    watch: {
+      # Watch the 'question' property every time it changes. You can operate with its new value, or its old value
+      question(newQuestion, oldQuestion) {
+        if (newQuestion.indexOf('?') > -1) {
+          this.getAnswer();
+        }
+      }
+    },
+    methods: {
+      async getAnswer() {
+        this.answer = 'Thinking...';
+        try {
+          const res = await fetch('https://yesno.wtf/api');
+          this.answer = (await res.json()).answer;
+        } catch (error) {
+          this.answer = 'Error! Could not reach the API. ' + error;
+        }
+      }
+    }
+  }
+
+  <p>
+    Ask a yes/no question:
+    <input v-model="question"/>
+  </p>
+  <p>{{answer}}</p>
+
+2. Deep watchers
+
+The 'watch' option is shallow by default: The callback will only trigger when the watched property has been assigned a new value (it won't trigger on nested property changes). If you want the callback to fire on all neste mutations, use a deep watcher:
+
+  export default {
+    watch: {
+      someObject: {
+        handler(newValue, oldValue) {
+
+        },
+        deep: true
+      }
+    }
+  }
+
+3. Eager watchers
+
+The 'watch' option is lazy by default: The callback won't be called until the watched source has changed.
+
+In some cases you may want the same callback logic to be run eagerly. You can force a watcher's callback to be executed immediately by declaring it using an object with a 'handler' function and the 'immediate: true' option:
+
+  export default {
+    watch: {
+      question: {
+        handler(newQuestion) {
+          # This will be run immediately on component creation
+        },
+        immedate: true # Force eager callback execution
+      }
+    }
+  }
+
+4. Callback flush timing
+
+When you mutate reactive state, it may trigger both Vue component updates (run first) and watcher callbacks (run second) created by you.
+
+If you want to access the DOM in a watcher callback after Vue has updated it, you need to specify the "flush: 'post'" option:
+
+  export default {
+    ...
+    watch: {
+      key: {
+        handler() {...},
+        flush: 'post'
+      }
+    }
+  }
+
+5. Creating watchers conditionally
+
+You can imperatively create watchers using the $watch() instance method:
+
+  export default {
+    created() { # The 'created' lifecycle hook
+      this.$watch('question', (newQuestion) => {
+        ...
+      });
+    }
+  }
+
+They allow to stop the watcher early, and it is useful when you need to conditionally set up a watcher, or only watch something in response to user interaction.
+
+To stop the watcher before the component unmounts, the $watch() API returns a function for that:
+
+  const unwatch = this.$watch('foo', callback);
+  # When the watcher is no longer needed
+  unwatch();

@@ -1,0 +1,118 @@
+FORM INPUT BINDINGS
+
+Link: https://vuejs.org/guide/essentials/forms.html
+
+When dealing with forms, you may need to sync the state of the input elements with the corresponding state in JavaScript:
+
+  <input :value="text" @input='event => text = event.target.value'/>
+
+The 'v-model' allows to simplify this syncing:
+
+  <input v-model="text">
+
+1. Using the 'v-model' directive
+
+* Text
+
+  <p>Message is: {{message}}</p>
+  <input v-model="message" placeholder="edit me"/>
+
+* Multiline text
+
+  <span>Multiline message is:</span>
+  <p style="white-space: pre-line">{{message}}</p>
+  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+* Checkbox
+
+  Single checkbox, boolean value:
+
+    <input type="checkbox" id="checkbox" v-model="checked"/>
+    <label for="checkbox">{{checked}}</label>
+
+  Binding multiple checkbox to the same array or set value:
+
+    export default {
+      data() {
+        return {
+          checkedNames: []
+        }
+      }
+    }
+
+    <div>Checked names: {{checkedNames}}</div>
+
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="John">John</label>
+
+    <input type="checkbox" id="Mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+
+* Radio
+
+    <div>Picked: {{picked}}</div>
+
+    <input type="radio" id="one" value="One" v-model="picked"/>
+    <label for="one">One</label>
+
+    <input type="radio" id="two" value="Two" v-model="picked"/>
+    <label for="two">Two</label>
+
+* Select
+
+  Single select:
+
+    <div>Selected: {{selected}}</div>
+
+    <select v-model="selected">
+      <option disabled value="">Please select one</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+
+  Multiple select (bound to array):
+
+    <div>Selected: {{selected}}</div>
+
+    <select v-model="selected" multiple>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+
+  Select options that can be dynamically rendered with v-for:
+
+    export default {
+      data() {
+        return {
+          selected: 'A',
+          options: [
+            {text: 'One', value: 'A'},
+            {text: 'Two', value: 'B'},
+            {text: 'Three', value: 'C'}
+          ]
+        }
+      }
+    }
+
+    <select v-model="selected">
+      <option v-for="option in options" :value="option.value">
+        {{option.text}}
+      </option>
+    </select>
+
+2. Value bindings
+
+  For radio, checkbox and select options, the 'v-model' binding values are usually static strings. Sometimes you may want to bind the value to a dynamic property on the current active instance. You can do that using the 'v-bind' directive:
+
+* Checkbox
+
+...
+
+3. Modifiers
+
+...

@@ -1,0 +1,102 @@
+TEMPLATE REFS
+
+Link: https://vuejs.org/guide/essentials/template-refs.html
+
+In case you need access to the underlying DOM elements, you use the special 'ref' attribute:
+
+  <input ref="input">
+
+It allows users to obtain a direct reference to a specific DOM element or child component after it is mounted.
+
+1. Accessing the refs
+
+The resulting ref is exposed on 'this.$refs':
+
+  <script>
+    export default {
+      mounted() {
+        this.$refs.input.focus();
+      }
+    }
+  </script>
+
+  <template>
+    <input ref="input"/>
+  </template>
+
+2. Refs inside 'v-for'
+
+When 'ref' is used inside 'v-for', the resulting ref value will be an array containing the corresponding elements:
+
+  <script>
+    export default {
+      data() {
+        return {
+          list: [...]
+        }
+      },
+      mounted() {
+        console.log(this.$refs.items); # Array containing the corresponding elements
+      }
+    }
+  </script>
+
+  <template>
+    <ul>
+      <li v-for="item in list" ref="items">
+        {{item}}
+      </li>
+    </ul>
+  </template>
+
+3. Function refs
+
+The 'ref' can also be bound to a function, which will be called on each component update, giving you full flexibility on where to store the element reference.
+
+  <input :ref='(el) => {...}'> # You can assign el to a property or ref
+
+4. Ref on component
+
+'ref' can also be used on a child component. The reference will be that of a component instance:
+
+  <script>
+    import Child from './Child.vue';
+    
+    export default {
+      components: {
+        Child
+      },
+      mounted() {
+        # this.$refs.child will hold an instance of <Child />
+      }
+    }
+  </script>
+
+  <template>
+    <Child ref="child" />
+  </template>
+
+The parent component will have full access to every property and method of the child component.
+
+* Limiting access to a child instance
+
+The 'expose' option can be used to limit the access to a child instance:
+
+  export default {
+    expose: ['publicData', 'publicMethod'],
+    name: "Child instance"
+    data() {
+      return {
+        publicData: 'foo', # Data accessible to the parent component
+        privateData: 'bar'
+      }
+    },
+    methods: {
+      publicMethod() {}, # Method accessible to the parent component
+      privateMethod() {}
+    }
+  }
+
+In this example, the parent referencing this component using a template ref will only be able to access 'publicData' and 'publicMethod'
+
+NOTE: Component refs should be only used when absolutely needed. In most cases, you should try to implement parent/child interactions using the standard props and emit interfaces first.

@@ -1,0 +1,117 @@
+CLASS AND STYLE BINDINGS
+
+You will need to manipulate an element's class list and its inline styles.
+
+1. Binding HTML classes
+
+* Binding to objects
+
+Pass an object to ':class' (short for 'v-bind:class') to dinamically toggle classes:
+
+  # The presence of the 'active' class will be determined by the truthiness of 'isActive'. Every time that 'isActive' changes, 'active' class will change accordingly.
+  <div :class="{active: isActive}"></div>
+
+You can also have different classes inside a single object:
+
+  ...
+  data() {
+    return {
+      classObject: {
+        isActive: true,
+        hasError: false
+      }
+    }
+  }
+  ...
+
+  <div class="static" :class="classObject"></div>
+
+You can also bind to a computed property that returns an object:
+
+  ...
+  data() {
+    return {
+      isActive: true,
+      error: null
+    }
+  },
+  computed: {
+    classObject() {
+      return {
+        active: this.isActive && !this.error,
+        'text-danger': this.error && this.error.type === "fatal"
+      }
+    }
+  }
+  ...
+
+  <div v-bind:class="classObject"></div>
+
+* Binding to arrays
+
+You can bind ':class' to an array to apply a list of classes:
+
+  ...
+  data() {
+    return {
+      activeClass: 'active',
+      errorClass: 'text-danger'
+    }
+  }
+  ...
+
+  <div :class="[activeClass, errorClass]"></div>
+  # Renders: <div class="active text-danger"></div>
+
+You can also toggle a class in the list conditionally:
+
+  <div :class="[{active: isActive}, errorClass]"></div>
+  # 'errorClass' will always be applied, but 'activeClass' will only be applied when 'isActive' is truthy
+
+* Binding to components
+
+...
+
+2. Binding inline styles
+
+* Binding to objects
+
+':style' supports binding to JavaScript object values, corresponding to the 'style' property:
+
+  ...
+    data() {
+      return {
+        activeColor: 'red',
+        fontSize: 30
+      }
+    }
+  ...
+
+  <div :style="{color: activeColor, 'font-size': fontSize + 'px'}"></div>
+
+You can also bind to a style object for cleaner implementation:
+  ...
+    data() {
+      return {
+        styleObject: {
+          color: "red",
+          fontSize: "13px"
+        }
+      }
+    }
+  ...
+
+  <div :style="styleObject"></div>
+
+* Binding to arrays
+
+You can bind ':style' to an array of multiple style objects. These objects will be merged and applied to the same element.
+  
+  <div :style="[baseStyles, overridingStyles]"></div>
+
+* Multiple Values
+
+You can provide an array of multiple (prefixed) values to a style property:
+
+  <div :style="{display: ['-webkit-box', '-ms-flexbox', 'flex']}"></div>
+

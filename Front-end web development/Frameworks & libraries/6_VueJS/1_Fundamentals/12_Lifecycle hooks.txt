@@ -1,0 +1,40 @@
+LIFECYCLE HOOKS
+
+Link: https://vuejs.org/guide/essentials/lifecycle.html
+
+Lifecycle hooks are functions that can be run by the user on specific stages of the mounting process to the DOM done by Vue.
+
+1. Registering lifecycle hooks
+
+You can register a lifecycle hook inside a component by specifying its name inside the component definition:
+
+  export default {
+    mounted() {
+      console.log("The component is now mounted");
+    }
+  }
+
+2. Lifecycle diagram
+
+It is a diagram that helps to understand the mounting process done by Vue when it wants to render a component.
+
+  Start: Renderer encounters a component
+    > Setup (Composition API)
+    - beforeCreate()
+    > Initialize Options API
+    - created()
+    > Has pre-compiled template?
+      Yes: Continue
+      No: 'Compile template'
+    - beforeMount()
+    > Initial render, create & insert to the DOM
+    - mounted()
+    > Node mounted
+      (data changes)
+        - beforeUpdate()
+        > Re-render and patch
+        - updated()
+      (component is unmounted)
+        - beforeUnmount()
+        > Node unmounted
+        - unmounted()

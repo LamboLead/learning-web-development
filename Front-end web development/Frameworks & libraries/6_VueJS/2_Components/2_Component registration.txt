@@ -1,0 +1,62 @@
+COMPONENT REGISTRATION
+
+Link: https://vuejs.org/guide/components/registration.html
+
+There are two ways that you can register components: Global and local.
+
+1. Global registration
+
+Global registration allows to make components available globally in the current Vue application. To do it, use 'app.component()'
+
+  import {createApp} from 'vue';
+
+  const app = createApp({});
+
+  app.component(
+    'ComponentName', 
+    {
+      ... # Implementation
+    }
+  );
+
+When using Single File Components:
+
+  import MyComponent from './App.vue';
+  app.component('MyComponent', MyComponent);
+
+- Global components usage
+
+You can use globally registered components in the template of any component within the application:
+
+  <template>
+    <ComponentA />
+    <ComponentB />
+  </template>
+
+This applies to all subcomponents, meaning <ComponentA /> will also be available inside <ComponentA /> and <ComponentB />
+
+2. Local registration
+
+Local registration scopes the availability of the registered components to the current component only. It is done using the 'components' option:
+
+  <template>
+    <ComponentA />
+  <template/>
+
+  <script>
+    import ComponentA from './ComponentA.vue';
+
+    export default {
+      components: {
+        ComponentA
+      }
+    }
+  </script>
+
+Locally registered components are not available to descendent components. In this case, <ComponentA /> will only be made available to the current component only, not any of its child or descendent components.
+
+3. Useful information on component registration
+
+> Global registration prevents build systems from removing unused components.
+> Global registration makes dependency relationships less explicit in large applications, making it difficult to locate a child component's implementation from a parent component using it.
+> It is recommended to use 'PascalCase' to import and register components in JS.

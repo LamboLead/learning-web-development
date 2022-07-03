@@ -1,0 +1,141 @@
+EVENT HANDLING
+
+Link: https://vuejs.org/guide/essentials/event-handling.html
+
+To listen to events, you can use the 'v-on' directive, which is shortened to the '@' symbol. There are twi different handlers:
+
+1. Handlers
+
+* Inline handlers
+
+These are inline JavaScript to be executed when the event is triggered. These are used in simple cases:
+
+  ...
+  data() {
+    return {
+      count: 0
+    }
+  }
+  ...
+
+  <button @click="count++">Add 1 </button>
+  <p>Count is: {{count}}</p>
+
+* Method handlers
+
+A property name or path that points to a method defined on the component. These are used in more complex problems:
+
+  ...
+  data() {
+    return {
+      name: 'Vue.js'
+    }
+  },
+  methods: {
+    greet(event) { # 'event' is the native DOM Event object
+      alert(`Hello ${this.name}!`);
+      if (event) {
+        alert(event.target.tagName);
+      }
+    }
+  }
+  ...
+
+  <button @click="greet">Greet</button> # 'greet' is the name of the method defined above
+
+2. Calling methods in inline handlers
+
+You can also call methods in an inline handler, passing methods custom arguments instead of the native event:
+
+  ...
+  methods: {
+    say(message) {
+      alert(message)
+    }
+  }
+  ...
+
+  <button @click="say('hello')">Say hello</button>
+  <button @click="say('bye')">Say bye</button>
+
+3. Accessing the event argument inside inline handlers
+
+You may need to access the original DOM Event in an inline handler. You can pass it into a method using the special '$event' variable, or using an arrow function:
+
+  ...
+  methods: {
+    warn(message, event) {
+      if (event) {
+        event.preventDefault();
+      }
+      alert(message);
+    }
+  }
+
+  <button @click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+  
+  <button @click='(event) => warn('Form cannot be submitted yet', event)'>Submit</button>
+
+4. Event modifiers
+
+Vue provides event modifiers for 'v-on' to call easily call 'event.preventDefault()' or 'event.stopPropagation()':
+  
+  # The 'click' event's propagation will be stopped
+  <a @click.stop="doThis"></a>
+
+  # The 'submit' event will no longer reload the page
+  <form @submit.prevent="onSubmit"></form>
+
+  # Modifiers can be chained
+  <a @click.stop.prevent="doThat"></a>
+
+  # Just the modifier
+  <form @submit.prevent></form>
+
+  # Only trigger handler if event.target is the element itself (not a child)
+  <div @click.self="doThat"></div>
+
+The '.capture', '.once' and '.passive' modifiers mirror the options of the 'addEventListener()' method:
+
+  # Use capture mode when adding the event listener ¿?
+  <div @click.capture="doThis"></div>
+
+  # The click event will be triggered at most once
+  <a @click.once="doThis"></a>
+
+  # The scroll event's default behavior (scrolling) will happen immediately (tipically used on mobile devices)
+  <div @scroll.passive="onScroll"></div>
+
+5. Keyboard events - Key modifiers
+
+You often need to check for specific keys on keyboard events:
+
+  # Only call 'submit' when the 'key' is 'Enter'
+  <input @keyup.enter="submit"/>
+
+You can directly use any valid key names exposed via 'KeyboardEvent.key' as modifiers by converting them to kebab-case:
+
+  <input @keyup.page-down="onPageDown"/>
+
+* Key aliases
+
+Vue provides alisases for most commonly used keys: enter, tab, delete (both 'delete' and 'backspace' keys), esc, space, up, down, left, right.
+
+* System modifier keys
+
+You can trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed: ctrl, alt, shift, meta (Windows key).
+
+  <input @keyup.alt.enter="clear"/> # Alt + Enter
+  <div @click.ctrl="doSomething">Do Something</div> # Ctrl + Click
+
+* The '.exact' modifier
+
+The '.exact' modifier allows control of the exact combination of system modifiers needed to trigger an event:
+
+  <button @click.ctrl="onClick">A</button> # Fires even if Alt or Shift is also pressed
+  <button @click.ctrl.exact="onClick">A</button> # Fires only when Ctrl and no other are pressed
+  <button @click.exact="onClick">A</button> # Fires when no system modifiers are pressed
+
+* Mouse button modifiers
+
+Restrict the handler to events triggered by a specific mouse button: left, right, middle.

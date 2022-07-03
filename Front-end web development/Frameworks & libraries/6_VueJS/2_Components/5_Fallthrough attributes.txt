@@ -1,0 +1,83 @@
+FALLTHROUGH ATTRIBUTES
+
+Link: https://vuejs.org/guide/components/attrs.html
+
+A fallthrough attribute is an attribute or 'v-on' event listener that is passed to a component, but is not explicitly declared in the receiving component's props or emits.
+
+These include 'class', 'style' and 'id' attributes.
+
+1. Attribute inheritance
+
+If a child component is passed an attribute inside its declaration inside a parent component, it will be merged with the child component:
+
+- Example:
+
+  Given a <MyButton> component with the template:
+    
+    <button class="blue">Click me</button>
+
+  And a parent using this component:
+    
+    <MyButton class="large" />
+
+  The final rendered DOM will be:
+
+    <button class="blue large">Click me</button>
+
+The same passes with 'v-on':
+
+  <MyButton @click="onClick" />
+
+The 'click' listener will be added to the root element of <MyButton> (the native <button> element). If the native <button> already has a 'click' listener, then both listeners will trigger.
+
+NOTE: If a component renders another component inside of it, the fallthrough attributes received by him will be forwarded to all of its children.
+
+2. Disabling attribute inheritance
+
+If you dont want a component to automatically inherit attributes, you can set 'inheritAttrs: false' in the component's options.
+
+The fallthrough attributes can be accessed directly in template expressions as '$attrs':
+
+  <span>fallthrough attributes: {{$attrs}}</span>
+
+The '$attrs' object includes all attributes that are not declared by the component's props or emits ('class', 'style', 'v-on', etc).
+
+Notes:
+> fallthrough attributes preserve their original casing. An attribute like 'foo-bar' needs to be accessed as '$attrs.["foo-bar"]'.
+> A 'v-on' event listener like '@click' will be exposed on the object as a function under '$attrs.onClick'.
+
+- Example
+
+  You may want to wrap the actual <button> element with an extra <div> for styling purposes.
+  
+  You want all fallthrough attributes like 'class' and 'v-on' listeners to be applied to the inner <button>. You can achieve this with 'inheritAttrs: false' and 'v-bind="$attrs"':
+
+    <div class="btn-wrapper">
+      <button class="btn" v-bind="$attrs">Click me</button>
+    </div>
+
+  'v-bind' without an argument binds all the properties of an object as attributes of the target element.
+
+3. Attribute inheritance on multiple root nodes
+
+Components with multiple root nodes dont have an automatic attribute fallthrough behavior. If '$attrs' are not bound explicitly, a runtime warning will be issued.
+
+- Example
+
+  <CustomLayout id="custom-layout" @click="changeValue" />
+
+  You need to add '$attrs' to the multi-root template to supress the warning:
+
+    <header>...</header>
+    <main v-bind="$attrs">...</main>
+    <footer>...</footer>
+
+4. Accessing fallthrough attributes in JavaScript
+
+You can access a component's fallthrough attributes using the '$attrs' instance property:
+
+  export default {
+    created() {
+      console.log(this.$attrs)
+    }
+  }

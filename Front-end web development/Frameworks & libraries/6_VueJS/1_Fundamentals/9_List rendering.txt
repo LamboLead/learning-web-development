@@ -1,0 +1,129 @@
+LIST RENDERING
+
+Link: https://vuejs.org/guide/essentials/list.html
+
+You can use some directives to easily render lists.
+
+1. Using 'v-for' to render elements
+
+* v-for (in arrays)
+
+  It allows to render a list of items based on an array:
+
+    ...
+    data() {
+      return {
+        items: [{message: 'Foo'}, {message: 'Bar'}]
+      }
+    }
+    ...
+
+    <li v-for"item in items">
+      {{item.message}}
+    </li>
+
+  It also supports an optional second alias for the index of the current item:
+
+    ...
+    data() {
+      return {
+        parentMessage: 'Parent',
+        items: [{message: 'Foo'}, {message: 'Bar'}]
+      }
+    }
+    ...
+    <li v-for="(item, index) in items">
+      {{parentMessage}} - {{index}} - {{item.message}}
+    </li>
+
+* v-for (in objects)
+
+  You can also iterate through the properties of an object:
+
+    ...
+    data() {
+      return {
+        myObject: {
+          title: 'How to do lists in Vue',
+          author: 'Jane Doe',
+          publishedAt: '2016-04-10'
+        }
+      }
+    }
+    ...
+
+    <ul>
+      <li v-for="(value, key, index) in myObject">
+        {{index}}. {{key}}: {{value}}
+      </li>
+    </ul>
+
+* v-for (with a range)
+
+  You can also iterate within a specified range:
+
+    <span v-for="n in 10">{{n}}</span> # n starts with an initial value of 1 instead of 0
+
+* v-for (with a component)
+
+  ...
+
+2. Maintaining state with 'key'
+
+When Vue is updating a list of elements with 'v-for' it will update the entire list to match the order of the items, instead of moving them.
+
+If you want to track the each node's identity, and reuse and reorder existing nodes, you need to provide a unique 'key' attribute for each item:
+
+  <div v-for="item in items" v-bind:key="item.id"></div>
+
+It is recommended to provide a 'key' attribute with 'v-for' whenever possible, unless the iterated DOM content is simple. The 'key' binding expects strings and numbers, not objects.
+
+3. Array change detection
+
+* Mutation methods
+
+Vue is always looking for updates in the 'v-for' array to trigger a render. The methods it observes are: push(), pop(), shift(), unshift(), splice(), sort(), reverse().
+
+* Replacing an array
+
+When workint with non-mutation methods (e.g. filter(), concat(), slice()), you should replace the old array with the new one:
+
+  this.items = this.items.filter((item) => item.message.match(/Foo/));
+
+4. Displaying filtered/sorted arrays
+
+You may want to display a filtered or sorted array without mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array:
+
+  ...
+  data() {
+    return {
+      numbers: [1, 2, 3, 4, 5]
+    }
+  },
+  computed: {
+    evenNumbers() {
+      return this.numbers.filter(n => n % 2 === 0);
+    }
+  }
+  ...
+
+  <li v-for="n in evenNumbers">{{n}}</li>
+
+In situations where computed properties are not feasible, you can use a method:
+
+  ...
+  data() {
+    return {
+      sets: [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]
+    }
+  },
+  methods: {
+    even(numbers) {
+      return numbers.filter(number => number % 2 === 0)
+    }
+  }
+  ...
+
+  <ul v-for="numbers in sets">
+    <li v-for="n in even(numbers)">{{n}}</li>
+  </ul>

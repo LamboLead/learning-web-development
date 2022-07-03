@@ -1,0 +1,158 @@
+SLOTS
+
+Link: https://vuejs.org/guide/components/slots.html
+
+Components can accept both props and template content. You may want to pass a template fragment to a child component, and let the child component render the fragment within its own template.
+
+1. Slot content and outlet
+
+You may want a <FancyButton> component that supports usage like this:
+
+  # App.vue
+  <script>
+    import FancyButton from './FancuButton.vue';
+    import AwesomeIcon from './AwesomeIcon.vue'
+
+    export default {
+      components: {FancyButton, AwesomeIcon}
+    }
+  </script>
+
+  <template>
+    <FancyButton>
+      <span style="color:red">Click me!</span> # Slot content
+      <AwesomeIcon name="plus /">
+    </FancyButton>
+  </template>
+
+  # FancyButton.vue
+  <template>
+    <button class="fancy-btn">
+      <slot></slot> # Slot outlet
+    </button>
+  </template>
+
+2. Render scope
+
+Slot content has access to the data scope of the parent component. However, slot content does not have access to the child component's data.
+
+3. Fallback content
+
+You may want to specify default content for a slot to be rendered when no content is provided. You can do this by inserting the default content inside the slot itself:
+
+  <button type="submit">
+    <slot>Submit</slot> # Fallback content
+  </button>
+
+4. Named slots
+
+When having different slots inside a component, you want to specify which content goes in which slot. This can be done by using the special attribute 'name':
+
+  # ChildComponent.vue
+  <div class="container">
+    <header>
+      <slot name="header"></slot>
+    </header>
+    <main>
+      <slot name="main"></slot>
+    </main>
+    <footer>
+      <slot></slot> # Slots with no name take the name 'default'
+    </footer>
+
+In the parent component, you use <BaseLayout>, <template> elements, and the directive 'v-slot' to specify which content goes to which slot:
+
+  # ParentComponent.vue
+  <ChildComponent>
+    <template v-slot:header>
+      # Content for the header slot
+    </template>
+    <template #footer> # Shorthand for 'v-slot'
+      # Content for the footer slot
+    </template>
+    <template #default>
+      # Content for the default slot
+    </template>
+  </ChildComponent>
+
+5. Dynamic slot names
+
+Dynamic directive arguments also work on 'v-slot', allowing the definition of dynamic slot names:
+
+  <ChildComponent>
+    <template #[dynamicSlotName]>
+      # Content
+    </template>
+  </ChildComponent>
+
+6. Scoped slots
+
+If you want a slot's content to have access to the children information, you need the child to pass attributes to a slot outlet just like passing props to a component:
+
+  # MyComponent.vue
+  <div>
+    <slot :text="greetingMessage" :count="1"></slot>
+  </div>
+
+* Receiving props on single slots
+
+Use the 'v-slot' directive
+
+  <MyComponent v-slot="slotProps">
+    {{slotProps.text}} {{slotProps.count}}
+  </MyComponent>
+
+  <MyComponent v-slot="{text, count}"> # Destructuring
+    {{text}} {{count}}
+  </MyComponent>
+
+* Receiving props on named slots
+  
+Use the 'v-slot' directive specifying a name and the name of the 'props' object:
+
+  # ParentComponent.vue
+  <MyComponent>
+    <template #hdader="headerProps">
+      {{headerProps}}
+    </template>
+    <template v-slot="defaultProps">
+      {{defaultProps}}
+    </template>
+    <template #footer="footerProps">
+      {{footerProps}}
+    </template>
+  </MyComponent>
+
+Passing props to a named slot:
+
+  # MyComponent.vue
+  <template>
+    <slot name="header" message="hello"></slot>
+  </template>
+  
+7. Example: Fancy List
+
+You want to create a <FancyList> component that renders a list of items (it may encapsulate the logic for loading remote data, using the data to display a list, or advanced features like pagination or infinite scrolling).
+
+You want to leave the styling of each item to be flexible, so the desired usage may look like this:
+
+  # App.vue
+  <template>
+    <FancyList :api-url="url" :per-page="10">
+      <template v-slot:item="{body, username, likes}">
+        <div class="item">
+          <p>{{body}}</p>
+          <p>by {{username}} | {{likes}} likes</p>
+        </div>
+      </template>
+    </FancyList>
+  </template>
+
+  # FancyList.vue
+  <template>
+    <ul>
+      <li v-for="item in items">
+        <slot name="item" v-bind="item"></slot>
+      </li>
+    </ul>
+  </template>

@@ -1,0 +1,19 @@
+VUE DIRECTIVES & MODIFIERS
+
+v-bind (:)
+
+v-model
+
+v-for
+
+v-is
+
+v-if
+
+v-slot (#)
+
+v-on (@)
+
+v-show
+
+...

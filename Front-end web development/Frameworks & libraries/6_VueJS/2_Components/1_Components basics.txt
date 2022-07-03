@@ -1,0 +1,200 @@
+COMPONENTS BASICS
+
+Link: https://vuejs.org/guide/essentials/component-basics.html
+
+Components allow to split the UI into independent and reusable pieces, and think about each piece in isolation. Every Vue app has its own tree of nested components:
+
+  > Root
+    > Header
+    > Main
+      > Article (2)
+    > Aside
+      > Item (3)
+
+Vue implements its own component model that encapsulates custom content and logic in each component.
+
+1. Defining a component
+
+When using a build step, each Vue component has a dedicated file using the '.vue' extension (Single File Component - SFC);
+
+  <script>
+    export default{
+      data() {
+        return {
+          count: 0
+        }
+      }
+    }
+  </script>
+
+  <template>
+    <button @click="count++">You clicked me {{count}} times.</button>
+  </template>
+
+When not using a build step, a Vue component can be defined as plan JavaScript object containing Vue-specific options:
+
+  export default {
+    data() {
+      return {
+        count: 0
+      }
+    },
+    template: `
+      <button @click="count++">
+        You clicked me {{count}} times.
+      </button>
+    `
+  }
+
+2. Using a component
+
+To use a child component, you need to import it in the parent component and register it:
+
+  <script>
+    import ButtonCounter from './ButtonCounter.vue';
+
+    export default {
+      components: { # Here, you register your components
+        ButtonCounter
+      }
+    }
+  </script>
+
+  <template>
+    <h1>Here's a child component!</h1>
+    <ButtonCounter />
+  </template>
+
+3. Passing props to components
+
+If you're building a blog, you may need a component representing a blog post. You want all the blog posts to share the same visual layout, but with different content.
+
+Props are custom attributes that you can register on a component. To pass a title to the blog post component, you must declar it in the list of props that this component accepts using the 'props' option:
+
+  # BlogPost.vue
+  <script>
+    export default {
+      props: ['title']
+    }
+  </script>
+
+  <template>
+    <h4>{{title}}</h4>
+  </template>
+
+When a value is passed to a prop attribute, it becomes a property on that component, whose value is accessible within the template and on the component's 'this' context.
+
+You can then pass data to it as a custom attribute:
+
+  ...
+  <BlogPost title="My journey with Vue"/>
+  <BlogPost title="Fuck you"/>
+
+You can also do the following:
+
+  export default {
+    data() {
+      return {
+        posts: [
+          {id: 1, title: 'My journey with Vue'},
+          {id: 2, title: 'Fuck you'}
+        ]
+      }
+    }
+  }
+
+  ...
+  <BlogPost v-for="post in posts" :key="post.id" :title="post.title"/> # You use v-bind to pass dynamic props
+
+3. Listening to events
+
+Some features may require communicating back up to the parent. You use the '$emit' method to do so.
+
+> Example: You want to enlarge the text of blog posts, while leaving the rest of the page at its default size:
+
+  # BlogPost.vue
+  <script>
+    export default {
+      props: ['title'],
+      emits: ['enlarge-text'] # Declares emitted events to validate them
+    }
+  </script>
+  <template>
+    <div class="blog-post">
+    <h4>{{title}}</h4>
+    # Registers a 'click' event inside the button that calls the '$emit' method to enlarge the text
+    <button @click="$emit('enlarge-text')">Enlarge text</button>
+  </template>
+
+  # Parent.vue
+  ...
+  data() {
+    return {
+      posts: [...],
+      postFontSize: 1 # Property that controls the size of the font inside the posts
+    }
+  }
+
+  <div :style="{fontSize: postFontSize + 'em">
+    <BlogPost
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+      @enlarge-text="postFontSize += 0.1" # Changes the 'postFontSize' property on command of the child component
+    />
+  </div>
+
+4. Content distribution with Slots
+
+It is useful to pass content to a component, you can do it using the <slot> element:
+
+  # AlertBox.vue
+  <template>
+    <div class="alert-box">
+      <strong>This is an error for demo purposes</strong>
+      <slot /> # This element functions as a placeholder
+    </div>
+  </template>
+
+  <style>
+    .alert-box {...}
+  </style>
+
+  # Parent.vue
+  <AlertBox>Insert your error message here</AlertBox>
+
+5. Dynamic components
+
+It is useful to dynamically switch between components, like in a tabbed intarface. This can be achieved by using the special 'is' attribute:
+
+  # App.vue
+  <script>
+    import Home from './Home.vue';
+    import Posts from './Posts.vue';
+    import Archive from './Archive.vue';
+
+    export default {
+      components: {
+        Home,
+        Posts,
+        Archive
+      },
+      data() {
+        return {
+          currentTab: 'Home'
+        }
+      }
+    }
+  </script>
+
+  <template>
+    <component :is="currentTab"></component>
+  <template>
+
+This attribute uses the <component> to serve as a placeholder for the specified value inside ':is'. The value passed to 'is' can contain either: 1. The name string of a registered component, or 2. The actual imported component object.
+
+You can also use the 'is' attribute to create regular HTML elements.
+
+5. Template parsing caveats in the DOM
+
+Link: https://vuejs.org/guide/essentials/component-basics.html#dom-template-parsing-caveats

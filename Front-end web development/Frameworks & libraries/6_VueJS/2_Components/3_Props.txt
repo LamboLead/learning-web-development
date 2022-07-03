@@ -1,0 +1,134 @@
+PROPS
+
+Link: https://vuejs.org/guide/components/props.html
+
+Props are the information that is passed between components.
+
+1. Props declaration
+
+You need to declare explicit props so that Vue knows what external props passed to the component should be treated as attributes.
+
+  export default {
+    props: { # prop declaration
+      title: String, # constructor  of the prop
+      likes: Number
+    },
+    created() {
+      console.log(this.foo);
+    }
+  }
+
+2. Details on passing props
+
+You pass props to child components as an attribute using the 'kebab-casing' in two different ways:
+
+* Static props
+
+These are passed as simple text
+
+  <BlogPost title-message="My journey with Vue" />
+
+* Dynamic props
+
+These are passed using the 'v-bind' directive:
+
+  <BlogPost :title="post.title" /> # Simple expression
+  <BlogPost :title="post.title + ' by ' + post.author.name" /> # Complex expression
+
+You can pass different types:
+
+  <BlogPost :likes="42" /> # Number
+  <BlogPost is-published /> # Boolean
+  <BlogPost :is-published="false" /> # Boolean
+  <BlogPost :comment-ids="[234, 266, 273]" /> # Array
+  <BlogPost :author="{
+    name: 'Veronica',
+    company: 'Veridian Dynamics'
+  }"
+  /> # Object
+
+3. Data flow
+
+You should not update a prop inside a child component, props are updated inside the parent component and passed to the child components.
+However, there are two cases where it's tempting to mutate a prop:
+
+> The prop is used to pass in an initial value, and the child component wants to use it as a local data property afterwards. In this case it's best to define a local data property that uses the prop as its initial value:
+
+  export default {
+    props: ['initialCounter'],
+    data() {
+      return {
+        counter: this.initialCounter # 'counter' only uses 'this.initialCounter' as the inital value, it is then disconnected from any props
+      }
+    }
+  }
+
+> The prop is passed in as a raw value that needs to be transformed. It is best to define a computed property using the prop's value:
+
+  export default {
+    props: ['size'],
+    computed: {
+      normalizedSize() {
+        return this.size.trim().toLowerCase(); # Computed property that auto-updates when the prop changes
+      }
+    }
+  }
+
+4. Prop validation
+
+You can specify the type of prop that a component has to receive:
+
+  export default {
+    props: {
+      propA: Number, # Specifies one type, can be
+      propB: [String, Number] # Specifies multiple types
+      propC: {
+        type: String,
+        required: true # Specifies that the prop is required
+      },
+      propD: {
+        type: Number,
+        default: 100 # Specifies the default value for the prop
+      },
+      propE: {
+        type: Object,
+        default(rawProps) {
+          return {message: 'Hello'}; # Returns another value based on the default prop
+        }
+      },
+      propF: {
+        validator(value) {
+          return ['Success', 'Warning', 'Danger'].includes(value); # Validates the prop inside a 'validator' function
+        }
+      }
+    }
+  }
+
+There can be different types of props: 'String', 'Number', 'Boolean', 'Array', 'Object', 'Date', 'Function', 'Symbol'.
+
+You can also set a prop to be a class or instance:
+
+  class Person {
+    constructor(firstName, lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+  }
+
+  export default {
+    props: {
+      author: Person # Validates that the value of the 'author' prop was created with 'new Person'
+    }
+  }
+
+5. Boolean Casting
+
+Props with 'Boolean' type can mimic the behavior of native boolean attributes:
+
+  export default {
+    props: {
+      disabled: Boolean
+    }
+  }
+
+  <MyComponent disabled /> # Equivalent of passing :disabled="True"

@@ -1,0 +1,154 @@
+COMPONENT EVENTS
+
+Link: https://vuejs.org/guide/components/events.html
+
+1. Emiting and listening to events
+
+Emitting: Different components can emit events in template expressions using the '$emit' function:
+
+  <button @click="$emit('someEvent')">Click me</button>
+
+The '$emit' function is available on the component instance as 'this.$emit()'.
+
+Listening: The parent can then listen to the event by using 'v-on': 
+
+  <MyComponent @some-event="callback" />
+
+The '.once' modifier is also supported on component event listeners:
+
+  <MyComponent @some-event.once="callback" />
+
+Note: You should use kebab-cased event listeners in templates
+
+2. Event arguments
+
+You can specify custom arguments with events.
+
+You may want the <BlogPost> component to be in charge of how much to enlarge the text by:
+
+  <button @click="$emit('increaseBy', 1)">
+    Increase by 1
+  </button>
+
+  <MyButton @increase-by="(n) =< count += n" />
+
+Or you can pass it as a method:
+
+  <MyButton @increase-by="increaseCount" />
+
+  ...
+  methods: {
+    increaseCount(n) {
+      this.count += n;
+    }
+  }
+
+2. Declaring Emited Events
+
+You need to declare emitted events in the 'emits' option on the component.
+
+  export default {
+    emits: ['inFocus', 'submit']
+  }
+
+The 'emits' option can serve as a validation of the arguments that the event emits:
+
+  export default {
+    ...
+    emits: {
+      submit(arguments) {
+        # Validation...
+      }
+    }
+  }
+
+3. Event validation
+
+An emitted event can be validated if it is defined with the object syntax instead of the array syntax.
+
+To add validation, the event is assigned a function that receives the arguments passed to 'this.$emit' call, returning a boolean:
+
+  export default {
+    emits: {
+      # No validation
+      click: null,
+      # Validate submit event
+      submit: ({email, password}) => {
+        if (email && password) {
+          return true;
+        } else {
+          console.warn('Invalid submit event argumemts');
+          return false;
+        }
+      }
+    },
+    methods: {
+      submitForm(email, password) {
+        this.$emit('submit', {email, password});
+      }
+    }
+  }
+
+4. Events, inputs and v-model
+
+Remember that 'v-model' is a directive that provides two-way data binding between an imput and form data or between two components.
+
+Custom events can also be used to create custom inputs that work with 'v-model':
+
+  <input v-model="searchText" />
+
+Does the same as:
+
+  <input
+    :value="searchText"
+    @input="searchText = $event.target.value"
+  />
+
+If you want to use 'v-model' on a component for inputs inside of it, you should:
+
+  # CustomInput.vue
+  <script>
+    export default {
+      props: ['modelValue'],
+      emits: ['update:modelValue']
+    }
+  </script>
+
+  <template>
+    <input
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+    />
+  </template>
+
+Now, 'v-model' should work perfectly with this component:
+
+  <CustomInput v-model="searchText" />
+
+* v-model arguments
+
+By default, 'v-model' uses 'modelValue' as the prop and 'update:modelValue' as the event. You can modify these names by passing an argument to 'v-model':
+
+  <MyComponent v-model:title="bookTitle" />
+
+In this case, the child component should expect a 'title' prop and emit an 'update:title' event:
+
+  # MyComponent.vue
+  <script>
+    export default {
+      props: ['title'],
+      emits: ['update:title']
+    }
+  </script>
+  <templte>
+    <input
+      type="text"
+      :value="title"
+      @input="$emit('update:title', $event.target.value)"
+    />
+  </templte>
+
+* Multiple v-model bindings
+
+  ...
+  Link: https://vuejs.org/guide/components/events.html#multiple-v-model-bindings

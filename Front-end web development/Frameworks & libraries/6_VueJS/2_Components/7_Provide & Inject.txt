@@ -1,0 +1,5 @@
+PROVIDE / INJECT
+
+Link: https://vuejs.org/guide/components/provide-inject.html
+
+If you have a large component tree and you need to pass different props to some deeply nested children and the root component, you 

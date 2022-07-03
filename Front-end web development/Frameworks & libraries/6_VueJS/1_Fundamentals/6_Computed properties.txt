@@ -1,0 +1,76 @@
+COMPUTED PROPERTIES
+
+Link: https://vuejs.org/guide/essentials/computed.html
+
+1. When to use computed properties?
+
+A computed property is used when you want to code complex logic that includes reactive data. This is the alternative to put all the logic inside the template syntax.
+
+  export default {
+    data() {
+      return {
+        author: {
+          name: 'John Doe',
+          books: [
+            'Vue 1',
+            'Vue 2',
+            'Vue 3'
+          ]
+        }
+      }
+    },
+    computed: {
+      publishedBooksMessage() {
+        return this.author.books.length > 0 ? 'Yes' : 'No'
+      }
+    }
+  }
+
+  <p>Has published books:</p>
+  <span>{{publishedBooksMessage}}</span> # Here, you use the computed property, instead of putting the logic inside the {{}}
+
+2. Computed caching vs Methods
+
+The same result could be achieved by using a method. However, computed properties don't update on render, while methods do:
+  
+  ...
+    computed: {
+      now() {
+        return Date.now(); # This won't update itself
+      }
+    }
+
+Caching can be used to reduce calculations and operations, by avoiding looping through huge datasets many times per second on rendering.
+
+3. Writable computed property
+
+Computed properties are getter-only by default. However, you can create a new setter property:
+
+  export default {
+    data() {
+      return {
+        firstName: 'John',
+        lastName: 'Doe'
+      }
+    },
+    computed: {
+      fullName: {
+        get() {
+          return this.firstName + " " + this.lastName;
+        },
+        set(newValue) {
+          [this.firstName, this.lastName] = newValue.split(' ');
+        }
+      }
+    }
+  }
+
+  this.fullName = 'John Doe'; # The setter will be invoked
+
+4. Best practices
+
+> Getters should be side-effect free
+  Computed getter functions should only perform pure computation and be free of side effects. Their purpose is to compute and return a value based on other values .
+
+> Avoid mutating computed values
+  Do not update the value returned by the getter because it is like a snapshot of the current state. Update the source state if needed.

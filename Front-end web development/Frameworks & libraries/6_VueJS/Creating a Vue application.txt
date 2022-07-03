@@ -1,0 +1,8 @@
+CREATING A VUE APPLICATION
+
+If you're going to create a vue application using its CLI, do the following:
+
+  > Install the Vue CLI
+    npm install -g vue/cli
+
+  > ...

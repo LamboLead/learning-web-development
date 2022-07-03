@@ -1,0 +1,28 @@
+CONDITIONAL RENDERING
+
+Several directives can be used to render content conditionally.
+
+* v-if
+
+  Renders a block if the directive's expression returns a truthy value.
+
+    <h1 v-if="awesome">Vue is awesome!</h1>
+
+* v-else
+
+  Acts as an 'else' block for 'v-if'. It must immediately follow a 'v-if' or 'v-else-if' statement:
+    
+    <h1 v-if="awesome">Vue is awesome!</h1>
+    <h1 v-else>Oh no</h1>
+
+* v-else-if
+
+  Serves as an 'else-if' block for 'v-if'. It can be chained multiple times:
+
+    <div v-if="type === 'A">A</div>
+    <div v-else-if="type === 'B">B</div>
+    <div v-else>Not A/B</div>
+
+* v-show
+
+  Toggles the 'display' property of the element. It works as a 'v-if' directive.

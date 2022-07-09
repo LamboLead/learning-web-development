@@ -1,0 +1,59 @@
+DATA OPERATIONS - SQL
+
+Here you can find all the operations that you can perform with datasets.
+
+1. Inserting data
+
+Inserts the specified data inside a table:
+
+  # You have to insert data in order
+  > INSERT INTO <table_name> VALUES(<field_1>, <field_2>, <...>);
+
+  # Specifies the data to insert 
+  > INSERT INTO <table_name>(<fieldname_1>, <fieldname_3>) VALUES(<field_1>, <field_3>)
+
+- Example:
+
+  Insert a new student:
+    > INSERT INTO student VALUES (1, 'Jack', 'Biology');
+
+  Insert a new student without major:
+    > INSERT INTO student(student_id, name) VALUES (2, 'Claire');
+
+2. Reading/retrieving data
+
+  Show the specified dataset from the specified table that mets a certain condition:
+    > SELECT <DATASET> FROM <table_name> WHERE <CONDITION> ...;
+
+  (To further expand on this topic, review the 'Querying' folder)
+
+3. Updating data
+
+  Updates the rows in the table that meet certain criteria
+    > UPDATE <table_name> SET <field> = <value> WHERE <condition>;
+
+- Example:
+
+  Change the name of 'Biology' major to 'Bio':
+    > UPDATE student
+    SET major = 'Bio'
+    WHERE major = 'Biology';
+
+  Change the major and of student with student_id = 4 to 'Computer Science' and 'Dohn Joe':
+    > UPDATE student
+    SET major = 'Computer Science', name = 'Dohn Joe'
+    WHERE student_id = 4;
+
+  Change the name of all students to 'John Doe':
+    > UPDATE student SET name = 'John Doe';
+
+4. Deleting data
+
+  Deletes the rows in the table that meet certain criteria
+    > DELETE FROM <table_name> WHERE <condition>;
+
+- Example:
+  Delete the student whose name is 'Tom' and whose major is 'undecided':
+
+    > DELETE FROM student
+    WHERE name = 'Tom' AND major = 'undecided';

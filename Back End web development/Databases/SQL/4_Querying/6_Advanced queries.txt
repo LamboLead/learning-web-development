@@ -1,0 +1,33 @@
+ADVANCED AND NESTED QUERIES
+
+These are queries that use multiple 'SELECT' statements to get certain information.
+
+- Examples
+
+NOTE: These examples work with the 'Company Database' exercise.
+
+Find names of all the employees who have sold over 30000 to a single client
+
+  > SELECT
+    employee.first_name AS e_fn,
+    employee.last_name AS e_ln
+  FROM employee
+  WHERE employee.employee_id IN (
+    SELECT
+    works_with.employee_id AS e_id
+    FROM works_with
+    WHERE works_with.total_sales > 30000
+  );
+
+Find all clients who are handled by the branch that Michael Scott manages. Assume you know Michael's ID
+
+  > SELECT
+    client.client_id AS Client ID,
+    client.client_name AS Client Name
+  FROM client
+  WHERE client.branch_id = (
+    SELECT branch.branch_id
+    FROM branch
+    WHERE branch.manager_id = 102
+    LIMIT 1
+  );

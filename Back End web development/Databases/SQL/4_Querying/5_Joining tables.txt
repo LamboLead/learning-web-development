@@ -1,0 +1,38 @@
+JOINING TABLES
+
+You can join different tables together in order to increase the dataset of results, by using the 'JOIN' keyword and all its variants. These tables must be related in some way.
+
+You can increase the specificity of the query by using conditionals with the 'ON' keyword
+
+- Syntax:
+
+  > SELECT <dataset>
+  FROM <table_name_1> <JOIN KEYWORD> <table_name_2>
+  ON <CONDITION>;
+
+- Joins:
+
+  <table_name_1> LEFT JOIN <table_name_2>
+    Joins the specified tables, including all the results from the first table, and the coinciding results from the second one.
+
+  <table_name_1> INNER JOIN <table_name_2>
+    Joins the specified tables, including all the coinciding results from first and second tables.
+
+  <table_name_1> RIGHT JOIN <table_name_2>
+    Joins the specified tables, including all the results from the second table, and the coinciding results from the first one.
+
+- Examples:
+
+NOTE: These examples work with the 'Company Database' exercise.
+
+Find all branches and the names of their managers
+
+  > SELECT
+  employee.employee_id AS Employee ID, 
+  employee.first_name AS First Name,
+  branch.branch_name AS Branch Name
+  FROM
+  employee INNER JOIN branch
+  ON
+  employee.employee_id = branch.manager_id;
+

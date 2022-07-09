@@ -1,0 +1,87 @@
+QUERYING MODIFIERS
+
+From filtering to operating with the results, you can modify the results of a query depending on the keywords specified with it.
+
+1. Querying filters and conditionals
+
+The following are the filters and conditionals that MySQL supports on the SELECT operation:
+
+- Syntax
+
+  > SELECT <dataset> FROM <table_name> <CONDITION/FILTER>
+
+- Filters and conditionals
+
+  WHERE <CONDITION>
+
+  ORDER BY <field_name_1, field_name_2, ...>
+
+  LIMIT <integer>
+
+  GROUP BY <field_name_1, field_name_2, ...>
+
+- Examples
+
+NOTE: These examples work with the 'Company Database' exercise.
+
+2. Aliases
+
+You can set some aliases to the fields inside a query with the 'AS' keyword:
+
+- Syntax
+
+  > SELECT <field_name_1> AS <alias_1>,
+  <field_name_2> AS <alias_2>
+  FROM <table_name>
+  ...;
+
+These aliases work throughout all the query.
+
+2. Querying functions
+
+The following are the functions that MySQL supports on the SELECT operation:
+
+- Syntax
+
+  > SELECT <FUNCTION()> FROM <table_name> WHERE <CONDITION>;
+
+- Functions
+
+  COUNT(<field_name>)
+    Counts the rows that have values in the specified field.
+
+  AVG(<field_name>)
+    Finds the average of all the numerical values in the specified field.
+
+  SUM(<field_name>)
+    Finds the sum of all the numerical values in the specified field.
+
+- Examples
+
+NOTE: These examples work with the 'Company Database' exercise.
+
+Find the number of female employees born after 1970:
+
+  > SELECT COUNT(employee_id)
+  FROM employee
+  WHERE sex = 'F' AND birth_date > '1970-01-01';
+
+Find the average of all male employee's salaries:
+
+  > SELECT AVG(salary) FROM employee WHERE sex = 'M';
+
+Find the sum of all female employee's salaries:
+
+  > SELECT SUM(salary) FROM employee WHERE sex = 'F';
+
+Find out how many males and females there are:
+
+  > SELECT COUNT(sex), sex FROM employee GROUP BY sex;
+
+Find the total sales of each salesman:
+
+  > SELECT SUM(total_sales), employee_id
+  FROM works_with
+  GROUP BY employee_id;
+
+2:44:00

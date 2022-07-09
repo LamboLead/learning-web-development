@@ -1,0 +1,63 @@
+SQL - STRUCTURED QUERY LANGUAGE
+
+SQL stands for 'Structured Query Language'. Is a language used to create queries to control relational databases through an RDBMS (Relational Database Management Systems).
+
+The most popular RDBMS that you are going to use is called 'MySQL', and it uses this syntax and has different tools to help design, build, modify and manage a Relational Database based on SQL.
+
+1. Syntax
+
+The following rules apply to all SQL syntax:
+
+> All SQL-reserved keywords must be UPPERCASE
+> All SQL instructions finish with semicolon ';'
+
+2. Datatypes
+
+These are the most used datatypes that MySQL supports:
+
+  NULL
+    No value
+
+  INT
+    Any whole numbers
+
+  DECIMAL(<M>,<N>)
+    Decimal numbers
+      M: Total number of digits for this number
+      N: Number of decimal digits after the decimal place
+
+  VARCHAR(<N>)
+    Data of variable characters. A string
+      N: Number of characters of the string
+
+  BLOB
+    (Binary Large Object). A structure that can store large amounts of data
+
+  DATE
+    Date. Format: 'YYYY-MM-DD'
+
+  TIMESTAMP
+    Date and time. Format: 'YYYY-MM-DD HH-MM-SS'
+
+3. Attributes
+
+Attributes are different keywords that a field can be created with to grant them different characteristics and abilities. They are specified when a field is being created, when creating or altering a table:
+
+  PRIMARY KEY
+    Specifies the corresponding field to be the primary key of the table. By definition, it is also UNIQUE and NOT NULL.
+
+  AUTO_INCREMENT
+    Tells the database to auto increment the specified field (only works with INT datatype).
+
+  UNIQUE
+    Does not allow a field to be repeated somewhere else in the table.
+
+  NOT NULL
+    Does not allow a field to have a value of NULL.
+
+  DEFAULT <value>
+    Sets a default value for the field if the user does not specify a value.
+
+4. The CRUD
+
+5. Steps to create a database

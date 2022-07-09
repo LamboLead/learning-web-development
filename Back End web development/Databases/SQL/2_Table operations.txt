@@ -1,0 +1,98 @@
+TABLE OPERATIONS - SQL
+
+Here you can find all the operations that you can perform with tables.
+
+1. Creating tables
+
+Creates a new table inside the accessed database
+  > CREATE TABLE <table_name> (
+    <field_1> <DATATYPE> <OTHER ATTRIBUTES>,
+    <field_2> <DATATYPE> <OTHER ATTRIBUTES>,
+    <...>
+  );
+
+- Field attributes
+
+There are different attributes that you can set to a field to grant it special characteristics:
+
+  PRIMARY KEY
+    Specifies the corresponding field to be the primary key of the table. By definition, it is also UNIQUE and NOT NULL.
+
+  FOREIGN KEY(<this_key>) REFERENCES <table_name>(<that_primary_key>) <ON DELETE OPTIONS>
+    References a key to be a foreign key of another table inside the existing table.
+
+    <ON DELETE OPTIONS> specify how to treat the data if the referenced key is deleted:
+
+      ON DELETE SET NULL
+        The foreign key is set as NULL
+      
+      ON DELETE CASCADE
+        The row in which the foreign key is defined is deleted as well
+
+  AUTO_INCREMENT
+    Tells the database to auto increment the specified field (only works with INT datatype).
+
+  UNIQUE
+    Does not allow a field to be repeated somewhere else in the table.
+
+  NOT NULL
+    Does not allow a field to have a value of NULL.
+
+  DEFAULT <value>
+    Sets a default value for the field if the user does not specify a value.
+
+- Example
+
+  Create a table named 'students':
+
+    > CREATE TABLE student (
+      student_id INT PRIMARY KEY,
+      name VARCHAR(20) NOT NULL,
+      major VARCHAR(30)
+    );
+
+    or
+
+    > CREATE TABLE student (
+      student_id INT,
+      name VARCHAR(20),
+      major VARCHAR(30),
+      PRIMARY KEY(student_id)
+    )
+
+2. Inspecting the structure of a table
+
+Describes the specified table
+  > DESCRIBE <table_name>;
+
+*. Deleting tables
+
+Deletes the specified table
+  > DROP TABLE <table_name>
+
+3. Modifying tables
+
+Modifies the table, depending on the specified operation
+  > ALTER TABLE <student> <OPERATION>
+
+You can create, modify or delete the fields of a table
+
+- Example
+
+  Insert a new column for the 'students' table:
+
+    > ALTER TABLE student ADD gpa DECIMAL(3, 2);
+
+  Delete a column from the 'students' table:
+
+    > ALTER TABLE student DROP COLUMN gpa;
+
+  Create a new table named 'branch':
+    
+    > CREATE TABLE branch (
+      branch_id INT PRIMARY KEY,
+      branch_name VARCHAR(40),
+      manager_id INT,
+      manager_start_date DATE,
+      FOREIGN KEY(manager_id) REFERENCES employee(employee_id) ON DELETE SET NULL
+    );

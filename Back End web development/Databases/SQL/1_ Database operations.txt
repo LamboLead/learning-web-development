@@ -1,0 +1,9 @@
+DATABASE OPERATIONS
+
+These are all the operations that you can do with a database:
+
+Creates and accesses a database:
+  > CREATE DATABASE <database_name>;
+
+Accesses a database
+  > USE <database_name>;

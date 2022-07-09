@@ -1,0 +1,22 @@
+DATABASE ARCHITECTURE
+
+When you are trying to create a database, you are going to need to set its architecture: Which information is going to be stored in the database, how is it going to be stored, which tables to create, and how to connect that information together.
+
+A good database architecture allows to create a good infrastructure for the database, which results in an easy to scale and maintain database with a predictable behavior.
+
+1. Relationships
+
+The 'R' in 'RDBMS' stands for 'Relational'. You can define different relationships between different tables according on the abstract relationships that exist between two or more instances of an application.
+
+1.1. Types of keys
+
+There are different keys inside a table, depending on the type of relationship that you want to establish between instances
+
+PRIMARY KEY
+
+FOREIGN KEY
+  It is a key allocated in a table that references the PRIMARY KEY of a row in another table
+
+2. The Database schema
+
+3. 

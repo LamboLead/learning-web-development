@@ -1,0 +1,29 @@
+QUERYING WITH WILDCARDS
+
+You can use the 'LIKE' keyword to make more precise queries.
+
+- Syntax:
+
+  > SELECT <dataset> FROM <table_name> WHERE <field> LIKE '<pattern>'
+    Finds the rows that match the specified pattern.
+    You can use '%' to specify 'any number of characters', or '_' to specify one character
+
+- Examples:
+
+NOTE: These examples work with the 'Company Database' exercise.
+
+Find any clients who are an LLC:
+
+  > SELECT * FROM client WHERE client_name LIKE '%LLC';
+
+Find any branch suppliers who are in the label business:
+
+  > SELECT * FROM branch_supplier WHERE supplier_name LIKE '%Label%';
+
+Find any employee born in October:
+
+  > SELECT * FROM employee WHERE birth_date LIKE '____-10%'; # Matches four-digit years and days with any number of characters
+
+Find any clients who are schools:
+
+  > SELECT * FROM client WHERE name LIKE '%school%';

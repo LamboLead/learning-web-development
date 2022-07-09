@@ -2,4 +2,137 @@ PROVIDE / INJECT
 
 Link: https://vuejs.org/guide/components/provide-inject.html
 
-If you have a large component tree and you need to pass different props to some deeply nested children and the root component, you 
+If you have a large component tree and you need to pass different props to some deeply nested children, you can use 'provide' and 'inject'. A parent component can serve as a dependency provider for all its descendants.
+
+Any component in the descendant tree can inject dependencies provided by components up in its parent chain.
+
+1. Providing props
+
+'Provide' is used in the source component. To provide data to a component's descendants, you type:
+
+  export default {
+    provide: {
+      message: 'Hello!' # The key 'message' is used to locate the correct value to inject
+    }
+  }
+
+If you need to provide per-instance state (e.g. data declared via de data()), then 'provide' must use a function value:
+
+  export default {
+    data() {
+      return {
+        message: 'Hello!'
+      }
+    },
+    provide() {
+      return {
+        message: this.message
+      }
+    }
+  }
+
+* Providing at the app level
+
+You can also provide at the app level, which is useful to provide to all components rendered in the app:
+
+  import {createApp} from 'vue';
+  const app = createApp({});
+  app.provide('message', 'Hello!'); # app.provide(key, value);
+
+2. Inject
+
+You use 'inject' to inject data provided by an ancestor component:
+
+  export default {
+    inject: ['message'],
+    created() {
+      console.log(this.message) # injected value
+    }
+  }
+
+  export default {
+    inject: ['message'],
+    data() {
+      return {
+        fullMessage: this.message
+      }
+    }
+  }
+
+* Injection aliasing
+
+You can set a different key for the injected value, you use the object syntax for the inject option:
+
+  export default {
+    inject: {
+      localMessage: { # Local key, with which the value can be exposed
+        from: 'message' # Injection key
+      }
+    }
+  }
+
+* Injection default values
+
+In the case where the injection key is not provided, there will be a runtime warning. You can declare a default value to avoid this:
+
+  export default {
+    inject {
+      message { # You need to use object syntax
+        from: 'message', # This is optional if you use the same key for injection
+        default: 'default value'
+      },
+      user: {
+        default: () => ({name: 'John'}) # You can create defaults like this as well
+      }
+    }
+  }
+
+* Defining reactive injections
+
+If you need to make injections reactively linked to the provider, you need to provide a computed property using the 'computed()' property:
+
+  import {computed} from 'vue';
+
+  export default {
+    data() {
+      return {
+        message: 'Hello!'
+      }
+    },
+    provide() {
+      return {
+        message: computed(() => this.message) # Explicitl provide a computed property
+      }
+    }
+  }
+
+* Symbol keys
+
+If you are working in a large application with many dependency providers, or you are authoring components that are going to be used by other developers, it is best to use Symbol injection keys to avoid potential collisions.
+
+You export the Symbols in a dedicated file:
+
+  # keys.js
+  export const myInjectionKey = Symbol();
+
+  # In provider component
+  import {myinjectionKey} from './keys.js';
+
+  export default {
+    provide() {
+      return {
+        [myInjectionKey]: {
+          # data to provide
+        }
+      }
+    }
+  }
+
+  # In injector component
+  import {myInjectionKey} from './keys.js'
+
+  export default {
+    inject: {
+      injectedValue: {from: myInjectionKey}
+    }
+  }

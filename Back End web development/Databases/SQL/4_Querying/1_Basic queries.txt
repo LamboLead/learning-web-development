@@ -1,0 +1,49 @@
+BASIC QUERIES
+
+Queries are useful operations created to read the information inside a database in a fast and simple way.
+
+To query data, you use the 'SELECT' keyword. These are the basic queries that you can make in SQL, presented as examples:
+
+* Basic SELECT usage
+
+Select all the fields in the 'student' table:
+
+  > SELECT * FROM student;
+
+Select all the 'name' and 'major' fields in the 'student' table, ordering them by descending alphabetical order of the 'name' field:
+
+  > SELECT student.name, student.major
+  FROM student
+  ORDER BY name DESC;
+
+Select all the fields in the 'student' table, ordering by 'student_id', and then by 'major', limiting the output at two results:
+
+  > SELECT *
+  FROM student
+  ORDER BY student_id, major
+  LIMIT 2;
+
+Select all the fields in the 'student' table, where the major equals 'Biology' or name equals 'Claire':
+
+  > SELECT *
+  FROM student
+  WHERE major = 'Biology' OR NAME = 'Claire';
+  
+Select 'name' and 'major' fields from the 'student' table, where the major is not equal to 'Chemistry', and student_id is more or equal than 3:
+
+  > SELECT student.name, student.major
+  WHERE major <> 'Chemistry' AND student_id >= 3;
+
+Select all the fields in the 'student' table where major is 'Chemistry', 'Computer Science' or 'Biology' and student_id is less than 10:
+
+  > SELECT * FROM student
+  WHERE major IN ('Chemistry', 'Computer Science', 'Biology') AND student_id < 10;
+
+Select all the distinct majors that there exist in the database:
+
+  > SELECT DISTINCT major FROM student;
+
+Select 'name' and 'major' fields from the 'student' table, nicknaming the fields as 'Student_name' and 'Student_major':
+
+  > SELECT name AS Student_name, major AS Student_major FROM student;
+

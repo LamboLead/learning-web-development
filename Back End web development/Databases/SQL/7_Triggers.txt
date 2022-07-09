@@ -1,0 +1,3 @@
+TRIGGERS
+
+These are blocks of SQL code that are run when an operation inside the database is performed.

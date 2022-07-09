@@ -1,0 +1,64 @@
+ASYNC COMPONENTS
+
+Link: https://vuejs.org/guide/components/async.html
+
+In large applications, you may need to divide the app into smaller chunks and only load a component from the server when it's needed.
+
+1. Defining async components
+
+You can define an asynchronous component with the 'defineAsyncComponent()' function, which accepts a loader function that returns a Promise:
+
+  import {defineAsyncComponent} from 'vue';
+
+  const AsyncComp = defineAsyncComponent(() => {
+    return new Promise((resolve, reject) => {
+      # ... Load component from server
+      resolve(...); # Loaded component
+      reject(...); # To indicate that the load has failed
+    })
+  });
+
+You can use the async component like a normal component
+
+2. Registering async components
+
+Async components can be registered globally:
+
+  app.component('MyComponent', defineAsyncComponent(() => {
+    import('./components/MyComponent.vue');
+  }));
+
+You can also use 'defineAsyncComponent()' when registering a component locally:
+
+  <script>
+    import {defineAsyncComponent} from 'vue';
+
+    export default {
+      components: {
+        AdminPage: defineAsyncComponent(() => {
+          import('./components/AdminPageComponent.vue');
+        });
+      }
+    }
+  </script>
+
+  <template>
+    <AdminPage />
+  </template>
+
+3. Loading and error states
+
+You can handle loading and error states via advanced options:
+
+  const AsyncComp = defineAsyncComponent({
+    loader: () => import('.Foo.vue'),
+    loadingComponent: YourLoadingComponent, # Component to be rendered while loading
+    delay: 200, # Delay before showing the loading component. Default is 200ms
+    errorComponent: YourErrorComponent, # Displayed if a timeout is provided and exceeded, or if Promise fails
+    timeout: 3000 # Default is infinity
+  });
+
+4. <Suspense> component
+
+Link: https://vuejs.org/guide/components/async.html
+
